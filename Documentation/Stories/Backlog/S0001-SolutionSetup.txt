@@ -1,0 +1,12 @@
+As a DbC.Net developer, I want have a new solution for developing DbC.Net
+
+Requirements:
+
+  New empty solution
+
+DEFINITION OF DONE:
+
+1. New empty solution
+2. Solution items: License.txt, README.md, CodingGuidelines.txt
+3. Documentation folder
+4. Initial stories
