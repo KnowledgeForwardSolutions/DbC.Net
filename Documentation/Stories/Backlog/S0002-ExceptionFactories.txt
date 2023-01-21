@@ -1,0 +1,17 @@
+As a DbC.Net developer, I want a suite of factory objects for creating common exceptions
+
+Requirements:
+
+  Define the IExceptionFactory interface
+  Create singletons factory objects for common exceptions
+
+DEFINITION OF DONE:
+
+1. IExceptionFactory interface defined
+2. ArgumentNullExceptionFactory
+3. ArgumentExceptionFactory
+4. ArgumentOutOfRangeExceptionFactory
+5. FormatExceptionFactory
+6. InvalidOperationExceptionFactory
+7. NotSupportedExceptionFactory
+8. Unit tests for all factory classes
