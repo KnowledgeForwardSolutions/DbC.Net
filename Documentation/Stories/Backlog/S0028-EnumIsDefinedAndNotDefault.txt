@@ -1,0 +1,14 @@
+As a developer who uses DbC.Net, I want to be able to require/ensure that an enum value is a defined member of the target enum type and also not the default value for the target enum type.
+
+Requirements:
+
+  RequiresEnumIsDefinedAndNotDefault (precondition), default ArgumentOutOfRangeException 
+  EnsuresEnumIsDefinedAndNotDefault (postcondition), default PostconditionFailedException
+
+DEFINITION OF DONE:
+
+1. Implement RequiresEnumIsDefinedAndNotDefault
+2. Implement EnsuresEnumIsDefinedAndNotDefault
+3. Unit tests for Requires/Ensures EnumIsDefinedAndNotDefault
+4. Performance tests
+5. Readme updates

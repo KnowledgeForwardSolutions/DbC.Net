@@ -7,8 +7,8 @@ Requirements:
 
 DEFINITION OF DONE:
 
-1. Implement RequiresNullOrEmpty
-2. Implement EnsuresNullOrEmpty
-3. Unit tests for Requires/Ensures NullOrEmpty
+1. Implement RequiresNotNullOrEmpty
+2. Implement EnsuresNotNullOrEmpty
+3. Unit tests for Requires/Ensures NotNullOrEmpty
 4. Performance tests
 5. Readme updates

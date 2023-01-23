@@ -1,0 +1,16 @@
+As a developer who uses DbC.Net, I want to be able to require/ensure that a string value matches a target regex.
+
+Requirements:
+
+  RequiresRegexMatch (precondition), default ArgumentException 
+  EnsuresRegexMatch (postcondition), default PostconditionFailedException
+  Overloads for string regex and Regex object.
+  Test wtih source generated regex (had issues with this previously)
+
+DEFINITION OF DONE:
+
+1. Implement RequiresRegexMatch
+2. Implement EnsuresRegexMatch
+3. Unit tests for Requires/Ensures RegexMatch
+4. Performance tests
+5. Readme updates

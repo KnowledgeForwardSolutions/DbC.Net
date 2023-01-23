@@ -1,4 +1,4 @@
-As a developer who uses DbC.Net, I want to be able to require/ensure that a string value is neither null or String.Empty or all whitespace characters.
+As a developer who uses DbC.Net, I want to be able to require/ensure that a string value is not null or String.Empty or all whitespace characters.
 
 Requirements:
 
@@ -7,8 +7,8 @@ Requirements:
 
 DEFINITION OF DONE:
 
-1. Implement RequiresNullOrWhiteSpace
-2. Implement EnsuresNullOrWhiteSpace
-3. Unit tests for Requires/Ensures NullOrWhiteSpace
+1. Implement RequiresNotNullOrWhiteSpace
+2. Implement EnsuresNotNullOrWhiteSpace
+3. Unit tests for Requires/Ensures NotNullOrWhiteSpace
 4. Performance tests
 5. Readme updates
