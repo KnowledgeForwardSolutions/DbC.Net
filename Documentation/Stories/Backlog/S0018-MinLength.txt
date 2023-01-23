@@ -1,0 +1,15 @@
+As a developer who uses DbC.Net, I want to be able to require/ensure that a string value has at least a target minimum length. 
+
+Requirements:
+
+  RequiresMinLength (precondition), default ArgumentException
+  EnsuresMinLength (postcondition), default PostconditionFailedException
+  Support supplying IComparer<T> object to perform the comparison
+
+DEFINITION OF DONE:
+
+1. Implement RequiresMinLength
+2. Implement EnsuresMinLength
+3. Unit tests for Requires/Ensures MinLength
+4. Performance tests
+5. Readme updates

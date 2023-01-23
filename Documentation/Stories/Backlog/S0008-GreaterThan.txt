@@ -1,0 +1,16 @@
+As a developer who uses DbC.Net, I want to be able to require/ensure that a value is greater than a target value.
+
+Requirements:
+
+  RequiresGreaterThan (precondition), default ArgumentOutOfRangeException
+  EnsuresGreaterThan (postcondition), default PostconditionFailedException
+  Support supplying IComparer<T> object to perform the comparison
+  Explore effect of separate method constrained to INumber<T>
+
+DEFINITION OF DONE:
+
+1. Implement RequiresGreaterThan
+2. Implement EnsuresGreaterThan
+3. Unit tests for Requires/Ensures GreaterThan
+4. Performance tests
+5. Readme updates
