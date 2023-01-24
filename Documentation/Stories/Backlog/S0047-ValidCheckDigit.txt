@@ -1,0 +1,26 @@
+As a developer who uses DbC.Net, I want to be able to require/ensure that a string meets the requirements of the supplied check digit algorithm.
+
+Requirements:
+
+  RequiresValidCheckDigit (precondition), default ArgumentException 
+  EnsuresValidCheckDigit (postcondition), default PostconditionFailedException
+  ICheckDigitAlgorithm interface
+  Luhn algorithm implementation
+  
+  Future algorithms for implementation:
+     National Provider Identifier (NPI)
+     ABA routing number
+     Vehicle Identification Number (VIN)
+     UPC
+     ISBN 10
+     ISBN 13
+     UK NHS Number
+     Verhoeff algorithm
+
+DEFINITION OF DONE:
+
+1. Implement RequiresValidCheckDigit
+2. Implement EnsuresValidCheckDigit
+3. Unit tests for Requires/Ensures ValidCheckDigit
+4. Performance tests
+5. Readme updates

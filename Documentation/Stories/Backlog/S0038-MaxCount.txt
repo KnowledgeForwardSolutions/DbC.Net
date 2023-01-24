@@ -1,0 +1,23 @@
+As a developer who uses DbC.Net, I want to be able to require/ensure a collection contains a maximum number of items.
+
+Requirements:
+
+  RequiresMaxCount (precondition), default ArgumentException 
+  EnsuresMaxCount (postcondition), default PostconditionFailedException
+  Implementation for IReadOnlyCollection<T>
+  Implementation for ICollection<T>
+  Implementation for List<T>
+  Implementation for IList<T>
+  Implementation for IReadOnlyList<T>
+  Implementation for array
+  Implementation for HashSet<T>
+  Implementation for ISet<T>
+  Implementation for IReadOnlySet<T>
+
+DEFINITION OF DONE:
+
+1. Implement RequiresMaxCount
+2. Implement EnsuresMaxCount
+3. Unit tests for Requires/Ensures MaxCount
+4. Performance tests
+5. Readme updates

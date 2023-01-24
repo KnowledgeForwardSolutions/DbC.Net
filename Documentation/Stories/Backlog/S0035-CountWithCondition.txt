@@ -1,0 +1,23 @@
+As a developer who uses DbC.Net, I want to be able to require/ensure a collection contains the target number of items that meet the supplied condition.
+
+Requirements:
+
+  RequiresCount (precondition), default ArgumentException 
+  EnsuresCount (postcondition), default PostconditionFailedException
+  Implementation for IReadOnlyCollection<T>
+  Implementation for ICollection<T>
+  Implementation for List<T>
+  Implementation for IList<T>
+  Implementation for IReadOnlyList<T>
+  Implementation for array
+  Implementation for HashSet<T>
+  Implementation for ISet<T>
+  Implementation for IReadOnlySet<T>
+
+DEFINITION OF DONE:
+
+1. Implement RequiresCount
+2. Implement EnsuresCount
+3. Unit tests for Requires/Ensures Count
+4. Performance tests
+5. Readme updates

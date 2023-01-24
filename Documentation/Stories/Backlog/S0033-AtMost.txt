@@ -1,0 +1,23 @@
+As a developer who uses DbC.Net, I want to be able to require/ensure that at most N members of a collection meet a target condition.
+
+Requirements:
+
+  RequiresAtMost (precondition), default ArgumentException 
+  EnsuresAtMost (postcondition), default PostconditionFailedException
+  Implementation for IReadOnlyCollection<T>
+  Implementation for ICollection<T>
+  Implementation for List<T>
+  Implementation for IList<T>
+  Implementation for IReadOnlyList<T>
+  Implementation for array
+  Implementation for HashSet<T>
+  Implementation for ISet<T>
+  Implementation for IReadOnlySet<T>
+
+DEFINITION OF DONE:
+
+1. Implement RequiresAtMost
+2. Implement EnsuresAtMost
+3. Unit tests for Requires/Ensures AtMost
+4. Performance tests
+5. Readme updates
