@@ -1,0 +1,15 @@
+As a developer who uses DbC.Net, I want to be able to require/ensure that a string value starts with a target substring.
+
+Requirements:
+
+  RequiresStartsWith (precondition), default ArgumentException 
+  EnsuresStartsWith (postcondition), default PostconditionFailedException
+  Support supplying IComparer<T> object to perform the comparison
+
+DEFINITION OF DONE:
+
+1. Implement RequiresStartsWith
+2. Implement EnsuresStartsWith
+3. Unit tests for Requires/Ensures StartsWith
+4. Performance tests
+5. Readme updates

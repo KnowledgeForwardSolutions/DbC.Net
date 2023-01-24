@@ -1,0 +1,14 @@
+As a developer who uses DbC.Net, I want to be able to require/ensure that a string value contains a target substring.
+
+Requirements:
+
+  RequiresContains (precondition), default ArgumentException 
+  EnsuresContains (postcondition), default PostconditionFailedException
+
+DEFINITION OF DONE:
+
+1. Implement RequiresContains
+2. Implement EnsuresContains
+3. Unit tests for Requires/Ensures Contains
+4. Performance tests
+5. Readme updates

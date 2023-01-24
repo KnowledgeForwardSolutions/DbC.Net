@@ -1,0 +1,14 @@
+As a developer who uses DbC.Net, I want to be able to require/ensure that a value does not meet a target condition.
+
+Requirements:
+
+  RequiresFalse (precondition), default ArgumentException 
+  EnsuresFalse (postcondition), default PostconditionFailedException
+
+DEFINITION OF DONE:
+
+1. Implement RequiresFalse
+2. Implement EnsuresFalse
+3. Unit tests for Requires/Ensures False
+4. Performance tests
+5. Readme updates

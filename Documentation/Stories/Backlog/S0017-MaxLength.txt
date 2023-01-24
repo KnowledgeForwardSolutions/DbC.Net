@@ -1,0 +1,15 @@
+As a developer who uses DbC.Net, I want to be able to require/ensure that a string value does not exceed a target maximum length. 
+
+Requirements:
+
+  RequiresMaxLength (precondition), default ArgumentException
+  EnsuresMaxLength (postcondition), default PostconditionFailedException
+  Support supplying IComparer<T> object to perform the comparison
+
+DEFINITION OF DONE:
+
+1. Implement RequiresMaxLength
+2. Implement EnsuresMaxLength
+3. Unit tests for Requires/Ensures MaxLength
+4. Performance tests
+5. Readme updates

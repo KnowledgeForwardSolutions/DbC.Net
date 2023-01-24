@@ -1,0 +1,14 @@
+As a developer who uses DbC.Net, I want to be able to require/ensure that a string value contains only alphanumeric characters.
+
+Requirements:
+
+  RequiresAlphaNumericOnly (precondition), default ArgumentException 
+  EnsuresAlphaNumericOnly (postcondition), default PostconditionFailedException
+
+DEFINITION OF DONE:
+
+1. Implement RequiresAlphaNumericOnly
+2. Implement EnsuresAlphaNumericOnly
+3. Unit tests for Requires/Ensures AlphaNumericOnly
+4. Performance tests
+5. Readme updates

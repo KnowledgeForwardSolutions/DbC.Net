@@ -1,0 +1,15 @@
+As a developer who uses DbC.Net, I want to be able to require/ensure that a numeric value is less than zero.
+
+Requirements:
+
+  RequiresLessThanZero (precondition), default ArgumentOutOfRangeException
+  EnsuresLessThanZero (postcondition), default PostconditionFailedException
+  Support supplying IComparer<T> object to perform the comparison
+
+DEFINITION OF DONE:
+
+1. Implement RequiresLessThanZero
+2. Implement EnsuresLessThanZero
+3. Unit tests for Requires/Ensures LessThanZero
+4. Performance tests
+5. Readme updates

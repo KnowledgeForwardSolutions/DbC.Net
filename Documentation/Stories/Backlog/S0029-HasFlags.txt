@@ -1,0 +1,14 @@
+As a developer who uses DbC.Net, I want to be able to require/ensure that an enum value has the target enum flags set.
+
+Requirements:
+
+  RequiresHasFlags (precondition), default ArgumentException 
+  EnsuresHasFlags (postcondition), default PostconditionFailedException
+
+DEFINITION OF DONE:
+
+1. Implement RequiresHasFlags
+2. Implement EnsuresHasFlags
+3. Unit tests for Requires/Ensures HasFlags
+4. Performance tests
+5. Readme updates

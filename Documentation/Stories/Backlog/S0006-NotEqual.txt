@@ -1,0 +1,15 @@
+As a developer who uses DbC.Net, I want to be able to require/ensure that a value is not equal to a target value.
+
+Requirements:
+
+  RequiresNotEqual (precondition), default ArgumentOutOfRangeException
+  EnsuresNotEqual (postcondition), default PostconditionFailedException
+  Support supplying an IEqualityComparer<T> to perform the comparison
+
+DEFINITION OF DONE:
+
+1. Implement RequiresNotEqual
+2. Implement EnsuresNotEqual
+3. Unit tests for Requires/Ensures NotEqual
+4. Performance tests
+5. Readme updates

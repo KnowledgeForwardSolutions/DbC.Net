@@ -1,0 +1,18 @@
+As a developer who uses DbC.Net, I want to be able to require/ensure that a floating point value is approximately equal to a target value.
+
+See https://floating-point-gui.de/errors/comparison/ for more info.
+
+Requirements:
+
+  RequiresApproximatelyEqual (precondition), default ArgumentOutOfRangeException
+  EnsuresApproximatelyEqual (postcondition), default PostconditionFailedException
+  Support supplying comparer object to perform the comparison
+  Default comparer should check ABS(value - target) < tolerance
+
+DEFINITION OF DONE:
+
+1. Implement RequiresApproximatelyEqual
+2. Implement EnsuresApproximatelyEqual
+3. Unit tests for Requires/Ensures ApproximatelyEqual
+4. Performance tests
+5. Readme updates

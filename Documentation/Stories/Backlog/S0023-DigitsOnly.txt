@@ -1,0 +1,14 @@
+As a developer who uses DbC.Net, I want to be able to require/ensure that a string value contains only digit characters.
+
+Requirements:
+
+  RequiresDigitsOnly (precondition), default ArgumentException 
+  EnsuresDigitsOnly (postcondition), default PostconditionFailedException
+
+DEFINITION OF DONE:
+
+1. Implement RequiresDigitsOnly
+2. Implement EnsuresDigitsOnly
+3. Unit tests for Requires/Ensures DigitsOnly
+4. Performance tests
+5. Readme updates
