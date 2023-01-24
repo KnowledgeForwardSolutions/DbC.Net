@@ -6,8 +6,10 @@ General Guidelines
    Pascal casing for all typenames. I.e. prefer Int32 over int; Double over double.
 2. Use var.
 3. Use C# 10 global usings and file-scoped namespaces to reduce code boilerplate.
-4. Add XML code comments for all public methods of public classes. Also update
-   README.md, including examples of usage.
+4. Add XML code comments for all public methods of interfaces and public classes.
+   If a class implements an interface, do not duplicate the XML comments in the
+   interface, use <inheritdoc/> instead. Also update README.md, including examples 
+   of usage.
 5. Tabs are three (3) spaces.
 6. Include benchmarks and include results in README. It is important for developers
    using DbC.Net to understand the performance impact including pre- and post-
