@@ -16,4 +16,10 @@ public static class DataNames
    // The limit for comparable checks.
    public const String Limit = "Limit";
    public const String LimitExpression = "LimitExpression";
+
+   // String min/max length checks.
+   public const String MaxLength = "MaxLength";
+   public const String MaxLengthExpression = "MaxLengthExpression";
+   public const String MinLength = "MinLength";
+   public const String MinLengthExpression = "MinLengthExpression";
 }

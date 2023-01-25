@@ -16,21 +16,17 @@ public sealed class ArgumentNullExceptionFactory : ExceptionFactory
    public static ArgumentNullExceptionFactory Instance => _lazy.Value;
 
    /// <inheritdoc/>
-   public override Exception CreateException(
+   public override ArgumentNullException CreateException(
       String messageTemplate, 
-      Dictionary<String, Object> data, 
-      Exception? innerException = null)
+      Dictionary<String, Object> data)
    {
-      _ = messageTemplate ?? throw new ArgumentNullException(nameof(messageTemplate), Messages.MessageTemplateIsEmpty);
-      if (String.IsNullOrWhiteSpace(messageTemplate))
-      {
-         throw new ArgumentException(Messages.MessageTemplateIsEmpty, nameof(messageTemplate));
-      }
-      _ = data ?? throw new ArgumentNullException(nameof(data), Messages.DataDictionaryIsNull);
+      ValidateMessageTemplate(messageTemplate);
+      ValidateDataDictionary(data);
 
       var message = CreateMessage(messageTemplate, data);
+      var paramName = GetParamName(data);
 
-      return new ArgumentNullException(message, innerException)
+      return new ArgumentNullException(paramName as String, message)
          .PopulateExceptionData(data);
    }
 }
