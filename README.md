@@ -7,7 +7,9 @@
 
   - [Exception Factories](#exception-factories)
 
+    - [ArgumentExceptionFactory](#argumentexceptionfactory)
     - [ArgumentNullExceptionFactory](#argumentnullexceptionfactory)
+    - [ArgumentOutOfRangeExceptionFactory](#argumentoutofrangeexceptionfactory)
 
 - [Release History/Release Notes](#release-historyrelease-notes)
 
@@ -28,10 +30,21 @@ syntax.
 DbC.Net provides a number of exception factory classes for creating common 
 exceptions.
 
+### ArgumentExceptionFactory
+
+Use ArgumentExceptionFactory to create ArgumentExceptions. ArgumentExceptionFactory
+expects the exception data dictionary to contain an entry for DataNames.ValueExpression.
+
 ### ArgumentNullExceptionFactory
 
-Use ArgumentNullExceptionFactory to create ArgumentNullExceptions.
+Use ArgumentNullExceptionFactory to create ArgumentNullExceptions. ArgumentNullExceptionFactory
+expects the exception data dictionary to contain an entry for DataNames.ValueExpression.
 
+### ArgumentOutOfRangeExceptionFactory
+
+Use ArgumentOutOfRangeExceptionFactory to create ArgumentOutOfRangeExceptions. 
+ArgumentOutOfRangeExceptionFactory expects the exception data dictionary to contain
+entries for DataNames.Value and DataNames.ValueExpression.
 
 # Release History/Release Notes
 
