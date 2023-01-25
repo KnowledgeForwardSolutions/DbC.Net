@@ -10,6 +10,7 @@
     - [ArgumentExceptionFactory](#argumentexceptionfactory)
     - [ArgumentNullExceptionFactory](#argumentnullexceptionfactory)
     - [ArgumentOutOfRangeExceptionFactory](#argumentoutofrangeexceptionfactory)
+    - [FormatExceptionFactory](#formatexceptionfactory)
 
 - [Release History/Release Notes](#release-historyrelease-notes)
 
@@ -45,6 +46,11 @@ expects the exception data dictionary to contain an entry for DataNames.ValueExp
 Use ArgumentOutOfRangeExceptionFactory to create ArgumentOutOfRangeExceptions. 
 ArgumentOutOfRangeExceptionFactory expects the exception data dictionary to contain
 entries for DataNames.Value and DataNames.ValueExpression.
+
+### FormatExceptionFactory
+
+Use FormatExceptionFactory to create FormatExceptions. FormatExceptionFactory
+does not have any expected entries in the exception data dictionary.
 
 # Release History/Release Notes
 
