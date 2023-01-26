@@ -79,6 +79,15 @@ namespace DbC.Net {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MaskCharacter may not be null (&apos;\0&apos;).
+        /// </summary>
+        internal static string MaskCharacterIsNull {
+            get {
+                return ResourceManager.GetString("MaskCharacterIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to messageTemplate may not be null, String.Empty or all whitespace characters.
         /// </summary>
         internal static string MessageTemplateIsEmpty {

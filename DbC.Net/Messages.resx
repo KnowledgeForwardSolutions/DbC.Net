@@ -123,6 +123,9 @@
   <data name="ExceptionIsNull" xml:space="preserve">
     <value>ex may not be null</value>
   </data>
+  <data name="MaskCharacterIsNull" xml:space="preserve">
+    <value>MaskCharacter may not be null ('\0')</value>
+  </data>
   <data name="MessageTemplateIsEmpty" xml:space="preserve">
     <value>messageTemplate may not be null, String.Empty or all whitespace characters</value>
   </data>
