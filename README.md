@@ -14,6 +14,7 @@
     - [ArgumentOutOfRangeExceptionFactory](#argumentoutofrangeexceptionfactory)
     - [FormatExceptionFactory](#formatexceptionfactory)
     - [InvalidOperationExceptionFactory](#invalidoperationexceptionfactory)
+    - [NotSupportedExceptionFactory](#notsupportedexceptionfactory)
 
     - [MaskedExceptionFactory](#maskedexceptionfactory)
 
@@ -109,6 +110,12 @@ does not expect any specific entries in the exception data dictionary.
 
 Use InvalidOperationExceptionFactory to create InvalidOperationExceptions. 
 InvalidOperationExceptionFactory does not expect any specific entries in the 
+exception data dictionary.
+
+### NotSupportedExceptionFactory
+
+Use NotSupportedExceptionFactory to create NotSupportedException. 
+NotSupportedExceptionFactory does not expect any specific entries in the 
 exception data dictionary.
 
 ### MaskedExceptionFactory
