@@ -95,5 +95,23 @@ namespace DbC.Net {
                 return ResourceManager.GetString("MessageTemplateIsEmpty", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List of sensitive value names may not be null.
+        /// </summary>
+        internal static string SensitiveValuesListIsNull {
+            get {
+                return ResourceManager.GetString("SensitiveValuesListIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ValueMasker may not be null.
+        /// </summary>
+        internal static string ValueMaskerIsNull {
+            get {
+                return ResourceManager.GetString("ValueMaskerIsNull", resourceCulture);
+            }
+        }
     }
 }

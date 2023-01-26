@@ -15,6 +15,8 @@
     - [FormatExceptionFactory](#formatexceptionfactory)
     - [InvalidOperationExceptionFactory](#invalidoperationexceptionfactory)
 
+    - [MaskedExceptionFactory](#maskedexceptionfactory)
+
   - [Masking Sensitive Values](#masking-sensitive-values)
 
     - [IValueMasker](#ivaluemasker)
@@ -108,6 +110,15 @@ does not expect any specific entries in the exception data dictionary.
 Use InvalidOperationExceptionFactory to create InvalidOperationExceptions. 
 InvalidOperationExceptionFactory does not expect any specific entries in the 
 exception data dictionary.
+
+### MaskedExceptionFactory
+
+MaskedExceptionFactory is the abstract base class for all DbC.Net exception
+factories that mask sensitive data in the produced exception. It is derived from 
+ExceptionFactory and adds a method to process the exception data dictionary and
+mask any values considered sensitive. The constructor for MaskedExceptionFactory
+accepts an instance of IValueMasker to perform the masking and a list of keys
+for values that are considered sensitive.
 
 ## Masking Sensitive Values
 

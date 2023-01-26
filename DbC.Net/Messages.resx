@@ -129,4 +129,10 @@
   <data name="MessageTemplateIsEmpty" xml:space="preserve">
     <value>messageTemplate may not be null, String.Empty or all whitespace characters</value>
   </data>
+  <data name="SensitiveValuesListIsNull" xml:space="preserve">
+    <value>List of sensitive value names may not be null</value>
+  </data>
+  <data name="ValueMaskerIsNull" xml:space="preserve">
+    <value>ValueMasker may not be null</value>
+  </data>
 </root>
