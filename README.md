@@ -11,6 +11,7 @@
     - [ArgumentNullExceptionFactory](#argumentnullexceptionfactory)
     - [ArgumentOutOfRangeExceptionFactory](#argumentoutofrangeexceptionfactory)
     - [FormatExceptionFactory](#formatexceptionfactory)
+    - [InvalidOperationExceptionFactory](#invalidoperationexceptionfactory)
 
 - [Release History/Release Notes](#release-historyrelease-notes)
 
@@ -50,7 +51,13 @@ entries for DataNames.Value and DataNames.ValueExpression.
 ### FormatExceptionFactory
 
 Use FormatExceptionFactory to create FormatExceptions. FormatExceptionFactory
-does not have any expected entries in the exception data dictionary.
+does not expect any specific entries in the exception data dictionary.
+
+### InvalidOperationExceptionFactory
+
+Use InvalidOperationExceptionFactory to create InvalidOperationExceptions. 
+InvalidOperationExceptionFactory does not expect any specific entries in the 
+exception data dictionary.
 
 # Release History/Release Notes
 

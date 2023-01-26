@@ -22,4 +22,6 @@ public static class DataNames
    public const String MaxLengthExpression = "MaxLengthExpression";
    public const String MinLength = "MinLength";
    public const String MinLengthExpression = "MinLengthExpression";
+
+   public const String Regex = "Regex";
 }
