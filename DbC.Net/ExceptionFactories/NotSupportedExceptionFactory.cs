@@ -3,7 +3,7 @@
 /// <summary>
 ///   Exception factory for creating <see cref="NotSupportedException"/>s.
 /// </summary>
-public sealed class NotSupportedExceptionFactory : ExceptionFactory
+public sealed class NotSupportedExceptionFactory : ExceptionFactoryBase
 {
    private static readonly Lazy<NotSupportedExceptionFactory> _lazy =
       new(() => new NotSupportedExceptionFactory());
@@ -17,11 +17,11 @@ public sealed class NotSupportedExceptionFactory : ExceptionFactory
 
    /// <inheritdoc/>
    public override NotSupportedException CreateException(
-      String messageTemplate,
-      Dictionary<String, Object> data)
+      IReadOnlyDictionary<String, Object> data,
+      String messageTemplate)
    {
-      ValidateMessageTemplate(messageTemplate);
       ValidateDataDictionary(data);
+      ValidateMessageTemplate(messageTemplate);
 
       var message = CreateMessage(messageTemplate, data);
 

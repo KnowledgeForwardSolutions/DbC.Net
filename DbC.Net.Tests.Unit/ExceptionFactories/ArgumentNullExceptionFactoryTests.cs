@@ -33,7 +33,7 @@ public class ArgumentNullExceptionFactoryTests
       var expectedParamName = "x";
 
       // Act.
-      var ex = sut.CreateException(messageTemplate, _data);
+      var ex = sut.CreateException(_data, messageTemplate);
 
       // Assert.
       ex.Should().NotBeNull();
@@ -54,7 +54,7 @@ public class ArgumentNullExceptionFactoryTests
    {
       // Arrange.
       var sut = ArgumentNullExceptionFactory.Instance;
-      var act = () => _ = sut.CreateException(messageTemplate, _data);
+      var act = () => _ = sut.CreateException(_data, messageTemplate);
 
       // Act/assert.
       act.Should().Throw<ArgumentException>()
@@ -68,7 +68,7 @@ public class ArgumentNullExceptionFactoryTests
       // Arrange.
       String messageTemplate = null!;
       var sut = ArgumentNullExceptionFactory.Instance;
-      var act = () => _ = sut.CreateException(messageTemplate, _data);
+      var act = () => _ = sut.CreateException(_data, messageTemplate);
 
       // Act/assert.
       act.Should().Throw<ArgumentNullException>()
@@ -83,7 +83,7 @@ public class ArgumentNullExceptionFactoryTests
       var messageTemplate = "{RequirementType} {RequirementName} failed: {ValueExpression} may not be null";
       Dictionary<String, Object> data = null!;
       var sut = ArgumentNullExceptionFactory.Instance;
-      var act = () => _ = sut.CreateException(messageTemplate, data);
+      var act = () => _ = sut.CreateException(data, messageTemplate);
 
       // Act/assert.
       act.Should().Throw<ArgumentNullException>()

@@ -7,6 +7,12 @@
 
   - [Exception Factories](#exception-factories)
 
+    - [Data Dictionary](#data-dictionary)
+
+    - [Message Templates](#message-templates)
+
+    - [Value Transforms](#value-transforms)
+
     - [IExceptionFactory](#iexceptionfactory)
     - [ExceptionFactory](#exceptionfactory)
     - [ArgumentExceptionFactory](#argumentexceptionfactory)
@@ -16,12 +22,7 @@
     - [InvalidOperationExceptionFactory](#invalidoperationexceptionfactory)
     - [NotSupportedExceptionFactory](#notsupportedexceptionfactory)
 
-    - [MaskedExceptionFactory](#maskedexceptionfactory)
-
-  - [Masking Sensitive Values](#masking-sensitive-values)
-
-    - [IValueMasker](#ivaluemasker)
-    - [CharacterMasker](#charactermasker)
+    - [Implementing an ExceptionFactory](#implementing-an-exceptionfactory)
 
 - [Release History/Release Notes](#release-historyrelease-notes)
 
@@ -38,6 +39,54 @@ syntax.
 # Using DbC.Net
 
 ## Exception Factories
+
+DbC.Net uses exception factories to create the exception that is thrown when a
+requirement is not met. DbC.Net provides a variety of standard exception 
+factories as lazily created singletons in the StandardExceptionFactories class.
+You can create your own exception factory by creating a class that implements 
+IExceptionFactory. All DbC.Net provided exception factories are derived from the
+abstract class ExceptionFactoryBase and you may derive your own exception
+factories from ExceptionFactoryBase if you like.
+
+### Data Dictionary
+
+DbC.Net exception factories have several important features: data dictionaries,
+message templates and value transforms. The CreateException method of 
+IExceptionFactory accepts a data parameter of type Dictionary<String, Object>.
+ExceptionFactoryBase uses that dictionary to populate the Data property of the 
+created exception and is also to build the exception method from the message 
+template. Each DbC.Net Requires.../Ensures... fills the data dictionary with
+values related to the failed requirement before invoking CreateException. See
+the individual Requires.../Ensures... method documentation for the values that 
+are added to the data dictionary. The keys used for entries in the data dictionary
+are constants available in the DataNames class.
+
+### Message Templates
+
+The CreateException method of IExceptionFactory also accepts a string message
+template parameter. ExceptionFactoryBase uses the data dictionary and the message
+template to create the final error message by replacing placeholders in the
+message template with values from the data dictionary. Placeholders are delimited
+by curly braces (example: {Value}). ExceptionFactoryBase will walk the entries in
+the data dictionary and replace any placeholder in the message template that 
+matches the key of a data dictionary item with that item's value.
+
+### Value Transforms
+
+DbC.Net exception factories use value transforms for several reasons, primarily 
+to prevent sensitive data from being exposed in error messages and log entries
+as well as to prevent filling logs with unnecessarily large amounts of data. 
+Dbc.Net value transforms implement IValueTransform and use the Decorator Pattern
+to extend basic transforms with additional features. DbC.Net provides a variety
+of standard value transforms as lazily created singletons in the StandardTransforms
+class. Value transforms do not affect the value being checked, they are only used
+to transform a value that will be included in the exception being created.
+
+If you create your own exception factory by deriving from ExceptionFactoryBase
+you will have message template handling and value transforms available as methods
+that you can use in your implementation of CreateException.
+
+
 
 DbC.Net provides a number of exception factory classes for creating common 
 exceptions and you are also able to implement your own factory class.
@@ -118,7 +167,7 @@ Use NotSupportedExceptionFactory to create NotSupportedException.
 NotSupportedExceptionFactory does not expect any specific entries in the 
 exception data dictionary.
 
-### MaskedExceptionFactory
+### Implementing an ExceptionFactory
 
 MaskedExceptionFactory is the abstract base class for all DbC.Net exception
 factories that mask sensitive data in the produced exception. It is derived from 
@@ -126,36 +175,6 @@ ExceptionFactory and adds a method to process the exception data dictionary and
 mask any values considered sensitive. The constructor for MaskedExceptionFactory
 accepts an instance of IValueMasker to perform the masking and a list of keys
 for values that are considered sensitive.
-
-## Masking Sensitive Values
-
-Modern applications deal with a wide range of sensitive information such as
-passwords, account/credit card numbers, Protected Health Information (PHI) and 
-more. It is important to protect that information from accidental exposure by 
-including it in error messages or writing it to logs. DbC.Net allows you to
-protect sensitive information by masking it.  All of the masked exception 
-factories support using an IValueMasker to protect items that you want to protect.
-DbC.Net provides a number of implementations of IValueMasker for you to choose 
-from and you are also able to implement your own value masker.
-
-### IValueMasker
-
-The IValueMasker interface defines an object used to mask sensitive values. The 
-interface has a single method, MaskValue which accepts an Object value and returns
-a masked String value.
-
-```C#
-public interface IValueMasker
-{
-   String MaskValue(Object value);
-}
-```
-
-### CharacterMasker
-
-CharacterMasker masks a sensitive value by converting the value to a string and
-then converting all characters in the string to the mask character. The mask 
-character can be set when a new instance of CharacterMasker is created.
 
 # Release History/Release Notes
 

@@ -36,7 +36,7 @@ public class ArgumentOutOfRangeExceptionFactoryTests
       var expectedParamName = "sum";
 
       // Act.
-      var ex = sut.CreateException(messageTemplate, _data);
+      var ex = sut.CreateException(_data, messageTemplate);
 
       // Assert.
       ex.Should().NotBeNull();
@@ -61,7 +61,7 @@ public class ArgumentOutOfRangeExceptionFactoryTests
    {
       // Arrange.
       var sut = ArgumentOutOfRangeExceptionFactory.Instance;
-      var act = () => _ = sut.CreateException(messageTemplate, _data);
+      var act = () => _ = sut.CreateException(_data, messageTemplate);
 
       // Act/assert.
       act.Should().Throw<ArgumentException>()
@@ -75,7 +75,7 @@ public class ArgumentOutOfRangeExceptionFactoryTests
       // Arrange.
       String messageTemplate = null!;
       var sut = ArgumentOutOfRangeExceptionFactory.Instance;
-      var act = () => _ = sut.CreateException(messageTemplate, _data);
+      var act = () => _ = sut.CreateException(_data, messageTemplate);
 
       // Act/assert.
       act.Should().Throw<ArgumentNullException>()
@@ -90,7 +90,7 @@ public class ArgumentOutOfRangeExceptionFactoryTests
       var messageTemplate = "{RequirementType} {RequirementName} failed: value ({Value}) is not greater than {Limit}";
       Dictionary<String, Object> data = null!;
       var sut = ArgumentOutOfRangeExceptionFactory.Instance;
-      var act = () => _ = sut.CreateException(messageTemplate, data);
+      var act = () => _ = sut.CreateException(data, messageTemplate);
 
       // Act/assert.
       act.Should().Throw<ArgumentNullException>()

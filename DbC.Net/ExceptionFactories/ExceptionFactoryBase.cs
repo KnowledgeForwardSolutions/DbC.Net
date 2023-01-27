@@ -3,15 +3,92 @@
 /// <summary>
 ///   Abstract base class for DbC.Net exception factories.
 /// </summary>
-public abstract class ExceptionFactory : IExceptionFactory
+public abstract class ExceptionFactoryBase : IExceptionFactory
 {
    private const String _ensuresPrefix = "Ensures";
    private const String _requiresPrefix = "Requires";
 
+   private readonly Dictionary<String, IValueTransform> _transforms = new();
+
+   /// <summary>
+   ///   Initialize a new <see cref="ExceptionFactoryBase"/> object with all
+   ///   defaults.
+   /// </summary>
+   public ExceptionFactoryBase() { }
+
+   /// <summary>
+   ///   Initialize a new <see cref="ExceptionFactoryBase"/> with the 
+   ///   <paramref name="transform"/> to use for the specified data dictionary
+   ///   <paramref name="keys"/>.
+   /// </summary>
+   /// <param name="keys">
+   ///   Keys that identify data dictionary entries that should be transformed
+   ///   when creating exceptions.
+   /// </param>
+   /// <param name="transform">
+   ///   The <see cref="IValueTransform"/> to use for the specified data 
+   ///   dictionary <paramref name="keys"/>.
+   /// </param>
+   /// <exception cref="ArgumentNullException">
+   ///   <paramref name="keys"/> is <see langword="null"/>.
+   ///   - or -
+   ///   <paramref name="transform"/> is <see langword="null"/>.
+   /// </exception>
+   public ExceptionFactoryBase(IReadOnlyCollection<String> keys, IValueTransform transform)
+   {
+      _ = keys ?? throw new ArgumentNullException(nameof(keys), Messages.TransformKeysCollectonIsNull);
+      _ = transform ?? throw new ArgumentNullException(nameof(transform), Messages.ValueTransformIsNull);
+
+      foreach(var key in keys)
+      {
+         _transforms[key] = transform;
+      }
+   }
+
+   /// <summary>
+   ///   Initialize a new <see cref="ExceptionFactoryBase"/> with the specified
+   ///   value <paramref name="transforms"/>.
+   /// </summary>
+   /// <param name="transforms">
+   ///   Dictionary of value transforms to apply to data dictionary entries.
+   /// </param>
+   public ExceptionFactoryBase(IReadOnlyDictionary<String, IValueTransform> transforms)
+   {
+      _ = transforms ?? throw new ArgumentNullException(nameof(transforms), Messages.TransformsDictionaryIsNull);
+
+      foreach(var kvp in transforms)
+      {
+         _transforms[kvp.Key] = kvp.Value;
+      }
+   }
+
+   /// <summary>
+   ///   Apply value transformations to the data dictionary. 
+   /// </summary>
+   /// <param name="data">
+   ///   Details to include in the new exception's <see cref="Exception.Data"/>
+   ///   dictionary.
+   /// </param>
+   /// <returns>
+   ///   A new data dictionary, containing values the transformed data values.
+   /// </returns>
+   public IReadOnlyDictionary<String, Object> ApplyTransforms(IReadOnlyDictionary<String, Object> data)
+   {
+      var transformed = new Dictionary<String, Object>();
+      foreach(var kvp in data)
+      {
+         transformed[kvp.Key] = _transforms.TryGetValue(kvp.Key, out var transform)
+            ? transform.TransformValue(kvp.Value)
+            : kvp.Value;
+      }
+
+      return transformed;
+   }
+
    /// <inheritdoc/>
    public abstract Exception CreateException(
-      String messageTemplate, 
-      Dictionary<String, Object> data);
+      IReadOnlyDictionary<String, Object> data,
+      String messageTemplate);
 
    /// <summary>
    ///   Create an exception message by populating the 
@@ -38,8 +115,8 @@ public abstract class ExceptionFactory : IExceptionFactory
    ///   <paramref name="data"/> is <see langword="null"/>.
    /// </exception>
    public virtual String CreateMessage(
-      String messageTemplate, 
-      Dictionary<String, Object> data)
+      String messageTemplate,
+      IReadOnlyDictionary<String, Object> data)
    {
       ValidateMessageTemplate(messageTemplate);
       ValidateDataDictionary(data);
@@ -78,7 +155,7 @@ public abstract class ExceptionFactory : IExceptionFactory
    // TODO: Note that the current implementation is not entirely bullet-proof. For
    // TODO: example, a value expression of "thisValueRequiresMoreThought.EnsuresNotNull()"
    // TODO: would return "thisValue".
-   public virtual String GetParamName(Dictionary<String, Object> data)
+   public virtual String GetParamName(IReadOnlyDictionary<String, Object> data)
    {
       ValidateDataDictionary(data);
 
@@ -126,7 +203,7 @@ public abstract class ExceptionFactory : IExceptionFactory
    /// <exception cref="ArgumentNullException">
    ///   <paramref name="data"/> is <see langword="null"/>.
    /// </exception>
-   public static void ValidateDataDictionary(Dictionary<String, Object> data)
+   public static void ValidateDataDictionary(IReadOnlyDictionary<String, Object> data)
       => _ = data ?? throw new ArgumentNullException(nameof(data), Messages.DataDictionaryIsNull);
 
    /// <summary>

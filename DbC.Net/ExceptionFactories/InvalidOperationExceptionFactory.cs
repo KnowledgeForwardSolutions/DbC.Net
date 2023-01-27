@@ -3,7 +3,7 @@
 /// <summary>
 ///   Exception factory for creating <see cref="InvalidOperationException"/>s.
 /// </summary>
-public sealed class InvalidOperationExceptionFactory : ExceptionFactory
+public sealed class InvalidOperationExceptionFactory : ExceptionFactoryBase
 {
    private static readonly Lazy<InvalidOperationExceptionFactory> _lazy =
       new(() => new InvalidOperationExceptionFactory());
@@ -17,11 +17,11 @@ public sealed class InvalidOperationExceptionFactory : ExceptionFactory
 
    /// <inheritdoc/>
    public override InvalidOperationException CreateException(
-      String messageTemplate,
-      Dictionary<String, Object> data)
+      IReadOnlyDictionary<String, Object> data,
+      String messageTemplate)
    {
-      ValidateMessageTemplate(messageTemplate);
       ValidateDataDictionary(data);
+      ValidateMessageTemplate(messageTemplate);
 
       var message = CreateMessage(messageTemplate, data);
 

@@ -3,7 +3,7 @@
 /// <summary>
 ///   Exception factory for creating <see cref="ArgumentNullException"/>s.
 /// </summary>
-public sealed class ArgumentNullExceptionFactory : ExceptionFactory
+public sealed class ArgumentNullExceptionFactory : ExceptionFactoryBase
 {
    private static readonly Lazy<ArgumentNullExceptionFactory> _lazy =
       new(() => new ArgumentNullExceptionFactory());
@@ -17,11 +17,11 @@ public sealed class ArgumentNullExceptionFactory : ExceptionFactory
 
    /// <inheritdoc/>
    public override ArgumentNullException CreateException(
-      String messageTemplate, 
-      Dictionary<String, Object> data)
+      IReadOnlyDictionary<String, Object> data,
+      String messageTemplate)
    {
-      ValidateMessageTemplate(messageTemplate);
       ValidateDataDictionary(data);
+      ValidateMessageTemplate(messageTemplate);
 
       var message = CreateMessage(messageTemplate, data);
       var paramName = GetParamName(data);

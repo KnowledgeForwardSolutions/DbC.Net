@@ -22,7 +22,7 @@ public static class ExceptionExtensions
    /// </exception>
    public static T PopulateExceptionData<T>(
       this T ex,
-      Dictionary<String, Object> data) where T : Exception
+      IReadOnlyDictionary<String, Object> data) where T : Exception
    {
       _ = ex ?? throw new ArgumentNullException(nameof(ex), Messages.ExceptionIsNull);
       _ = data ?? throw new ArgumentNullException(nameof(data), Messages.DataDictionaryIsNull);

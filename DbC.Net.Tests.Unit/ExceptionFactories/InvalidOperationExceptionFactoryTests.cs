@@ -34,7 +34,7 @@ public class InvalidOperationExceptionFactoryTests
       var expectedMessage = "Precondition RegexMatch failed: value (\"asdf\") is not a word that starts with 'M'";
 
       // Act.
-      var ex = sut.CreateException(messageTemplate, _data);
+      var ex = sut.CreateException(_data, messageTemplate);
 
       // Assert.
       ex.Should().NotBeNull();
@@ -56,7 +56,7 @@ public class InvalidOperationExceptionFactoryTests
    {
       // Arrange.
       var sut = InvalidOperationExceptionFactory.Instance;
-      var act = () => _ = sut.CreateException(messageTemplate, _data);
+      var act = () => _ = sut.CreateException(_data, messageTemplate);
 
       // Act/assert.
       act.Should().Throw<ArgumentException>()
@@ -70,7 +70,7 @@ public class InvalidOperationExceptionFactoryTests
       // Arrange.
       String messageTemplate = null!;
       var sut = InvalidOperationExceptionFactory.Instance;
-      var act = () => _ = sut.CreateException(messageTemplate, _data);
+      var act = () => _ = sut.CreateException(_data, messageTemplate);
 
       // Act/assert.
       act.Should().Throw<ArgumentNullException>()
@@ -85,7 +85,7 @@ public class InvalidOperationExceptionFactoryTests
       var messageTemplate = "{RequirementType} {RequirementName} failed: value (\"{Value}\") is not a word that starts with 'M'";
       Dictionary<String, Object> data = null!;
       var sut = InvalidOperationExceptionFactory.Instance;
-      var act = () => _ = sut.CreateException(messageTemplate, data);
+      var act = () => _ = sut.CreateException(data, messageTemplate);
 
       // Act/assert.
       act.Should().Throw<ArgumentNullException>()

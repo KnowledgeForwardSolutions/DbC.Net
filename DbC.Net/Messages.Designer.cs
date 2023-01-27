@@ -61,6 +61,15 @@ namespace DbC.Net {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Decorator base transform may not be null.
+        /// </summary>
+        internal static string BaseTransformIsNull {
+            get {
+                return ResourceManager.GetString("BaseTransformIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to data may not be null.
         /// </summary>
         internal static string DataDictionaryIsNull {
@@ -106,11 +115,38 @@ namespace DbC.Net {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Transform keys collection is null.
+        /// </summary>
+        internal static string TransformKeysCollectonIsNull {
+            get {
+                return ResourceManager.GetString("TransformKeysCollectonIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transforms dictionary is null.
+        /// </summary>
+        internal static string TransformsDictionaryIsNull {
+            get {
+                return ResourceManager.GetString("TransformsDictionaryIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ValueMasker may not be null.
         /// </summary>
         internal static string ValueMaskerIsNull {
             get {
                 return ResourceManager.GetString("ValueMaskerIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value transform is null.
+        /// </summary>
+        internal static string ValueTransformIsNull {
+            get {
+                return ResourceManager.GetString("ValueTransformIsNull", resourceCulture);
             }
         }
     }

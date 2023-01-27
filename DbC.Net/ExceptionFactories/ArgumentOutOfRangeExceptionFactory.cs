@@ -3,7 +3,7 @@
 /// <summary>
 ///   Exception factory for creating <see cref="ArgumentOutOfRangeException"/>s.
 /// </summary>
-public sealed class ArgumentOutOfRangeExceptionFactory : ExceptionFactory
+public sealed class ArgumentOutOfRangeExceptionFactory : ExceptionFactoryBase
 {
    private static readonly Lazy<ArgumentOutOfRangeExceptionFactory> _lazy =
       new(() => new ArgumentOutOfRangeExceptionFactory());
@@ -17,11 +17,11 @@ public sealed class ArgumentOutOfRangeExceptionFactory : ExceptionFactory
 
    /// <inheritdoc/>
    public override ArgumentOutOfRangeException CreateException(
-      String messageTemplate,
-      Dictionary<String, Object> data)
+      IReadOnlyDictionary<String, Object> data,
+      String messageTemplate)
    {
-      ValidateMessageTemplate(messageTemplate);
       ValidateDataDictionary(data);
+      ValidateMessageTemplate(messageTemplate);
 
       var message = CreateMessage(messageTemplate, data);
       var paramName = GetParamName(data);

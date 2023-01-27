@@ -3,7 +3,7 @@
 /// <summary>
 ///   Exception factory for creating <see cref="FormatException"/>s.
 /// </summary>
-public sealed class FormatExceptionFactory : ExceptionFactory
+public sealed class FormatExceptionFactory : ExceptionFactoryBase
 {
    private static readonly Lazy<FormatExceptionFactory> _lazy =
       new(() => new FormatExceptionFactory());
@@ -17,11 +17,11 @@ public sealed class FormatExceptionFactory : ExceptionFactory
 
    /// <inheritdoc/>
    public override FormatException CreateException(
-      String messageTemplate,
-      Dictionary<String, Object> data)
+      IReadOnlyDictionary<String, Object> data,
+      String messageTemplate)
    {
-      ValidateMessageTemplate(messageTemplate);
       ValidateDataDictionary(data);
+      ValidateMessageTemplate(messageTemplate);
 
       var message = CreateMessage(messageTemplate, data);
 

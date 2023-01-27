@@ -33,7 +33,7 @@ public class FormatExceptionFactoryTests
       var expectedMessage = "Precondition True failed: value (\"a.b\") is not a valid three part name";
 
       // Act.
-      var ex = sut.CreateException(messageTemplate, _data);
+      var ex = sut.CreateException(_data, messageTemplate);
 
       // Assert.
       ex.Should().NotBeNull();
@@ -54,7 +54,7 @@ public class FormatExceptionFactoryTests
    {
       // Arrange.
       var sut = FormatExceptionFactory.Instance;
-      var act = () => _ = sut.CreateException(messageTemplate, _data);
+      var act = () => _ = sut.CreateException(_data, messageTemplate);
 
       // Act/assert.
       act.Should().Throw<ArgumentException>()
@@ -68,7 +68,7 @@ public class FormatExceptionFactoryTests
       // Arrange.
       String messageTemplate = null!;
       var sut = FormatExceptionFactory.Instance;
-      var act = () => _ = sut.CreateException(messageTemplate, _data);
+      var act = () => _ = sut.CreateException(_data, messageTemplate);
 
       // Act/assert.
       act.Should().Throw<ArgumentNullException>()
@@ -83,7 +83,7 @@ public class FormatExceptionFactoryTests
       var messageTemplate = "{RequirementType} {RequirementName} failed: value (\"{Value}\") is not a valid three part name";
       Dictionary<String, Object> data = null!;
       var sut = FormatExceptionFactory.Instance;
-      var act = () => _ = sut.CreateException(messageTemplate, data);
+      var act = () => _ = sut.CreateException(data, messageTemplate);
 
       // Act/assert.
       act.Should().Throw<ArgumentNullException>()

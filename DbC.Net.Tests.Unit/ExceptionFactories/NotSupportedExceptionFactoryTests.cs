@@ -33,7 +33,7 @@ public class NotSupportedExceptionFactoryTests
       var expectedMessage = "Precondition Equal failed: operation is not defined for zero";
 
       // Act.
-      var ex = sut.CreateException(messageTemplate, _data);
+      var ex = sut.CreateException(_data, messageTemplate);
 
       // Assert.
       ex.Should().NotBeNull();
@@ -54,7 +54,7 @@ public class NotSupportedExceptionFactoryTests
    {
       // Arrange.
       var sut = NotSupportedExceptionFactory.Instance;
-      var act = () => _ = sut.CreateException(messageTemplate, _data);
+      var act = () => _ = sut.CreateException(_data, messageTemplate);
 
       // Act/assert.
       act.Should().Throw<ArgumentException>()
@@ -68,7 +68,7 @@ public class NotSupportedExceptionFactoryTests
       // Arrange.
       String messageTemplate = null!;
       var sut = NotSupportedExceptionFactory.Instance;
-      var act = () => _ = sut.CreateException(messageTemplate, _data);
+      var act = () => _ = sut.CreateException(_data, messageTemplate);
 
       // Act/assert.
       act.Should().Throw<ArgumentNullException>()
@@ -83,7 +83,7 @@ public class NotSupportedExceptionFactoryTests
       var messageTemplate = "{RequirementType} {RequirementName} failed: operation is not defined for zero";
       Dictionary<String, Object> data = null!;
       var sut = NotSupportedExceptionFactory.Instance;
-      var act = () => _ = sut.CreateException(messageTemplate, data);
+      var act = () => _ = sut.CreateException(data, messageTemplate);
 
       // Act/assert.
       act.Should().Throw<ArgumentNullException>()

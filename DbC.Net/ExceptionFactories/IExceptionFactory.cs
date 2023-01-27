@@ -11,12 +11,12 @@ public interface IExceptionFactory
    ///   and the details to include in the exception's <see cref="Exception.Data"/>
    ///   dictionary.
    /// </summary>
-   /// <param name="messageTemplate">
-   ///   Template to create the new exception message.
-   /// </param>
    /// <param name="data">
    ///   Details to include in the new exception's <see cref="Exception.Data"/>
    ///   dictionary.
+   /// </param>
+   /// <param name="messageTemplate">
+   ///   Template to create the new exception message.
    /// </param>
    /// <returns>
    ///   A new <see cref="Exception"/> object.
@@ -26,9 +26,9 @@ public interface IExceptionFactory
    ///   whitespace characters.
    /// </exception>
    /// <exception cref="ArgumentNullException">
-   ///   <paramref name="messageTemplate"/> is <see langword="null"/>.
-   ///   - or -
    ///   <paramref name="data"/> is <see langword="null"/>.
+   ///   - or -
+   ///   <paramref name="messageTemplate"/> is <see langword="null"/>.
    /// </exception>
-   Exception CreateException(String messageTemplate, Dictionary<String, Object> data);
+   Exception CreateException(IReadOnlyDictionary<String, Object> data, String messageTemplate);
 }
