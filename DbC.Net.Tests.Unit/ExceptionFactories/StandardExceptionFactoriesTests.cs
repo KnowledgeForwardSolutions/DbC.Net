@@ -45,6 +45,43 @@ public class StandardExceptionFactoriesTests
 
    #endregion
 
+   #region ArgumentNullExceptionFactory Tests
+   // ==========================================================================
+   // ==========================================================================
+
+   [Fact]
+   public void StandardExceptionFactories_ArgumentNullExceptionFactory_ShouldNotBeNull()
+      => StandardExceptionFactories.ArgumentNullExceptionFactory.Should().NotBeNull();
+
+   [Fact]
+   public void StandardExceptionFactories_ArgumentNullExceptionFactory_ShouldNotTransformDataDictionaryValues()
+   {
+      // Arrange.
+      var sut = StandardExceptionFactories.ArgumentNullExceptionFactory;
+      IReadOnlyDictionary<String, Object> data = new Dictionary<String, Object>() {
+         { DataNames.RequirementType, RequirementType.Precondition },
+         { DataNames.RequirementName, "NotNull" },
+         { DataNames.ValueExpression, "x" } };
+      var messageTemplate = "{ValueExpression} may not be null";
+
+      var expectedMessage = "x may not be null";
+
+      // Act.
+      var ex = sut.CreateException(data, messageTemplate);
+
+      // Assert.
+      ex.Should().NotBeNull();
+      ex.Should().BeOfType<ArgumentNullException>();
+      ex.Message.Should().StartWith(expectedMessage);
+
+      ex.Data.Count.Should().Be(data.Count);
+      ex.Data[DataNames.RequirementType].Should().Be(data[DataNames.RequirementType]);
+      ex.Data[DataNames.RequirementName].Should().Be(data[DataNames.RequirementName]);
+      ex.Data[DataNames.ValueExpression].Should().Be(data[DataNames.ValueExpression]);
+   }
+
+   #endregion
+
    #region SecureArgumentExceptionFactory Tests
    // ==========================================================================
    // ==========================================================================

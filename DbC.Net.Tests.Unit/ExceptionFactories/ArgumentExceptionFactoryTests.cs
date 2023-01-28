@@ -12,7 +12,7 @@ public class ArgumentExceptionFactoryTests
 
    private const String _messageTemplate = "{RequirementType} {RequirementName} failed: value (\"{Value}\") does not meet minimum length of {MinLength}";
 
-   private readonly Dictionary<String, Object> _data = new() {
+   private readonly IReadOnlyDictionary<String, Object> _data = new Dictionary<String, Object> {
       { DataNames.RequirementType, RequirementType.Precondition },
       { DataNames.RequirementName, "MinLength" },
       { DataNames.Value, "Ab" },
@@ -201,6 +201,21 @@ public class ArgumentExceptionFactoryTests
       ex.ParamName.Should().Be(expectedParamName);
    }
 
+   [Fact]
+   public void ArgumentExceptionFactory_CreateException_ShouldThrowArgumentNullException_WhenDataDictionaryIsNull()
+   {
+      // Arrange.
+      var messageTemplate = "{RequirementType} {RequirementName} failed: value (\"{Value}\") does not meet minimum length of {MinLength}";
+      Dictionary<String, Object> data = null!;
+      var sut = new ArgumentExceptionFactory();
+      var act = () => _ = sut.CreateException(data, messageTemplate);
+
+      // Act/assert.
+      act.Should().Throw<ArgumentNullException>()
+         .WithParameterName(nameof(data))
+         .And.Message.Should().StartWith(Messages.DataDictionaryIsNull);
+   }
+
    [Theory]
    [InlineData("")]
    [InlineData("\t")]
@@ -228,21 +243,6 @@ public class ArgumentExceptionFactoryTests
       act.Should().Throw<ArgumentNullException>()
          .WithParameterName(nameof(messageTemplate))
          .And.Message.Should().StartWith(Messages.MessageTemplateIsEmpty);
-   }
-
-   [Fact]
-   public void ArgumentExceptionFactory_CreateException_ShouldThrowArgumentNullException_WhenDataDictionaryIsNull()
-   {
-      // Arrange.
-      var messageTemplate = "{RequirementType} {RequirementName} failed: value (\"{Value}\") does not meet minimum length of {MinLength}";
-      Dictionary<String, Object> data = null!;
-      var sut = new ArgumentExceptionFactory();
-      var act = () => _ = sut.CreateException(data, messageTemplate);
-
-      // Act/assert.
-      act.Should().Throw<ArgumentNullException>()
-         .WithParameterName(nameof(data))
-         .And.Message.Should().StartWith(Messages.DataDictionaryIsNull);
    }
 
    #endregion

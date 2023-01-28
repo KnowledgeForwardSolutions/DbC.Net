@@ -8,6 +8,9 @@ public class StandardExceptionFactories
    private static readonly Lazy<ArgumentExceptionFactory> _argumentExceptionFactory =
       new(() => new ArgumentExceptionFactory());
 
+   private static readonly Lazy<ArgumentNullExceptionFactory> _argumentNullExceptionFactory =
+      new(() => new ArgumentNullExceptionFactory());
+
    private static readonly Lazy<ArgumentExceptionFactory> _secureArgumentExceptionFactory =
       new(() => new ArgumentExceptionFactory(_valueOnlyKeys, StandardTransforms.AsteriskMaskTransform));
 
@@ -17,6 +20,13 @@ public class StandardExceptionFactories
    ///   or the exception Data dictionary is populated.
    /// </summary>
    public static IExceptionFactory ArgumentExceptionFactory => _argumentExceptionFactory.Value;
+
+   /// <summary>
+   ///   Exception factory for creating <see cref="ArgumentNullExceptions"/> where
+   ///   no value transforms are applied before creating the exception message
+   ///   or the exception Data dictionary is populated.
+   /// </summary>
+   public static IExceptionFactory ArgumentNullExceptionFactory => _argumentNullExceptionFactory.Value;
 
    /// <summary>
    ///   Exception factory for creating <see cref="ArgumentExceptions"/> where  

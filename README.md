@@ -172,7 +172,7 @@ exception data dictionary.
 ### StandardExceptionFactories
 
 The static StandardExceptionFactories class has properties that give you access
-to pre-configured exception factories that are lazily created. The exception
+to pre-configured exception factories as lazily created singletons. The exception
 factories available are:
 
 - ArgumentExceptionFactory - an instance of [ArgumentExceptionFactory](#argumentexceptionfactory)
@@ -181,6 +181,9 @@ that does not use any value transforms.
 - SecureArgumentExceptionFactory - an instance of [ArgumentExceptionFactory](#argumentexceptionfactory)
 that includes a value transform on the Value data dictionary entry that masks the
 value with all asterisk characters ('*').
+
+- ArgumentNullExceptionFactory - an instance of [ArgumentNullExceptionFactory](#argumentnullexceptionfactory)
+that does not use any value transforms.
 
 ### Implementing an ExceptionFactory
 

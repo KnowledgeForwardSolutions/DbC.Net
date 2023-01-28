@@ -5,15 +5,41 @@
 /// </summary>
 public sealed class ArgumentNullExceptionFactory : ExceptionFactoryBase
 {
-   private static readonly Lazy<ArgumentNullExceptionFactory> _lazy =
-      new(() => new ArgumentNullExceptionFactory());
-
-   private ArgumentNullExceptionFactory() { }
+   /// <summary>
+   ///   Initialize a new <see cref="ArgumentNullExceptionFactory"/> with no 
+   ///   value transforms.
+   /// </summary>
+   public ArgumentNullExceptionFactory() : base() { }
 
    /// <summary>
-   ///   The single instance of <see cref="ArgumentNullExceptionFactory"/>.
+   ///   Initialize a new <see cref="ArgumentNullExceptionFactory"/> with the 
+   ///   <paramref name="transform"/> to use for the specified data dictionary
+   ///   <paramref name="keys"/>.
    /// </summary>
-   public static ArgumentNullExceptionFactory Instance => _lazy.Value;
+   /// <param name="keys">
+   ///   Keys that identify data dictionary entries that should be transformed
+   ///   when creating exceptions.
+   /// </param>
+   /// <param name="transform">
+   ///   The <see cref="IValueTransform"/> to use for the specified data 
+   ///   dictionary <paramref name="keys"/>.
+   /// </param>
+   /// <exception cref="ArgumentNullException">
+   ///   <paramref name="keys"/> is <see langword="null"/>.
+   ///   - or -
+   ///   <paramref name="transform"/> is <see langword="null"/>.
+   /// </exception>
+   public ArgumentNullExceptionFactory(IReadOnlyCollection<String> keys, IValueTransform transform)
+      : base(keys, transform) { }
+
+   /// <summary>
+   ///   Initialize a new <see cref="ArgumentNullExceptionFactory"/> with the 
+   ///   specified value <paramref name="transforms"/>.
+   /// </summary>
+   /// <param name="transforms">
+   ///   Dictionary of value transforms to apply to data dictionary entries.
+   /// </param>
+   public ArgumentNullExceptionFactory(IReadOnlyDictionary<String, IValueTransform> transforms) : base(transforms) { }
 
    /// <inheritdoc/>
    public override ArgumentNullException CreateException(
@@ -23,10 +49,11 @@ public sealed class ArgumentNullExceptionFactory : ExceptionFactoryBase
       ValidateDataDictionary(data);
       ValidateMessageTemplate(messageTemplate);
 
-      var message = CreateMessage(messageTemplate, data);
       var paramName = GetParamName(data);
+      var transformedData = ApplyTransforms(data);
+      var message = CreateMessage(messageTemplate, transformedData);
 
-      return new ArgumentNullException(paramName as String, message)
-         .PopulateExceptionData(data);
+      return new ArgumentNullException(paramName, message)
+         .PopulateExceptionData(transformedData);
    }
 }
