@@ -14,6 +14,9 @@ public class StandardExceptionFactories
    private static readonly Lazy<ArgumentOutOfRangeExceptionFactory> _argumentOutOfRangeExceptionFactory =
       new(() => new ArgumentOutOfRangeExceptionFactory());
 
+   private static readonly Lazy<FormatExceptionFactory> _formatExceptionFactory =
+      new(() => new FormatExceptionFactory());
+
    private static readonly Lazy<ArgumentExceptionFactory> _secureArgumentExceptionFactory =
       new(() => new ArgumentExceptionFactory(_valueOnlyKeys, StandardTransforms.AsteriskMaskTransform));
 
@@ -40,6 +43,13 @@ public class StandardExceptionFactories
    ///   or the exception Data dictionary is populated.
    /// </summary>
    public static IExceptionFactory ArgumentOutOfRangeExceptionFactory => _argumentOutOfRangeExceptionFactory.Value;
+
+   /// <summary>
+   ///   Exception factory for creating <see cref="FormatException"/>s where
+   ///   no value transforms are applied before creating the exception message
+   ///   or the exception Data dictionary is populated.
+   /// </summary>
+   public static IExceptionFactory FormatExceptionFactory => _formatExceptionFactory.Value;
 
    /// <summary>
    ///   Exception factory for creating <see cref="ArgumentException"/>s where  

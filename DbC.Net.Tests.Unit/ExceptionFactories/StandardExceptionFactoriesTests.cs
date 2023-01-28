@@ -125,6 +125,45 @@ public class StandardExceptionFactoriesTests
 
    #endregion
 
+   #region FormatExceptionFactory Tests
+   // ==========================================================================
+   // ==========================================================================
+
+   [Fact]
+   public void StandardExceptionFactories_FormatExceptionFactory_ShouldNotBeNull()
+      => StandardExceptionFactories.FormatExceptionFactory.Should().NotBeNull();
+
+   [Fact]
+   public void StandardExceptionFactories_FormatExceptionFactory_ShouldNotTransformDataDictionaryValues()
+   {
+      // Arrange.
+      var sut = StandardExceptionFactories.FormatExceptionFactory;
+      IReadOnlyDictionary<String, Object> data = new Dictionary<String, Object>() {
+         { DataNames.RequirementType, RequirementType.Precondition },
+         { DataNames.RequirementName, "True" },
+         { DataNames.Value, "a.b" },
+         { DataNames.ValueExpression, "threePartName" } };
+      var messageTemplate = "Value ({Value}) is not formatted properly";
+
+      var expectedMessage = "Value (a.b) is not formatted properly";
+
+      // Act.
+      var ex = sut.CreateException(data, messageTemplate);
+
+      // Assert.
+      ex.Should().NotBeNull();
+      ex.Should().BeOfType<FormatException>();
+      ex.Message.Should().StartWith(expectedMessage);
+
+      ex.Data.Count.Should().Be(data.Count);
+      ex.Data[DataNames.RequirementType].Should().Be(data[DataNames.RequirementType]);
+      ex.Data[DataNames.RequirementName].Should().Be(data[DataNames.RequirementName]);
+      ex.Data[DataNames.Value].Should().Be(data[DataNames.Value]);
+      ex.Data[DataNames.ValueExpression].Should().Be(data[DataNames.ValueExpression]);
+   }
+
+   #endregion
+
    #region SecureArgumentExceptionFactory Tests
    // ==========================================================================
    // ==========================================================================

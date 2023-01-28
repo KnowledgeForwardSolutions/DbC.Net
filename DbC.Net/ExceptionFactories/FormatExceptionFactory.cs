@@ -5,15 +5,41 @@
 /// </summary>
 public sealed class FormatExceptionFactory : ExceptionFactoryBase
 {
-   private static readonly Lazy<FormatExceptionFactory> _lazy =
-      new(() => new FormatExceptionFactory());
-
-   private FormatExceptionFactory() { }
+   /// <summary>
+   ///   Initialize a new <see cref="FormatExceptionFactory"/> with no value
+   ///   transforms.
+   /// </summary>
+   public FormatExceptionFactory() : base() { }
 
    /// <summary>
-   ///   The single instance of <see cref="FormatExceptionFactory"/>.
+   ///   Initialize a new <see cref="FormatExceptionFactory"/> with the 
+   ///   <paramref name="transform"/> to use for the specified data dictionary
+   ///   <paramref name="keys"/>.
    /// </summary>
-   public static FormatExceptionFactory Instance => _lazy.Value;
+   /// <param name="keys">
+   ///   Keys that identify data dictionary entries that should be transformed
+   ///   when creating exceptions.
+   /// </param>
+   /// <param name="transform">
+   ///   The <see cref="IValueTransform"/> to use for the specified data 
+   ///   dictionary <paramref name="keys"/>.
+   /// </param>
+   /// <exception cref="ArgumentNullException">
+   ///   <paramref name="keys"/> is <see langword="null"/>.
+   ///   - or -
+   ///   <paramref name="transform"/> is <see langword="null"/>.
+   /// </exception>
+   public FormatExceptionFactory(IReadOnlyCollection<String> keys, IValueTransform transform)
+      : base(keys, transform) { }
+
+   /// <summary>
+   ///   Initialize a new <see cref="FormatExceptionFactory"/> with the 
+   ///   specified value <paramref name="transforms"/>.
+   /// </summary>
+   /// <param name="transforms">
+   ///   Dictionary of value transforms to apply to data dictionary entries.
+   /// </param>
+   public FormatExceptionFactory(IReadOnlyDictionary<String, IValueTransform> transforms) : base(transforms) { }
 
    /// <inheritdoc/>
    public override FormatException CreateException(
@@ -23,9 +49,10 @@ public sealed class FormatExceptionFactory : ExceptionFactoryBase
       ValidateDataDictionary(data);
       ValidateMessageTemplate(messageTemplate);
 
-      var message = CreateMessage(messageTemplate, data);
+      var transformedData = ApplyTransforms(data);
+      var message = CreateMessage(messageTemplate, transformedData);
 
       return new FormatException(message)
-         .PopulateExceptionData(data);
+         .PopulateExceptionData(transformedData);
    }
 }

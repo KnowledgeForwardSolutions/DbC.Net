@@ -164,12 +164,22 @@ factories available are:
 - ArgumentExceptionFactory - an instance of [ArgumentExceptionFactory](#argumentexceptionfactory)
 that does not use any value transforms.
 
+- ArgumentNullExceptionFactory - an instance of [ArgumentNullExceptionFactory](#argumentnullexceptionfactory)
+that does not use any value transforms.
+
+- ArgumentOutOfRangeExceptionFactory - an instance of [ArgumentOutOfRangeExceptionFactory](#argumentoutofrangeexceptionfactory)
+that does not use any value transforms.
+
+- FormatExceptionFactory - an instance of [FormatExceptionFactory](#formatexceptionfactory)
+that does not use any value transforms.
+
 - SecureArgumentExceptionFactory - an instance of [ArgumentExceptionFactory](#argumentexceptionfactory)
 that includes a value transform on the Value data dictionary entry that masks the
 value with all asterisk characters ('*').
 
-- ArgumentNullExceptionFactory - an instance of [ArgumentNullExceptionFactory](#argumentnullexceptionfactory)
-that does not use any value transforms.
+- SecureArgumentOutOfRangeExceptionFactory - an instance of [ArgumentOutOfRangeExceptionFactory](#argumentoutofrangeexceptionfactory)
+that includes a value transform on the Value data dictionary entry that masks the
+value with all asterisk characters ('*').
 
 ## Value Transforms
 
