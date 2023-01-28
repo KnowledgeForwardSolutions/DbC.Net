@@ -14,13 +14,15 @@
     - [Value Transforms](#value-transforms)
 
     - [IExceptionFactory](#iexceptionfactory)
-    - [ExceptionFactory](#exceptionfactory)
+    - [ExceptionFactoryBase](#exceptionfactorybase)
     - [ArgumentExceptionFactory](#argumentexceptionfactory)
     - [ArgumentNullExceptionFactory](#argumentnullexceptionfactory)
     - [ArgumentOutOfRangeExceptionFactory](#argumentoutofrangeexceptionfactory)
     - [FormatExceptionFactory](#formatexceptionfactory)
     - [InvalidOperationExceptionFactory](#invalidoperationexceptionfactory)
     - [NotSupportedExceptionFactory](#notsupportedexceptionfactory)
+
+    - [StandardExceptionFactories](#standardexceptionfactories)
 
     - [Implementing an ExceptionFactory](#implementing-an-exceptionfactory)
 
@@ -42,7 +44,7 @@ syntax.
 
 DbC.Net uses exception factories to create the exception that is thrown when a
 requirement is not met. DbC.Net provides a variety of standard exception 
-factories as lazily created singletons in the StandardExceptionFactories class.
+factories as lazily created singletons in the [StandardExceptionFactories](#standardexceptionfactories) class.
 You can create your own exception factory by creating a class that implements 
 IExceptionFactory. All DbC.Net provided exception factories are derived from the
 abstract class ExceptionFactoryBase and you may derive your own exception
@@ -127,9 +129,9 @@ Refer to the individual Requires.../Ensures... methods for the values that are
 included in the data dictionary that is passed to the exception factory when the
 method throws an exception because the requirement was failed.
 
-### ExceptionFactory
+### ExceptionFactoryBase
 
-ExceptionFactory is the abstract base class for all DbC.Net exception factories.
+ExceptionFactoryBase is the abstract base class for all DbC.Net exception factories.
 It provides methods for performing the placeholder substitution for message
 templates and for extracting a parameter name from the "ValueExpression" data
 dictionary entry.
@@ -166,6 +168,19 @@ exception data dictionary.
 Use NotSupportedExceptionFactory to create NotSupportedException. 
 NotSupportedExceptionFactory does not expect any specific entries in the 
 exception data dictionary.
+
+### StandardExceptionFactories
+
+The static StandardExceptionFactories class has properties that give you access
+to pre-configured exception factories that are lazily created. The exception
+factories available are:
+
+- ArgumentExceptionFactory - an instance of [ArgumentExceptionFactory](#argumentexceptionfactory)
+that does not use any value transforms.
+
+- SecureArgumentExceptionFactory - an instance of [ArgumentExceptionFactory](#argumentexceptionfactory)
+that includes a value transform on the Value data dictionary entry that masks the
+value with all asterisk characters ('*').
 
 ### Implementing an ExceptionFactory
 
