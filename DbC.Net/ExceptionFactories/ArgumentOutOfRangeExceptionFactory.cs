@@ -5,15 +5,41 @@
 /// </summary>
 public sealed class ArgumentOutOfRangeExceptionFactory : ExceptionFactoryBase
 {
-   private static readonly Lazy<ArgumentOutOfRangeExceptionFactory> _lazy =
-      new(() => new ArgumentOutOfRangeExceptionFactory());
-
-   private ArgumentOutOfRangeExceptionFactory() { }
+   /// <summary>
+   ///   Initialize a new <see cref="ArgumentOutOfRangeExceptionFactory"/> with 
+   ///   no value transforms.
+   /// </summary>
+   public ArgumentOutOfRangeExceptionFactory() : base() { }
 
    /// <summary>
-   ///   The single instance of <see cref="ArgumentOutOfRangeExceptionFactory"/>.
+   ///   Initialize a new <see cref="ArgumentOutOfRangeExceptionFactory"/> with 
+   ///   the <paramref name="transform"/> to use for the specified data 
+   ///   dictionary <paramref name="keys"/>.
    /// </summary>
-   public static ArgumentOutOfRangeExceptionFactory Instance => _lazy.Value;
+   /// <param name="keys">
+   ///   Keys that identify data dictionary entries that should be transformed
+   ///   when creating exceptions.
+   /// </param>
+   /// <param name="transform">
+   ///   The <see cref="IValueTransform"/> to use for the specified data 
+   ///   dictionary <paramref name="keys"/>.
+   /// </param>
+   /// <exception cref="ArgumentNullException">
+   ///   <paramref name="keys"/> is <see langword="null"/>.
+   ///   - or -
+   ///   <paramref name="transform"/> is <see langword="null"/>.
+   /// </exception>
+   public ArgumentOutOfRangeExceptionFactory(IReadOnlyCollection<String> keys, IValueTransform transform)
+      : base(keys, transform) { }
+
+   /// <summary>
+   ///   Initialize a new <see cref="ArgumentOutOfRangeExceptionFactory"/> with 
+   ///   the specified value <paramref name="transforms"/>.
+   /// </summary>
+   /// <param name="transforms">
+   ///   Dictionary of value transforms to apply to data dictionary entries.
+   /// </param>
+   public ArgumentOutOfRangeExceptionFactory(IReadOnlyDictionary<String, IValueTransform> transforms) : base(transforms) { }
 
    /// <inheritdoc/>
    public override ArgumentOutOfRangeException CreateException(
@@ -23,11 +49,12 @@ public sealed class ArgumentOutOfRangeExceptionFactory : ExceptionFactoryBase
       ValidateDataDictionary(data);
       ValidateMessageTemplate(messageTemplate);
 
-      var message = CreateMessage(messageTemplate, data);
       var paramName = GetParamName(data);
-      data.TryGetValue(DataNames.Value, out var actualValue);
+      var transformedData = ApplyTransforms(data);
+      var message = CreateMessage(messageTemplate, transformedData);
+      transformedData.TryGetValue(DataNames.Value, out var actualValue);
 
       return new ArgumentOutOfRangeException(paramName, actualValue, message)
-         .PopulateExceptionData(data);
+         .PopulateExceptionData(transformedData);
    }
 }

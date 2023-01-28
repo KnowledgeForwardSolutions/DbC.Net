@@ -11,8 +11,6 @@
 
     - [Message Templates](#message-templates)
 
-    - [Value Transforms](#value-transforms)
-
     - [IExceptionFactory](#iexceptionfactory)
     - [ExceptionFactoryBase](#exceptionfactorybase)
     - [ArgumentExceptionFactory](#argumentexceptionfactory)
@@ -23,6 +21,10 @@
     - [NotSupportedExceptionFactory](#notsupportedexceptionfactory)
 
     - [StandardExceptionFactories](#standardexceptionfactories)
+
+  - [Value Transforms](#value-transforms)
+
+    - [StandardTransforms](#standardtransforms)
 
     - [Implementing an ExceptionFactory](#implementing-an-exceptionfactory)
 
@@ -73,25 +75,9 @@ by curly braces (example: {Value}). ExceptionFactoryBase will walk the entries i
 the data dictionary and replace any placeholder in the message template that 
 matches the key of a data dictionary item with that item's value.
 
-### Value Transforms
-
-DbC.Net exception factories use value transforms for several reasons, primarily 
-to prevent sensitive data from being exposed in error messages and log entries
-as well as to prevent filling logs with unnecessarily large amounts of data. 
-Dbc.Net value transforms implement IValueTransform and use the Decorator Pattern
-to extend basic transforms with additional features. DbC.Net provides a variety
-of standard value transforms as lazily created singletons in the StandardTransforms
-class. Value transforms do not affect the value being checked, they are only used
-to transform a value that will be included in the exception being created.
-
 If you create your own exception factory by deriving from ExceptionFactoryBase
 you will have message template handling and value transforms available as methods
 that you can use in your implementation of CreateException.
-
-
-
-DbC.Net provides a number of exception factory classes for creating common 
-exceptions and you are also able to implement your own factory class.
 
 ### IExceptionFactory
 
@@ -185,14 +171,36 @@ value with all asterisk characters ('*').
 - ArgumentNullExceptionFactory - an instance of [ArgumentNullExceptionFactory](#argumentnullexceptionfactory)
 that does not use any value transforms.
 
+## Value Transforms
+
+DbC.Net exception factories use value transforms for several reasons, primarily 
+to prevent sensitive data from being exposed in error messages and log entries
+as well as to prevent filling logs with unnecessarily large amounts of data. 
+Dbc.Net value transforms implement IValueTransform and use the Decorator Pattern
+to extend basic transforms with additional features. DbC.Net provides a variety
+of standard value transforms in the [StandardTransforms](#standardtransforms)
+class. Value transforms do not affect the value being checked, they are only used
+to transform a value that will be included in the exception being created.
+
+### StandardTransforms
+
+The static StandardTransforms class has properties that give you access to 
+pre-configured value transforms as lazily created singletons. The value transforms
+available are:
+
+- AsteriskMaskTransform - a transform that converts a value to a string and then 
+replaces all characters in the string with an asterisk character ('*').
+
+- DigitAsteriskMaskTransform - a transform converts a value to a string and then 
+replaces all decimal digit characters (0-9) in the string with an asterisk character 
+('*').
+
+- NullTransform - a transform that returns the original value unaltered. Use this
+transform as the base for other transform decorators.
+
 ### Implementing an ExceptionFactory
 
-MaskedExceptionFactory is the abstract base class for all DbC.Net exception
-factories that mask sensitive data in the produced exception. It is derived from 
-ExceptionFactory and adds a method to process the exception data dictionary and
-mask any values considered sensitive. The constructor for MaskedExceptionFactory
-accepts an instance of IValueMasker to perform the masking and a list of keys
-for values that are considered sensitive.
+example here...
 
 # Release History/Release Notes
 
