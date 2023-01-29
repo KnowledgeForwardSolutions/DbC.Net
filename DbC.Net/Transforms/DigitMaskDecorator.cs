@@ -18,7 +18,8 @@ namespace DbC.Net.Transforms;
 public sealed class DigitMaskDecorator : IValueTransform
 {
    private readonly IValueTransform _baseTransform;
-   private readonly String _maskCharacter;
+
+   public const Char DefaultMaskCharacter = '*';
 
    /// <summary>
    ///   Decorate a <paramref name="baseTransform"/> with a new 
@@ -28,17 +29,18 @@ public sealed class DigitMaskDecorator : IValueTransform
    ///   The <see cref="IValueTransform"/> to decorate.
    /// </param>
    /// <param name="maskCharacter">
-   ///   The character to display instead of digit characters.
+   ///   Optional. The character to display instead of digit characters.
+   ///   Defaults to an asterisk ('*').
    /// </param>
    /// <exception cref="ArgumentNullException">
    ///   <paramref name="baseTransform"/> is <see langword="null"/>.
    /// </exception>
    /// <exception cref="ArgumentOutOfRangeException">
-   ///   V<paramref name="maskCharacter"/> is character null ('\0').
+   ///   <paramref name="maskCharacter"/> is character null ('\0').
    /// </exception>
    public DigitMaskDecorator(
       IValueTransform baseTransform,
-      Char maskCharacter)
+      Char maskCharacter = DefaultMaskCharacter)
    {
       _baseTransform = baseTransform
          ?? throw new ArgumentNullException(nameof(baseTransform), Messages.BaseTransformIsNull);
@@ -47,15 +49,20 @@ public sealed class DigitMaskDecorator : IValueTransform
          throw new ArgumentOutOfRangeException(nameof(maskCharacter), Messages.MaskCharacterIsNull);
       }
 
-      _maskCharacter = maskCharacter.ToString();
+      MaskCharacter = maskCharacter;
    }
+
+   /// <summary>
+   ///   The character to display instead of digit characters.
+   /// </summary>
+   public Char MaskCharacter { get; }
 
    /// <inheritdoc/>
    public Object TransformValue(Object value)
    {
       var str = _baseTransform.TransformValue(value)?.ToString() ?? String.Empty;
       
-      return Regex.Replace(str, "[0-9]", _maskCharacter);
+      return Regex.Replace(str, "[0-9]", MaskCharacter.ToString());
    }
 }
 

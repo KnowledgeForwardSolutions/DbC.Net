@@ -206,6 +206,15 @@ of standard value transforms in the [StandardTransforms](#standardtransforms)
 class. Value transforms do not affect the value being checked, they are only used
 to transform a value that will be included in the exception being created.
 
+Why should you mask values when the value in question is invalid? One reason is 
+that while the value may not meet all the requirements for a domain entity or 
+value object, the invalid data may be partially correct and contain sufficient
+information for a bad actor to fully compromise the information. For example, an
+account number or credit card number that fails a check digit requirement. If a
+bad actor knows that a value is invalid but also knows that the value only has a 
+single incorrect digit or two transposed digits, they have a significant advantage 
+to determining the actual value.
+
 ### StandardTransforms
 
 The static StandardTransforms class has properties that give you access to 
@@ -219,8 +228,15 @@ replaces all characters in the string with an asterisk character ('*').
 replaces all decimal digit characters (0-9) in the string with an asterisk character 
 ('*').
 
+- FixedLengthTransform - a transform converts a value to a string exactly eight
+characters in length, by truncating values longer than eight characters and
+padding shorter values with space characters (' ').
+
 - NullTransform - a transform that returns the original value unaltered. Use this
 transform as the base for other transform decorators.
+
+- PhiSensitiveTranform - a transform that always returns the string "PHI Sensitive Value".
+Use this transform to mask PHI (Protected Health Information) from accidental exposure.
 
 ### Implementing an ExceptionFactory
 

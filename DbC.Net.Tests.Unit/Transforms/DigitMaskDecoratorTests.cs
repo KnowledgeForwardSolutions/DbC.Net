@@ -3,7 +3,7 @@
 public class DigitMaskDecoratorTests
 {
    private static readonly IValueTransform _baseTransform = StandardTransforms.NullTransform;
-   private const Char _maskCharacter = '*';
+   private const Char _maskCharacter = '_';
 
    #region Constructor Tests
    // ==========================================================================
@@ -17,6 +17,18 @@ public class DigitMaskDecoratorTests
 
       // Assert.
       sut.Should().NotBeNull();
+      sut.MaskCharacter.Should().Be(_maskCharacter);
+   }
+
+   [Fact]
+   public void DigitMaskDecorator_Constructor_ShouldCreateObject_WhenAllDefaults()
+   {
+      // Act.
+      var sut = new DigitMaskDecorator(_baseTransform);
+
+      // Assert.
+      sut.Should().NotBeNull();
+      sut.MaskCharacter.Should().Be(DigitMaskDecorator.DefaultMaskCharacter);
    }
 
    [Fact]
@@ -47,6 +59,16 @@ public class DigitMaskDecoratorTests
 
    #endregion
 
+   #region DefaultMaskCharacter Property Tests
+   // ==========================================================================
+   // ==========================================================================
+
+   [Fact]
+   public void DigitMaskDecorator_DefaultMaskCharacter_ShouldBeAsterisk()
+      => DigitMaskDecorator.DefaultMaskCharacter.Should().Be('*');
+
+   #endregion
+
    #region TransformValue Method Tests
    // ==========================================================================
    // ==========================================================================
@@ -74,9 +96,9 @@ public class DigitMaskDecoratorTests
 
    public static TheoryData<Object, String> NonNullValueData => new()
    {
-      { "123-456-7890", "***-***-****" },
-      { "1234 Ave. A", "**** Ave. A" },
-      { 99.9, "**.*" },
+      { "123-456-7890", "___-___-____" },
+      { "1234 Ave. A", "____ Ave. A" },
+      { 99.9, "__._" },
       { "password", "password" }
    };
 
@@ -87,8 +109,7 @@ public class DigitMaskDecoratorTests
       String expected)
    {
       // Arrange.
-      var maskCharacter = '*';
-      var sut = new DigitMaskDecorator(_baseTransform, maskCharacter);
+      var sut = new DigitMaskDecorator(_baseTransform, _maskCharacter);
 
       // Act.
       var transformedValue = sut.TransformValue(value);

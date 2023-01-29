@@ -3,7 +3,7 @@
 public class CharacterMaskDecoratorTests
 {
    private static readonly IValueTransform _baseTransform = StandardTransforms.NullTransform;
-   private const Char _maskCharacter = '*';
+   private const Char _maskCharacter = '_';
 
    #region Constructor Tests
    // ==========================================================================
@@ -17,6 +17,18 @@ public class CharacterMaskDecoratorTests
 
       // Assert.
       sut.Should().NotBeNull();
+      sut.MaskCharacter.Should().Be(_maskCharacter);
+   }
+
+   [Fact]
+   public void CharacterMaskDecorator_Constructor_ShouldCreateObject_WhenAllDefaultsUsed()
+   {
+      // Act.
+      var sut = new CharacterMaskDecorator(_baseTransform);
+
+      // Assert.
+      sut.Should().NotBeNull();
+      sut.MaskCharacter.Should().Be(CharacterMaskDecorator.DefaultMaskCharacter);
    }
 
    [Fact]
@@ -44,6 +56,16 @@ public class CharacterMaskDecoratorTests
          .WithParameterName(nameof(maskCharacter))
          .And.Message.Should().StartWith(Messages.MaskCharacterIsNull);
    }
+
+   #endregion
+
+   #region DefaultMaskCharacter Property Tests
+   // ==========================================================================
+   // ==========================================================================
+
+   [Fact]
+   public void CharacterMaskDecorator_DefaultMaskCharacter_ShouldBeAsterisk()
+      => CharacterMaskDecorator.DefaultMaskCharacter.Should().Be('*');
 
    #endregion
 
@@ -88,9 +110,8 @@ public class CharacterMaskDecoratorTests
       Int32 expectedLength)
    {
       // Arrange.
-      var maskCharacter = '_';
-      var sut = new CharacterMaskDecorator(_baseTransform, maskCharacter);
-      var expectedResult = new String(maskCharacter, expectedLength);
+      var sut = new CharacterMaskDecorator(_baseTransform, _maskCharacter);
+      var expectedResult = new String(_maskCharacter, expectedLength);
 
       // Act.
       var transformedValue = sut.TransformValue(value);

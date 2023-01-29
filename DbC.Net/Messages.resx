@@ -120,31 +120,37 @@
   <data name="BaseTransformIsNull" xml:space="preserve">
     <value>Decorator base transform may not be null</value>
   </data>
+  <data name="ConstantValueIsNull" xml:space="preserve">
+    <value>Constant value may not be null</value>
+  </data>
   <data name="DataDictionaryIsNull" xml:space="preserve">
-    <value>data may not be null</value>
+    <value>Data may not be null</value>
   </data>
   <data name="ExceptionIsNull" xml:space="preserve">
     <value>ex may not be null</value>
   </data>
+  <data name="LengthIsLessThanOne" xml:space="preserve">
+    <value>Length may not be less than one</value>
+  </data>
   <data name="MaskCharacterIsNull" xml:space="preserve">
-    <value>MaskCharacter may not be null ('\0')</value>
+    <value>Mask character may not be null ('\0')</value>
   </data>
   <data name="MessageTemplateIsEmpty" xml:space="preserve">
-    <value>messageTemplate may not be null, String.Empty or all whitespace characters</value>
+    <value>Message template may not be null, String.Empty or all whitespace characters</value>
+  </data>
+  <data name="PadCharacterIsNull" xml:space="preserve">
+    <value>Pad character may not be null ('\0')</value>
   </data>
   <data name="SensitiveValuesListIsNull" xml:space="preserve">
     <value>List of sensitive value names may not be null</value>
   </data>
   <data name="TransformKeysCollectonIsNull" xml:space="preserve">
-    <value>Transform keys collection is null</value>
+    <value>Transform keys collection may not be null</value>
   </data>
   <data name="TransformsDictionaryIsNull" xml:space="preserve">
-    <value>Transforms dictionary is null</value>
-  </data>
-  <data name="ValueMaskerIsNull" xml:space="preserve">
-    <value>ValueMasker may not be null</value>
+    <value>Transforms dictionary may not be null</value>
   </data>
   <data name="ValueTransformIsNull" xml:space="preserve">
-    <value>Value transform is null</value>
+    <value>Value transform may not be null</value>
   </data>
 </root>

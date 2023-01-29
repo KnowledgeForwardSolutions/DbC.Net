@@ -27,6 +27,31 @@ public class StandardTransformsTests
 
    #endregion
 
+   #region FixedLengthTransform Tests
+   // ==========================================================================
+   // ==========================================================================
+
+   [Fact]
+   public void StandardTransforms_FixedLengthTransform_ShouldNotBeNull()
+      => StandardTransforms.FixedLengthTransform.Should().NotBeNull();
+
+   [Fact]
+   public void StandardTransforms_FixedLengthTransform_ShouldApplyExpectedTransform()
+   {
+      // Arrange.
+      var sut = StandardTransforms.FixedLengthTransform;
+      var value = "This value is too long. Like really too long.";
+      var expected = "This val";
+
+      // Act.
+      var result = sut.TransformValue(value);
+
+      // Assert.
+      result.Should().Be(expected);
+   }
+
+   #endregion
+
    #region DigitAsteriskMaskTransform Tests
    // ==========================================================================
    // ==========================================================================
@@ -72,6 +97,30 @@ public class StandardTransformsTests
 
       // Assert.
       result.Should().Be(value);
+   }
+
+   #endregion
+
+   #region PhiSensitiveTransform Tests
+   // ==========================================================================
+   // ==========================================================================
+
+   [Fact]
+   public void StandardTransforms_PhiSensitiveTransform_ShouldNotBeNull()
+      => StandardTransforms.PhiSensitiveTransform.Should().NotBeNull();
+
+   [Fact]
+   public void StandardTransforms_PhiSensitiveTransform_ShouldApplyExpectedTransform()
+   {
+      // Arrange.
+      var sut = StandardTransforms.PhiSensitiveTransform;
+      var value = "111-222-3333";
+
+      // Act.
+      var result = sut.TransformValue(value);
+
+      // Assert.
+      result.Should().Be(StandardTransforms.PhiTransformValue);
    }
 
    #endregion

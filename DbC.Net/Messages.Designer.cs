@@ -70,7 +70,16 @@ namespace DbC.Net {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to data may not be null.
+        ///   Looks up a localized string similar to Constant value may not be null.
+        /// </summary>
+        internal static string ConstantValueIsNull {
+            get {
+                return ResourceManager.GetString("ConstantValueIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data may not be null.
         /// </summary>
         internal static string DataDictionaryIsNull {
             get {
@@ -88,7 +97,16 @@ namespace DbC.Net {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MaskCharacter may not be null (&apos;\0&apos;).
+        ///   Looks up a localized string similar to Length may not be less than one.
+        /// </summary>
+        internal static string LengthIsLessThanOne {
+            get {
+                return ResourceManager.GetString("LengthIsLessThanOne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mask character may not be null (&apos;\0&apos;).
         /// </summary>
         internal static string MaskCharacterIsNull {
             get {
@@ -97,11 +115,20 @@ namespace DbC.Net {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to messageTemplate may not be null, String.Empty or all whitespace characters.
+        ///   Looks up a localized string similar to Message template may not be null, String.Empty or all whitespace characters.
         /// </summary>
         internal static string MessageTemplateIsEmpty {
             get {
                 return ResourceManager.GetString("MessageTemplateIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pad character may not be null (&apos;\0&apos;).
+        /// </summary>
+        internal static string PadCharacterIsNull {
+            get {
+                return ResourceManager.GetString("PadCharacterIsNull", resourceCulture);
             }
         }
         
@@ -115,7 +142,7 @@ namespace DbC.Net {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Transform keys collection is null.
+        ///   Looks up a localized string similar to Transform keys collection may not be null.
         /// </summary>
         internal static string TransformKeysCollectonIsNull {
             get {
@@ -124,7 +151,7 @@ namespace DbC.Net {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Transforms dictionary is null.
+        ///   Looks up a localized string similar to Transforms dictionary may not be null.
         /// </summary>
         internal static string TransformsDictionaryIsNull {
             get {
@@ -133,16 +160,7 @@ namespace DbC.Net {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ValueMasker may not be null.
-        /// </summary>
-        internal static string ValueMaskerIsNull {
-            get {
-                return ResourceManager.GetString("ValueMaskerIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Value transform is null.
+        ///   Looks up a localized string similar to Value transform may not be null.
         /// </summary>
         internal static string ValueTransformIsNull {
             get {

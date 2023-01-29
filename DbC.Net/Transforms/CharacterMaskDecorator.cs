@@ -14,7 +14,8 @@
 public sealed class CharacterMaskDecorator : IValueTransform
 {
    private readonly IValueTransform _baseTransform;
-   private readonly Char _maskCharacter;
+
+   public const Char DefaultMaskCharacter = '*';
 
    /// <summary>
    ///   Decorate a <paramref name="baseTransform"/> with a new 
@@ -24,17 +25,18 @@ public sealed class CharacterMaskDecorator : IValueTransform
    ///   The <see cref="IValueTransform"/> to decorate.
    /// </param>
    /// <param name="maskCharacter">
-   ///   The character to display instead of the original character.
+   ///   Optional. The character to display instead of the original character.
+   ///   Defaults to an asterisk ('*').
    /// </param>
    /// <exception cref="ArgumentNullException">
    ///   <paramref name="baseTransform"/> is <see langword="null"/>.
    /// </exception>
    /// <exception cref="ArgumentOutOfRangeException">
-   ///   V<paramref name="maskCharacter"/> is character null ('\0').
+   ///   <paramref name="maskCharacter"/> is character null ('\0').
    /// </exception>
    public CharacterMaskDecorator(
       IValueTransform baseTransform, 
-      Char maskCharacter)
+      Char maskCharacter = DefaultMaskCharacter)
    {
       _baseTransform = baseTransform 
          ?? throw new ArgumentNullException(nameof(baseTransform), Messages.BaseTransformIsNull);
@@ -43,10 +45,15 @@ public sealed class CharacterMaskDecorator : IValueTransform
          throw new ArgumentOutOfRangeException(nameof(maskCharacter), Messages.MaskCharacterIsNull);
       }
 
-      _maskCharacter = maskCharacter;
+      MaskCharacter = maskCharacter;
    }
+
+   /// <summary>
+   ///   The character to display instead of the original character.
+   /// </summary>
+   public Char MaskCharacter { get; }
 
    /// <inheritdoc/>
    public Object TransformValue(Object value)
-      => new String(_maskCharacter, (_baseTransform.TransformValue(value)?.ToString() ?? String.Empty).Length);
+      => new String(MaskCharacter, (_baseTransform.TransformValue(value)?.ToString() ?? String.Empty).Length);
 }
