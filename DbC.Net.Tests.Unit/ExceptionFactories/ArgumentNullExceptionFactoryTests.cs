@@ -196,10 +196,9 @@ public class ArgumentNullExceptionFactoryTests
    public void ArgumentNullExceptionFactory_CreateException_ShouldThrowArgumentNullException_WhenDataDictionaryIsNull()
    {
       // Arrange.
-      var messageTemplate = "{RequirementType} {RequirementName} failed: {ValueExpression} may not be null";
       Dictionary<String, Object> data = null!;
       var sut = new ArgumentNullExceptionFactory();
-      var act = () => _ = sut.CreateException(data, messageTemplate);
+      var act = () => _ = sut.CreateException(data, _messageTemplate);
 
       // Act/assert.
       act.Should().Throw<ArgumentNullException>()

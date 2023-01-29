@@ -164,6 +164,47 @@ public class StandardExceptionFactoriesTests
 
    #endregion
 
+   #region InvalidOperationExceptionFactory Tests
+   // ==========================================================================
+   // ==========================================================================
+
+   [Fact]
+   public void StandardExceptionFactories_InvalidOperationExceptionFactory_ShouldNotBeNull()
+      => StandardExceptionFactories.InvalidOperationExceptionFactory.Should().NotBeNull();
+
+   [Fact]
+   public void StandardExceptionFactories_InvalidOperationExceptionFactory_ShouldNotTransformDataDictionaryValues()
+   {
+      // Arrange.
+      var sut = StandardExceptionFactories.InvalidOperationExceptionFactory;
+      IReadOnlyDictionary<String, Object> data = new Dictionary<String, Object>() {
+         { DataNames.RequirementType, RequirementType.Precondition },
+         { DataNames.RequirementName, "RegexMatch" },
+         { DataNames.Value, "asdf" },
+         { DataNames.ValueExpression, "apiResponse" },
+         { DataNames.Regex, @"\b[M]\w+" } };
+      var messageTemplate = "{RequirementType} {RequirementName} failed: value (\"{Value}\") is not a word that starts with 'M'";
+
+      var expectedMessage = "Precondition RegexMatch failed: value (\"asdf\") is not a word that starts with 'M'";
+
+      // Act.
+      var ex = sut.CreateException(data, messageTemplate);
+
+      // Assert.
+      ex.Should().NotBeNull();
+      ex.Should().BeOfType<InvalidOperationException>();
+      ex.Message.Should().StartWith(expectedMessage);
+
+      ex.Data.Count.Should().Be(data.Count);
+      ex.Data[DataNames.RequirementType].Should().Be(data[DataNames.RequirementType]);
+      ex.Data[DataNames.RequirementName].Should().Be(data[DataNames.RequirementName]);
+      ex.Data[DataNames.Value].Should().Be(data[DataNames.Value]);
+      ex.Data[DataNames.ValueExpression].Should().Be(data[DataNames.ValueExpression]);
+      ex.Data[DataNames.Regex].Should().Be(data[DataNames.Regex]);
+   }
+
+   #endregion
+
    #region SecureArgumentExceptionFactory Tests
    // ==========================================================================
    // ==========================================================================
@@ -248,6 +289,48 @@ public class StandardExceptionFactoriesTests
       ex.Data[DataNames.ValueExpression].Should().Be(data[DataNames.ValueExpression]);
       ex.Data[DataNames.Limit].Should().Be(data[DataNames.Limit]);
       ex.Data[DataNames.LimitExpression].Should().Be(data[DataNames.LimitExpression]);
+   }
+
+   #endregion
+
+   #region SecureInvalidOperationExceptionFactory Tests
+   // ==========================================================================
+   // ==========================================================================
+
+   [Fact]
+   public void StandardExceptionFactories_SecureInvalidOperationExceptionFactory_ShouldNotBeNull()
+      => StandardExceptionFactories.SecureInvalidOperationExceptionFactory.Should().NotBeNull();
+
+   [Fact]
+   public void StandardExceptionFactories_SecureInvalidOperationExceptionFactory_ShouldNotTransformDataDictionaryValues()
+   {
+      // Arrange.
+      var sut = StandardExceptionFactories.SecureInvalidOperationExceptionFactory;
+      IReadOnlyDictionary<String, Object> data = new Dictionary<String, Object>() {
+         { DataNames.RequirementType, RequirementType.Precondition },
+         { DataNames.RequirementName, "RegexMatch" },
+         { DataNames.Value, "asdf" },
+         { DataNames.ValueExpression, "apiResponse" },
+         { DataNames.Regex, @"\b[M]\w+" } };
+      var messageTemplate = "{RequirementType} {RequirementName} failed: value (\"{Value}\") is not a word that starts with 'M'";
+
+      var expectedValue = "****";
+      var expectedMessage = "Precondition RegexMatch failed: value (\"****\") is not a word that starts with 'M'";
+
+      // Act.
+      var ex = sut.CreateException(data, messageTemplate);
+
+      // Assert.
+      ex.Should().NotBeNull();
+      ex.Should().BeOfType<InvalidOperationException>();
+      ex.Message.Should().StartWith(expectedMessage);
+
+      ex.Data.Count.Should().Be(data.Count);
+      ex.Data[DataNames.RequirementType].Should().Be(data[DataNames.RequirementType]);
+      ex.Data[DataNames.RequirementName].Should().Be(data[DataNames.RequirementName]);
+      ex.Data[DataNames.Value].Should().Be(expectedValue);
+      ex.Data[DataNames.ValueExpression].Should().Be(data[DataNames.ValueExpression]);
+      ex.Data[DataNames.Regex].Should().Be(data[DataNames.Regex]);
    }
 
    #endregion

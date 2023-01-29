@@ -205,10 +205,9 @@ public class ArgumentExceptionFactoryTests
    public void ArgumentExceptionFactory_CreateException_ShouldThrowArgumentNullException_WhenDataDictionaryIsNull()
    {
       // Arrange.
-      var messageTemplate = "{RequirementType} {RequirementName} failed: value (\"{Value}\") does not meet minimum length of {MinLength}";
       Dictionary<String, Object> data = null!;
       var sut = new ArgumentExceptionFactory();
-      var act = () => _ = sut.CreateException(data, messageTemplate);
+      var act = () => _ = sut.CreateException(data, _messageTemplate);
 
       // Act/assert.
       act.Should().Throw<ArgumentNullException>()

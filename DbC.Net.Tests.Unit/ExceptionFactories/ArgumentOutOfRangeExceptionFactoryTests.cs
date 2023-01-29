@@ -235,10 +235,9 @@ public class ArgumentOutOfRangeExceptionFactoryTests
    public void ArgumentOutOfRangeExceptionFactory_CreateException_ShouldThrowArgumentNullException_WhenDataDictionaryIsNull()
    {
       // Arrange.
-      var messageTemplate = "{RequirementType} {RequirementName} failed: value ({Value}) is not greater than {Limit}";
       Dictionary<String, Object> data = null!;
       var sut = new ArgumentOutOfRangeExceptionFactory();
-      var act = () => _ = sut.CreateException(data, messageTemplate);
+      var act = () => _ = sut.CreateException(data, _messageTemplate);
 
       // Act/assert.
       act.Should().Throw<ArgumentNullException>()

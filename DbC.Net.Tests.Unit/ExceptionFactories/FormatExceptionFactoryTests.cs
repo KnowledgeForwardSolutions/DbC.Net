@@ -184,10 +184,9 @@ public class FormatExceptionFactoryTests
    public void FormatExceptionFactory_CreateException_ShouldThrowArgumentNullException_WhenDataDictionaryIsNull()
    {
       // Arrange.
-      var messageTemplate = "{RequirementType} {RequirementName} failed: value (\"{Value}\") is not a valid three part name";
       Dictionary<String, Object> data = null!;
       var sut = new FormatExceptionFactory();
-      var act = () => _ = sut.CreateException(data, messageTemplate);
+      var act = () => _ = sut.CreateException(data, _messageTemplate);
 
       // Act/assert.
       act.Should().Throw<ArgumentNullException>()

@@ -5,15 +5,41 @@
 /// </summary>
 public sealed class InvalidOperationExceptionFactory : ExceptionFactoryBase
 {
-   private static readonly Lazy<InvalidOperationExceptionFactory> _lazy =
-      new(() => new InvalidOperationExceptionFactory());
-
-   private InvalidOperationExceptionFactory() { }
+   /// <summary>
+   ///   Initialize a new <see cref="InvalidOperationExceptionFactory"/> with no value
+   ///   transforms.
+   /// </summary>
+   public InvalidOperationExceptionFactory() : base() { }
 
    /// <summary>
-   ///   The single instance of <see cref="InvalidOperationExceptionFactory"/>.
+   ///   Initialize a new <see cref="InvalidOperationExceptionFactory"/> with the 
+   ///   <paramref name="transform"/> to use for the specified data dictionary
+   ///   <paramref name="keys"/>.
    /// </summary>
-   public static InvalidOperationExceptionFactory Instance => _lazy.Value;
+   /// <param name="keys">
+   ///   Keys that identify data dictionary entries that should be transformed
+   ///   when creating exceptions.
+   /// </param>
+   /// <param name="transform">
+   ///   The <see cref="IValueTransform"/> to use for the specified data 
+   ///   dictionary <paramref name="keys"/>.
+   /// </param>
+   /// <exception cref="ArgumentNullException">
+   ///   <paramref name="keys"/> is <see langword="null"/>.
+   ///   - or -
+   ///   <paramref name="transform"/> is <see langword="null"/>.
+   /// </exception>
+   public InvalidOperationExceptionFactory(IReadOnlyCollection<String> keys, IValueTransform transform)
+      : base(keys, transform) { }
+
+   /// <summary>
+   ///   Initialize a new <see cref="InvalidOperationExceptionFactory"/> with the 
+   ///   specified value <paramref name="transforms"/>.
+   /// </summary>
+   /// <param name="transforms">
+   ///   Dictionary of value transforms to apply to data dictionary entries.
+   /// </param>
+   public InvalidOperationExceptionFactory(IReadOnlyDictionary<String, IValueTransform> transforms) : base(transforms) { }
 
    /// <inheritdoc/>
    public override InvalidOperationException CreateException(
@@ -23,9 +49,10 @@ public sealed class InvalidOperationExceptionFactory : ExceptionFactoryBase
       ValidateDataDictionary(data);
       ValidateMessageTemplate(messageTemplate);
 
-      var message = CreateMessage(messageTemplate, data);
+      var transformedData = ApplyTransforms(data);
+      var message = CreateMessage(messageTemplate, transformedData);
 
       return new InvalidOperationException(message)
-         .PopulateExceptionData(data);
+         .PopulateExceptionData(transformedData);
    }
 }
