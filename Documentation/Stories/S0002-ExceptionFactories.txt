@@ -3,8 +3,8 @@ As a DbC.Net developer, I want a suite of factory objects for creating common ex
 Requirements:
 
   Define the IExceptionFactory interface
-  Create singletons factory objects for common exceptions
-  Create masked factory objects that do not expose the failing value so that sensitive or potentially sensitive information is not captured in logs or otherwise visible
+  Create singletons standard factory objects for common exceptions
+  Support for value transforms that do not expose the failing value so that sensitive or potentially sensitive information is not captured in logs or otherwise visible
   Support templated messages
 
 DEFINITION OF DONE:
@@ -16,6 +16,6 @@ DEFINITION OF DONE:
 5. FormatExceptionFactory
 6. InvalidOperationExceptionFactory
 7. NotSupportedExceptionFactory
-8. Masked version of 3-7
+8. Basic value transforms
 9. Unit tests for all factory classes
 10. Readme updates for exception factories and message templating
