@@ -205,6 +205,45 @@ public class StandardExceptionFactoriesTests
 
    #endregion
 
+   #region NotSupportedExceptionFactory Tests
+   // ==========================================================================
+   // ==========================================================================
+
+   [Fact]
+   public void StandardExceptionFactories_NotSupportedExceptionFactory_ShouldNotBeNull()
+      => StandardExceptionFactories.NotSupportedExceptionFactory.Should().NotBeNull();
+
+   [Fact]
+   public void StandardExceptionFactories_NotSupportedExceptionFactory_ShouldNotTransformDataDictionaryValues()
+   {
+      // Arrange.
+      var sut = StandardExceptionFactories.NotSupportedExceptionFactory;
+      IReadOnlyDictionary<String, Object> data = new Dictionary<String, Object>() {
+         { DataNames.RequirementType, RequirementType.Precondition },
+         { DataNames.RequirementName, "Equal" },
+         { DataNames.Value, 0 },
+         { DataNames.ValueExpression, "value" } };
+      var messageTemplate = "{RequirementType} {RequirementName} failed: operation is not defined for {Value}";
+
+      var expectedMessage = "Precondition Equal failed: operation is not defined for 0";
+
+      // Act.
+      var ex = sut.CreateException(data, messageTemplate);
+
+      // Assert.
+      ex.Should().NotBeNull();
+      ex.Should().BeOfType<NotSupportedException>();
+      ex.Message.Should().StartWith(expectedMessage);
+
+      ex.Data.Count.Should().Be(data.Count);
+      ex.Data[DataNames.RequirementType].Should().Be(data[DataNames.RequirementType]);
+      ex.Data[DataNames.RequirementName].Should().Be(data[DataNames.RequirementName]);
+      ex.Data[DataNames.Value].Should().Be(data[DataNames.Value]);
+      ex.Data[DataNames.ValueExpression].Should().Be(data[DataNames.ValueExpression]);
+   }
+
+   #endregion
+
    #region SecureArgumentExceptionFactory Tests
    // ==========================================================================
    // ==========================================================================
@@ -331,6 +370,46 @@ public class StandardExceptionFactoriesTests
       ex.Data[DataNames.Value].Should().Be(expectedValue);
       ex.Data[DataNames.ValueExpression].Should().Be(data[DataNames.ValueExpression]);
       ex.Data[DataNames.Regex].Should().Be(data[DataNames.Regex]);
+   }
+
+   #endregion
+
+   #region SecureNotSupportedExceptionFactory Tests
+   // ==========================================================================
+   // ==========================================================================
+
+   [Fact]
+   public void StandardExceptionFactories_SecureNotSupportedExceptionFactory_ShouldNotBeNull()
+      => StandardExceptionFactories.SecureNotSupportedExceptionFactory.Should().NotBeNull();
+
+   [Fact]
+   public void StandardExceptionFactories_SecureNotSupportedExceptionFactory_ShouldNotTransformDataDictionaryValues()
+   {
+      // Arrange.
+      var sut = StandardExceptionFactories.SecureNotSupportedExceptionFactory;
+      IReadOnlyDictionary<String, Object> data = new Dictionary<String, Object>() {
+         { DataNames.RequirementType, RequirementType.Precondition },
+         { DataNames.RequirementName, "Equal" },
+         { DataNames.Value, 0 },
+         { DataNames.ValueExpression, "value" } };
+      var messageTemplate = "{RequirementType} {RequirementName} failed: operation is not defined for {Value}";
+
+      var expectedValue = "*";
+      var expectedMessage = "Precondition Equal failed: operation is not defined for *";
+
+      // Act.
+      var ex = sut.CreateException(data, messageTemplate);
+
+      // Assert.
+      ex.Should().NotBeNull();
+      ex.Should().BeOfType<NotSupportedException>();
+      ex.Message.Should().StartWith(expectedMessage);
+
+      ex.Data.Count.Should().Be(data.Count);
+      ex.Data[DataNames.RequirementType].Should().Be(data[DataNames.RequirementType]);
+      ex.Data[DataNames.RequirementName].Should().Be(data[DataNames.RequirementName]);
+      ex.Data[DataNames.Value].Should().Be(expectedValue);
+      ex.Data[DataNames.ValueExpression].Should().Be(data[DataNames.ValueExpression]);
    }
 
    #endregion

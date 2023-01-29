@@ -18,7 +18,7 @@ public class FormatExceptionFactoryTests
       { DataNames.Value, "a.b" },
       { DataNames.ValueExpression, "threePartName" } };
 
-   #region Instance Property Tests
+   #region Constructor Tests
    // ==========================================================================
    // ==========================================================================
 

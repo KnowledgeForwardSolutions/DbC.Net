@@ -5,15 +5,41 @@
 /// </summary>
 public sealed class NotSupportedExceptionFactory : ExceptionFactoryBase
 {
-   private static readonly Lazy<NotSupportedExceptionFactory> _lazy =
-      new(() => new NotSupportedExceptionFactory());
-
-   private NotSupportedExceptionFactory() { }
+   /// <summary>
+   ///   Initialize a new <see cref="NotSupportedExceptionFactory"/> with no value
+   ///   transforms.
+   /// </summary>
+   public NotSupportedExceptionFactory() : base() { }
 
    /// <summary>
-   ///   The single instance of <see cref="NotSupportedExceptionFactory"/>.
+   ///   Initialize a new <see cref="NotSupportedExceptionFactory"/> with the 
+   ///   <paramref name="transform"/> to use for the specified data dictionary
+   ///   <paramref name="keys"/>.
    /// </summary>
-   public static NotSupportedExceptionFactory Instance => _lazy.Value;
+   /// <param name="keys">
+   ///   Keys that identify data dictionary entries that should be transformed
+   ///   when creating exceptions.
+   /// </param>
+   /// <param name="transform">
+   ///   The <see cref="IValueTransform"/> to use for the specified data 
+   ///   dictionary <paramref name="keys"/>.
+   /// </param>
+   /// <exception cref="ArgumentNullException">
+   ///   <paramref name="keys"/> is <see langword="null"/>.
+   ///   - or -
+   ///   <paramref name="transform"/> is <see langword="null"/>.
+   /// </exception>
+   public NotSupportedExceptionFactory(IReadOnlyCollection<String> keys, IValueTransform transform)
+      : base(keys, transform) { }
+
+   /// <summary>
+   ///   Initialize a new <see cref="NotSupportedExceptionFactory"/> with the 
+   ///   specified value <paramref name="transforms"/>.
+   /// </summary>
+   /// <param name="transforms">
+   ///   Dictionary of value transforms to apply to data dictionary entries.
+   /// </param>
+   public NotSupportedExceptionFactory(IReadOnlyDictionary<String, IValueTransform> transforms) : base(transforms) { }
 
    /// <inheritdoc/>
    public override NotSupportedException CreateException(
@@ -23,9 +49,10 @@ public sealed class NotSupportedExceptionFactory : ExceptionFactoryBase
       ValidateDataDictionary(data);
       ValidateMessageTemplate(messageTemplate);
 
-      var message = CreateMessage(messageTemplate, data);
+      var transformedData = ApplyTransforms(data);
+      var message = CreateMessage(messageTemplate, transformedData);
 
       return new NotSupportedException(message)
-         .PopulateExceptionData(data);
+         .PopulateExceptionData(transformedData);
    }
 }

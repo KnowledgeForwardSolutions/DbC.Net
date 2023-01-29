@@ -176,6 +176,9 @@ that does not use any value transforms.
 - InvalidOperationExceptionFactory - an instance of [InvalidOperationExceptionFactory](#invalidoperationexceptionfactory)
 that does not use any value transforms.
 
+- NotSupportedExceptionFactory - an instance of [NotSupportedExceptionFactory](#notsupportedexceptionfactory)
+that does not use any value transforms.
+
 - SecureArgumentExceptionFactory - an instance of [ArgumentExceptionFactory](#argumentexceptionfactory)
 that includes a value transform on the Value data dictionary entry that masks the
 value with all asterisk characters ('*').
@@ -185,6 +188,10 @@ that includes a value transform on the Value data dictionary entry that masks th
 value with all asterisk characters ('*').
 
 - SecureInvalidOperationExceptionFactory - an instance of [InvalidOperationExceptionFactory](#invalidoperationexceptionfactory)
+that includes a value transform on the Value data dictionary entry that masks the
+value with all asterisk characters ('*').
+
+- SecureNotSupportedExceptionFactory - an instance of [NotSupportedExceptionFactory](#notsupportedexceptionfactory)
 that includes a value transform on the Value data dictionary entry that masks the
 value with all asterisk characters ('*').
 

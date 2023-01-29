@@ -19,7 +19,7 @@ public class InvalidOperationExceptionFactoryTests
       { DataNames.ValueExpression, "apiResponse" },
       { DataNames.Regex, @"\b[M]\w+" } };
 
-   #region Instance Property Tests
+   #region Constructor Tests
    // ==========================================================================
    // ==========================================================================
 
@@ -187,10 +187,9 @@ public class InvalidOperationExceptionFactoryTests
    public void InvalidOperationExceptionFactory_CreateException_ShouldThrowArgumentNullException_WhenDataDictionaryIsNull()
    {
       // Arrange.
-      var messageTemplate = "{RequirementType} {RequirementName} failed: value (\"{Value}\") is not a word that starts with 'M'";
       Dictionary<String, Object> data = null!;
       var sut = new InvalidOperationExceptionFactory();
-      var act = () => _ = sut.CreateException(data, messageTemplate);
+      var act = () => _ = sut.CreateException(data, _messageTemplate);
 
       // Act/assert.
       act.Should().Throw<ArgumentNullException>()
