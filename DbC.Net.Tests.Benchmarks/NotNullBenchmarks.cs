@@ -86,4 +86,76 @@ public class NotNullBenchmarks
    {
       var result = _listValue.RequiresNotNull(_messageTemplate, _exceptionFactory);
    }
+
+   [Benchmark]
+   public void EnsuresNotNull_Int32_P00()
+   {
+      var result = _intValue.EnsuresNotNull();
+   }
+
+   [Benchmark]
+   public void EnsuresNotNull_Int32_P10()
+   {
+      var result = _intValue.EnsuresNotNull(_messageTemplate);
+   }
+
+   [Benchmark]
+   public void EnsuresNotNull_Int32_P01()
+   {
+      var result = _intValue.EnsuresNotNull(exceptionFactory: _exceptionFactory);
+   }
+
+   [Benchmark]
+   public void EnsuresNotNull_Int32_P11()
+   {
+      var result = _intValue.EnsuresNotNull(_messageTemplate, _exceptionFactory);
+   }
+
+   [Benchmark]
+   public void EnsuresNotNull_String_P00()
+   {
+      var result = _stringValue.EnsuresNotNull();
+   }
+
+   [Benchmark]
+   public void EnsuresNotNull_String_P10()
+   {
+      var result = _stringValue.EnsuresNotNull(_messageTemplate);
+   }
+
+   [Benchmark]
+   public void EnsuresNotNull_String_P01()
+   {
+      var result = _stringValue.EnsuresNotNull(exceptionFactory: _exceptionFactory);
+   }
+
+   [Benchmark]
+   public void EnsuresNotNull_String_P11()
+   {
+      var result = _stringValue.EnsuresNotNull(_messageTemplate, _exceptionFactory);
+   }
+
+   [Benchmark]
+   public void EnsuresNotNull_List_P00()
+   {
+      var result = _listValue.EnsuresNotNull();
+   }
+
+   [Benchmark]
+   public void EnsuresNotNull_List_P10()
+   {
+      var result = _listValue.EnsuresNotNull(_messageTemplate);
+   }
+
+   [Benchmark]
+   public void EnsuresNotNull_List_P01()
+   {
+      var result = _listValue.EnsuresNotNull(exceptionFactory: _exceptionFactory);
+   }
+
+   [Benchmark]
+   public void EnsuresNotNull_List_P11()
+   {
+      var result = _listValue.EnsuresNotNull(_messageTemplate, _exceptionFactory);
+   }
 }
