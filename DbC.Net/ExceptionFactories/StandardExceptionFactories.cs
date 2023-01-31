@@ -5,35 +5,41 @@ public class StandardExceptionFactories
    private static readonly IReadOnlyCollection<String> _valueOnlyKeys = 
       new List<String> { DataNames.Value };
 
-   private static readonly Lazy<ArgumentExceptionFactory> _argumentExceptionFactory =
+   private static readonly Lazy<IExceptionFactory> _argumentExceptionFactory =
       new(() => new ArgumentExceptionFactory());
 
-   private static readonly Lazy<ArgumentNullExceptionFactory> _argumentNullExceptionFactory =
+   private static readonly Lazy<IExceptionFactory> _argumentNullExceptionFactory =
       new(() => new ArgumentNullExceptionFactory());
 
-   private static readonly Lazy<ArgumentOutOfRangeExceptionFactory> _argumentOutOfRangeExceptionFactory =
+   private static readonly Lazy<IExceptionFactory> _argumentOutOfRangeExceptionFactory =
       new(() => new ArgumentOutOfRangeExceptionFactory());
 
-   private static readonly Lazy<FormatExceptionFactory> _formatExceptionFactory =
+   private static readonly Lazy<IExceptionFactory> _formatExceptionFactory =
       new(() => new FormatExceptionFactory());
 
-   private static readonly Lazy<InvalidOperationExceptionFactory> _invalidOperationExceptionFactory =
+   private static readonly Lazy<IExceptionFactory> _invalidOperationExceptionFactory =
       new(() => new InvalidOperationExceptionFactory());
 
-   private static readonly Lazy<NotSupportedExceptionFactory> _notSupportedExceptionFactory =
+   private static readonly Lazy<IExceptionFactory> _notSupportedExceptionFactory =
       new(() => new NotSupportedExceptionFactory());
 
-   private static readonly Lazy<ArgumentExceptionFactory> _secureArgumentExceptionFactory =
+   private static readonly Lazy<IExceptionFactory> _postconditionFailedExceptionFactory =
+      new(() => new PostconditionFailedExceptionFactory());
+
+   private static readonly Lazy<IExceptionFactory> _secureArgumentExceptionFactory =
       new(() => new ArgumentExceptionFactory(_valueOnlyKeys, StandardTransforms.AsteriskMaskTransform));
 
-   private static readonly Lazy<ArgumentOutOfRangeExceptionFactory> _secureArgumentOutOfRangeExceptionFactory =
+   private static readonly Lazy<IExceptionFactory> _secureArgumentOutOfRangeExceptionFactory =
       new(() => new ArgumentOutOfRangeExceptionFactory(_valueOnlyKeys, StandardTransforms.AsteriskMaskTransform));
 
-   private static readonly Lazy<InvalidOperationExceptionFactory> _secureInvalidOperationExceptionFactory =
+   private static readonly Lazy<IExceptionFactory> _secureInvalidOperationExceptionFactory =
       new(() => new InvalidOperationExceptionFactory(_valueOnlyKeys, StandardTransforms.AsteriskMaskTransform));
 
-   private static readonly Lazy<NotSupportedExceptionFactory> _secureNotSupportedExceptionFactory =
+   private static readonly Lazy<IExceptionFactory> _secureNotSupportedExceptionFactory =
       new(() => new NotSupportedExceptionFactory(_valueOnlyKeys, StandardTransforms.AsteriskMaskTransform));
+
+   private static readonly Lazy<IExceptionFactory> _securePostconditionFailedExceptionFactory =
+      new(() => new PostconditionFailedExceptionFactory(_valueOnlyKeys, StandardTransforms.AsteriskMaskTransform));
 
    /// <summary>
    ///   Exception factory for creating <see cref="ArgumentException"/>s where
@@ -78,6 +84,13 @@ public class StandardExceptionFactories
    public static IExceptionFactory NotSupportedExceptionFactory => _notSupportedExceptionFactory.Value;
 
    /// <summary>
+   ///   Exception factory for creating <see cref="PostconditionFailedException"/>s where
+   ///   no value transforms are applied before creating the exception message
+   ///   or the exception Data dictionary is populated.
+   /// </summary>
+   public static IExceptionFactory PostconditionFailedExceptionFactory => _postconditionFailedExceptionFactory.Value;
+
+   /// <summary>
    ///   Exception factory for creating <see cref="ArgumentException"/>s where  
    ///   the Value data dictionary entry is masked with all asterisk characters 
    ///   ('*') before being included in the exception message or added to the 
@@ -108,4 +121,12 @@ public class StandardExceptionFactories
    ///   exception Data dictionary.
    /// </summary>
    public static IExceptionFactory SecureNotSupportedExceptionFactory => _secureNotSupportedExceptionFactory.Value;
+
+   /// <summary>
+   ///   Exception factory for creating <see cref="PostconditionFailedException"/>s where
+   ///   the Value data dictionary entry is masked with all asterisk characters 
+   ///   ('*') before being included in the exception message or added to the 
+   ///   exception Data dictionary.
+   /// </summary>
+   public static IExceptionFactory SecurePostconditionFailedExceptionFactory => _securePostconditionFailedExceptionFactory.Value;
 }

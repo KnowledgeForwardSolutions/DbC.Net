@@ -19,6 +19,7 @@
     - [FormatExceptionFactory](#formatexceptionfactory)
     - [InvalidOperationExceptionFactory](#invalidoperationexceptionfactory)
     - [NotSupportedExceptionFactory](#notsupportedexceptionfactory)
+    - [PostconditionFailedExceptionFactory](#postconditionfailedexceptionfactory)
 
     - [StandardExceptionFactories](#standardexceptionfactories)
 
@@ -153,8 +154,14 @@ exception data dictionary.
 
 ### NotSupportedExceptionFactory
 
-Use NotSupportedExceptionFactory to create NotSupportedException. 
+Use NotSupportedExceptionFactory to create NotSupportedExceptions. 
 NotSupportedExceptionFactory does not expect any specific entries in the 
+exception data dictionary.
+
+### PostconditionFailedExceptionFactory
+
+Use PostconditionFailedExceptionFactory to create PostconditionFailedExceptions. 
+PostconditionFailedExceptionFactory does not expect any specific entries in the 
 exception data dictionary.
 
 ### StandardExceptionFactories
@@ -181,6 +188,9 @@ that does not use any value transforms.
 - NotSupportedExceptionFactory - an instance of [NotSupportedExceptionFactory](#notsupportedexceptionfactory)
 that does not use any value transforms.
 
+- PostconditionFailedExceptionFactory - an instance of [PostconditionFailedExceptionFactory](#postconditionfailedexceptionfactory)
+that does not use any value transforms.
+
 - SecureArgumentExceptionFactory - an instance of [ArgumentExceptionFactory](#argumentexceptionfactory)
 that includes a value transform on the Value data dictionary entry that masks the
 value with all asterisk characters ('*').
@@ -194,6 +204,10 @@ that includes a value transform on the Value data dictionary entry that masks th
 value with all asterisk characters ('*').
 
 - SecureNotSupportedExceptionFactory - an instance of [NotSupportedExceptionFactory](#notsupportedexceptionfactory)
+that includes a value transform on the Value data dictionary entry that masks the
+value with all asterisk characters ('*').
+
+- SecurePostconditionFailedExceptionFactory - an instance of [PostconditionFailedExceptionFactory](#postconditionfailedexceptionfactory)
 that includes a value transform on the Value data dictionary entry that masks the
 value with all asterisk characters ('*').
 
@@ -249,8 +263,8 @@ example here...
 
 # Performance Data
 
-X indicates that the parameter was supplied; blank indicates that the parameter
-was omitted.
+X indicates that the optional parameter was supplied; blank indicates that the 
+parameter was omitted.
 
 | Method          | Value Type  | Message Template | Exception Factory |      Mean |    Median | Allocated |
 |:--------------- |:------------|:----------------:|:-----------------:|----------:|----------:|----------:|
