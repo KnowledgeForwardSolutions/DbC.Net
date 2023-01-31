@@ -28,9 +28,11 @@
 
     - [Implementing an ExceptionFactory](#implementing-an-exceptionfactory)
 
-- [Release History/Release Notes](#release-historyrelease-notes)
+- **[Release History/Release Notes](#release-historyrelease-notes)**
 
 	- Not currently released
+
+- **[Performance Data](#performance-data)**
 
 # Introduction
 
@@ -245,3 +247,22 @@ example here...
 # Release History/Release Notes
 
 
+# Performance Data
+
+Checkmark characters (&#2713;) indicate that the parameter was supplied; blanks
+indicate that the parameter was omitted.
+
+| Method          | Value Type  | Message Template | Exception Factory |      Mean | Allocated |
+|:--------------- |:------------|:----------------:|:-----------------:|----------:|----------:|
+| RequiresNotNull | Int32       |                  |                   | 0.0010 ns |         - |
+| RequiresNotNull | Int32       | &#2713;          |                   | 0.0106 ns |         - |
+| RequiresNotNull | Int32       |                  | &#2713;           | 0.0031 ns |         - |
+| RequiresNotNull | Int32       | &#2713;          | &#2713;           | 0.0172 ns |         - |
+| RequiresNotNull | String      |                  |                   | 0.0101 ns |         - |
+| RequiresNotNull | String      | &#2713;          |                   | 0.0277 ns |         - |
+| RequiresNotNull | String      |                  | &#2713;           | 0.0040 ns |         - |
+| RequiresNotNull | String      | &#2713;          | &#2713;           | 0.0101 ns |         - |
+| RequiresNotNull | List<T>     |                  |                   | 0.0044 ns |         - |
+| RequiresNotNull | List<T>     | &#2713;          |                   | 0.0069 ns |         - |
+| RequiresNotNull | List<T>     |                  | &#2713;           | 0.0118 ns |         - |
+| RequiresNotNull | List<T>     | &#2713;          | &#2713;           | 0.0053 ns |         - |

@@ -23,12 +23,21 @@
             <AutoGen>True</AutoGen>
             <DependentUpon>Messages.resx</DependentUpon>
         </Compile>
+        <Compile Update="MessageTemplates.Designer.cs">
+          <DesignTime>True</DesignTime>
+          <AutoGen>True</AutoGen>
+          <DependentUpon>MessageTemplates.resx</DependentUpon>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>
         <EmbeddedResource Update="Messages.resx">
             <Generator>ResXFileCodeGenerator</Generator>
             <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="MessageTemplates.resx">
+          <Generator>ResXFileCodeGenerator</Generator>
+          <LastGenOutput>MessageTemplates.Designer.cs</LastGenOutput>
         </EmbeddedResource>
     </ItemGroup>
 
