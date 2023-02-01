@@ -16,3 +16,4 @@ DEFINITION OF DONE:
 3. Unit tests for Requires/Ensures ApproximatelyEqual
 4. Performance tests
 5. Readme updates
+6. Examples
