@@ -32,6 +32,7 @@
   - [Initialization Requirements](#initialization-requirements)
 
     - [NotNull](#notnull)
+    - [NotDefault](#notdefault)
 
 - **[Release History/Release Notes](#release-historyrelease-notes)**
 
@@ -270,8 +271,9 @@ NotNull requires that the value being checked not be null. Use RequiresNotNull
 for preconditions and EnsuresNotNull for postconditions.
 
 The default message template for NotNull is "{RequirementType} {RequirementName} failed: {ValueExpression} may not be null".
-The default exception factory for RequiresNotNull is StandardExceptionFactories.ArgumentNullExceptionFactory and
-StandardExceptionFactories.PostconditionFailedExceptionFactory for EnsuresNotNull.
+The default exception factory for RequiresNotNull is StandardExceptionFactories.ArgumentNullExceptionFactory 
+and StandardExceptionFactories.PostconditionFailedExceptionFactory for 
+EnsuresNotNull.
 
 The data dictionary for exceptions thrown will contain entries for RequirementType,
 RequirementName and ValueExpression.
@@ -309,6 +311,56 @@ identifiers.EnsuresNotNull(exceptionFactory: customExceptionFactory);
 
 // Postcondition with custom message template/custom exception factory.
 identifiers.EnsuresNotNull(customMessageTemplate, customExceptionFactory);
+```
+
+### NotDefault
+
+NotDefault requires that the value being checked not be the default for the 
+datatype of the value being checked (zero for value types, null for reference
+types). Use RequiresNotDefault for preconditions and EnsuresNotDefault for 
+postconditions.
+
+The default message template for NotDefault is "{RequirementType} {RequirementName} failed: {ValueExpression} may not be default({ValueDatatype})".
+The default exception factory for RequiresNotDefault is StandardExceptionFactories.ArgumentExceptionFactory
+and StandardExceptionFactories.PostconditionFailedExceptionFactory for 
+EnsuresNotDefault.
+
+The data dictionary for exceptions thrown will contain entries for RequirementType,
+RequirementName, ValueExpression and ValueDatatype.
+
+Examples:
+```C#
+var customMessageTemplate = "{ValueExpression} can not be default";
+var customExceptionFactory = new CustomExceptionFactory();
+
+Int64 id = default;
+
+List<Guid> identifiers = default!;
+
+// Precondition with default message template/default exception factory.
+id.RequiresNotDefault();
+
+// Precondition with custom message template/default exception factory.
+id.RequiresNotDefault(customMessageTemplate);
+
+// Precondition with default message template/custom exception factory.
+id.RequiresNotDefault(exceptionFactory: customExceptionFactory);
+
+// Precondition with custom message template/custom exception factory.
+id.RequiresNotDefault(customMessageTemplate, customExceptionFactory);
+
+
+// Postcondition with default message template/default exception factory.
+identifiers.EnsuresNotDefault();
+
+// Postcondition with custom message template/default exception factory.
+identifiers.EnsuresNotDefault(customMessageTemplate);
+
+// Postcondition with default message template/custom exception factory.
+identifiers.EnsuresNotDefault(exceptionFactory: customExceptionFactory);
+
+// Postcondition with custom message template/custom exception factory.
+identifiers.EnsuresNotDefault(customMessageTemplate, customExceptionFactory);
 ```
 
 # Release History/Release Notes
