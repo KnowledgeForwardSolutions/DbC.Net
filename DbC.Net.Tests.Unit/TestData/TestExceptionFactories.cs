@@ -3,7 +3,7 @@
 public static class TestExceptionFactories
 {
    private static readonly Lazy<IExceptionFactory> _customExceptionFactory =
-      new(() => new CustomExceptionExceptionFactory());
+      new(() => new CustomExceptionFactory());
 
    public static IExceptionFactory CustomExceptionFactory => _customExceptionFactory.Value;
 
