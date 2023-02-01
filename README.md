@@ -19,6 +19,7 @@
     - [FormatExceptionFactory](#formatexceptionfactory)
     - [InvalidOperationExceptionFactory](#invalidoperationexceptionfactory)
     - [NotSupportedExceptionFactory](#notsupportedexceptionfactory)
+    - [PostconditionFailedExceptionFactory](#postconditionfailedexceptionfactory)
 
     - [StandardExceptionFactories](#standardexceptionfactories)
 
@@ -28,9 +29,15 @@
 
     - [Implementing an ExceptionFactory](#implementing-an-exceptionfactory)
 
-- [Release History/Release Notes](#release-historyrelease-notes)
+  - [Initialization Requirements](#initialization-requirements)
+
+    - [NotNull](#notnull)
+
+- **[Release History/Release Notes](#release-historyrelease-notes)**
 
 	- Not currently released
+
+- **[Performance Data](#performance-data)**
 
 # Introduction
 
@@ -151,8 +158,14 @@ exception data dictionary.
 
 ### NotSupportedExceptionFactory
 
-Use NotSupportedExceptionFactory to create NotSupportedException. 
+Use NotSupportedExceptionFactory to create NotSupportedExceptions. 
 NotSupportedExceptionFactory does not expect any specific entries in the 
+exception data dictionary.
+
+### PostconditionFailedExceptionFactory
+
+Use PostconditionFailedExceptionFactory to create PostconditionFailedExceptions. 
+PostconditionFailedExceptionFactory does not expect any specific entries in the 
 exception data dictionary.
 
 ### StandardExceptionFactories
@@ -179,6 +192,9 @@ that does not use any value transforms.
 - NotSupportedExceptionFactory - an instance of [NotSupportedExceptionFactory](#notsupportedexceptionfactory)
 that does not use any value transforms.
 
+- PostconditionFailedExceptionFactory - an instance of [PostconditionFailedExceptionFactory](#postconditionfailedexceptionfactory)
+that does not use any value transforms.
+
 - SecureArgumentExceptionFactory - an instance of [ArgumentExceptionFactory](#argumentexceptionfactory)
 that includes a value transform on the Value data dictionary entry that masks the
 value with all asterisk characters ('*').
@@ -192,6 +208,10 @@ that includes a value transform on the Value data dictionary entry that masks th
 value with all asterisk characters ('*').
 
 - SecureNotSupportedExceptionFactory - an instance of [NotSupportedExceptionFactory](#notsupportedexceptionfactory)
+that includes a value transform on the Value data dictionary entry that masks the
+value with all asterisk characters ('*').
+
+- SecurePostconditionFailedExceptionFactory - an instance of [PostconditionFailedExceptionFactory](#postconditionfailedexceptionfactory)
 that includes a value transform on the Value data dictionary entry that masks the
 value with all asterisk characters ('*').
 
@@ -242,6 +262,102 @@ Use this transform to mask PHI (Protected Health Information) from accidental ex
 
 example here...
 
+## Initialization Requirements
+
+### NotNull
+
+NotNull requires that the value being checked not be null. Use RequiresNotNull
+for preconditions and EnsuresNotNull for postconditions.
+
+The default message template for NotNull is "{RequirementType} {RequirementName} failed: {ValueExpression} may not be null".
+The default exception factory for RequiresNotNull is StandardExceptionFactories.ArgumentNullExceptionFactory and
+StandardExceptionFactories.PostconditionFailedExceptionFactory for EnsuresNotNull.
+
+The data dictionary for exceptions thrown will contain entries for RequirementType,
+RequirementName and ValueExpression.
+
+Examples:
+```C#
+var customMessageTemplate = "{ValueExpression} can not be null";
+var customExceptionFactory = new CustomExceptionFactory();
+
+String lastName = null!;
+
+List<Guid> identifiers = null!;
+
+// Precondition with default message template/default exception factory.
+lastName.RequiresNotNull();
+
+// Precondition with custom message template/default exception factory.
+lastName.RequiresNotNull(customMessageTemplate);
+
+// Precondition with default message template/custom exception factory.
+lastName.RequiresNotNull(exceptionFactory: customExceptionFactory);
+
+// Precondition with custom message template/custom exception factory.
+lastName.RequiresNotNull(customMessageTemplate, customExceptionFactory);
+
+
+// Postcondition with default message template/default exception factory.
+identifiers.EnsuresNotNull();
+
+// Postcondition with custom message template/default exception factory.
+identifiers.EnsuresNotNull(customMessageTemplate);
+
+// Postcondition with default message template/custom exception factory.
+identifiers.EnsuresNotNull(exceptionFactory: customExceptionFactory);
+
+// Postcondition with custom message template/custom exception factory.
+identifiers.EnsuresNotNull(customMessageTemplate, customExceptionFactory);
+```
+
 # Release History/Release Notes
 
 
+# Performance Data
+
+X indicates that the optional parameter was supplied; blank indicates that the 
+parameter was omitted.
+
+| Method          | Value Type  | Message Template | Exception Factory |      Mean |    Median | Allocated |
+|:--------------- |:------------|:----------------:|:-----------------:|----------:|----------:|----------:|
+| RequiresNotNull | Int32       |                  |                   | 0.0010 ns | 0.0000 ns |         - |
+| RequiresNotNull | Int32       | X                |                   | 0.0106 ns | 0.0000 ns |         - |
+| RequiresNotNull | Int32       |                  | X                 | 0.0031 ns | 0.0000 ns |         - |
+| RequiresNotNull | Int32       | X                | X                 | 0.0172 ns | 0.0085 ns |         - |
+| RequiresNotNull | String      |                  |                   | 0.0101 ns | 0.0031 ns |         - |
+| RequiresNotNull | String      | X                |                   | 0.0277 ns | 0.0167 ns |         - |
+| RequiresNotNull | String      |                  | X                 | 0.0040 ns | 0.0000 ns |         - |
+| RequiresNotNull | String      | X                | X                 | 0.0101 ns | 0.0045 ns |         - |
+| RequiresNotNull | List<T>     |                  |                   | 0.0044 ns | 0.0000 ns |         - |
+| RequiresNotNull | List<T>     | X                |                   | 0.0069 ns | 0.0000 ns |         - |
+| RequiresNotNull | List<T>     |                  | X                 | 0.0118 ns | 0.0053 ns |         - |
+| RequiresNotNull | List<T>     | X                | X                 | 0.0053 ns | 0.0050 ns |         - |
+
+| Method          | Value Type  | Message Template | Exception Factory |      Mean |     Error |    StdDev |    Median | Allocated |
+|:--------------- |:------------|:----------------:|:-----------------:|----------:|----------:|----------:|----------:|----------:|
+| RequiresNotNull | Int32       |                  |                   | 0.0091 ns | 0.0139 ns | 0.0130 ns | 0.0004 ns |         - |
+| RequiresNotNull | Int32       | X                |                   | 0.0116 ns | 0.0134 ns | 0.0126 ns | 0.0096 ns |         - |
+| RequiresNotNull | Int32       |                  | X                 | 1.1947 ns | 0.0255 ns | 0.0226 ns | 1.1873 ns |         - |
+| RequiresNotNull | Int32       | X                | X                 | 1.1980 ns | 0.0537 ns | 0.0502 ns | 1.1830 ns |         - |
+| RequiresNotNull | String      |                  |                   | 0.0124 ns | 0.0191 ns | 0.0178 ns | 0.0023 ns |         - |
+| RequiresNotNull | String      | X                |                   | 0.0001 ns | 0.0003 ns | 0.0003 ns | 0.0000 ns |         - |
+| RequiresNotNull | String      |                  | X                 | 1.7804 ns | 0.0594 ns | 0.0526 ns | 1.7720 ns |         - |
+| RequiresNotNull | String      | X                | X                 | 2.2868 ns | 0.0694 ns | 0.0682 ns | 2.2851 ns |         - |
+| RequiresNotNull | List<T>     |                  |                   | 0.0077 ns | 0.0103 ns | 0.0096 ns | 0.0019 ns |         - |
+| RequiresNotNull | List<T>     | X                |                   | 0.0282 ns | 0.0264 ns | 0.0294 ns | 0.0197 ns |         - |
+| RequiresNotNull | List<T>     |                  | X                 | 2.7550 ns | 0.0593 ns | 0.0554 ns | 2.7352 ns |         - |
+| RequiresNotNull | List<T>     | X                | X                 | 2.5334 ns | 0.0797 ns | 0.0917 ns | 2.5312 ns |         - |
+| *************** | *********** | **************** | ***************** | ********* | ********* | ********* | ********* | ********* |
+| EnsuresNotNull  | Int32       |                  |                   | 0.0109 ns | 0.0172 ns | 0.0161 ns | 0.0000 ns |         - |
+| EnsuresNotNull  | Int32       | X                |                   | 0.0043 ns | 0.0096 ns | 0.0090 ns | 0.0000 ns |         - |
+| EnsuresNotNull  | Int32       |                  | X                 | 1.2186 ns | 0.0531 ns | 0.0522 ns | 1.2043 ns |         - |
+| EnsuresNotNull  | Int32       | X                | X                 | 1.1917 ns | 0.0481 ns | 0.0450 ns | 1.1839 ns |         - |
+| EnsuresNotNull  | String      |                  |                   | 0.0090 ns | 0.0137 ns | 0.0122 ns | 0.0017 ns |         - |
+| EnsuresNotNull  | String      | X                |                   | 0.0004 ns | 0.0011 ns | 0.0010 ns | 0.0000 ns |         - |
+| EnsuresNotNull  | String      |                  | X                 | 1.8940 ns | 0.0524 ns | 0.0465 ns | 1.8797 ns |         - |
+| EnsuresNotNull  | String      | X                | X                 | 2.1058 ns | 0.0439 ns | 0.0366 ns | 2.1191 ns |         - |
+| EnsuresNotNull  | List<T>     |                  |                   | 0.0436 ns | 0.0287 ns | 0.0307 ns | 0.0430 ns |         - |
+| EnsuresNotNull  | List<T>     | X                |                   | 0.0135 ns | 0.0154 ns | 0.0144 ns | 0.0149 ns |         - |
+| EnsuresNotNull  | List<T>     |                  | X                 | 1.9349 ns | 0.0571 ns | 0.0534 ns | 1.9332 ns |         - |
+| EnsuresNotNull  | List<T>     | X                | X                 | 1.6444 ns | 0.0490 ns | 0.0458 ns | 1.6400 ns |         - |

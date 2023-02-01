@@ -244,6 +244,45 @@ public class StandardExceptionFactoriesTests
 
    #endregion
 
+   #region PostconditionFailedExceptionFactory Tests
+   // ==========================================================================
+   // ==========================================================================
+
+   [Fact]
+   public void StandardExceptionFactories_PostconditionFailedExceptionFactory_ShouldNotBeNull()
+      => StandardExceptionFactories.PostconditionFailedExceptionFactory.Should().NotBeNull();
+
+   [Fact]
+   public void StandardExceptionFactories_PostconditionFailedExceptionFactory_ShouldNotTransformDataDictionaryValues()
+   {
+      // Arrange.
+      var sut = StandardExceptionFactories.PostconditionFailedExceptionFactory;
+      IReadOnlyDictionary<String, Object> data = new Dictionary<String, Object>() {
+         { DataNames.RequirementType, RequirementType.Postcondition },
+         { DataNames.RequirementName, "True" },
+         { DataNames.Value, 17 },
+         { DataNames.ValueExpression, "result" } };
+      var messageTemplate = "{RequirementType} {RequirementName} failed: value ({Value}) is not an even integer";
+
+      var expectedMessage = "Postcondition True failed: value (17) is not an even integer";
+
+      // Act.
+      var ex = sut.CreateException(data, messageTemplate);
+
+      // Assert.
+      ex.Should().NotBeNull();
+      ex.Should().BeOfType<PostconditionFailedException>();
+      ex.Message.Should().StartWith(expectedMessage);
+
+      ex.Data.Count.Should().Be(data.Count);
+      ex.Data[DataNames.RequirementType].Should().Be(data[DataNames.RequirementType]);
+      ex.Data[DataNames.RequirementName].Should().Be(data[DataNames.RequirementName]);
+      ex.Data[DataNames.Value].Should().Be(data[DataNames.Value]);
+      ex.Data[DataNames.ValueExpression].Should().Be(data[DataNames.ValueExpression]);
+   }
+
+   #endregion
+
    #region SecureArgumentExceptionFactory Tests
    // ==========================================================================
    // ==========================================================================
@@ -403,6 +442,46 @@ public class StandardExceptionFactoriesTests
       // Assert.
       ex.Should().NotBeNull();
       ex.Should().BeOfType<NotSupportedException>();
+      ex.Message.Should().StartWith(expectedMessage);
+
+      ex.Data.Count.Should().Be(data.Count);
+      ex.Data[DataNames.RequirementType].Should().Be(data[DataNames.RequirementType]);
+      ex.Data[DataNames.RequirementName].Should().Be(data[DataNames.RequirementName]);
+      ex.Data[DataNames.Value].Should().Be(expectedValue);
+      ex.Data[DataNames.ValueExpression].Should().Be(data[DataNames.ValueExpression]);
+   }
+
+   #endregion
+
+   #region SecurePostconditionFailedExceptionFactory Tests
+   // ==========================================================================
+   // ==========================================================================
+
+   [Fact]
+   public void StandardExceptionFactories_SecurePostconditionFailedExceptionFactory_ShouldNotBeNull()
+      => StandardExceptionFactories.SecurePostconditionFailedExceptionFactory.Should().NotBeNull();
+
+   [Fact]
+   public void StandardExceptionFactories_SecurePostconditionFailedExceptionFactory_ShouldNotTransformDataDictionaryValues()
+   {
+      // Arrange.
+      var sut = StandardExceptionFactories.SecurePostconditionFailedExceptionFactory;
+      IReadOnlyDictionary<String, Object> data = new Dictionary<String, Object>() {
+         { DataNames.RequirementType, RequirementType.Postcondition },
+         { DataNames.RequirementName, "True" },
+         { DataNames.Value, 17 },
+         { DataNames.ValueExpression, "result" } };
+      var messageTemplate = "{RequirementType} {RequirementName} failed: value ({Value}) is not an even integer";
+
+      var expectedValue = "**";
+      var expectedMessage = "Postcondition True failed: value (**) is not an even integer";
+
+      // Act.
+      var ex = sut.CreateException(data, messageTemplate);
+
+      // Assert.
+      ex.Should().NotBeNull();
+      ex.Should().BeOfType<PostconditionFailedException>();
       ex.Message.Should().StartWith(expectedMessage);
 
       ex.Data.Count.Should().Be(data.Count);
