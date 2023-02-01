@@ -8,6 +8,7 @@ public static class DataNames
    // The value being checked.
    public const String Value = "Value";
    public const String ValueExpression = "ValueExpression";
+   public const String ValueDatatype = "ValueDatatype";
 
    // The target for equality checks.
    public const String Target = "Target";
