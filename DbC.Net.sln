@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BB3EEE40-8F51-4E9A-AA4D-A2C3CF967AEA}"
 	ProjectSection(SolutionItems) = preProject
 		CodingGuidelines.txt = CodingGuidelines.txt
+		Benchmarks.md = Benchmarks.md
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
 	EndProjectSection
@@ -16,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbC.Net.Tests.Unit", "DbC.N
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbC.Net.Tests.Benchmarks", "DbC.Net.Tests.Benchmarks\DbC.Net.Tests.Benchmarks.csproj", "{B19BBF13-B126-40E8-9A48-EF042DD64C30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbC.Net.Examples", "DbC.Net.Examples\DbC.Net.Examples.csproj", "{A8559FDF-3E9B-4D4C-B08D-FBAD86EA5BDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbC.Net.Examples", "DbC.Net.Examples\DbC.Net.Examples.csproj", "{A8559FDF-3E9B-4D4C-B08D-FBAD86EA5BDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
