@@ -1,38 +1,39 @@
 ﻿namespace DbC.Net.Examples;
-public sealed class NotNullExamples
+
+public sealed class NotDefaultExamples
 {
    public void Examples()
    {
-      var customMessageTemplate = "{ValueExpression} can not be null";
+      var customMessageTemplate = "{ValueExpression} can not be default";
       var customExceptionFactory = new CustomExceptionFactory();
 
-      String lastName = null!;
+      Int64 id = default;
 
-      List<Guid> identifiers = null!;
+      List<Guid> identifiers = default!;
 
       // Precondition with default message template/default exception factory.
-      lastName.RequiresNotNull();
+      id.RequiresNotDefault();
 
       // Precondition with custom message template/default exception factory.
-      lastName.RequiresNotNull(customMessageTemplate);
+      id.RequiresNotDefault(customMessageTemplate);
 
       // Precondition with default message template/custom exception factory.
-      lastName.RequiresNotNull(exceptionFactory: customExceptionFactory);
+      id.RequiresNotDefault(exceptionFactory: customExceptionFactory);
 
       // Precondition with custom message template/custom exception factory.
-      lastName.RequiresNotNull(customMessageTemplate, customExceptionFactory);
+      id.RequiresNotDefault(customMessageTemplate, customExceptionFactory);
 
 
       // Postcondition with default message template/default exception factory.
-      identifiers.EnsuresNotNull();
+      identifiers.EnsuresNotDefault();
 
       // Postcondition with custom message template/default exception factory.
-      identifiers.EnsuresNotNull(customMessageTemplate);
+      identifiers.EnsuresNotDefault(customMessageTemplate);
 
       // Postcondition with default message template/custom exception factory.
-      identifiers.EnsuresNotNull(exceptionFactory: customExceptionFactory);
+      identifiers.EnsuresNotDefault(exceptionFactory: customExceptionFactory);
 
       // Postcondition with custom message template/custom exception factory.
-      identifiers.EnsuresNotNull(customMessageTemplate, customExceptionFactory);
+      identifiers.EnsuresNotDefault(customMessageTemplate, customExceptionFactory);
    }
 }
