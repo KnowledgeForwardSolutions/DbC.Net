@@ -25,4 +25,6 @@ public static class DataNames
    public const String MinLengthExpression = "MinLengthExpression";
 
    public const String Regex = "Regex";
+
+   public const String StringComparison = "StringComparison";
 }

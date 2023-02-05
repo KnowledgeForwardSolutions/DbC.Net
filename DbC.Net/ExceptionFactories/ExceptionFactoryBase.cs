@@ -124,7 +124,7 @@ public abstract class ExceptionFactoryBase : IExceptionFactory
       var message = messageTemplate;
       foreach(var item in data)
       {
-         message = message.Replace($"{{{item.Key}}}", item.Value.ToString());
+         message = message.Replace($"{{{item.Key}}}", item.Value?.ToString());
       }
 
       return message;

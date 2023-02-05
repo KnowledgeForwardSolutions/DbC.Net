@@ -34,6 +34,10 @@
     - [NotNull](#notnull)
     - [NotDefault](#notdefault)
 
+  - [Equality Requirements](#equality-requirements)
+
+    - [Equal](#equal)
+
 - **[Release History/Release Notes](#release-historyrelease-notes)**
 
 	- Not currently released
@@ -361,6 +365,45 @@ identifiers.EnsuresNotDefault(exceptionFactory: customExceptionFactory);
 
 // Postcondition with custom message template/custom exception factory.
 identifiers.EnsuresNotDefault(customMessageTemplate, customExceptionFactory);
+```
+
+## Equality Requirements
+
+### Equal
+
+Equal requires that the value being checked is equal to a target value. RequiresEqual
+and EnsuresEqual have several overloads that support IEquatable<T> and
+IEqualtiyComparer<T> as well as an overload for String that accepts a 
+StringComparison value that specifies how the comparison is performed.
+
+Method signatures:
+```C#
+T RequiresEqual<T>(this T value, T target, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null]) where T : IEquatable<T>
+
+T RequiresEqual<T>(this T value, T target, IEqualityComparer<T> comparer, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null])
+
+String RequiresEqual<T>(this String value, String target, StringComparison comparisonType, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null])
+
+T EnsuresEqual<T>(this T value, T target, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null]) where T : IEquatable<T>
+
+T EnsuresEqual<T>(this T value, T target, IEqualityComparer<T> comparer, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null])
+
+String EnsuresEqual<T>(this String value, String target, StringComparison comparisonType, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null])
+```
+
+The default message template for Equal is "{RequirementType} {RequirementName} failed: {ValueExpression} must be equal to {Target}".
+The default exception factory for RequiresEqual is StandardExceptionFactories.ArgumentExceptionFactory
+and StandardExceptionFactories.PostconditionFailedExceptionFactory for 
+EnsuresEqual.
+
+The data dictionary for exceptions thrown will contain entries for RequirementType,
+RequirementName, Value, ValueExpression, Target and TargetExpression. The data
+dictionary for the String overloads will contain an additional entry for 
+StringComparison.
+
+Examples:
+```C#
+
 ```
 
 # Release History/Release Notes

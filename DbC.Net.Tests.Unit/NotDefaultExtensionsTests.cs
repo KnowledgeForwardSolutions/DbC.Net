@@ -1,9 +1,9 @@
-﻿using DbC.Net.Tests.Unit.TestData;
+﻿namespace DbC.Net.Tests.Unit;
 
-namespace DbC.Net.Tests.Unit;
-
-public class NotDefaultTests
+public class NotDefaultExtensionsTests
 {
+   private const Int32 _dataCount = 4;
+
    #region EnsuresNotDefault Tests
    // ==========================================================================
    // ==========================================================================
@@ -77,9 +77,9 @@ public class NotDefaultTests
       // Act/assert.
       var ex = act.Should().Throw<PostconditionFailedException>().Which;
 
-      ex.Data.Count.Should().Be(4);
+      ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
-      ex.Data[DataNames.RequirementName].Should().Be(nameof(NotDefault));
+      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.NotDefault);
       ex.Data[DataNames.ValueExpression].Should().Be(nameof(value));
       ex.Data[DataNames.ValueDatatype].Should().Be(nameof(Char));
    }
@@ -94,9 +94,9 @@ public class NotDefaultTests
       // Act/assert.
       var ex = act.Should().Throw<PostconditionFailedException>().Which;
 
-      ex.Data.Count.Should().Be(4);
+      ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
-      ex.Data[DataNames.RequirementName].Should().Be(nameof(NotDefault));
+      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.NotDefault);
       ex.Data[DataNames.ValueExpression].Should().Be(nameof(value));
       ex.Data[DataNames.ValueDatatype].Should().Be("ICollection`1");
    }
@@ -111,9 +111,9 @@ public class NotDefaultTests
       // Act/assert.
       var ex = act.Should().Throw<PostconditionFailedException>().Which;
 
-      ex.Data.Count.Should().Be(4);
+      ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
-      ex.Data[DataNames.RequirementName].Should().Be(nameof(NotDefault));
+      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.NotDefault);
       ex.Data[DataNames.ValueExpression].Should().Be(nameof(value));
       ex.Data[DataNames.ValueDatatype].Should().Be(nameof(String));
    }
@@ -124,7 +124,6 @@ public class NotDefaultTests
       // Arrange.
       String value = default!;
       var act = () => _ = value.EnsuresNotDefault();
-      var expectedParameterName = nameof(value);
       var expectedMessage = "Postcondition NotDefault failed: value may not be default(String)";
 
       // Act/assert.
@@ -248,9 +247,9 @@ public class NotDefaultTests
       // Act/assert.
       var ex = act.Should().Throw<ArgumentException>().Which;
 
-      ex.Data.Count.Should().Be(4);
+      ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
-      ex.Data[DataNames.RequirementName].Should().Be(nameof(NotDefault));
+      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.NotDefault);
       ex.Data[DataNames.ValueExpression].Should().Be(nameof(value));
       ex.Data[DataNames.ValueDatatype].Should().Be(nameof(Char));
    }
@@ -265,9 +264,9 @@ public class NotDefaultTests
       // Act/assert.
       var ex = act.Should().Throw<ArgumentException>().Which;
 
-      ex.Data.Count.Should().Be(4);
+      ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
-      ex.Data[DataNames.RequirementName].Should().Be(nameof(NotDefault));
+      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.NotDefault);
       ex.Data[DataNames.ValueExpression].Should().Be(nameof(value));
       ex.Data[DataNames.ValueDatatype].Should().Be("ICollection`1");
    }
@@ -282,9 +281,9 @@ public class NotDefaultTests
       // Act/assert.
       var ex = act.Should().Throw<ArgumentException>().Which;
 
-      ex.Data.Count.Should().Be(4);
+      ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
-      ex.Data[DataNames.RequirementName].Should().Be(nameof(NotDefault));
+      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.NotDefault);
       ex.Data[DataNames.ValueExpression].Should().Be(nameof(value));
       ex.Data[DataNames.ValueDatatype].Should().Be(nameof(String));
    }
