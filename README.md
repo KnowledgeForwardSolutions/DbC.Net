@@ -21,13 +21,13 @@
     - [NotSupportedExceptionFactory](#notsupportedexceptionfactory)
     - [PostconditionFailedExceptionFactory](#postconditionfailedexceptionfactory)
 
+    - [Implementing an ExceptionFactory](#implementing-an-exceptionfactory)
+
     - [StandardExceptionFactories](#standardexceptionfactories)
 
   - [Value Transforms](#value-transforms)
 
     - [StandardTransforms](#standardtransforms)
-
-    - [Implementing an ExceptionFactory](#implementing-an-exceptionfactory)
 
   - [Initialization Requirements](#initialization-requirements)
 
@@ -220,6 +220,10 @@ value with all asterisk characters ('*').
 that includes a value transform on the Value data dictionary entry that masks the
 value with all asterisk characters ('*').
 
+### Implementing an ExceptionFactory
+
+example here...
+
 ## Value Transforms
 
 DbC.Net exception factories use value transforms for several reasons, primarily 
@@ -263,16 +267,19 @@ transform as the base for other transform decorators.
 - PhiSensitiveTranform - a transform that always returns the string "PHI Sensitive Value".
 Use this transform to mask PHI (Protected Health Information) from accidental exposure.
 
-### Implementing an ExceptionFactory
-
-example here...
-
 ## Initialization Requirements
 
 ### NotNull
 
 NotNull requires that the value being checked not be null. Use RequiresNotNull
 for preconditions and EnsuresNotNull for postconditions.
+
+Method signatures:
+```C#
+T RequiresNotNull<T>(this T value, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null])
+
+T EnsuresNotNull<T>(this T value, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null])
+```
 
 The default message template for NotNull is "{RequirementType} {RequirementName} failed: {ValueExpression} may not be null".
 The default exception factory for RequiresNotNull is StandardExceptionFactories.ArgumentNullExceptionFactory 
@@ -323,6 +330,13 @@ NotDefault requires that the value being checked not be the default for the
 datatype of the value being checked (zero for value types, null for reference
 types). Use RequiresNotDefault for preconditions and EnsuresNotDefault for 
 postconditions.
+
+Method signatures:
+```C#
+T RequiresNotDefault<T>(this T value, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null])
+
+T EnsuresNotDefault<T>(this T value, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null])
+```
 
 The default message template for NotDefault is "{RequirementType} {RequirementName} failed: {ValueExpression} may not be default({ValueDatatype})".
 The default exception factory for RequiresNotDefault is StandardExceptionFactories.ArgumentExceptionFactory
@@ -403,7 +417,115 @@ StringComparison.
 
 Examples:
 ```C#
+public record Box(Int32 Height, Int32 Length, Int32 Width)
+{
+    public Int32 Volume => Height * Length * Width;
+}
 
+// Boxes are considered equal if they have identical volumes
+public class BoxEqualityComparer : IEqualityComparer<Box>
+{
+    public Boolean Equals(Box? x, Box? y)
+    {
+        if (x is null && y is null) return true;
+        else if (x is null|| y is null) return false;
+         
+        return x!.Volume.Equals(y!.Volume);
+    }
+
+    public Int32 GetHashCode([DisallowNull] Box obj) => obj.Volume.GetHashCode();
+}
+
+var customMessageTemplate = "{ValueExpression} must be equal to {Target}";
+var customExceptionFactory = new CustomExceptionFactory();
+
+var totalCount = 99;
+var targetCount = 100;
+
+// Precondition with default message template/default exception factory.
+totalCount.RequiresEqual(targetCount);
+
+// Precondition with custom message template/default exception factory.
+totalCount.RequiresEqual(targetCount, customMessageTemplate);
+
+// Precondition with default message template/custom exception factory.
+totalCount.RequiresEqual(targetCount, exceptionFactory: customExceptionFactory);
+
+// Precondition with custom message template/custom exception factory.
+totalCount.RequiresEqual(targetCount, customMessageTemplate, customExceptionFactory);
+
+
+// Postcondition with default message template/default exception factory.
+totalCount.EnsuresEqual(targetCount);
+
+// Postcondition with custom message template/default exception factory.
+totalCount.EnsuresEqual(targetCount, customMessageTemplate);
+
+// Postcondition with default message template/custom exception factory.
+totalCount.EnsuresEqual(targetCount, exceptionFactory: customExceptionFactory);
+
+// Postcondition with custom message template/custom exception factory.
+totalCount.EnsuresEqual(targetCount, customMessageTemplate, customExceptionFactory);
+
+
+var box = new Box(1, 2, 3);
+var targetBox = new Box(2, 2, 2);
+var comparer = new BoxEqualityComparer();
+
+// Precondition with default message template/default exception factory.
+box.RequiresEqual(targetBox, comparer);
+
+// Precondition with custom message template/default exception factory.
+box.RequiresEqual(targetBox, comparer, customMessageTemplate);
+
+// Precondition with default message template/custom exception factory.
+box.RequiresEqual(targetBox, comparer, exceptionFactory: customExceptionFactory);
+
+// Precondition with custom message template/custom exception factory.
+box.RequiresEqual(targetBox, comparer, customMessageTemplate, customExceptionFactory);
+
+
+// Postcondition with default message template/default exception factory.
+box.EnsuresEqual(targetBox, comparer);
+
+// Postcondition with custom message template/default exception factory.
+box.EnsuresEqual(targetBox, comparer, customMessageTemplate);
+
+// Postcondition with default message template/custom exception factory.
+box.EnsuresEqual(targetBox, comparer, exceptionFactory: customExceptionFactory);
+
+// Postcondition with custom message template/custom exception factory.
+box.EnsuresEqual(targetBox, comparer, customMessageTemplate, customExceptionFactory);
+
+
+var str = "asdf";
+var targetStr = "QWERTY";
+var comparisonType = StringComparison.OrdinalIgnoreCase;
+
+// Precondition with default message template/default exception factory.
+str.RequiresEqual(targetStr, comparisonType);
+
+// Precondition with custom message template/default exception factory.
+str.RequiresEqual(targetStr, comparisonType, customMessageTemplate);
+
+// Precondition with default message template/custom exception factory.
+str.RequiresEqual(targetStr, comparisonType, exceptionFactory: customExceptionFactory);
+
+// Precondition with custom message template/custom exception factory.
+str.RequiresEqual(targetStr, comparisonType, customMessageTemplate, customExceptionFactory);
+
+
+// Postcondition with default message template/default exception factory.
+str.EnsuresEqual(targetStr, comparisonType);
+
+// Postcondition with custom message template/default exception factory.
+str.EnsuresEqual(targetStr, comparisonType, customMessageTemplate);
+
+// Postcondition with default message template/custom exception factory.
+str.EnsuresEqual(targetStr, comparisonType, exceptionFactory: customExceptionFactory);
+
+// Postcondition with custom message template/custom exception factory.
+str.EnsuresEqual(targetStr, comparisonType, customMessageTemplate, customExceptionFactory);
 ```
 
 # Release History/Release Notes
