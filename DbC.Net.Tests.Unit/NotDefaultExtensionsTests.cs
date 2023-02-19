@@ -162,7 +162,7 @@ public class NotDefaultExtensionsTests
    public void NotDefault_EnsuresNotDefault_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      PointStruct value = default;
+      Point value = default;
       var messageTemplate = "Requirement {RequirementName} failed";
       var act = () => _ = value.EnsuresNotDefault(messageTemplate, TestExceptionFactories.CustomExceptionFactory);
       var expectedMessage = "Requirement NotDefault failed";
@@ -336,7 +336,7 @@ public class NotDefaultExtensionsTests
    public void NotDefault_RequiresNotDefault_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      PointStruct value = default;
+      Point value = default;
       var messageTemplate = "Requirement {RequirementName} failed";
       var act = () => _ = value.RequiresNotDefault(messageTemplate, TestExceptionFactories.CustomExceptionFactory);
       var expectedMessage = "Requirement NotDefault failed";

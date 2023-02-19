@@ -19,8 +19,8 @@ public class UseCultureAttribute : BeforeAfterTestAttribute
    readonly Lazy<CultureInfo> culture;
    readonly Lazy<CultureInfo> uiCulture;
 
-   CultureInfo originalCulture;
-   CultureInfo originalUICulture;
+   CultureInfo originalCulture = default!;
+   CultureInfo originalUICulture = default!;
 
    /// <summary>
    /// Replaces the culture and UI culture of the current thread with

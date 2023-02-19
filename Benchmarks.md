@@ -83,3 +83,44 @@ parameter was omitted.
 | EnsuresNotDefault  | List<T>     | X                |                   | 6.994 ns | 0.0691 ns | 0.0612 ns |         - |
 | EnsuresNotDefault  | List<T>     |                  | X                 | 6.906 ns | 0.0354 ns | 0.0295 ns |         - |
 | EnsuresNotDefault  | List<T>     | X                | X                 | 6.999 ns | 0.0480 ns | 0.0449 ns |         - |
+
+### Equal Benchmarks
+
+|  Method            | Value Type  | Comparer             | Message Template | Exception Factory |       Mean |     Error |    StdDev | Allocated |
+|:------------------ |:------------|:--------------------:|:----------------:|:-----------------:|-----------:|----------:|----------:|----------:|
+| RequiresEqual      | Int32       |                      |                  |                   |  1.2221 ns | 0.0527 ns | 0.0704 ns |         - |
+| RequiresEqual      | Int32       |                      | X                |                   |  3.6139 ns | 0.0283 ns | 0.0265 ns |         - |
+| RequiresEqual      | Int32       |                      |                  | X                 |  3.2580 ns | 0.0156 ns | 0.0131 ns |         - |
+| RequiresEqual      | Int32       |                      | X                | X                 |  2.0926 ns | 0.0205 ns | 0.0191 ns |         - |
+| RequiresEqual      | Int32       | IEqualityComparer<T> |                  |                   |  0.0049 ns | 0.0130 ns | 0.0109 ns |         - |
+| RequiresEqual      | Int32       | IEqualityComparer<T> | X                |                   |  0.0039 ns | 0.0053 ns | 0.0047 ns |         - |
+| RequiresEqual      | Int32       | IEqualityComparer<T> |                  | X                 |  0.0025 ns | 0.0039 ns | 0.0036 ns |         - |
+| RequiresEqual      | Int32       | IEqualityComparer<T> | X                | X                 |  0.0091 ns | 0.0119 ns | 0.0111 ns |         - |
+| RequiresEqual      | String      |                      |                  |                   |  4.5864 ns | 0.0434 ns | 0.0406 ns |         - |
+| RequiresEqual      | String      |                      | X                |                   |  4.7503 ns | 0.0643 ns | 0.0602 ns |         - |
+| RequiresEqual      | String      |                      |                  | X                 |  4.6344 ns | 0.1034 ns | 0.0807 ns |         - |
+| RequiresEqual      | String      |                      | X                | X                 |  4.4326 ns | 0.0771 ns | 0.0721 ns |         - |
+| RequiresEqual      | String      | IEqualityComparer<T> |                  |                   |  1.6282 ns | 0.0271 ns | 0.0254 ns |         - |
+| RequiresEqual      | String      | IEqualityComparer<T> | X                |                   |  1.8676 ns | 0.0274 ns | 0.0242 ns |         - |
+| RequiresEqual      | String      | IEqualityComparer<T> |                  | X                 |  2.1668 ns | 0.0169 ns | 0.0150 ns |         - |
+| RequiresEqual      | String      | IEqualityComparer<T> | X                | X                 |  1.9697 ns | 0.0266 ns | 0.0222 ns |         - |
+| RequiresEqual      | String      | StringComparison     |                  |                   |  1.4707 ns | 0.0186 ns | 0.0155 ns |         - |
+| RequiresEqual      | String      | StringComparison     | X                |                   |  2.4579 ns | 0.0259 ns | 0.0217 ns |         - |
+| RequiresEqual      | String      | StringComparison     |                  | X                 |  4.0601 ns | 0.0268 ns | 0.0224 ns |         - |
+| RequiresEqual      | String      | StringComparison     | X                | X                 |  4.4613 ns | 0.0361 ns | 0.0338 ns |         - |
+| RequiresEqual      | Record      |                      |                  |                   | 14.1755 ns | 0.1201 ns | 0.1003 ns |         - |
+| RequiresEqual      | Record      |                      | X                |                   | 14.5214 ns | 0.2156 ns | 0.2017 ns |         - |
+| RequiresEqual      | Record      |                      |                  | X                 | 14.1793 ns | 0.0670 ns | 0.0626 ns |         - |
+| RequiresEqual      | Record      |                      | X                | X                 | 14.7373 ns | 0.0807 ns | 0.0754 ns |         - |
+| RequiresEqual      | Record      | IEqualityComparer<T> |                  |                   |  2.2255 ns | 0.0192 ns | 0.0180 ns |         - |
+| RequiresEqual      | Record      | IEqualityComparer<T> | X                |                   |  3.1703 ns | 0.0247 ns | 0.0219 ns |         - |
+| RequiresEqual      | Record      | IEqualityComparer<T> |                  | X                 |  5.6450 ns | 0.0411 ns | 0.0384 ns |         - |
+| RequiresEqual      | Record      | IEqualityComparer<T> | X                | X                 |  5.7490 ns | 0.0777 ns | 0.0727 ns |         - |
+| RequiresEqual      | Class       |                      |                  |                   |  8.1012 ns | 0.0730 ns | 0.0647 ns |         - |
+| RequiresEqual      | Class       |                      | X                |                   |  8.9902 ns | 0.0734 ns | 0.0650 ns |         - |
+| RequiresEqual      | Class       |                      |                  | X                 |  8.9700 ns | 0.0577 ns | 0.0482 ns |         - |
+| RequiresEqual      | Class       |                      | X                | X                 |  9.0753 ns | 0.1102 ns | 0.1031 ns |         - |
+| RequiresEqual      | Class       | IEqualityComparer<T> |                  |                   |  5.0150 ns | 0.0436 ns | 0.0408 ns |         - |
+| RequiresEqual      | Class       | IEqualityComparer<T> | X                |                   |  4.6248 ns | 0.0259 ns | 0.0229 ns |         - |
+| RequiresEqual      | Class       | IEqualityComparer<T> |                  | X                 |  8.0629 ns | 0.1107 ns | 0.1036 ns |         - |
+| RequiresEqual      | Class       | IEqualityComparer<T> | X                | X                 |  7.9168 ns | 0.0600 ns | 0.0501 ns |         - |

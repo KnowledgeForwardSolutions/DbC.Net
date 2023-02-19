@@ -356,8 +356,8 @@ public static class EqualExtensions
       String valueExpression,
       String targetExpression) where T : IEquatable<T>
    {
-      if (!((value is null && target is null)
-           || (value is not null && value.Equals(target))))
+      if (!((value is not null && value.Equals(target))
+            || (value is null && target is null)))
       {
          messageTemplate ??= MessageTemplates.EqualTemplate;
          exceptionFactory ??= requirementType == RequirementType.Precondition
@@ -411,8 +411,8 @@ public static class EqualExtensions
       String valueExpression,
       String targetExpression)
    {
-      if (!((value is null && target is null)
-           || (value is not null && value.Equals(target, comparisonType))))
+      if (!((value is not null && value.Equals(target, comparisonType))
+            || (value is null && target is null)))
       {
          messageTemplate ??= MessageTemplates.EqualTemplate;
          exceptionFactory ??= requirementType == RequirementType.Precondition

@@ -3,6 +3,8 @@
 ## Table of Contents
 - **[Introduction](#introduction)**
 
+[Link Example](/Documentation/Example.md)
+
 - **[Using DbC.Net](#using-dbcnet)**
 
   - [Exception Factories](#exception-factories)
@@ -422,8 +424,7 @@ public record Box(Int32 Height, Int32 Length, Int32 Width)
     public Int32 Volume => Height * Length * Width;
 }
 
-// Boxes are considered equal if they have identical volumes
-public class BoxEqualityComparer : IEqualityComparer<Box>
+public class BoxVolumeComparer : IEqualityComparer<Box>
 {
     public Boolean Equals(Box? x, Box? y)
     {
@@ -470,7 +471,7 @@ totalCount.EnsuresEqual(targetCount, customMessageTemplate, customExceptionFacto
 
 var box = new Box(1, 2, 3);
 var targetBox = new Box(2, 2, 2);
-var comparer = new BoxEqualityComparer();
+var comparer = new BoxVolumeComparer();
 
 // Precondition with default message template/default exception factory.
 box.RequiresEqual(targetBox, comparer);

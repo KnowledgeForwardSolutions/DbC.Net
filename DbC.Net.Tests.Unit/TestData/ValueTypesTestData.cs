@@ -9,6 +9,25 @@ public class ValueTypesTestData : IEnumerable<Object[]>
       yield return new Object[] { new ByteData() };
       yield return new Object[] { new CharData() };
       yield return new Object[] { new DateOnlyData() };
+      yield return new Object[] { new DateTimeData() };
+      yield return new Object[] { new DateTimeOffsetData() };
+      yield return new Object[] { new DecimalData() };
+      yield return new Object[] { new DoubleData() };
+      yield return new Object[] { new GuidData() };
+      yield return new Object[] { new HalfData() };
+      yield return new Object[] { new Int128Data() };
+      yield return new Object[] { new Int16Data() };
+      yield return new Object[] { new Int32Data() };
+      yield return new Object[] { new Int64Data() };
+      yield return new Object[] { new SByteData() };
+      yield return new Object[] { new SingleData() };
+      yield return new Object[] { new TimeOnlyData() };
+      yield return new Object[] { new UInt128Data() };
+      yield return new Object[] { new UInt16Data() };
+      yield return new Object[] { new UInt32Data() };
+      yield return new Object[] { new UInt64Data() };
+      yield return new Object[] { new nintData() };
+      yield return new Object[] { new nuintData() };
 
       yield return new Object[] { new PointStructData() };
    }

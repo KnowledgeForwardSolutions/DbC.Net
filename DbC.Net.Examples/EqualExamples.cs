@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace DbC.Net.Examples;
+﻿namespace DbC.Net.Examples;
 
 public sealed class EqualExamples
 {
@@ -9,7 +7,7 @@ public sealed class EqualExamples
       public Int32 Volume => Height * Length * Width;
    }
 
-   public class BoxEqualityComparer : IEqualityComparer<Box>
+   public class BoxVolumeComparer : IEqualityComparer<Box>
    {
       public Boolean Equals(Box? x, Box? y)
       {
@@ -58,7 +56,7 @@ public sealed class EqualExamples
 
       var box = new Box(1, 2, 3);
       var targetBox = new Box(2, 2, 2);
-      var comparer = new BoxEqualityComparer();
+      var comparer = new BoxVolumeComparer();
 
       // Precondition with default message template/default exception factory.
       box.RequiresEqual(targetBox, comparer);

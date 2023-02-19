@@ -5,8 +5,8 @@ VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BB3EEE40-8F51-4E9A-AA4D-A2C3CF967AEA}"
 	ProjectSection(SolutionItems) = preProject
-		CodingGuidelines.txt = CodingGuidelines.txt
 		Benchmarks.md = Benchmarks.md
+		CodingGuidelines.txt = CodingGuidelines.txt
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
 	EndProjectSection
@@ -18,6 +18,13 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbC.Net.Tests.Benchmarks", "DbC.Net.Tests.Benchmarks\DbC.Net.Tests.Benchmarks.csproj", "{B19BBF13-B126-40E8-9A48-EF042DD64C30}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbC.Net.Examples", "DbC.Net.Examples\DbC.Net.Examples.csproj", "{A8559FDF-3E9B-4D4C-B08D-FBAD86EA5BDD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbC.Net.TestAndExampleResources", "DbC.Net.TestAndExampleResources\DbC.Net.TestAndExampleResources.csproj", "{42122027-EB5E-405B-A605-0DEC6EB83BA1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{72254BA1-52A7-4B81-A595-76580B77647E}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\Example.md = Documentation\Example.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,9 +48,16 @@ Global
 		{A8559FDF-3E9B-4D4C-B08D-FBAD86EA5BDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8559FDF-3E9B-4D4C-B08D-FBAD86EA5BDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8559FDF-3E9B-4D4C-B08D-FBAD86EA5BDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42122027-EB5E-405B-A605-0DEC6EB83BA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42122027-EB5E-405B-A605-0DEC6EB83BA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42122027-EB5E-405B-A605-0DEC6EB83BA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42122027-EB5E-405B-A605-0DEC6EB83BA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{72254BA1-52A7-4B81-A595-76580B77647E} = {BB3EEE40-8F51-4E9A-AA4D-A2C3CF967AEA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {76161FF2-A812-4791-A3EE-BB4B7B59E380}

@@ -6,8 +6,8 @@ public class ReferenceTypesTestData : IEnumerable<Object[]>
    {
       yield return new Object[] { new StringData() };
 
-      yield return new Object[] { new PointClassData() };
-      yield return new Object[] { new PointRecordData() };
+      yield return new Object[] { new ObservationClassData() };
+      yield return new Object[] { new BoxRecordData() };
    }
 
    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
