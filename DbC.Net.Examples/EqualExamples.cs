@@ -2,24 +2,6 @@
 
 public sealed class EqualExamples
 {
-   public record Box(Int32 Height, Int32 Length, Int32 Width)
-   {
-      public Int32 Volume => Height * Length * Width;
-   }
-
-   public class BoxVolumeComparer : IEqualityComparer<Box>
-   {
-      public Boolean Equals(Box? x, Box? y)
-      {
-         if (x is null && y is null) return true;
-         else if (x is null || y is null) return false;
-
-         return x!.Volume.Equals(y!.Volume);
-      }
-
-      public Int32 GetHashCode([DisallowNull] Box obj) => obj.Volume.GetHashCode();
-   }
-
    public void Examples()
    {
       var customMessageTemplate = "{ValueExpression} must be equal to {Target}";
@@ -54,8 +36,8 @@ public sealed class EqualExamples
       totalCount.EnsuresEqual(targetCount, customMessageTemplate, customExceptionFactory);
 
 
-      var box = new Box(1, 2, 3);
-      var targetBox = new Box(2, 2, 2);
+      var box = new Box(1, 2, 3, "Red");
+      var targetBox = new Box(2, 2, 2, "Blue");
       var comparer = new BoxVolumeComparer();
 
       // Precondition with default message template/default exception factory.
