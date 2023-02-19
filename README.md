@@ -36,7 +36,7 @@
 
   - [Equality Requirements](#equality-requirements)
 
-    - [Equal](/Documentation/Equal)
+    - [Equal](/Documentation/Equal.md)
 
 - **[Release History/Release Notes](#release-historyrelease-notes)**
 
