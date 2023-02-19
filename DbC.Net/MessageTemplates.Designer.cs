@@ -79,6 +79,15 @@ namespace DbC.Net {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} must not be equal to {Target}.
+        /// </summary>
+        internal static string NotEqualTemplate {
+            get {
+                return ResourceManager.GetString("NotEqualTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} may not be null.
         /// </summary>
         internal static string NotNullTemplate {

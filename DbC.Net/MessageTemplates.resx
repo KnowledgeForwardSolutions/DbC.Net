@@ -123,6 +123,9 @@
   <data name="NotDefaultTemplate" xml:space="preserve">
     <value>{RequirementType} {RequirementName} failed: {ValueExpression} may not be default({ValueDatatype})</value>
   </data>
+  <data name="NotEqualTemplate" xml:space="preserve">
+    <value>{RequirementType} {RequirementName} failed: {ValueExpression} must not be equal to {Target}</value>
+  </data>
   <data name="NotNullTemplate" xml:space="preserve">
     <value>{RequirementType} {RequirementName} failed: {ValueExpression} may not be null</value>
   </data>

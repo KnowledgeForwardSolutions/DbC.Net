@@ -7,5 +7,6 @@ public static class RequirementNames
 {
    public static String Equal = nameof(Equal);
    public static String NotDefault = nameof(NotDefault);
+   public static String NotEqual = nameof(NotEqual);
    public static String NotNull = nameof(NotNull);
 }
