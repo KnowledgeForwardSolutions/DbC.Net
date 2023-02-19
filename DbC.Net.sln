@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbC.Net.TestAndExampleResou
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{72254BA1-52A7-4B81-A595-76580B77647E}"
 	ProjectSection(SolutionItems) = preProject
-		Documentation\Example.md = Documentation\Example.md
+		Documentation\Equal.md = Documentation\Equal.md
 	EndProjectSection
 EndProject
 Global
