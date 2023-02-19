@@ -127,7 +127,8 @@ str.EnsuresEqual(targetStr, comparisonType, customMessageTemplate, customExcepti
 
 Implementation details for the Box examples:
 
-[Box record](/DbC.Net.TestAndExampleResources/Box.cs) 
+[Box record](/DbC.Net.TestAndExampleResources/Box.cs)
+
 [BoxVolumeComparer](/DbC.Net.TestAndExampleResources/BoxVolumeComparer.cs)
 
 
