@@ -1,18 +1,18 @@
-﻿namespace DbC.Net.Tests.Unit.TestData;
+﻿namespace DbC.Net.TestAndExampleResources;
 
 public sealed class CustomExceptionFactory : ExceptionFactoryBase
 {
    public CustomExceptionFactory() : base() { }
 
-   public CustomExceptionFactory(IReadOnlyCollection<String> keys, IValueTransform transform)
+   public CustomExceptionFactory(IReadOnlyCollection<string> keys, IValueTransform transform)
       : base(keys, transform) { }
 
-   public CustomExceptionFactory(IReadOnlyDictionary<String, IValueTransform> transforms) : base(transforms) { }
+   public CustomExceptionFactory(IReadOnlyDictionary<string, IValueTransform> transforms) : base(transforms) { }
 
    /// <inheritdoc/>
    public override CustomException CreateException(
-      IReadOnlyDictionary<String, Object> data,
-      String messageTemplate)
+      IReadOnlyDictionary<string, object> data,
+      string messageTemplate)
    {
       ValidateDataDictionary(data);
       ValidateMessageTemplate(messageTemplate);

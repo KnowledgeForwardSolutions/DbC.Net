@@ -1,4 +1,5 @@
 ﻿namespace DbC.Net.Examples;
+
 public sealed class NotNullExamples
 {
    public void Examples()

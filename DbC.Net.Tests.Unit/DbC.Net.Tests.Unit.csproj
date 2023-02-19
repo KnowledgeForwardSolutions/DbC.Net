@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DbC.Net.TestAndExampleResources\DbC.Net.TestAndExampleResources.csproj" />
     <ProjectReference Include="..\DbC.Net\DbC.Net.csproj" />
   </ItemGroup>
 

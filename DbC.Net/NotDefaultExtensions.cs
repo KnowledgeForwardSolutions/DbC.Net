@@ -1,26 +1,27 @@
 ﻿namespace DbC.Net;
 
 /// <summary>
-///   Extension methods that implement NotNull requirement.
+///   Extension methods that implement NotDefault requirement.
 /// </summary>
-public static class NotNull
+public static class NotDefaultExtensions
 {
    /// <summary>
-   ///   NotNull postcondition. Confirm that <paramref name="value"/> is not 
-   ///   <see langword="null"/> and throw an exception if it is null.
+   ///   NotDefault postcondition. Confirm that <paramref name="value"/> is not 
+   ///   the default for type {T} and throw an exception if it is default for 
+   ///   type {T}.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} may not be null".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} may not be default({ValueDatatype})".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
    ///   exception that is thrown if the <paramref name="value"/> is 
    ///   <see langword="null"/>. Defaults to 
-   ///   <see cref="StandardExceptionFactories.PostconditionFailedExceptionFactory"/>.
+   ///   <see cref="StandardExceptionFactories.ArgumentExceptionFactory"/>.
    /// </param>
    /// <param name="valueExpression">
    ///   Optional. Defaults to the caller expression for
@@ -30,13 +31,13 @@ public static class NotNull
    ///   The tested <paramref name="value"/> is returned unaltered to support 
    ///   chaining requirements.
    /// </returns>
-   public static T EnsuresNotNull<T>(
+   public static T EnsuresNotDefault<T>(
       this T value,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
       [CallerArgumentExpression("value")] String valueExpression = null!)
    {
-      CheckNotNull(
+      CheckNotDefault(
          value!,
          RequirementType.Postcondition,
          messageTemplate,
@@ -47,21 +48,22 @@ public static class NotNull
    }
 
    /// <summary>
-   ///   NotNull precondition. Confirm that <paramref name="value"/> is not 
-   ///   <see langword="null"/> and throw an exception if it is null.
+   ///   NotDefault precondition. Confirm that <paramref name="value"/> is not 
+   ///   the default for type {T} and throw an exception if it is default for 
+   ///   type {T}.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} may not be null".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} may not be default({ValueDatatype})".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
    ///   exception that is thrown if the <paramref name="value"/> is 
    ///   <see langword="null"/>. Defaults to 
-   ///   <see cref="StandardExceptionFactories.ArgumentNullExceptionFactory"/>.
+   ///   <see cref="StandardExceptionFactories.ArgumentExceptionFactory"/>.
    /// </param>
    /// <param name="valueExpression">
    ///   Optional. Defaults to the caller expression for
@@ -71,15 +73,15 @@ public static class NotNull
    ///   The tested <paramref name="value"/> is returned unaltered to support 
    ///   chaining requirements.
    /// </returns>
-   public static T RequiresNotNull<T>(
+   public static T RequiresNotDefault<T>(
       this T value,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
       [CallerArgumentExpression("value")] String valueExpression = null!)
    {
-      CheckNotNull(
-         value!, 
-         RequirementType.Precondition, 
+      CheckNotDefault(
+         value!,
+         RequirementType.Precondition,
          messageTemplate,
          exceptionFactory,
          valueExpression);
@@ -87,24 +89,25 @@ public static class NotNull
       return value;
    }
 
-   private static void CheckNotNull<T>(
+   private static void CheckNotDefault<T>(
       T value,
       RequirementType requirementType,
       String? messageTemplate,
       IExceptionFactory? exceptionFactory,
       String valueExpression)
    {
-      if (value is null)
+      if (EqualityComparer<T>.Default.Equals(value, default))
       {
-         messageTemplate ??= MessageTemplates.NotNullTemplate;
+         messageTemplate ??= MessageTemplates.NotDefaultTemplate;
          exceptionFactory ??= requirementType == RequirementType.Precondition
-            ? StandardExceptionFactories.ArgumentNullExceptionFactory
+            ? StandardExceptionFactories.ArgumentExceptionFactory
             : StandardExceptionFactories.PostconditionFailedExceptionFactory;
          var data = new Dictionary<String, Object>()
          {
             {  DataNames.RequirementType, requirementType },
-            {  DataNames.RequirementName, nameof(NotNull) },
+            {  DataNames.RequirementName, RequirementNames.NotDefault },
             {  DataNames.ValueExpression, valueExpression },
+            {  DataNames.ValueDatatype, typeof(T).Name },
          };
 
          throw exceptionFactory.CreateException(data, messageTemplate);

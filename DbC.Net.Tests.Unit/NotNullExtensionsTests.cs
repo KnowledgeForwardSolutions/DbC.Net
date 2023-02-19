@@ -1,9 +1,9 @@
-﻿using DbC.Net.Tests.Unit.TestData;
+﻿namespace DbC.Net.Tests.Unit;
 
-namespace DbC.Net.Tests.Unit;
-
-public class NotNullTests
+public class NotNullExtensionsTests
 {
+   private const Int32 _dataCount = 3;
+
    #region EnsuresNotNull Tests
    // ==========================================================================
    // ==========================================================================
@@ -79,9 +79,9 @@ public class NotNullTests
       // Act/assert.
       var ex = act.Should().Throw<PostconditionFailedException>().Which;
 
-      ex.Data.Count.Should().Be(3);
+      ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
-      ex.Data[DataNames.RequirementName].Should().Be(nameof(NotNull));
+      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.NotNull);
       ex.Data[DataNames.ValueExpression].Should().Be(nameof(value));
    }
 
@@ -216,9 +216,9 @@ public class NotNullTests
       // Act/assert.
       var ex = act.Should().Throw<ArgumentNullException>().Which;
 
-      ex.Data.Count.Should().Be(3);
+      ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
-      ex.Data[DataNames.RequirementName].Should().Be(nameof(NotNull));
+      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.NotNull);
       ex.Data[DataNames.ValueExpression].Should().Be(nameof(value));
    }
 

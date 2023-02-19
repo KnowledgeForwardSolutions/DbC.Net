@@ -61,6 +61,15 @@ namespace DbC.Net {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} must be equal to {Target}.
+        /// </summary>
+        internal static string EqualTemplate {
+            get {
+                return ResourceManager.GetString("EqualTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} may not be default({ValueDatatype}).
         /// </summary>
         internal static string NotDefaultTemplate {

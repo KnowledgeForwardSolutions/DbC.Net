@@ -29,7 +29,7 @@ public class ExceptionFactoryTests
 
    private readonly Dictionary<String, Object> _data = new() {
       { DataNames.RequirementType, RequirementType.Precondition },
-      { DataNames.RequirementName, "Equals" },
+      { DataNames.RequirementName, RequirementNames.Equal },
       { DataNames.Value, 42 },
       { DataNames.ValueExpression, "theAnswerToTheUltimateQuestionOfLifeTheUniverseAndEverything" } };
 
@@ -149,7 +149,7 @@ public class ExceptionFactoryTests
 
       IReadOnlyDictionary<String, Object> data = new Dictionary<String, Object> {
          { DataNames.RequirementType, RequirementType.Precondition },
-         { DataNames.RequirementName, "Equals" },
+         { DataNames.RequirementName, RequirementNames.Equal },
          { DataNames.Value, "111-222-3333" },
          { DataNames.ValueExpression, "accountNumber" } };
 
@@ -172,7 +172,7 @@ public class ExceptionFactoryTests
 
       IReadOnlyDictionary<String, Object> data = new Dictionary<String, Object> {
          { DataNames.RequirementType, RequirementType.Precondition },
-         { DataNames.RequirementName, "Equals" },
+         { DataNames.RequirementName, RequirementNames.Equal },
          { DataNames.Value, "111-222-3333" },
          { DataNames.ValueExpression, "accountNumber" } };
 
@@ -246,12 +246,12 @@ public class ExceptionFactoryTests
       var messageTemplate = "{RequirementType} {RequirementName} failed: {ValueExpression} is incorrect";
       var data = new Dictionary<String, Object> {
          { DataNames.RequirementType, RequirementType.Precondition },
-         { DataNames.RequirementName, "Equals" },
+         { DataNames.RequirementName, RequirementNames.Equal },
          { DataNames.Value, 42 } };
 
    var sut = new ExampleExceptionFactory();
 
-      var expectedMessage = "Precondition Equals failed: {ValueExpression} is incorrect";
+      var expectedMessage = "Precondition Equal failed: {ValueExpression} is incorrect";
 
       // Act.
       var message = sut.CreateMessage(messageTemplate, data);
@@ -267,12 +267,12 @@ public class ExceptionFactoryTests
       var messageTemplate = "{RequirementType} {RequirementName} failed: {Value} is incorrect";
       var data = new Dictionary<String, Object> {
          { DataNames.RequirementType, RequirementType.Precondition },
-         { DataNames.RequirementName, "Equals" },
+         { DataNames.RequirementName, RequirementNames.Equal },
          { DataNames.ValueExpression, "theAnswerToTheUltimateQuestionOfLifeTheUniverseAndEverything" } };
 
       var sut = new ExampleExceptionFactory();
 
-      var expectedMessage = "Precondition Equals failed: {Value} is incorrect";
+      var expectedMessage = "Precondition Equal failed: {Value} is incorrect";
 
       // Act.
       var message = sut.CreateMessage(messageTemplate, data);
@@ -282,14 +282,14 @@ public class ExceptionFactoryTests
    }
 
    [Fact]
-   public void ExceptionFactoryBase_CreateMessage_ShouldReturnExpectedMessageTemplate_WhenTemplatePlaceholdersAreMatched()
+   public void ExceptionFactoryBase_CreateMessage_ShouldReturnExpectedMessage_WhenTemplatePlaceholdersAreMatched()
    {
       // Arrange.
       var messageTemplate = "{RequirementType} {RequirementName} failed: {Value} is incorrect";
 
       var sut = new ExampleExceptionFactory();
 
-      var expectedMessage = "Precondition Equals failed: 42 is incorrect";
+      var expectedMessage = "Precondition Equal failed: 42 is incorrect";
 
       // Act.
       var message = sut.CreateMessage(messageTemplate, _data);
@@ -299,17 +299,39 @@ public class ExceptionFactoryTests
    }
 
    [Fact]
-   public void ExceptionFactoryBase_CreateMessage_ShouldReturnExpectedMessageTemplate_WhenTemplatePlaceholderIsRepeatedAndMatched()
+   public void ExceptionFactoryBase_CreateMessage_ShouldReturnExpectedMessage_WhenTemplatePlaceholderIsRepeatedAndMatched()
    {
       // Arrange.
       var messageTemplate = "{RequirementType} {RequirementName} failed: {Value} is incorrect. Don't use {Value}. Use something else";
 
       var sut = new ExampleExceptionFactory();
 
-      var expectedMessage = "Precondition Equals failed: 42 is incorrect. Don't use 42. Use something else";
+      var expectedMessage = "Precondition Equal failed: 42 is incorrect. Don't use 42. Use something else";
 
       // Act.
       var message = sut.CreateMessage(messageTemplate, _data);
+
+      // Assert.
+      message.Should().Be(expectedMessage);
+   }
+
+   [Fact]
+   public void ExceptionFactoryBase_CreateMessage_ShouldReturnExpectedMessage_WhenItemValuesAreNull()
+   {
+      // Arrange.
+      var messageTemplate = "{RequirementType} {RequirementName} failed: '{Value}' is incorrect. Don't use '{Value}'. Use something else";
+      var data = new Dictionary<String, Object>() {
+         { DataNames.RequirementType, RequirementType.Precondition },
+         { DataNames.RequirementName, RequirementNames.Equal },
+         { DataNames.Value, default(String)! },
+         { DataNames.ValueExpression, "theAnswerToTheUltimateQuestionOfLifeTheUniverseAndEverything" } };
+
+      var sut = new ExampleExceptionFactory();
+
+      var expectedMessage = "Precondition Equal failed: '' is incorrect. Don't use ''. Use something else";
+
+      // Act.
+      var message = sut.CreateMessage(messageTemplate, data);
 
       // Assert.
       message.Should().Be(expectedMessage);
