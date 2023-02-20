@@ -8,6 +8,119 @@
 public static class NotEqualExtensions
 {
    /// <summary>
+   ///   Value NotEqual postcondition. Confirm that <paramref name="value"/> is 
+   ///   not equal to <paramref name="target"/> and throw an exception if it is.
+   /// </summary>
+   /// <param name="value">
+   ///   The value to check.
+   /// </param>
+   /// <param name="target">
+   ///   The target that <paramref name="value"/> should equal.
+   /// </param>
+   /// <param name="messageTemplate">
+   ///   Optional. The message template to use if an exception is thrown.
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {Value} must be equal to {Target}".
+   /// </param>
+   /// <param name="exceptionFactory">
+   ///   Optional. The <see cref="IExceptionFactory"/> used to create the
+   ///   exception that is thrown if the <paramref name="value"/> is 
+   ///   <see langword="null"/>. Defaults to 
+   ///   <see cref="StandardExceptionFactories.ArgumentExceptionFactory"/>.
+   /// </param>
+   /// <param name="valueExpression">
+   ///   Optional. Defaults to the caller expression for
+   ///   <paramref name="value"/>. 
+   /// </param>
+   /// <param name="targetExpression">
+   ///   Optional. Defaults to the caller expression for
+   ///   <paramref name="target"/>. 
+   /// </param>
+   /// <returns>
+   ///   The tested <paramref name="value"/> is returned unaltered to support 
+   ///   chaining requirements.
+   /// </returns>
+   public static T EnsuresNotEqual<T>(
+      this T value,
+      T target,
+      String? messageTemplate = null,
+      IExceptionFactory? exceptionFactory = null,
+      [CallerArgumentExpression("value")] String valueExpression = null!,
+      [CallerArgumentExpression("target")] String targetExpression = null!) where T : IEquatable<T>
+   {
+      CheckNotEqual(
+         value,
+         target,
+         RequirementType.Postcondition,
+         messageTemplate,
+         exceptionFactory,
+         valueExpression,
+         targetExpression);
+
+      return value;
+   }
+
+   /// <summary>
+   ///   Value NotEqual postcondition. Confirm that <paramref name="value"/> is 
+   ///   not equal to <paramref name="target"/> and throw an exception if it is.
+   /// </summary>
+   /// <param name="value">
+   ///   The value to check.
+   /// </param>
+   /// <param name="target">
+   ///   The target that <paramref name="value"/> should equal.
+   /// </param>
+   /// <param name="comparer">
+   ///   An <see cref="IEqualityComparer{T}"/> used to check for equality 
+   ///   between <paramref name="value"/> and <paramref name="target"/>.
+   /// </param>
+   /// <param name="messageTemplate">
+   ///   Optional. The message template to use if an exception is thrown.
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {Value} must be equal to {Target}".
+   /// </param>
+   /// <param name="exceptionFactory">
+   ///   Optional. The <see cref="IExceptionFactory"/> used to create the
+   ///   exception that is thrown if the <paramref name="value"/> is 
+   ///   <see langword="null"/>. Defaults to 
+   ///   <see cref="StandardExceptionFactories.PostconditionFailedExceptionFactory"/>.
+   /// </param>
+   /// <param name="valueExpression">
+   ///   Optional. Defaults to the caller expression for
+   ///   <paramref name="value"/>. 
+   /// </param>
+   /// <param name="targetExpression">
+   ///   Optional. Defaults to the caller expression for
+   ///   <paramref name="target"/>. 
+   /// </param>
+   /// <returns>
+   ///   The tested <paramref name="value"/> is returned unaltered to support 
+   ///   chaining requirements.
+   /// </returns>
+   /// <exception cref="ArgumentNullException">
+   ///   <paramref name="comparer"/> is <see langword="null"/>.
+   /// </exception>
+   public static T EnsuresNotEqual<T>(
+      this T value,
+      T target,
+      IEqualityComparer<T> comparer,
+      String? messageTemplate = null,
+      IExceptionFactory? exceptionFactory = null,
+      [CallerArgumentExpression("value")] String valueExpression = null!,
+      [CallerArgumentExpression("target")] String targetExpression = null!)
+   {
+      CheckNotEqual(
+         value,
+         target,
+         comparer ?? throw new ArgumentNullException(nameof(comparer), Messages.ComparerIsNull),
+         RequirementType.Postcondition,
+         messageTemplate,
+         exceptionFactory,
+         valueExpression,
+         targetExpression);
+
+      return value;
+   }
+
+   /// <summary>
    ///   Value NotEqual precondition. Confirm that <paramref name="value"/> is 
    ///   not equal to <paramref name="target"/> and throw an exception if it is.
    /// </summary>
@@ -59,6 +172,67 @@ public static class NotEqualExtensions
       return value;
    }
 
+   /// <summary>
+   ///   Value NotEqual precondition. Confirm that <paramref name="value"/> is 
+   ///   not equal to <paramref name="target"/> and throw an exception if it is.
+   /// </summary>
+   /// <param name="value">
+   ///   The value to check.
+   /// </param>
+   /// <param name="target">
+   ///   The target that <paramref name="value"/> should equal.
+   /// </param>
+   /// <param name="comparer">
+   ///   An <see cref="IEqualityComparer{T}"/> used to check for equality 
+   ///   between <paramref name="value"/> and <paramref name="target"/>.
+   /// </param>
+   /// <param name="messageTemplate">
+   ///   Optional. The message template to use if an exception is thrown.
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {Value} must be equal to {Target}".
+   /// </param>
+   /// <param name="exceptionFactory">
+   ///   Optional. The <see cref="IExceptionFactory"/> used to create the
+   ///   exception that is thrown if the <paramref name="value"/> is 
+   ///   <see langword="null"/>. Defaults to 
+   ///   <see cref="StandardExceptionFactories.ArgumentExceptionFactory"/>.
+   /// </param>
+   /// <param name="valueExpression">
+   ///   Optional. Defaults to the caller expression for
+   ///   <paramref name="value"/>. 
+   /// </param>
+   /// <param name="targetExpression">
+   ///   Optional. Defaults to the caller expression for
+   ///   <paramref name="target"/>. 
+   /// </param>
+   /// <returns>
+   ///   The tested <paramref name="value"/> is returned unaltered to support 
+   ///   chaining requirements.
+   /// </returns>
+   /// <exception cref="ArgumentNullException">
+   ///   <paramref name="comparer"/> is <see langword="null"/>.
+   /// </exception>
+   public static T RequiresNotEqual<T>(
+      this T value,
+      T target,
+      IEqualityComparer<T> comparer,
+      String? messageTemplate = null,
+      IExceptionFactory? exceptionFactory = null,
+      [CallerArgumentExpression("value")] String valueExpression = null!,
+      [CallerArgumentExpression("target")] String targetExpression = null!)
+   {
+      CheckNotEqual(
+         value,
+         target,
+         comparer ?? throw new ArgumentNullException(nameof(comparer), Messages.ComparerIsNull),
+         RequirementType.Precondition,
+         messageTemplate,
+         exceptionFactory,
+         valueExpression,
+         targetExpression);
+
+      return value;
+   }
+
    private static void CheckNotEqual<T>(
       T value,
       T target,
@@ -79,6 +253,33 @@ public static class NotEqualExtensions
             value!,
             valueExpression,
             target!,
+            targetExpression);
+
+         throw exceptionFactory.CreateException(data, messageTemplate);
+      }
+   }
+
+   private static void CheckNotEqual<T>(
+      T value,
+      T target,
+      IEqualityComparer<T> comparer,
+      RequirementType requirementType,
+      String? messageTemplate,
+      IExceptionFactory? exceptionFactory,
+      String valueExpression,
+      String targetExpression)
+   {
+      if (comparer.Equals(value, target))
+      {
+         messageTemplate ??= MessageTemplates.NotEqualTemplate;
+         exceptionFactory ??= requirementType == RequirementType.Precondition
+            ? StandardExceptionFactories.ArgumentExceptionFactory
+            : StandardExceptionFactories.PostconditionFailedExceptionFactory;
+         var data = GetDataDictionary(
+            requirementType,
+            value,
+            valueExpression,
+            target,
             targetExpression);
 
          throw exceptionFactory.CreateException(data, messageTemplate);

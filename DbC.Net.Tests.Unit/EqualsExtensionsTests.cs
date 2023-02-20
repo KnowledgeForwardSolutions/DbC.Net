@@ -862,7 +862,7 @@ public class EqualsExtensionsTests
    {
       // Arrange.
       var value = BigInteger.MinusOne;
-      var target = BigInteger.MinusOne;;
+      var target = BigInteger.MinusOne;
       var comparer = new ReverseComparer<BigInteger>();
       var act = () => _ = value.RequiresEqual(target, comparer);
       var expectedParameterName = nameof(value);
