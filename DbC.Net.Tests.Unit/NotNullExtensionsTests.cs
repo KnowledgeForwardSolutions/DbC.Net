@@ -9,32 +9,6 @@ public class NotNullExtensionsTests
    // ==========================================================================
 
    [Fact]
-   public void NotNull_EnsuresNotNull_ShouldReturnOriginalValue_WhenValueIsValueTypeAndDefault()
-   {
-      // Arrange.
-      var value = default(Int32);
-
-      // Act.
-      var result = value.EnsuresNotNull();
-
-      // Assert.
-      result.Should().Be(value);
-   }
-
-   [Fact]
-   public void NotNull_EnsuresNotNull_ShouldReturnOriginalValue_WhenValueIsValueTypeAndIsNotDefault()
-   {
-      // Arrange.
-      var value = 42;
-
-      // Act.
-      var result = value.EnsuresNotNull();
-
-      // Assert.
-      result.Should().Be(value);
-   }
-
-   [Fact]
    public void NotNull_EnsuresNotNull_ShouldReturnOriginalValue_WhenValueIsReferenceTypeAndIsNotDefault()
    {
       // Arrange.
@@ -62,7 +36,7 @@ public class NotNullExtensionsTests
    public void NotNull_EnsuresNotNull_ShouldThrow_WhenValueIsReferenceTypeAndIsDefault()
    {
       // Arrange.
-      var value = default(List<Double>);
+      List<Double> value = default!;
       var act = () => _ = value.EnsuresNotNull();
 
       // Act/assert.
@@ -146,32 +120,6 @@ public class NotNullExtensionsTests
    // ==========================================================================
 
    [Fact]
-   public void NotNull_RequiresNotNull_ShouldReturnOriginalValue_WhenValueIsValueTypeAndDefault()
-   {
-      // Arrange.
-      var value = default(Int32);
-
-      // Act.
-      var result = value.RequiresNotNull();
-
-      // Assert.
-      result.Should().Be(value);
-   }
-
-   [Fact]
-   public void NotNull_RequiresNotNull_ShouldReturnOriginalValue_WhenValueIsValueTypeAndIsNotDefault()
-   {
-      // Arrange.
-      var value = 42;
-
-      // Act.
-      var result = value.RequiresNotNull();
-
-      // Assert.
-      result.Should().Be(value);
-   }
-
-   [Fact]
    public void NotNull_RequiresNotNull_ShouldReturnOriginalValue_WhenValueIsReferenceTypeAndIsNotDefault()
    {
       // Arrange.
@@ -199,7 +147,7 @@ public class NotNullExtensionsTests
    public void NotNull_RequiresNotNull_ShouldThrow_WhenValueIsReferenceTypeAndIsDefault()
    {
       // Arrange.
-      var value = default(List<Double>);
+      List<Double> value = default!;
       var act = () => _ = value.RequiresNotNull();
 
       // Act/assert.

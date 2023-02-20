@@ -1,13 +1,13 @@
 ### NotNull
 
-NotNull requires that the value being checked not be null. Use RequiresNotNull
-for preconditions and EnsuresNotNull for postconditions.
+NotNull requires that the reference type value being checked not be null. Use 
+RequiresNotNull for preconditions and EnsuresNotNull for postconditions.
 
 Method signatures:
 ```C#
-T RequiresNotNull<T>(this T value, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null])
+T RequiresNotNull<T>(this T value, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null]) where T : class
 
-T EnsuresNotNull<T>(this T value, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null])
+T EnsuresNotNull<T>(this T value, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null]) where T : class
 ```
 
 The default message template for NotNull is "{RequirementType} {RequirementName} failed: {ValueExpression} may not be null".
