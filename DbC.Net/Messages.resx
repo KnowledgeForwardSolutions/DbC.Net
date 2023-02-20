@@ -120,6 +120,9 @@
   <data name="BaseTransformIsNull" xml:space="preserve">
     <value>Decorator base transform may not be null</value>
   </data>
+  <data name="ComparerIsNull" xml:space="preserve">
+    <value>Comparer may not be null</value>
+  </data>
   <data name="ConstantValueIsNull" xml:space="preserve">
     <value>Constant value may not be null</value>
   </data>

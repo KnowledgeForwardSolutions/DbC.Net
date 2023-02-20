@@ -70,6 +70,15 @@ namespace DbC.Net {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Comparer may not be null.
+        /// </summary>
+        internal static string ComparerIsNull {
+            get {
+                return ResourceManager.GetString("ComparerIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Constant value may not be null.
         /// </summary>
         internal static string ConstantValueIsNull {

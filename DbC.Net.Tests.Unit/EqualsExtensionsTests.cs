@@ -80,14 +80,12 @@ public class EqualsExtensionsTests
       act.Should().Throw<PostconditionFailedException>();
    }
 
-   [Theory]
-   [ClassData(typeof(EquatableTypesTestData))]
-   public void EqualExtensions_EnsuresEqualIEquatable_ShouldThrowWithExpectedDataDictionary_WhenValueDoesNotEqualTarget<T>(
-      EquatableValue<T> data) where T : IEquatable<T>
+   [Fact]
+   public void EqualExtensions_EnsuresEqualIEquatable_ShouldThrowWithExpectedDataDictionary_WhenValueDoesNotEqualTarget()
    {
       // Arrange.
-      var value = data.EqualValue;
-      var target = data.NotEqualValue;
+      var value = UInt32.MinValue;
+      var target = UInt32.MaxValue;
       var act = () => _ = value.EnsuresEqual(target);
 
       // Act/assert.
@@ -102,14 +100,12 @@ public class EqualsExtensionsTests
       ex.Data[DataNames.TargetExpression].Should().Be(nameof(target));
    }
 
-   [Theory]
-   [ClassData(typeof(EquatableTypesTestData))]
-   public void EqualExtensions_EnsuresEqualIEquatable_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueDoesNotEqualTarget<T>(
-      EquatableValue<T> data) where T : IEquatable<T>
+   [Fact]
+   public void EqualExtensions_EnsuresEqualIEquatable_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueDoesNotEqualTarget()
    {
       // Arrange.
-      var value = data.EqualValue;
-      var target = data.NotEqualValue;
+      var value = new BoxRecordData().EqualValue;
+      var target = new BoxRecordData().NotEqualValue;
       var act = () => _ = value.EnsuresEqual(target);
       var expectedMessage = $"Postcondition Equal failed: {nameof(value)} must be equal to {target}";
 
@@ -118,14 +114,12 @@ public class EqualsExtensionsTests
          .And.Message.Should().StartWith(expectedMessage);
    }
 
-   [Theory]
-   [ClassData(typeof(EquatableTypesTestData))]
-   public void EqualExtensions_EnsuresEqualIEquatable_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed<T>(
-      EquatableValue<T> data) where T : IEquatable<T>
+   [Fact]
+   public void EqualExtensions_EnsuresEqualIEquatable_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
    {
       // Arrange.
-      var value = data.EqualValue;
-      var target = data.NotEqualValue;
+      var value = new Guid("75299d53-16e1-4969-acd8-840fc2f1f821");
+      var target = new Guid("d0d5aa44-1eba-4878-8930-2c9fba8151cd");
       var messageTemplate = "Requirement {RequirementName} failed";
       var act = () => _ = value.EnsuresEqual(target, messageTemplate);
       var expectedMessage = $"Requirement Equal failed";
@@ -135,14 +129,12 @@ public class EqualsExtensionsTests
          .And.Message.Should().StartWith(expectedMessage);
    }
 
-   [Theory]
-   [ClassData(typeof(EquatableTypesTestData))]
-   public void EqualExtensions_EnsuresEqualIEquatable_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed<T>(
-      EquatableValue<T> data) where T : IEquatable<T>
+   [Fact]
+   public void EqualExtensions_EnsuresEqualIEquatable_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      var value = data.EqualValue;
-      var target = data.NotEqualValue;
+      var value = SByte.MinValue;
+      var target = SByte.MaxValue;
       var act = () => _ = value.EnsuresEqual(target, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
       var expectedMessage = $"Postcondition Equal failed: {nameof(value)} must be equal to {target}";
 
@@ -151,14 +143,12 @@ public class EqualsExtensionsTests
          .And.Message.Should().StartWith(expectedMessage);
    }
 
-   [Theory]
-   [ClassData(typeof(EquatableTypesTestData))]
-   public void EqualExtensions_EnsuresEqualIEquatable_ShouldThrowCustomExceptionWithExpectedMessageWhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed<T>(
-      EquatableValue<T> data) where T : IEquatable<T>
+   [Fact]
+   public void EqualExtensions_EnsuresEqualIEquatable_ShouldThrowCustomExceptionWithExpectedMessageWhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      var value = data.EqualValue;
-      var target = data.NotEqualValue;
+      var value = "asdf";
+      var target = "qwerty";
       var messageTemplate = "Requirement {RequirementName} failed";
       var act = () => _ = value.EnsuresEqual(target, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
       var expectedMessage = $"Requirement Equal failed";
@@ -220,15 +210,13 @@ public class EqualsExtensionsTests
       act.Should().Throw<PostconditionFailedException>();
    }
 
-   [Theory]
-   [ClassData(typeof(EquatableTypesTestData))]
-   public void EqualExtensions_EnsuresEqualIEqualityComparer_ShouldThrowWithExpectedDataDictionary_WhenValueDoesNotEqualTarget<T>(
-      EquatableValue<T> data) where T : IEquatable<T>
+   [Fact]
+   public void EqualExtensions_EnsuresEqualIEqualityComparer_ShouldThrowWithExpectedDataDictionary_WhenValueDoesNotEqualTarget()
    {
       // Arrange.
-      var value = data.EqualValue;
-      var target = data.EqualValue;
-      var comparer = data.ReverseComparer;
+      var value = 100M;
+      var target = 100M;
+      var comparer = new ReverseComparer<Decimal>();
       var act = () => _ = value.EnsuresEqual(target, comparer);
 
       // Act/assert.
@@ -243,15 +231,13 @@ public class EqualsExtensionsTests
       ex.Data[DataNames.TargetExpression].Should().Be(nameof(target));
    }
 
-   [Theory]
-   [ClassData(typeof(EquatableTypesTestData))]
-   public void EqualExtensions_EnsuresEqualIEqualityComparer_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueDoesNotEqualTarget<T>(
-      EquatableValue<T> data) where T : IEquatable<T>
+   [Fact]
+   public void EqualExtensions_EnsuresEqualIEqualityComparer_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueDoesNotEqualTarget()
    {
       // Arrange.
-      var value = data.EqualValue;
-      var target = data.EqualValue;
-      var comparer = data.ReverseComparer;
+      var value = true;
+      var target = true;
+      var comparer = new ReverseComparer<Boolean>();
       var act = () => _ = value.EnsuresEqual(target, comparer);
       var expectedMessage = $"Postcondition Equal failed: {nameof(value)} must be equal to {target}";
 
@@ -260,15 +246,13 @@ public class EqualsExtensionsTests
          .And.Message.Should().StartWith(expectedMessage);
    }
 
-   [Theory]
-   [ClassData(typeof(EquatableTypesTestData))]
-   public void EqualExtensions_EnsuresEqualIEqualityComparer_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed<T>(
-      EquatableValue<T> data) where T : IEquatable<T>
+   [Fact]
+   public void EqualExtensions_EnsuresEqualIEqualityComparer_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
    {
       // Arrange.
-      var value = data.EqualValue;
-      var target = data.EqualValue;
-      var comparer = data.ReverseComparer;
+      var value = 'A';
+      var target = 'A';
+      var comparer = new ReverseComparer<Char>();
       var messageTemplate = "Requirement {RequirementName} failed";
       var act = () => _ = value.EnsuresEqual(target, comparer, messageTemplate);
       var expectedMessage = $"Requirement Equal failed";
@@ -278,15 +262,13 @@ public class EqualsExtensionsTests
          .And.Message.Should().StartWith(expectedMessage);
    }
 
-   [Theory]
-   [ClassData(typeof(EquatableTypesTestData))]
-   public void EqualExtensions_EnsuresEqualIEqualityComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed<T>(
-      EquatableValue<T> data) where T : IEquatable<T>
+   [Fact]
+   public void EqualExtensions_EnsuresEqualIEqualityComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      var value = data.EqualValue;
-      var target = data.EqualValue;
-      var comparer = data.ReverseComparer;
+      var value = new ObservationClassData().EqualValue;
+      var target = new ObservationClassData().EqualValue;
+      var comparer = new ReverseComparer<Observation>();
       var act = () => _ = value.EnsuresEqual(target, comparer, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
       var expectedMessage = $"Postcondition Equal failed: {nameof(value)} must be equal to {target}";
 
@@ -295,15 +277,13 @@ public class EqualsExtensionsTests
          .And.Message.Should().StartWith(expectedMessage);
    }
 
-   [Theory]
-   [ClassData(typeof(EquatableTypesTestData))]
-   public void EqualExtensions_EnsuresEqualIEqualityComparer_ShouldThrowCustomExceptionWithExpectedMessageWhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed<T>(
-      EquatableValue<T> data) where T : IEquatable<T>
+   [Fact]
+   public void EqualExtensions_EnsuresEqualIEqualityComparer_ShouldThrowCustomExceptionWithExpectedMessageWhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      var value = data.EqualValue;
-      var target = data.EqualValue;
-      var comparer = data.ReverseComparer;
+      var value = Int64.MaxValue;
+      var target = Int64.MaxValue;
+      var comparer = new ReverseComparer<Int64>();
       var messageTemplate = "Requirement {RequirementName} failed";
       var act = () => _ = value.EnsuresEqual(target, comparer, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
       var expectedMessage = $"Requirement Equal failed";
@@ -311,6 +291,21 @@ public class EqualsExtensionsTests
       // Act/assert.
       act.Should().Throw<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
+   }
+
+   [Fact]
+   public void EqualExtensions_EnsuresEqualIEqualityComparer_ShouldThrowArgumentNullException_WhenComparerIsNull()
+   {
+      // Arrange.
+      var value = new DateTimeData().EqualValue;
+      var target = value;
+      IEqualityComparer<DateTime> comparer = null!;
+      var act = () => _ = value.EnsuresEqual(target, comparer);
+
+      // Act/assert.
+      act.Should().Throw<ArgumentNullException>()
+         .WithParameterName(nameof(comparer))
+         .And.Message.Should().StartWith(Messages.ComparerIsNull);
    }
 
    #endregion
@@ -679,14 +674,12 @@ public class EqualsExtensionsTests
       act.Should().Throw<ArgumentException>();
    }
 
-   [Theory]
-   [ClassData(typeof(EquatableTypesTestData))]
-   public void EqualExtensions_RequiresEqualIEquatable_ShouldThrowWithExpectedDataDictionary_WhenValueDoesNotEqualTarget<T>(
-      EquatableValue<T> data) where T : IEquatable<T>
+   [Fact]
+   public void EqualExtensions_RequiresEqualIEquatable_ShouldThrowWithExpectedDataDictionary_WhenValueDoesNotEqualTarget()
    {
       // Arrange.
-      var value = data.EqualValue;
-      var target = data.NotEqualValue;
+      var value = Single.Pi;
+      var target = Single.E;
       var act = () => _ = value.RequiresEqual(target);
 
       // Act/assert.
@@ -701,14 +694,12 @@ public class EqualsExtensionsTests
       ex.Data[DataNames.TargetExpression].Should().Be(nameof(target));
    }
 
-   [Theory]
-   [ClassData(typeof(EquatableTypesTestData))]
-   public void EqualExtensions_RequiresEqualIEquatable_ShouldThrowArgumentExceptionWithExpectedMessage_WhenValueDoesNotEqualTarget<T>(
-      EquatableValue<T> data) where T : IEquatable<T>
+   [Fact]
+   public void EqualExtensions_RequiresEqualIEquatable_ShouldThrowArgumentExceptionWithExpectedMessage_WhenValueDoesNotEqualTarget()
    {
       // Arrange.
-      var value = data.EqualValue;
-      var target = data.NotEqualValue;
+      var value = new PointStructData().EqualValue;
+      var target = new PointStructData().NotEqualValue;
       var act = () => _ = value.RequiresEqual(target);
       var expectedParameterName = nameof(value);
       var expectedMessage = $"Precondition Equal failed: {nameof(value)} must be equal to {target}";
@@ -719,14 +710,12 @@ public class EqualsExtensionsTests
          .And.Message.Should().StartWith(expectedMessage);
    }
 
-   [Theory]
-   [ClassData(typeof(EquatableTypesTestData))]
-   public void EqualExtensions_RequiresEqualIEquatable_ShouldThrowArgumentExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed<T>(
-      EquatableValue<T> data) where T : IEquatable<T>
+   [Fact]
+   public void EqualExtensions_RequiresEqualIEquatable_ShouldThrowArgumentExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
    {
       // Arrange.
-      var value = data.EqualValue;
-      var target = data.NotEqualValue;
+      var value = DateTimeOffset.MaxValue;
+      var target = DateTimeOffset.MinValue;
       var messageTemplate = "Requirement {RequirementName} failed";
       var act = () => _ = value.RequiresEqual(target, messageTemplate);
       var expectedParameterName = nameof(value);
@@ -738,14 +727,12 @@ public class EqualsExtensionsTests
          .And.Message.Should().StartWith(expectedMessage);
    }
 
-   [Theory]
-   [ClassData(typeof(EquatableTypesTestData))]
-   public void EqualExtensions_RequiresEqualIEquatable_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed<T>(
-      EquatableValue<T> data) where T : IEquatable<T>
+   [Fact]
+   public void EqualExtensions_RequiresEqualIEquatable_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      var value = data.EqualValue;
-      var target = data.NotEqualValue;
+      var value = TimeOnly.MinValue;
+      var target = TimeOnly.MaxValue;
       var act = () => _ = value.RequiresEqual(target, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
       var expectedMessage = $"Precondition Equal failed: {nameof(value)} must be equal to {target}";
 
@@ -754,14 +741,12 @@ public class EqualsExtensionsTests
          .And.Message.Should().StartWith(expectedMessage);
    }
 
-   [Theory]
-   [ClassData(typeof(EquatableTypesTestData))]
-   public void EqualExtensions_RequiresEqualIEquatable_ShouldThrowCustomExceptionWithExpectedMessageWhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed<T>(
-      EquatableValue<T> data) where T : IEquatable<T>
+   [Fact]
+   public void EqualExtensions_RequiresEqualIEquatable_ShouldThrowCustomExceptionWithExpectedMessageWhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      var value = data.EqualValue;
-      var target = data.NotEqualValue;
+      var value = "asdf";
+      var target = "qwerty";
       var messageTemplate = "Requirement {RequirementName} failed";
       var act = () => _ = value.RequiresEqual(target, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
       var expectedMessage = $"Requirement Equal failed";
@@ -851,15 +836,13 @@ public class EqualsExtensionsTests
       act.Should().Throw<ArgumentException>();
    }
 
-   [Theory]
-   [ClassData(typeof(EquatableTypesTestData))]
-   public void EqualExtensions_RequiresEqualIEqualityComparer_ShouldThrowWithExpectedDataDictionary_WhenValueDoesNotEqualTarget<T>(
-      EquatableValue<T> data) where T : IEquatable<T>
+   [Fact]
+   public void EqualExtensions_RequiresEqualIEqualityComparer_ShouldThrowWithExpectedDataDictionary_WhenValueDoesNotEqualTarget()
    {
       // Arrange.
-      var value = data.EqualValue;
-      var target = data.EqualValue;
-      var comparer = data.ReverseComparer;
+      var value = nint.MinValue;
+      var target = nint.MinValue;
+      var comparer = new ReverseComparer<nint>();
       var act = () => _ = value.RequiresEqual(target, comparer);
 
       // Act/assert.
@@ -874,15 +857,13 @@ public class EqualsExtensionsTests
       ex.Data[DataNames.TargetExpression].Should().Be(nameof(target));
    }
 
-   [Theory]
-   [ClassData(typeof(EquatableTypesTestData))]
-   public void EqualExtensions_RequiresEqualIEqualityComparer_ShouldThrowArgumentExceptionWithExpectedMessage_WhenValueDoesNotEqualTarget<T>(
-      EquatableValue<T> data) where T : IEquatable<T>
+   [Fact]
+   public void EqualExtensions_RequiresEqualIEqualityComparer_ShouldThrowArgumentExceptionWithExpectedMessage_WhenValueDoesNotEqualTarget()
    {
       // Arrange.
-      var value = data.EqualValue;
-      var target = data.EqualValue;
-      var comparer = data.ReverseComparer;
+      var value = BigInteger.MinusOne;
+      var target = BigInteger.MinusOne;;
+      var comparer = new ReverseComparer<BigInteger>();
       var act = () => _ = value.RequiresEqual(target, comparer);
       var expectedParameterName = nameof(value);
       var expectedMessage = $"Precondition Equal failed: {nameof(value)} must be equal to {target}";
@@ -893,15 +874,13 @@ public class EqualsExtensionsTests
          .And.Message.Should().StartWith(expectedMessage);
    }
 
-   [Theory]
-   [ClassData(typeof(EquatableTypesTestData))]
-   public void EqualExtensions_RequiresEqualIEqualityComparer_ShouldThrowArgumentExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed<T>(
-      EquatableValue<T> data) where T : IEquatable<T>
+   [Fact]
+   public void EqualExtensions_RequiresEqualIEqualityComparer_ShouldThrowArgumentExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
    {
       // Arrange.
-      var value = data.EqualValue;
-      var target = data.EqualValue;
-      var comparer = data.ReverseComparer;
+      var value = UInt16.MaxValue;
+      var target = UInt16.MaxValue;
+      var comparer = new ReverseComparer<UInt16>();
       var messageTemplate = "Requirement {RequirementName} failed";
       var act = () => _ = value.RequiresEqual(target, comparer, messageTemplate);
       var expectedParameterName = nameof(value);
@@ -913,15 +892,13 @@ public class EqualsExtensionsTests
          .And.Message.Should().StartWith(expectedMessage);
    }
 
-   [Theory]
-   [ClassData(typeof(EquatableTypesTestData))]
-   public void EqualExtensions_RequiresEqualIEqualityComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed<T>(
-      EquatableValue<T> data) where T : IEquatable<T>
+   [Fact]
+   public void EqualExtensions_RequiresEqualIEqualityComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      var value = data.EqualValue;
-      var target = data.EqualValue;
-      var comparer = data.ReverseComparer;
+      var value = Double.MaxValue;
+      var target = Double.MaxValue;
+      var comparer = new ReverseComparer<Double>();
       var act = () => _ = value.RequiresEqual(target, comparer, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
       var expectedMessage = $"Precondition Equal failed: {nameof(value)} must be equal to {target}";
 
@@ -930,15 +907,13 @@ public class EqualsExtensionsTests
          .And.Message.Should().StartWith(expectedMessage);
    }
 
-   [Theory]
-   [ClassData(typeof(EquatableTypesTestData))]
-   public void EqualExtensions_RequiresEqualIEqualityComparer_ShouldThrowCustomExceptionWithExpectedMessageWhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed<T>(
-      EquatableValue<T> data) where T : IEquatable<T>
+   [Fact]
+   public void EqualExtensions_RequiresEqualIEqualityComparer_ShouldThrowCustomExceptionWithExpectedMessageWhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      var value = data.EqualValue;
-      var target = data.EqualValue;
-      var comparer = data.ReverseComparer;
+      var value = DateTime.MaxValue;
+      var target = DateTime.MaxValue;
+      var comparer = new ReverseComparer<DateTime>();
       var messageTemplate = "Requirement {RequirementName} failed";
       var act = () => _ = value.RequiresEqual(target, comparer, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
       var expectedMessage = $"Requirement Equal failed";
@@ -946,6 +921,21 @@ public class EqualsExtensionsTests
       // Act/assert.
       act.Should().Throw<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
+   }
+
+   [Fact]
+   public void EqualExtensions_RequiresEqualIEqualityComparer_ShouldThrowArgumentNullException_WhenComparerIsNull()
+   {
+      // Arrange.
+      var value = Half.Pi;
+      var target = Half.Tau;
+      IEqualityComparer<Half> comparer = null!;
+      var act = () => _ = value.RequiresEqual(target, comparer);
+
+      // Act/assert.
+      act.Should().Throw<ArgumentNullException>()
+         .WithParameterName(nameof(comparer))
+         .And.Message.Should().StartWith(Messages.ComparerIsNull);
    }
 
    #endregion

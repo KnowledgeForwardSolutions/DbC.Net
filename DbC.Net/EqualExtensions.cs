@@ -95,6 +95,9 @@ public static class EqualExtensions
    ///   The tested <paramref name="value"/> is returned unaltered to support 
    ///   chaining requirements.
    /// </returns>
+   /// <exception cref="ArgumentNullException">
+   ///   <paramref name="comparer"/> is <see langword="null"/>.
+   /// </exception>
    public static T EnsuresEqual<T>(
       this T value,
       T target,
@@ -107,7 +110,7 @@ public static class EqualExtensions
       CheckEqual(
          value,
          target,
-         comparer,
+         comparer ?? throw new ArgumentNullException(nameof(comparer), Messages.ComparerIsNull),
          RequirementType.Postcondition,
          messageTemplate,
          exceptionFactory,
@@ -265,6 +268,9 @@ public static class EqualExtensions
    ///   The tested <paramref name="value"/> is returned unaltered to support 
    ///   chaining requirements.
    /// </returns>
+   /// <exception cref="ArgumentNullException">
+   ///   <paramref name="comparer"/> is <see langword="null"/>.
+   /// </exception>
    public static T RequiresEqual<T>(
       this T value,
       T target,
@@ -277,7 +283,7 @@ public static class EqualExtensions
       CheckEqual(
          value,
          target,
-         comparer,
+         comparer ?? throw new ArgumentNullException(nameof(comparer), Messages.ComparerIsNull),
          RequirementType.Precondition,
          messageTemplate,
          exceptionFactory,
