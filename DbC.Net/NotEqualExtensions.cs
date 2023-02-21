@@ -362,7 +362,7 @@ public static class NotEqualExtensions
       String valueExpression,
       String targetExpression) where T : IEquatable<T>
    {
-      if (ReferenceEquals(value, target) || (value is not null && value.Equals(target)))
+      if ((value is null && target is null) || (value is not null && value.Equals(target)))
       {
          messageTemplate ??= MessageTemplates.NotEqualTemplate;
          exceptionFactory ??= requirementType == RequirementType.Precondition
@@ -416,7 +416,7 @@ public static class NotEqualExtensions
       String valueExpression,
       String targetExpression)
    {
-      if (ReferenceEquals(value, target) || (value is not null && value.Equals(target, comparisonType)))
+      if ((value is null && target is null) || (value is not null && value.Equals(target, comparisonType)))
       {
          messageTemplate ??= MessageTemplates.NotEqualTemplate;
          exceptionFactory ??= requirementType == RequirementType.Precondition
