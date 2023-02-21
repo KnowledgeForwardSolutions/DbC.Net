@@ -1,25 +1,25 @@
 ﻿namespace DbC.Net;
 
 /// <summary>
-///   Extension methods that implement Equal requirement for types that
+///   Extension methods that implement NotEqual requirement for types that
 ///   implement <see cref="IEquatable{T}"/> or that use 
 ///   <see cref="IEqualityComparer{T}"/>
 /// </summary>
-public static class EqualExtensions
+public static class NotEqualExtensions
 {
    /// <summary>
-   ///   Value Equal postcondition. Confirm that <paramref name="value"/> is 
-   ///   equal to <paramref name="target"/> and throw an exception if it is not.
+   ///   Value NotEqual postcondition. Confirm that <paramref name="value"/> is 
+   ///   not equal to <paramref name="target"/> and throw an exception if it is.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
    /// </param>
    /// <param name="target">
-   ///   The target that <paramref name="value"/> should equal.
+   ///   The target that <paramref name="value"/> should not equal.
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {Value} must be equal to {Target}".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {Value} must not be equal to {Target}".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
@@ -39,7 +39,7 @@ public static class EqualExtensions
    ///   The tested <paramref name="value"/> is returned unaltered to support 
    ///   chaining requirements.
    /// </returns>
-   public static T EnsuresEqual<T>(
+   public static T EnsuresNotEqual<T>(
       this T value,
       T target,
       String? messageTemplate = null,
@@ -47,7 +47,7 @@ public static class EqualExtensions
       [CallerArgumentExpression("value")] String valueExpression = null!,
       [CallerArgumentExpression("target")] String targetExpression = null!) where T : IEquatable<T>
    {
-      CheckEqual(
+      CheckNotEqual(
          value,
          target,
          RequirementType.Postcondition,
@@ -60,14 +60,14 @@ public static class EqualExtensions
    }
 
    /// <summary>
-   ///   Value Equal postcondition. Confirm that <paramref name="value"/> is 
-   ///   equal to <paramref name="target"/> and throw an exception if it is not.
+   ///   Value NotEqual postcondition. Confirm that <paramref name="value"/> is 
+   ///   not equal to <paramref name="target"/> and throw an exception if it is.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
    /// </param>
    /// <param name="target">
-   ///   The target that <paramref name="value"/> should equal.
+   ///   The target that <paramref name="value"/> should not equal.
    /// </param>
    /// <param name="comparer">
    ///   An <see cref="IEqualityComparer{T}"/> used to check for equality 
@@ -75,7 +75,7 @@ public static class EqualExtensions
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {Value} must be equal to {Target}".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {Value} must not be equal to {Target}".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
@@ -98,7 +98,7 @@ public static class EqualExtensions
    /// <exception cref="ArgumentNullException">
    ///   <paramref name="comparer"/> is <see langword="null"/>.
    /// </exception>
-   public static T EnsuresEqual<T>(
+   public static T EnsuresNotEqual<T>(
       this T value,
       T target,
       IEqualityComparer<T> comparer,
@@ -107,7 +107,7 @@ public static class EqualExtensions
       [CallerArgumentExpression("value")] String valueExpression = null!,
       [CallerArgumentExpression("target")] String targetExpression = null!)
    {
-      CheckEqual(
+      CheckNotEqual(
          value,
          target,
          comparer ?? throw new ArgumentNullException(nameof(comparer), Messages.ComparerIsNull),
@@ -121,15 +121,15 @@ public static class EqualExtensions
    }
 
    /// <summary>
-   ///   Value Equal postcondition. Confirm that the <see cref="String"/>
-   ///   <paramref name="value"/> is equal to the <see cref="String"/> 
-   ///   <paramref name="target"/> and throw an exception if it is not.
+   ///   Value NotEqual postcondition. Confirm that the <see cref="String"/>
+   ///   <paramref name="value"/> is not equal to the <see cref="String"/> 
+   ///   <paramref name="target"/> and throw an exception if it is.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
    /// </param>
    /// <param name="target">
-   ///   The target that <paramref name="value"/> should equal.
+   ///   The target that <paramref name="value"/> should not equal.
    /// </param>
    /// <param name="comparisonType">
    ///   <see cref="StringComparison"/> enumeration value that specified how the
@@ -138,7 +138,7 @@ public static class EqualExtensions
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {Value} must be equal to {Target}".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {Value} must not be equal to {Target}".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
@@ -158,7 +158,7 @@ public static class EqualExtensions
    ///   The tested <paramref name="value"/> is returned unaltered to support 
    ///   chaining requirements.
    /// </returns>
-   public static String EnsuresEqual(
+   public static String EnsuresNotEqual(
       this String value,
       String target,
       StringComparison comparisonType,
@@ -167,7 +167,7 @@ public static class EqualExtensions
       [CallerArgumentExpression("value")] String valueExpression = null!,
       [CallerArgumentExpression("target")] String targetExpression = null!)
    {
-      CheckEqual(
+      CheckNotEqual(
          value,
          target,
          comparisonType,
@@ -181,18 +181,18 @@ public static class EqualExtensions
    }
 
    /// <summary>
-   ///   Value Equal precondition. Confirm that <paramref name="value"/> is 
-   ///   equal to <paramref name="target"/> and throw an exception if it is not.
+   ///   Value NotEqual precondition. Confirm that <paramref name="value"/> is 
+   ///   not equal to <paramref name="target"/> and throw an exception if it is.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
    /// </param>
    /// <param name="target">
-   ///   The target that <paramref name="value"/> should equal.
+   ///   The target that <paramref name="value"/> should not equal.
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {Value} must be equal to {Target}".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {Value} must not be equal to {Target}".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
@@ -212,7 +212,7 @@ public static class EqualExtensions
    ///   The tested <paramref name="value"/> is returned unaltered to support 
    ///   chaining requirements.
    /// </returns>
-   public static T RequiresEqual<T>(
+   public static T RequiresNotEqual<T>(
       this T value,
       T target,
       String? messageTemplate = null,
@@ -220,7 +220,7 @@ public static class EqualExtensions
       [CallerArgumentExpression("value")] String valueExpression = null!,
       [CallerArgumentExpression("target")] String targetExpression = null!) where T : IEquatable<T>
    {
-      CheckEqual(
+      CheckNotEqual(
          value,
          target,
          RequirementType.Precondition,
@@ -233,14 +233,14 @@ public static class EqualExtensions
    }
 
    /// <summary>
-   ///   Value Equal precondition. Confirm that <paramref name="value"/> is 
-   ///   equal to <paramref name="target"/> and throw an exception if it is not.
+   ///   Value NotEqual precondition. Confirm that <paramref name="value"/> is 
+   ///   not equal to <paramref name="target"/> and throw an exception if it is.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
    /// </param>
    /// <param name="target">
-   ///   The target that <paramref name="value"/> should equal.
+   ///   The target that <paramref name="value"/> should not equal.
    /// </param>
    /// <param name="comparer">
    ///   An <see cref="IEqualityComparer{T}"/> used to check for equality 
@@ -248,7 +248,7 @@ public static class EqualExtensions
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {Value} must be equal to {Target}".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {Value} must not be equal to {Target}".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
@@ -271,7 +271,7 @@ public static class EqualExtensions
    /// <exception cref="ArgumentNullException">
    ///   <paramref name="comparer"/> is <see langword="null"/>.
    /// </exception>
-   public static T RequiresEqual<T>(
+   public static T RequiresNotEqual<T>(
       this T value,
       T target,
       IEqualityComparer<T> comparer,
@@ -280,7 +280,7 @@ public static class EqualExtensions
       [CallerArgumentExpression("value")] String valueExpression = null!,
       [CallerArgumentExpression("target")] String targetExpression = null!)
    {
-      CheckEqual(
+      CheckNotEqual(
          value,
          target,
          comparer ?? throw new ArgumentNullException(nameof(comparer), Messages.ComparerIsNull),
@@ -294,15 +294,15 @@ public static class EqualExtensions
    }
 
    /// <summary>
-   ///   Value Equal precondition. Confirm that the <see cref="String"/>
-   ///   <paramref name="value"/> is equal to the <see cref="String"/> 
-   ///   <paramref name="target"/> and throw an exception if it is not.
+   ///   Value NotEqual precondition. Confirm that the <see cref="String"/>
+   ///   <paramref name="value"/> is not equal to the <see cref="String"/> 
+   ///   <paramref name="target"/> and throw an exception if it is.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
    /// </param>
    /// <param name="target">
-   ///   The target that <paramref name="value"/> should equal.
+   ///   The target that <paramref name="value"/> should not equal.
    /// </param>
    /// <param name="comparisonType">
    ///   <see cref="StringComparison"/> enumeration value that specified how the
@@ -311,7 +311,7 @@ public static class EqualExtensions
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {Value} must be equal to {Target}".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {Value} must not be equal to {Target}".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
@@ -331,7 +331,7 @@ public static class EqualExtensions
    ///   The tested <paramref name="value"/> is returned unaltered to support 
    ///   chaining requirements.
    /// </returns>
-   public static String RequiresEqual(
+   public static String RequiresNotEqual(
       this String value,
       String target,
       StringComparison comparisonType,
@@ -340,7 +340,7 @@ public static class EqualExtensions
       [CallerArgumentExpression("value")] String valueExpression = null!,
       [CallerArgumentExpression("target")] String targetExpression = null!)
    {
-      CheckEqual(
+      CheckNotEqual(
          value,
          target,
          comparisonType,
@@ -353,7 +353,7 @@ public static class EqualExtensions
       return value;
    }
 
-   private static void CheckEqual<T>(
+   private static void CheckNotEqual<T>(
       T value,
       T target,
       RequirementType requirementType,
@@ -362,10 +362,9 @@ public static class EqualExtensions
       String valueExpression,
       String targetExpression) where T : IEquatable<T>
    {
-      if (!((value is not null && value.Equals(target))
-            || (value is null && target is null)))
+      if ((value is null && target is null) || (value is not null && value.Equals(target)))
       {
-         messageTemplate ??= MessageTemplates.EqualTemplate;
+         messageTemplate ??= MessageTemplates.NotEqualTemplate;
          exceptionFactory ??= requirementType == RequirementType.Precondition
             ? StandardExceptionFactories.ArgumentExceptionFactory
             : StandardExceptionFactories.PostconditionFailedExceptionFactory;
@@ -373,14 +372,14 @@ public static class EqualExtensions
             requirementType,
             value!,
             valueExpression,
-            target,
+            target!,
             targetExpression);
 
          throw exceptionFactory.CreateException(data, messageTemplate);
       }
    }
 
-   private static void CheckEqual<T>(
+   private static void CheckNotEqual<T>(
       T value,
       T target,
       IEqualityComparer<T> comparer,
@@ -390,9 +389,9 @@ public static class EqualExtensions
       String valueExpression,
       String targetExpression)
    {
-      if (!comparer.Equals(value, target))
+      if (comparer.Equals(value, target))
       {
-         messageTemplate ??= MessageTemplates.EqualTemplate;
+         messageTemplate ??= MessageTemplates.NotEqualTemplate;
          exceptionFactory ??= requirementType == RequirementType.Precondition
             ? StandardExceptionFactories.ArgumentExceptionFactory
             : StandardExceptionFactories.PostconditionFailedExceptionFactory;
@@ -407,7 +406,7 @@ public static class EqualExtensions
       }
    }
 
-   private static void CheckEqual(
+   private static void CheckNotEqual(
       String value,
       String target,
       StringComparison comparisonType,
@@ -417,10 +416,9 @@ public static class EqualExtensions
       String valueExpression,
       String targetExpression)
    {
-      if (!((value is not null && value.Equals(target, comparisonType))
-            || (value is null && target is null)))
+      if ((value is null && target is null) || (value is not null && value.Equals(target, comparisonType)))
       {
-         messageTemplate ??= MessageTemplates.EqualTemplate;
+         messageTemplate ??= MessageTemplates.NotEqualTemplate;
          exceptionFactory ??= requirementType == RequirementType.Precondition
             ? StandardExceptionFactories.ArgumentExceptionFactory
             : StandardExceptionFactories.PostconditionFailedExceptionFactory;
@@ -445,7 +443,7 @@ public static class EqualExtensions
       => new()
       {
          {  DataNames.RequirementType, requirementType },
-         {  DataNames.RequirementName, RequirementNames.Equal },
+         {  DataNames.RequirementName, RequirementNames.NotEqual },
          {  DataNames.Value, value! },
          {  DataNames.ValueExpression, valueExpression },
          {  DataNames.Target, target! },

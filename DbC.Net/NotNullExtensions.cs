@@ -6,8 +6,9 @@
 public static class NotNullExtensions
 {
    /// <summary>
-   ///   NotNull postcondition. Confirm that <paramref name="value"/> is not 
-   ///   <see langword="null"/> and throw an exception if it is null.
+   ///   NotNull postcondition. Confirm that the reference type 
+   ///   <paramref name="value"/> is not <see langword="null"/> and throw an 
+   ///   exception if it is null.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
@@ -34,7 +35,7 @@ public static class NotNullExtensions
       this T value,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
-      [CallerArgumentExpression("value")] String valueExpression = null!)
+      [CallerArgumentExpression("value")] String valueExpression = null!) where T : class
    {
       CheckNotNull(
          value!,
@@ -47,8 +48,9 @@ public static class NotNullExtensions
    }
 
    /// <summary>
-   ///   NotNull precondition. Confirm that <paramref name="value"/> is not 
-   ///   <see langword="null"/> and throw an exception if it is null.
+   ///   NotNull precondition. Confirm that the reference type 
+   ///   <paramref name="value"/> is not <see langword="null"/> and throw an 
+   ///   exception if it is null.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
@@ -75,7 +77,7 @@ public static class NotNullExtensions
       this T value,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
-      [CallerArgumentExpression("value")] String valueExpression = null!)
+      [CallerArgumentExpression("value")] String valueExpression = null!) where T : class
    {
       CheckNotNull(
          value!, 

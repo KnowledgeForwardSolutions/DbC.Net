@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace DbC.Net.Tests.Unit.TestData;
+﻿namespace DbC.Net.Tests.Unit.TestData;
 
 public class ObservationClassData : ComparableValue<Observation>
 {
