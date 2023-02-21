@@ -328,6 +328,258 @@ public class NotEqualExtensionsTests
 
    #endregion
 
+   #region EnsuresNotEqual (String) Tests
+   // ==========================================================================
+   // ==========================================================================
+
+   [UseCulture("en-US")]
+   [Theory]
+   [InlineData(StringData.LowerCaseA, StringData.LowerCaseADash, StringComparison.CurrentCulture)]
+   [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCulture)]
+   [InlineData(StringData.LowerCaseA, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.Ordinal)]
+   [InlineData(StringData.UpperCaseI, StringData.UpperCaseDottedI, StringComparison.OrdinalIgnoreCase)]
+   public void NotEqualExtensions_EnsuresNotEqualString_ShouldReturnOriginalValue_WhenValueDoesNotEqualTargetAndCurrentCultureIs_enUS(
+      String value,
+      String target,
+      StringComparison comparisonType)
+   {
+      // Act.
+      var result = value.EnsuresNotEqual(target, comparisonType);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [UseCulture("tr-TR")]
+   [Theory]
+   [InlineData(StringData.LowerCaseA, StringData.LowerCaseADash, StringComparison.CurrentCulture)]
+   [InlineData(StringData.LowerCaseA, StringData.LowerCaseADash, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.InvariantCulture)]
+   [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.Ordinal)]
+   [InlineData(StringData.UpperCaseI, StringData.UpperCaseDottedI, StringComparison.OrdinalIgnoreCase)]
+   public void NotEqualExtensions_EnsuresNotEqualString_ShouldReturnOriginalValue_WhenValueDoesNotEqualTargetAndCurrentCultureIs_trTR(
+      String value,
+      String target,
+      StringComparison comparisonType)
+   {
+      // Act.
+      var result = value.EnsuresNotEqual(target, comparisonType);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [UseCulture("th-TH")]
+   [Theory]
+   [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.CurrentCulture)]
+   [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.InvariantCulture)]
+   [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.Ordinal)]
+   [InlineData(StringData.UpperCaseI, StringData.UpperCaseDottedI, StringComparison.OrdinalIgnoreCase)]
+   public void NotEqualExtensions_EnsuresNotEqualString_ShouldReturnOriginalValue_WhenValueDoesNotEqualTargetAndCurrentCultureIs_thTH(
+      String value,
+      String target,
+      StringComparison comparisonType)
+   {
+      // Act.
+      var result = value.EnsuresNotEqual(target, comparisonType);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [UseCulture("en-US")]
+   [Theory]
+   [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.CurrentCulture)]
+   [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.InvariantCulture)]
+   [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.Ordinal)]
+   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.OrdinalIgnoreCase)]
+   public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrow_WhenValueEqualsTargetAndCurrentCultureIs_enUS(
+      String value,
+      String target,
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      var act = () => _ = value.EnsuresNotEqual(target, comparisonType);
+
+      // Act/assert.
+      act.Should().Throw<PostconditionFailedException>();
+   }
+
+   // Note: tr-TR culture considers "i" and upper case dotted "I" as equal when
+   // case is ignored. Same for "I" and lowercase dot-less "i".
+   [UseCulture("tr-TR")]
+   [Theory]
+   [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.CurrentCulture)]
+   [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.UpperCaseI, StringData.LowerCaseDotlessI, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.InvariantCulture)]
+   [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.Ordinal)]
+   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.OrdinalIgnoreCase)]
+   public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrow_WhenValueEqualsTargetAndCurrentCultureIs_trTR(
+      String value,
+      String target,
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      var act = () => _ = value.EnsuresNotEqual(target, comparisonType);
+
+      // Act/assert.
+      act.Should().Throw<PostconditionFailedException>();
+   }
+
+   // Note: th-TH culture considers "a" and "a-" as equal.
+   [UseCulture("th-TH")]
+   [Theory]
+   [InlineData(StringData.LowerCaseA, StringData.LowerCaseADash, StringComparison.CurrentCulture)]
+   [InlineData(StringData.LowerCaseA, StringData.LowerCaseADash, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.InvariantCulture)]
+   [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.Ordinal)]
+   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.OrdinalIgnoreCase)]
+   public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrow_WhenValueEqualsTargetAndCurrentCultureIs_thTH(
+      String value,
+      String target,
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      var act = () => _ = value.EnsuresNotEqual(target, comparisonType);
+
+      // Act/assert.
+      act.Should().Throw<PostconditionFailedException>();
+   }
+
+   [UseCulture("en-US")]
+   [Theory]
+   [InlineData(StringComparison.CurrentCulture)]
+   [InlineData(StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringComparison.InvariantCulture)]
+   [InlineData(StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringComparison.Ordinal)]
+   [InlineData(StringComparison.OrdinalIgnoreCase)]
+   public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrow_WhenAndTargetAreDefaultAndCurrentCultureIs_enUS(StringComparison comparisonType)
+   {
+      // Arrange.
+      String value = default!;
+      String target = default!;
+      var act = () => _ = value.EnsuresNotEqual(target, comparisonType);
+
+      // Act/assert.
+      act.Should().Throw<PostconditionFailedException>();
+   }
+
+   [UseCulture("tr-TR")]
+   [Theory]
+   [InlineData(StringComparison.CurrentCulture)]
+   [InlineData(StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringComparison.InvariantCulture)]
+   [InlineData(StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringComparison.Ordinal)]
+   [InlineData(StringComparison.OrdinalIgnoreCase)]
+   public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrow_WhenAndTargetAreDefaultAndCurrentCultureIs_trTR(StringComparison comparisonType)
+   {
+      // Arrange.
+      String value = default!;
+      String target = default!;
+      var act = () => _ = value.EnsuresNotEqual(target, comparisonType);
+
+      // Act/assert.
+      act.Should().Throw<PostconditionFailedException>();
+   }
+
+   [Fact]
+   public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrowWithExpectedDataDictionary_WhenValueEqualsTarget()
+   {
+      // Arrange.
+      var value = StringData.LowerCaseDipthongAE;
+      var target = StringData.LowerCaseDipthongAE;
+      var comparisonType = StringComparison.Ordinal;
+      var act = () => _ = value.EnsuresNotEqual(target, comparisonType);
+
+      // Act/assert.
+      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+
+      ex.Data.Count.Should().Be(_stringDataCount);
+      ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
+      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.NotEqual);
+      ex.Data[DataNames.Value].Should().Be(value);
+      ex.Data[DataNames.ValueExpression].Should().Be(nameof(value));
+      ex.Data[DataNames.Target].Should().Be(target);
+      ex.Data[DataNames.TargetExpression].Should().Be(nameof(target));
+      ex.Data[DataNames.StringComparison].Should().Be(comparisonType);
+   }
+
+   [Fact]
+   public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueEqualsTarget()
+   {
+      // Arrange.
+      var value = StringData.LowerCaseAE;
+      var target = StringData.UpperCaseAE;
+      var comparisonType = StringComparison.OrdinalIgnoreCase;
+      var act = () => _ = value.EnsuresNotEqual(target, comparisonType);
+      var expectedMessage = $"Postcondition NotEqual failed: {nameof(value)} must not be equal to {target}";
+
+      // Act/assert.
+      act.Should().Throw<PostconditionFailedException>()
+         .And.Message.Should().StartWith(expectedMessage);
+   }
+
+   [Fact]
+   public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
+   {
+      // Arrange.
+      var value = StringData.UpperCaseSlashedO;
+      var target = StringData.UpperCaseSlashedO;
+      var comparisonType = StringComparison.InvariantCulture;
+      var messageTemplate = "Requirement {RequirementName} failed";
+      var act = () => _ = value.EnsuresNotEqual(target, comparisonType, messageTemplate);
+      var expectedMessage = $"Requirement NotEqual failed";
+
+      // Act/assert.
+      act.Should().Throw<PostconditionFailedException>()
+         .And.Message.Should().StartWith(expectedMessage);
+   }
+
+   [Fact]
+   public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
+   {
+      // Arrange.
+      var value = StringData.UpperCaseI;
+      var target = StringData.LowerCaseI;
+      var comparisonType = StringComparison.InvariantCultureIgnoreCase;
+      var act = () => _ = value.EnsuresNotEqual(target, comparisonType, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Postcondition NotEqual failed: {nameof(value)} must not be equal to {target}";
+
+      // Act/assert.
+      act.Should().Throw<CustomException>()
+         .And.Message.Should().StartWith(expectedMessage);
+   }
+
+   [Fact]
+   public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrowCustomExceptionWithExpectedMessageWhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   {
+      // Arrange.
+      var value = StringData.LowerCaseA;
+      var target = StringData.UpperCaseA;
+      var comparisonType = StringComparison.CurrentCultureIgnoreCase;
+      var messageTemplate = "Requirement {RequirementName} failed";
+      var act = () => _ = value.EnsuresNotEqual(target, comparisonType, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Requirement NotEqual failed";
+
+      // Act/assert.
+      act.Should().Throw<CustomException>()
+         .And.Message.Should().StartWith(expectedMessage);
+   }
+
+   #endregion
+
    #region RequiresNotEqual (IEquatable) Tests
    // ==========================================================================
    // ==========================================================================
@@ -653,6 +905,262 @@ public class NotEqualExtensionsTests
       act.Should().Throw<ArgumentNullException>()
          .WithParameterName(nameof(comparer))
          .And.Message.Should().StartWith(Messages.ComparerIsNull);
+   }
+
+   #endregion
+
+   #region RequiresNotEqual (String) Tests
+   // ==========================================================================
+   // ==========================================================================
+
+   [UseCulture("en-US")]
+   [Theory]
+   [InlineData(StringData.LowerCaseA, StringData.LowerCaseADash, StringComparison.CurrentCulture)]
+   [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCulture)]
+   [InlineData(StringData.LowerCaseA, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.Ordinal)]
+   [InlineData(StringData.UpperCaseI, StringData.UpperCaseDottedI, StringComparison.OrdinalIgnoreCase)]
+   public void NotEqualExtensions_RequiresNotEqualString_ShouldReturnOriginalValue_WhenValueDoesNotEqualTargetAndCurrentCultureIs_enUS(
+      String value,
+      String target,
+      StringComparison comparisonType)
+   {
+      // Act.
+      var result = value.RequiresNotEqual(target, comparisonType);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [UseCulture("tr-TR")]
+   [Theory]
+   [InlineData(StringData.LowerCaseA, StringData.LowerCaseADash, StringComparison.CurrentCulture)]
+   [InlineData(StringData.LowerCaseA, StringData.LowerCaseADash, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.InvariantCulture)]
+   [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.Ordinal)]
+   [InlineData(StringData.UpperCaseI, StringData.UpperCaseDottedI, StringComparison.OrdinalIgnoreCase)]
+   public void NotEqualExtensions_RequiresNotEqualString_ShouldReturnOriginalValue_WhenValueDoesNotEqualTargetAndCurrentCultureIs_trTR(
+      String value,
+      String target,
+      StringComparison comparisonType)
+   {
+      // Act.
+      var result = value.RequiresNotEqual(target, comparisonType);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [UseCulture("th-TH")]
+   [Theory]
+   [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.CurrentCulture)]
+   [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.InvariantCulture)]
+   [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.Ordinal)]
+   [InlineData(StringData.UpperCaseI, StringData.UpperCaseDottedI, StringComparison.OrdinalIgnoreCase)]
+   public void NotEqualExtensions_RequiresNotEqualString_ShouldReturnOriginalValue_WhenValueDoesNotEqualTargetAndCurrentCultureIs_thTH(
+      String value,
+      String target,
+      StringComparison comparisonType)
+   {
+      // Act.
+      var result = value.RequiresNotEqual(target, comparisonType);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [UseCulture("en-US")]
+   [Theory]
+   [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.CurrentCulture)]
+   [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.InvariantCulture)]
+   [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.Ordinal)]
+   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.OrdinalIgnoreCase)]
+   public void NotEqualExtensions_RequiresNotEqualString_ShouldThrow_WhenValueEqualsTargetAndCurrentCultureIs_enUS(
+      String value,
+      String target,
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      var act = () => _ = value.RequiresNotEqual(target, comparisonType);
+
+      // Act/assert.
+      act.Should().Throw<ArgumentException>();
+   }
+
+   // Note: tr-TR culture considers "i" and upper case dotted "I" as equal when
+   // case is ignored. Same for "I" and lowercase dot-less "i".
+   [UseCulture("tr-TR")]
+   [Theory]
+   [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.CurrentCulture)]
+   [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.UpperCaseI, StringData.LowerCaseDotlessI, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.InvariantCulture)]
+   [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.Ordinal)]
+   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.OrdinalIgnoreCase)]
+   public void NotEqualExtensions_RequiresNotEqualString_ShouldThrow_WhenValueEqualsTargetAndCurrentCultureIs_trTR(
+      String value,
+      String target,
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      var act = () => _ = value.RequiresNotEqual(target, comparisonType);
+
+      // Act/assert.
+      act.Should().Throw<ArgumentException>();
+   }
+
+   // Note: th-TH culture considers "a" and "a-" as equal.
+   [UseCulture("th-TH")]
+   [Theory]
+   [InlineData(StringData.LowerCaseA, StringData.LowerCaseADash, StringComparison.CurrentCulture)]
+   [InlineData(StringData.LowerCaseA, StringData.LowerCaseADash, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.InvariantCulture)]
+   [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.Ordinal)]
+   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.OrdinalIgnoreCase)]
+   public void NotEqualExtensions_RequiresNotEqualString_ShouldThrow_WhenValueEqualsTargetAndCurrentCultureIs_thTH(
+      String value,
+      String target,
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      var act = () => _ = value.RequiresNotEqual(target, comparisonType);
+
+      // Act/assert.
+      act.Should().Throw<ArgumentException>();
+   }
+
+   [UseCulture("en-US")]
+   [Theory]
+   [InlineData(StringComparison.CurrentCulture)]
+   [InlineData(StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringComparison.InvariantCulture)]
+   [InlineData(StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringComparison.Ordinal)]
+   [InlineData(StringComparison.OrdinalIgnoreCase)]
+   public void NotEqualExtensions_RequiresNotEqualString_ShouldThrow_WhenAndTargetAreDefaultAndCurrentCultureIs_enUS(StringComparison comparisonType)
+   {
+      // Arrange.
+      String value = default!;
+      String target = default!;
+      var act = () => _ = value.RequiresNotEqual(target, comparisonType);
+
+      // Act/assert.
+      act.Should().Throw<ArgumentException>();
+   }
+
+   [UseCulture("tr-TR")]
+   [Theory]
+   [InlineData(StringComparison.CurrentCulture)]
+   [InlineData(StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringComparison.InvariantCulture)]
+   [InlineData(StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringComparison.Ordinal)]
+   [InlineData(StringComparison.OrdinalIgnoreCase)]
+   public void NotEqualExtensions_RequiresNotEqualString_ShouldThrow_WhenAndTargetAreDefaultAndCurrentCultureIs_trTR(StringComparison comparisonType)
+   {
+      // Arrange.
+      String value = default!;
+      String target = default!;
+      var act = () => _ = value.RequiresNotEqual(target, comparisonType);
+
+      // Act/assert.
+      act.Should().Throw<ArgumentException>();
+   }
+
+   [Fact]
+   public void NotEqualExtensions_RequiresNotEqualString_ShouldThrowWithExpectedDataDictionary_WhenValueEqualsTarget()
+   {
+      // Arrange.
+      var value = StringData.LowerCaseDipthongAE;
+      var target = StringData.LowerCaseDipthongAE;
+      var comparisonType = StringComparison.Ordinal;
+      var act = () => _ = value.RequiresNotEqual(target, comparisonType);
+
+      // Act/assert.
+      var ex = act.Should().Throw<ArgumentException>().Which;
+
+      ex.Data.Count.Should().Be(_stringDataCount);
+      ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
+      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.NotEqual);
+      ex.Data[DataNames.Value].Should().Be(value);
+      ex.Data[DataNames.ValueExpression].Should().Be(nameof(value));
+      ex.Data[DataNames.Target].Should().Be(target);
+      ex.Data[DataNames.TargetExpression].Should().Be(nameof(target));
+      ex.Data[DataNames.StringComparison].Should().Be(comparisonType);
+   }
+
+   [Fact]
+   public void NotEqualExtensions_RequiresNotEqualString_ShouldThrowArgumentExceptionWithExpectedMessage_WhenValueEqualsTarget()
+   {
+      // Arrange.
+      var value = StringData.LowerCaseAE;
+      var target = StringData.UpperCaseAE;
+      var comparisonType = StringComparison.OrdinalIgnoreCase;
+      var act = () => _ = value.RequiresNotEqual(target, comparisonType);
+      var expectedParameterName = nameof(value);
+      var expectedMessage = $"Precondition NotEqual failed: {nameof(value)} must not be equal to {target}";
+
+      // Act/assert.
+      act.Should().Throw<ArgumentException>()
+         .WithParameterName(expectedParameterName)
+         .And.Message.Should().StartWith(expectedMessage);
+   }
+
+   [Fact]
+   public void NotEqualExtensions_RequiresNotEqualString_ShouldThrowArgumentExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
+   {
+      // Arrange.
+      var value = StringData.UpperCaseSlashedO;
+      var target = StringData.UpperCaseSlashedO;
+      var comparisonType = StringComparison.InvariantCulture;
+      var messageTemplate = "Requirement {RequirementName} failed";
+      var act = () => _ = value.RequiresNotEqual(target, comparisonType, messageTemplate);
+      var expectedParameterName = nameof(value);
+      var expectedMessage = $"Requirement NotEqual failed";
+
+      // Act/assert.
+      act.Should().Throw<ArgumentException>()
+         .WithParameterName(expectedParameterName)
+         .And.Message.Should().StartWith(expectedMessage);
+   }
+
+   [Fact]
+   public void NotEqualExtensions_RequiresNotEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
+   {
+      // Arrange.
+      var value = StringData.UpperCaseI;
+      var target = StringData.LowerCaseI;
+      var comparisonType = StringComparison.InvariantCultureIgnoreCase;
+      var act = () => _ = value.RequiresNotEqual(target, comparisonType, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Precondition NotEqual failed: {nameof(value)} must not be equal to {target}";
+
+      // Act/assert.
+      act.Should().Throw<CustomException>()
+         .And.Message.Should().StartWith(expectedMessage);
+   }
+
+   [Fact]
+   public void NotEqualExtensions_RequiresNotEqualString_ShouldThrowCustomExceptionWithExpectedMessageWhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   {
+      // Arrange.
+      var value = StringData.LowerCaseA;
+      var target = StringData.UpperCaseA;
+      var comparisonType = StringComparison.CurrentCultureIgnoreCase;
+      var messageTemplate = "Requirement {RequirementName} failed";
+      var act = () => _ = value.RequiresNotEqual(target, comparisonType, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Requirement NotEqual failed";
+
+      // Act/assert.
+      act.Should().Throw<CustomException>()
+         .And.Message.Should().StartWith(expectedMessage);
    }
 
    #endregion

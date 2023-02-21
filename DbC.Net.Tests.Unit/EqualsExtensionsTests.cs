@@ -433,6 +433,7 @@ public class EqualsExtensionsTests
       String target,
       StringComparison comparisonType)
    {
+      // Arrange.
       var act = () => _ = value.EnsuresEqual(target, comparisonType);
 
       // Act/assert.
@@ -452,6 +453,7 @@ public class EqualsExtensionsTests
       String target,
       StringComparison comparisonType)
    {
+      // Arrange.
       var act = () => _ = value.EnsuresEqual(target, comparisonType);
 
       // Act/assert.
@@ -471,6 +473,7 @@ public class EqualsExtensionsTests
       String target,
       StringComparison comparisonType)
    {
+      // Arrange.
       var act = () => _ = value.EnsuresEqual(target, comparisonType);
 
       // Act/assert.
@@ -1063,6 +1066,7 @@ public class EqualsExtensionsTests
       String target,
       StringComparison comparisonType)
    {
+      // Arrange.
       var act = () => _ = value.RequiresEqual(target, comparisonType);
 
       // Act/assert.
@@ -1082,6 +1086,7 @@ public class EqualsExtensionsTests
       String target,
       StringComparison comparisonType)
    {
+      // Arrange.
       var act = () => _ = value.RequiresEqual(target, comparisonType);
 
       // Act/assert.
@@ -1101,6 +1106,7 @@ public class EqualsExtensionsTests
       String target,
       StringComparison comparisonType)
    {
+      // Arrange.
       var act = () => _ = value.RequiresEqual(target, comparisonType);
 
       // Act/assert.
