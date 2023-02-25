@@ -1,6 +1,6 @@
 ﻿namespace DbC.Net.FloatingPoint;
 
-public interface IApproximateEqualityComparer<T> where T : IFloatingPointIeee754<T>
+public interface IApproximateEqualityComparer<T> where T : IFloatingPoint<T>
 {
    /// <summary>
    ///   Determines if the difference between <paramref name="x"/> and 
@@ -13,8 +13,8 @@ public interface IApproximateEqualityComparer<T> where T : IFloatingPointIeee754
    /// <param name="y">
    ///   The right side value of the equality check.
    /// </param>
-   /// <param name="tolerance">
-   ///   The tolerance to use when comparing the values for equality.
+   /// <param name="epsilon">
+   ///   The error margin to use when comparing the values for equality.
    /// </param>
    /// <returns>
    ///   <see langword="true"/> if the difference between <paramref name="x"/> 
@@ -22,5 +22,5 @@ public interface IApproximateEqualityComparer<T> where T : IFloatingPointIeee754
    ///   considered equal floating point values; otherwise 
    ///   <see langword="false"/>.
    /// </returns>
-   Boolean ApproximatelyEquals(T x, T y, T tolerance);
+   Boolean ApproximatelyEquals(T x, T y, T epsilon);
 }

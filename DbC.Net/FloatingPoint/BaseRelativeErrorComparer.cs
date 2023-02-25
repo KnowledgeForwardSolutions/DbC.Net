@@ -23,7 +23,7 @@ public abstract class BaseRelativeErrorComparer<T> : IApproximateEqualityCompare
    public BaseRelativeErrorComparer(T minNormal) => _minNormal = minNormal;
 
    /// <inheritdoc/>
-   public Boolean ApproximatelyEquals(T x, T y, T tolerance)
+   public Boolean ApproximatelyEquals(T x, T y, T epsilon)
    {
       var absX = T.Abs(x);
       var absY = T.Abs(y);
@@ -38,11 +38,10 @@ public abstract class BaseRelativeErrorComparer<T> : IApproximateEqualityCompare
       {
          // a or b is zero, or both are extremely close to it.
          // relative error is less meaningful here
-         var limit = tolerance * _minNormal;
-         return diff < (tolerance * _minNormal);
+         return diff < (epsilon * _minNormal);
       }
 
       // use relative error
-      return diff / T.Min(absX + absY, T.MaxValue) < tolerance;
+      return diff / T.Min(absX + absY, T.MaxValue) < epsilon;
    }
 }
