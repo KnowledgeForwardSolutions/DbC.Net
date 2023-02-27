@@ -1,12 +1,14 @@
 ﻿namespace DbC.Net.Tests.Unit.TestData;
 
-public class SingleData : ComparableValue<Single>
+public class SingleData : FloatingPointValue<Single>
 {
    public SingleData() : base(
-      Single.Pi,
-      Single.Tau,
-      new ReverseComparer<Single>(),
-      Single.MinValue,
-      Single.MaxValue)
+      3.14152F,
+      0.00001F,
+      0.00005F,
+      0.00003F,
+      StandardFloatingPointComparers.SingleFixedEpsilonComparer,
+      0.000002F,
+      StandardFloatingPointComparers.SingleRelativeErrorComparer)
    { }
 }

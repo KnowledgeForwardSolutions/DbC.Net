@@ -12,7 +12,7 @@ public class FixedEpsilonComparerTests
    {
       new Object[] { (Half)3.14F, (Half)3.16F, (Half)0.03F },
       new Object[] { 3.14152F, 3.14156F, 0.0001F },
-      new Object[] { 3.141592653589793D, 3.141592653589791D, 0.000000000001F },
+      new Object[] { 3.141592653589793D, 3.141592653589791D, 0.000000000001D },
       new Object[] { 3.141592M, 3.141594M, 0.00001M },
    };
 
@@ -33,7 +33,7 @@ public class FixedEpsilonComparerTests
    {
       new Object[] { (Half)6.28F, (Half)6.24F, (Half)0.02F },
       new Object[] { 6.28318F, 6.28313F, 0.00001F },
-      new Object[] { 6.283185307179586D, 6.283185307179581D, 0.000000000000001F },
+      new Object[] { 6.283185307179586D, 6.283185307179581D, 0.000000000000001D },
       new Object[] { 6.283185M, 6.283189M, 0.000001M },
    };
 

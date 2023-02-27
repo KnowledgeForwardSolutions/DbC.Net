@@ -144,7 +144,7 @@ public class EqualsExtensionsTests
    }
 
    [Fact]
-   public void EqualExtensions_EnsuresEqualIEquatable_ShouldThrowCustomExceptionWithExpectedMessageWhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void EqualExtensions_EnsuresEqualIEquatable_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var value = "asdf";
@@ -278,7 +278,7 @@ public class EqualsExtensionsTests
    }
 
    [Fact]
-   public void EqualExtensions_EnsuresEqualIEqualityComparer_ShouldThrowCustomExceptionWithExpectedMessageWhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void EqualExtensions_EnsuresEqualIEqualityComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var value = Int64.MaxValue;
@@ -587,7 +587,7 @@ public class EqualsExtensionsTests
    }
 
    [Fact]
-   public void EqualExtensions_EnsuresEqualString_ShouldThrowCustomExceptionWithExpectedMessageWhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void EqualExtensions_EnsuresEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var value = StringData.LowerCaseA;
@@ -745,7 +745,7 @@ public class EqualsExtensionsTests
    }
 
    [Fact]
-   public void EqualExtensions_RequiresEqualIEquatable_ShouldThrowCustomExceptionWithExpectedMessageWhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void EqualExtensions_RequiresEqualIEquatable_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var value = "asdf";
@@ -911,7 +911,7 @@ public class EqualsExtensionsTests
    }
 
    [Fact]
-   public void EqualExtensions_RequiresEqualIEqualityComparer_ShouldThrowCustomExceptionWithExpectedMessageWhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void EqualExtensions_RequiresEqualIEqualityComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var value = DateTime.MaxValue;
@@ -1224,7 +1224,7 @@ public class EqualsExtensionsTests
    }
 
    [Fact]
-   public void EqualExtensions_RequiresEqualString_ShouldThrowCustomExceptionWithExpectedMessageWhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void EqualExtensions_RequiresEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var value = StringData.LowerCaseA;
