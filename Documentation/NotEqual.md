@@ -5,7 +5,7 @@ RequiresNotEqual and EnsuresNotEqual have several overloads that support IEquata
 and IEqualtiyComparer<T> as well as an overload for String that accepts a 
 StringComparison value that specifies how the comparison is performed.
 
-Method signatures:
+**Method signatures:**
 ```C#
 T RequiresNotEqual<T>(this T value, T target, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null]) where T : IEquatable<T>
 
@@ -30,8 +30,7 @@ RequirementName, Value, ValueExpression, Target and TargetExpression. The data
 dictionary for the String overloads will contain an additional entry for 
 StringComparison.
 
-Examples:
-
+**Examples:**
 ```C#
 var customMessageTemplate = "{ValueExpression} must not be equal to {Target}";
 var customExceptionFactory = new CustomExceptionFactory();

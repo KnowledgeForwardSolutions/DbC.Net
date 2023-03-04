@@ -39,6 +39,8 @@
     - [Equal](/Documentation/Equal.md)
     - [NotEqual](/Documentation/NotEqual.md)
 
+    - [ApproximatelyEqual](/Documentation/ApproximatelyEqual.md)
+
 - **[Release History/Release Notes](#release-historyrelease-notes)**
 
 	- Not currently released

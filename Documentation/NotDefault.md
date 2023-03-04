@@ -5,7 +5,7 @@ datatype of the value being checked (zero for value types, null for reference
 types). Use RequiresNotDefault for preconditions and EnsuresNotDefault for 
 postconditions.
 
-Method signatures:
+**Method signatures:**
 ```C#
 T RequiresNotDefault<T>(this T value, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null])
 
@@ -20,7 +20,7 @@ EnsuresNotDefault.
 The data dictionary for exceptions thrown will contain entries for RequirementType,
 RequirementName, ValueExpression and ValueDatatype.
 
-Examples:
+**Examples:**
 ```C#
 var customMessageTemplate = "{ValueExpression} can not be default";
 var customExceptionFactory = new CustomExceptionFactory();
