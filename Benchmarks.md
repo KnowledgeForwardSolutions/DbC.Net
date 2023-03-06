@@ -16,6 +16,7 @@ Intel Core i7-8700K CPU 3.70GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical 
   - [NotDefault Benchmarks](#notdefault-benchmarks)
   - [Equal Benchmarks](#equal-benchmarks)
   - [NotEqual Benchmarks](#notequal-benchmarks)
+  - [ApproximatelyEqual Benchmarks](#approximatelyequal-benchmarks)
 
 ### NotNull Benchmarks
 
@@ -158,3 +159,24 @@ parameter was omitted.
 | RequiresNotEqual | Class       | IEqualityComparer<T> | X                |                   |  4.593 ns | 0.0475 ns | 0.0444 ns |         - |
 | RequiresNotEqual | Class       | IEqualityComparer<T> |                  | X                 |  6.931 ns | 0.0844 ns | 0.0789 ns |         - |
 | RequiresNotEqual | Class       | IEqualityComparer<T> | X                | X                 |  6.909 ns | 0.1044 ns | 0.0977 ns |         - |
+
+### ApproximatelyEqual Benchmarks
+
+| Method                     | Value Type | Comparer                  | Message Template | Exception Factory |     Mean |     Error |    StdDev | Allocated |
+|--------------------------- |:-----------|:-------------------------:|:----------------:|:-----------------:|---------:|----------:|----------:|----------:|
+| RequiresApproximatelyEqual | Double     | Fixed Epsilon Comparer    |                  |                   | 4.991 ns | 0.0467 ns | 0.0414 ns |         - |
+| RequiresApproximatelyEqual | Double     | Fixed Epsilon Comparer    | X                |                   | 4.841 ns | 0.0279 ns | 0.0233 ns |         - |
+| RequiresApproximatelyEqual | Double     | Fixed Epsilon Comparer    |                  | X                 | 5.344 ns | 0.1348 ns | 0.1753 ns |         - |
+| RequiresApproximatelyEqual | Double     | Fixed Epsilon Comparer    | X                | X                 | 5.283 ns | 0.0700 ns | 0.0546 ns |         - |
+| RequiresApproximatelyEqual | Double     | Relative Epsilon Comparer |                  |                   | 6.332 ns | 0.1121 ns | 0.1049 ns |         - |
+| RequiresApproximatelyEqual | Double     | Relative Epsilon Comparer | X                |                   | 6.748 ns | 0.0824 ns | 0.0771 ns |         - |
+| RequiresApproximatelyEqual | Double     | Relative Epsilon Comparer |                  | X                 | 7.569 ns | 0.0590 ns | 0.0493 ns |         - |
+| RequiresApproximatelyEqual | Double     | Relative Epsilon Comparer | X                | X                 | 6.154 ns | 0.1515 ns | 0.2359 ns |         - |
+| RequiresApproximatelyEqual | Single     | Fixed Epsilon Comparer    |                  |                   | 4.608 ns | 0.0569 ns | 0.0532 ns |         - |
+| RequiresApproximatelyEqual | Single     | Fixed Epsilon Comparer    | X                |                   | 4.542 ns | 0.0672 ns | 0.0596 ns |         - |
+| RequiresApproximatelyEqual | Single     | Fixed Epsilon Comparer    |                  | X                 | 5.881 ns | 0.1068 ns | 0.0999 ns |         - |
+| RequiresApproximatelyEqual | Single     | Fixed Epsilon Comparer    | X                | X                 | 4.582 ns | 0.0416 ns | 0.0390 ns |         - |
+| RequiresApproximatelyEqual | Single     | Relative Epsilon Comparer |                  |                   | 6.490 ns | 0.1068 ns | 0.1272 ns |         - |
+| RequiresApproximatelyEqual | Single     | Relative Epsilon Comparer | X                |                   | 6.544 ns | 0.0473 ns | 0.0419 ns |         - |
+| RequiresApproximatelyEqual | Single     | Relative Epsilon Comparer |                  | X                 | 6.560 ns | 0.0335 ns | 0.0280 ns |         - |
+| RequiresApproximatelyEqual | Single     | Relative Epsilon Comparer | X                | X                 | 7.393 ns | 0.0984 ns | 0.0822 ns |         - |

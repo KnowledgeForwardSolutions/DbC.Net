@@ -61,6 +61,15 @@ namespace DbC.Net {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} must be within +/- {Epsilon} of {Target}.
+        /// </summary>
+        internal static string ApproximatelyEqualTemplate {
+            get {
+                return ResourceManager.GetString("ApproximatelyEqualTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} must be equal to {Target}.
         /// </summary>
         internal static string EqualTemplate {

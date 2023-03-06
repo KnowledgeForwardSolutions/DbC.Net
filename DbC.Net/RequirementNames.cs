@@ -5,6 +5,7 @@
 /// </summary>
 public static class RequirementNames
 {
+   public static String ApproximatelyEqual = nameof(ApproximatelyEqual);
    public static String Equal = nameof(Equal);
    public static String NotDefault = nameof(NotDefault);
    public static String NotEqual = nameof(NotEqual);
