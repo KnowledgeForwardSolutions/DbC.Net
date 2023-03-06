@@ -7,7 +7,7 @@ public class DecimalData : FloatingPointValue<Decimal>
       0.000001M,
       0.000005M,
       0.000003M,
-      StandardFloatingPointComparers.DecimalFixedEpsilonComparer,
+      StandardFloatingPointComparers.DecimalFixedErrorComparer,
       0.000003M,
       default!)
    { }

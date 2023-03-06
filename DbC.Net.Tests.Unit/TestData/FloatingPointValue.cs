@@ -7,7 +7,7 @@ public abstract class FloatingPointValue<T> where T : IFloatingPoint<T>
       T withinToleranceDelta,
       T outOfToleranceDelta,
       T fixedEpsilon,
-      IApproximateEqualityComparer<T> fixedEpsilonComparer,
+      IApproximateEqualityComparer<T> fixedErrorComparer,
       T relativeEpsilon,
       IApproximateEqualityComparer<T> relativeErrorComparer)
    {
@@ -15,7 +15,7 @@ public abstract class FloatingPointValue<T> where T : IFloatingPoint<T>
       WithinToleranceDelta = withinToleranceDelta;
       OutOfToleranceDelta = outOfToleranceDelta;
       FixedEpsilon = fixedEpsilon;
-      FixedEpsilonComparer = fixedEpsilonComparer;
+      FixedErrorComparer = fixedErrorComparer;
       RelativeEpsilon = relativeEpsilon;
       RelativeErrorComparer = relativeErrorComparer;
    }
@@ -30,7 +30,7 @@ public abstract class FloatingPointValue<T> where T : IFloatingPoint<T>
 
    public virtual T RelativeEpsilon { get; }
 
-   public virtual IApproximateEqualityComparer<T> FixedEpsilonComparer { get; } = default!;
+   public virtual IApproximateEqualityComparer<T> FixedErrorComparer { get; } = default!;
 
    public virtual IApproximateEqualityComparer<T> RelativeErrorComparer { get; } = default!;
 }

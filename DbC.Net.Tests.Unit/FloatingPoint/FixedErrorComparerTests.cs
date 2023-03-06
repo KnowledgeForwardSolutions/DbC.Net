@@ -1,12 +1,10 @@
-﻿using Xunit.Abstractions;
+﻿namespace DbC.Net.Tests.Unit.FloatingPoint;
 
-namespace DbC.Net.Tests.Unit.FloatingPoint;
-
-public class FixedEpsilonComparerTests
+public class FixedErrorComparerTests
 {
    private readonly ITestOutputHelper _console;
 
-   public FixedEpsilonComparerTests(ITestOutputHelper console) => _console = console;
+   public FixedErrorComparerTests(ITestOutputHelper console) => _console = console;
 
    public static IEnumerable<Object[]> LessThanEpsilonData => new List<Object[]>
    {
@@ -18,12 +16,12 @@ public class FixedEpsilonComparerTests
 
    [Theory]
    [MemberData(nameof(LessThanEpsilonData))]
-   public void FixedEpsilonComparer_ApproximatelyEquals_ShouldReturnTrue_WhenDeltaIsLessThanEpsilon<T>(T x, T y, T epsilon) where T: IFloatingPoint<T>
+   public void FixedErrorComparer_ApproximatelyEquals_ShouldReturnTrue_WhenDeltaIsLessThanEpsilon<T>(T x, T y, T epsilon) where T: IFloatingPoint<T>
    {
       _console.WriteLine($"x: {x}, y: {y}, epsilon: {epsilon}");
 
       // Arrange.
-      var sut = new FixedEpsilonComparer<T>();
+      var sut = new FixedErrorComparer<T>();
 
       // Act/assert.
       sut.ApproximatelyEquals(x, y, epsilon).Should().BeTrue();
@@ -39,12 +37,12 @@ public class FixedEpsilonComparerTests
 
    [Theory]
    [MemberData(nameof(GreaterThanEpsilonData))]
-   public void FixedEpsilonComparer_ApproximatelyEquals_ShouldReturnFalse_WhenDeltaIsGreaterThanEpsilon<T>(T x, T y, T epsilon) where T : IFloatingPoint<T>
+   public void FixedErrorComparer_ApproximatelyEquals_ShouldReturnFalse_WhenDeltaIsGreaterThanEpsilon<T>(T x, T y, T epsilon) where T : IFloatingPoint<T>
    {
       _console.WriteLine($"x: {x}, y: {y}, epsilon: {epsilon}");
 
       // Arrange.
-      var sut = new FixedEpsilonComparer<T>();
+      var sut = new FixedErrorComparer<T>();
 
       // Act/assert.
       sut.ApproximatelyEquals(x, y, epsilon).Should().BeFalse();

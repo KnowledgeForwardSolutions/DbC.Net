@@ -2,43 +2,43 @@
 
 public class StandardFloatingPointComparersTests
 {
-   #region DecimalFixedEpsilonComparer Tests
+   #region DecimalFixedErrorComparer Tests
    // ==========================================================================
    // ==========================================================================
 
    [Fact]
-   public void StandardFloatingPointComparers_DecimalFixedEpsilonComparer_ShouldNotBeNull()
-      => StandardFloatingPointComparers.DecimalFixedEpsilonComparer.Should().NotBeNull();
+   public void StandardFloatingPointComparers_DecimalFixedErrorComparer_ShouldNotBeNull()
+      => StandardFloatingPointComparers.DecimalFixedErrorComparer.Should().NotBeNull();
 
    #endregion
 
-   #region DoubleFixedEpsilonComparer Tests
+   #region DoubleFixedErrorComparer Tests
    // ==========================================================================
    // ==========================================================================
 
    [Fact]
-   public void StandardFloatingPointComparers_DoubleFixedEpsilonComparer_ShouldNotBeNull()
-      => StandardFloatingPointComparers.DoubleFixedEpsilonComparer.Should().NotBeNull();
+   public void StandardFloatingPointComparers_DoubleFixedErrorComparer_ShouldNotBeNull()
+      => StandardFloatingPointComparers.DoubleFixedErrorComparer.Should().NotBeNull();
 
    #endregion
 
-   #region HalfFixedEpsilonComparer Tests
+   #region HalfFixedErrorComparer Tests
    // ==========================================================================
    // ==========================================================================
 
    [Fact]
-   public void StandardFloatingPointComparers_HalfFixedEpsilonComparer_ShouldNotBeNull()
-      => StandardFloatingPointComparers.HalfFixedEpsilonComparer.Should().NotBeNull();
+   public void StandardFloatingPointComparers_HalfFixedErrorComparer_ShouldNotBeNull()
+      => StandardFloatingPointComparers.HalfFixedErrorComparer.Should().NotBeNull();
 
    #endregion
 
-   #region SingleFixedEpsilonComparer Tests
+   #region SingleFixedErrorComparer Tests
    // ==========================================================================
    // ==========================================================================
 
    [Fact]
-   public void StandardFloatingPointComparers_SingleFixedEpsilonComparer_ShouldNotBeNull()
-      => StandardFloatingPointComparers.SingleFixedEpsilonComparer.Should().NotBeNull();
+   public void StandardFloatingPointComparers_SingleFixedErrorComparer_ShouldNotBeNull()
+      => StandardFloatingPointComparers.SingleFixedErrorComparer.Should().NotBeNull();
 
    #endregion
 

@@ -7,7 +7,7 @@ public class SingleData : FloatingPointValue<Single>
       0.00001F,
       0.00005F,
       0.00003F,
-      StandardFloatingPointComparers.SingleFixedEpsilonComparer,
+      StandardFloatingPointComparers.SingleFixedErrorComparer,
       0.000002F,
       StandardFloatingPointComparers.SingleRelativeErrorComparer)
    { }

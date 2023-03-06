@@ -7,7 +7,7 @@ public class HalfData : FloatingPointValue<Half>
       (Half)0.01F,
       (Half)0.05F,
       (Half)0.03F,
-      StandardFloatingPointComparers.HalfFixedEpsilonComparer,
+      StandardFloatingPointComparers.HalfFixedErrorComparer,
       (Half)0.002F,
       StandardFloatingPointComparers.HalfRelativeErrorComparer)
    { }

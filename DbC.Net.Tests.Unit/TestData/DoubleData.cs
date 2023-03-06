@@ -7,7 +7,7 @@ public class DoubleData : FloatingPointValue<Double>
       0.000000000000001D,
       0.000000000000005D,
       0.000000000000003D,
-      StandardFloatingPointComparers.DoubleFixedEpsilonComparer,
+      StandardFloatingPointComparers.DoubleFixedErrorComparer,
       0.0000000000000002D,
       StandardFloatingPointComparers.DoubleRelativeErrorComparer)
    { }

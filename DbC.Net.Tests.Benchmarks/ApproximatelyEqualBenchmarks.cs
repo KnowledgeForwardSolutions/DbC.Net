@@ -6,14 +6,14 @@ public class ApproximatelyEqualBenchmarks
    private const Double _doubleValue = 3.141592653589793D;
    private const Double _doubleTarget = _doubleValue + 0.000000000000001D;
    private const Double _doubleFixedEpsilon = 0.000000000000003D;
-   private static IApproximateEqualityComparer<Double> _doubleFixedEpsilonComparer = StandardFloatingPointComparers.DoubleFixedEpsilonComparer;
+   private static IApproximateEqualityComparer<Double> _doubleFixedEpsilonComparer = StandardFloatingPointComparers.DoubleFixedErrorComparer;
    private const Double _doubleRelativeEpsilon = 0.0000000000000002D;
    private static IApproximateEqualityComparer<Double> _doubleRelativeEpsilonComparer = StandardFloatingPointComparers.DoubleRelativeErrorComparer;
    
    private const Single _singleValue = 3.14152F;
    private const Single _singleTarget = _singleValue + 0.00001F;
    private const Single _singleFixedEpsilon = 0.00003F;
-   private static IApproximateEqualityComparer<Single> _singleFixedEpsilonComparer = StandardFloatingPointComparers.SingleFixedEpsilonComparer;
+   private static IApproximateEqualityComparer<Single> _singleFixedEpsilonComparer = StandardFloatingPointComparers.SingleFixedErrorComparer;
    private const Single _singleRelativeEpsilon = 0.000002F;
    private static IApproximateEqualityComparer<Single> _singleRelativeEpsilonComparer = StandardFloatingPointComparers.SingleRelativeErrorComparer;
 
