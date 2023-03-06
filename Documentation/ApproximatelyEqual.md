@@ -107,7 +107,7 @@ value.EnsuresApproximatelyEqual(target, epsilon, comparer, customMessageTemplate
 
 ### StandardFloatingPointComparers
 
-The StandardFloatingPointComparers class (DbC.Net.FloatingPoint) has properties 
+The DbC.Net.FloatingPoint.StandardFloatingPointComparers class has properties 
 that give you access to both fixed error and relative error implementations of 
 IApproximateEqualityComparer<T> as lazily created singleton objects. The comparers 
 available are:

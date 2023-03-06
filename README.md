@@ -178,9 +178,9 @@ exception data dictionary.
 
 ### StandardExceptionFactories
 
-The static StandardExceptionFactories class has properties that give you access
-to pre-configured exception factories as lazily created singletons. The exception
-factories available are:
+The static DbC.Net.ExceptionFactories.StandardExceptionFactories class has 
+properties that give you access to pre-configured exception factories as lazily 
+created singletons. The exception factories available are:
 
 - ArgumentExceptionFactory - an instance of [ArgumentExceptionFactory](#argumentexceptionfactory)
 that does not use any value transforms.
@@ -249,9 +249,9 @@ to determining the actual value.
 
 ### StandardTransforms
 
-The static StandardTransforms class has properties that give you access to 
-pre-configured value transforms as lazily created singletons. The value transforms
-available are:
+The static DbC.Net.Transforms.StandardTransforms class has properties that give 
+you access to pre-configured value transforms as lazily created singletons. The 
+value transforms available are:
 
 - AsteriskMaskTransform - a transform that converts a value to a string and then 
 replaces all characters in the string with an asterisk character ('*').
