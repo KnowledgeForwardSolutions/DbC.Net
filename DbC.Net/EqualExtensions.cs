@@ -3,7 +3,7 @@
 /// <summary>
 ///   Extension methods that implement Equal requirement for types that
 ///   implement <see cref="IEquatable{T}"/> or that use 
-///   <see cref="IEqualityComparer{T}"/>
+///   <see cref="IEqualityComparer{T}"/>.
 /// </summary>
 public static class EqualExtensions
 {

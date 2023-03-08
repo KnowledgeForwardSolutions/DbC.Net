@@ -9,6 +9,8 @@ public class DecimalData : FloatingPointValue<Decimal>
       0.000003M,
       StandardFloatingPointComparers.DecimalFixedErrorComparer,
       0.000003M,
-      default!)
+      default!,
+      Decimal.MaxValue,
+      Decimal.MinValue)
    { }
 }

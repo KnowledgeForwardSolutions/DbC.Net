@@ -9,6 +9,8 @@ public class DoubleData : FloatingPointValue<Double>
       0.000000000000003D,
       StandardFloatingPointComparers.DoubleFixedErrorComparer,
       0.0000000000000002D,
-      StandardFloatingPointComparers.DoubleRelativeErrorComparer)
+      StandardFloatingPointComparers.DoubleRelativeErrorComparer,
+      Double.MaxValue,
+      Double.MinValue)
    { }
 }

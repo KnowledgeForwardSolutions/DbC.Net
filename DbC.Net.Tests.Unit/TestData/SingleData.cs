@@ -9,6 +9,8 @@ public class SingleData : FloatingPointValue<Single>
       0.00003F,
       StandardFloatingPointComparers.SingleFixedErrorComparer,
       0.000002F,
-      StandardFloatingPointComparers.SingleRelativeErrorComparer)
+      StandardFloatingPointComparers.SingleRelativeErrorComparer,
+      Single.MaxValue,
+      Single.MinValue)
    { }
 }

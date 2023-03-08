@@ -50,5 +50,26 @@ public sealed class Observation : IEquatable<Observation>, IComparable<Observati
          && left.Value == right.Value
          && left.Units == right.Units;
 
-    public Int32 CompareTo(Observation? other) => throw new NotImplementedException();
+   public Int32 CompareTo(Observation? other)
+   {
+      // Compare to null will always evaluate as greater than, per MSDN documentation for IComparable<T>.CompareTo(T)
+      if (other == null) return 1;
+
+      // This is a contrived example that simply compares all fields of an object.
+      // Otherwise, you'd want to consider if Id equality means that the objects
+      // are truly equal.
+      var result = ObservationId.CompareTo(other.ObservationId);
+      if (result != 0) return result;
+
+      result = ObservationTimestamp.CompareTo(other.ObservationTimestamp);
+      if (result != 0) return result;
+
+      result = ObservationType.CompareTo(other.ObservationType);
+      if (result != 0) return result;
+
+      result = Value.CompareTo(other.Value);
+      return result == 0
+         ? result
+         : Units.CompareTo(other.Units);
+   }
 }

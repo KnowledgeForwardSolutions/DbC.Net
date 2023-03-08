@@ -1,6 +1,6 @@
 ﻿namespace DbC.Net.Tests.Unit.TestData;
 
-public sealed class EquatableTypesTestData : IEnumerable<Object[]>
+public sealed class ComparableTypesTestData : IEnumerable<Object[]>
 {
    public IEnumerator<Object[]> GetEnumerator()
    {

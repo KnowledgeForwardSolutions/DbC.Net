@@ -9,7 +9,9 @@ public abstract class FloatingPointValue<T> where T : IFloatingPoint<T>
       T fixedEpsilon,
       IApproximateEqualityComparer<T> fixedErrorComparer,
       T relativeEpsilon,
-      IApproximateEqualityComparer<T> relativeErrorComparer)
+      IApproximateEqualityComparer<T> relativeErrorComparer,
+      T maxValue,
+      T minValue)
    {
       Value = value;
       WithinToleranceDelta = withinToleranceDelta;
@@ -18,6 +20,8 @@ public abstract class FloatingPointValue<T> where T : IFloatingPoint<T>
       FixedErrorComparer = fixedErrorComparer;
       RelativeEpsilon = relativeEpsilon;
       RelativeErrorComparer = relativeErrorComparer;
+      MaxValue = maxValue;
+      MinValue = minValue;
    }
 
    public virtual T Value { get; }
@@ -33,4 +37,8 @@ public abstract class FloatingPointValue<T> where T : IFloatingPoint<T>
    public virtual IApproximateEqualityComparer<T> FixedErrorComparer { get; } = default!;
 
    public virtual IApproximateEqualityComparer<T> RelativeErrorComparer { get; } = default!;
+
+   public T MaxValue { get; }
+
+   public T MinValue { get; }
 }
