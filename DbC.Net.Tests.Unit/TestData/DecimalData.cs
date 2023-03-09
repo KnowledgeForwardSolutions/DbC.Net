@@ -11,6 +11,7 @@ public class DecimalData : FloatingPointValue<Decimal>
       0.000003M,
       default!,
       Decimal.MaxValue,
-      Decimal.MinValue)
+      Decimal.MinValue,
+      new ReverseComparer<Decimal>())
    { }
 }

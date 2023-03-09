@@ -11,6 +11,7 @@ public class SingleData : FloatingPointValue<Single>
       0.000002F,
       StandardFloatingPointComparers.SingleRelativeErrorComparer,
       Single.MaxValue,
-      Single.MinValue)
+      Single.MinValue,
+      new ReverseComparer<Single>())
    { }
 }

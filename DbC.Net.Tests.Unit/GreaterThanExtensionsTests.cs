@@ -15,23 +15,7 @@ public class GreaterThanExtensionsTests
    [Theory]
    [ClassData(typeof(ComparableTypesTestData))]
    public void GreaterThanExtensions_RequiresGreaterThanIComparable_ShouldReturnOriginalValue_WhenComparableValueIsGreaterThanTarget<T>(
-      ComparableValue<T> data) where T : IComparable<T>, IEquatable<T>
-   {
-      // Arrange.
-      var value = data.MaxValue;
-      var target = data.MinValue;
-
-      // Act.
-      var result = value.RequiresGreaterThan(target);
-
-      // Assert.
-      result.Should().Be(value);
-   }
-
-   [Theory]
-   [ClassData(typeof(FloatingPointTypesTestData))]
-   public void GreaterThanExtensions_RequiresGreaterThanIComparable_ShouldReturnOriginalValue_WhenFloatingPointValueIsGreaterThanTarget<T>(
-      FloatingPointValue<T> data) where T : IFloatingPoint<T>
+      IComparableTestData<T> data) where T : IComparable<T>
    {
       // Arrange.
       var value = data.MaxValue;
@@ -47,7 +31,7 @@ public class GreaterThanExtensionsTests
    [Theory]
    [ClassData(typeof(ReferenceTypesTestData))]
    public void GreaterThanExtensions_RequiresGreaterThanIComparable_ShouldReturnOriginalValue_WhenValueIsNotNullAndTargetIsNull<T>(
-      ComparableValue<T> data) where T : IComparable<T>, IEquatable<T>
+      IComparableTestData<T> data) where T : IComparable<T>
    {
       // Arrange.
       var value = data.MaxValue;
@@ -63,21 +47,7 @@ public class GreaterThanExtensionsTests
    [Theory]
    [ClassData(typeof(ComparableTypesTestData))]
    public void GreaterThanExtensions_RequiresGreaterThanIComparable_ShouldThrow_WhenComparableValueIsEqualToTarget<T>(
-      ComparableValue<T> data) where T : IComparable<T>, IEquatable<T>
-   {
-      // Arrange.
-      var value = data.MaxValue;
-      var target = data.MaxValue;
-      var act = () => _ = value.RequiresGreaterThan(target);
-
-      // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
-   }
-
-   [Theory]
-   [ClassData(typeof(FloatingPointTypesTestData))]
-   public void GreaterThanExtensions_RequiresGreaterThanIComparable_ShouldThrow_WhenFloatingPointValueIsEqualToTarget<T>(
-      FloatingPointValue<T> data) where T : IFloatingPoint<T>
+      IComparableTestData<T> data) where T : IComparable<T>
    {
       // Arrange.
       var value = data.MaxValue;
@@ -91,21 +61,7 @@ public class GreaterThanExtensionsTests
    [Theory]
    [ClassData(typeof(ComparableTypesTestData))]
    public void GreaterThanExtensions_RequiresGreaterThanIComparable_ShouldThrow_WhenComparableValueIsLessThanTarget<T>(
-      ComparableValue<T> data) where T : IComparable<T>, IEquatable<T>
-   {
-      // Arrange.
-      var value = data.MinValue;
-      var target = data.MaxValue;
-      var act = () => _ = value.RequiresGreaterThan(target);
-
-      // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
-   }
-
-   [Theory]
-   [ClassData(typeof(FloatingPointTypesTestData))]
-   public void GreaterThanExtensions_RequiresGreaterThanIComparable_ShouldThrow_WhenFloatingPointValueIsLessThanTarget<T>(
-      FloatingPointValue<T> data) where T : IFloatingPoint<T>
+      IComparableTestData<T> data) where T : IComparable<T>
    {
       // Arrange.
       var value = data.MinValue;
@@ -119,7 +75,7 @@ public class GreaterThanExtensionsTests
    [Theory]
    [ClassData(typeof(ReferenceTypesTestData))]
    public void GreaterThanExtensions_RequiresGreaterThanIComparable_ShouldThrow_WhenReferenceValueIsNullAndTargetIsNotNull<T>(
-      ComparableValue<T> data) where T : IComparable<T>, IEquatable<T>
+      IComparableTestData<T> data) where T : IComparable<T>
    {
       // Arrange.
       T value = default!;
@@ -133,7 +89,7 @@ public class GreaterThanExtensionsTests
    [Theory]
    [ClassData(typeof(ReferenceTypesTestData))]
    public void GreaterThanExtensions_RequiresGreaterThanIComparable_ShouldThrow_ReferenceValueIsNullAndTargetIsNull<T>(
-      ComparableValue<T> data) where T : IComparable<T>, IEquatable<T>
+      IComparableTestData<T> data) where T : IComparable<T>
    {
       // Arrange.
       T value = default!;

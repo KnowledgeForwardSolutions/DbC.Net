@@ -13,7 +13,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldReturnOriginalValue_WhenValueDoesNotEqualTarget<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldReturnOriginalValue_WhenValueDoesNotEqualTarget<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       var value = data.EqualValue;
@@ -28,7 +28,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldReturnOriginalValue_WhenValueIsDefaultAndTargetIsNot<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldReturnOriginalValue_WhenValueIsDefaultAndTargetIsNot<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       T value = default!;
@@ -43,7 +43,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldReturnOriginalValue_WhenValueIsNotDefaultAndTargetIs<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldReturnOriginalValue_WhenValueIsNotDefaultAndTargetIs<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       var value = data.EqualValue;
@@ -58,7 +58,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldThrow_WhenValueEqualsTarget<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldThrow_WhenValueEqualsTarget<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       var value = data.EqualValue;
@@ -71,7 +71,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldThrow_WhenValueAndTargetAreDefault<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldThrow_WhenValueAndTargetAreDefault<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       T value = default!;
@@ -168,7 +168,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldReturnOriginalValue_WhenValueDoesNotEqualTarget<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldReturnOriginalValue_WhenValueDoesNotEqualTarget<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       var value = data.EqualValue;
@@ -184,7 +184,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldReturnOriginalValue_WhenValueIsDefaultAndTargetIsNot<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldReturnOriginalValue_WhenValueIsDefaultAndTargetIsNot<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       T value = default!;
@@ -200,7 +200,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldThrow_WhenValueIsNotDefaultAndTargetIs<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldThrow_WhenValueIsNotDefaultAndTargetIs<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       var value = data.EqualValue;
@@ -216,7 +216,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldThrow_WhenAndTargetAreDefault<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldThrow_WhenAndTargetAreDefault<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       T value = default!;
@@ -586,7 +586,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldReturnOriginalValue_WhenValueDoesNotEqualTarget<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldReturnOriginalValue_WhenValueDoesNotEqualTarget<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       var value = data.EqualValue;
@@ -601,7 +601,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldReturnOriginalValue_WhenValueIsDefaultAndTargetIsNot<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldReturnOriginalValue_WhenValueIsDefaultAndTargetIsNot<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       T value = default!;
@@ -616,7 +616,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldReturnOriginalValue_WhenValueIsNotDefaultAndTargetIs<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldReturnOriginalValue_WhenValueIsNotDefaultAndTargetIs<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       var value = data.EqualValue;
@@ -631,7 +631,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldThrow_WhenValueEqualsTarget<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldThrow_WhenValueEqualsTarget<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       var value = data.EqualValue;
@@ -644,7 +644,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldThrow_WhenValueAndTargetAreDefault<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldThrow_WhenValueAndTargetAreDefault<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       T value = default!;
@@ -745,7 +745,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldReturnOriginalValue_WhenValueDoesNotEqualTarget<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldReturnOriginalValue_WhenValueDoesNotEqualTarget<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       var value = data.EqualValue;
@@ -761,7 +761,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldReturnOriginalValue_WhenValueIsDefaultAndTargetIsNot<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldReturnOriginalValue_WhenValueIsDefaultAndTargetIsNot<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       T value = default!;
@@ -777,7 +777,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldThrow_WhenValueIsNotDefaultAndTargetIs<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldThrow_WhenValueIsNotDefaultAndTargetIs<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       var value = data.EqualValue;
@@ -793,7 +793,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldThrow_WhenAndTargetAreDefault<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldThrow_WhenAndTargetAreDefault<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       T value = default!;
