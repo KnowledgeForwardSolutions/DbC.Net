@@ -80,10 +80,11 @@ public class ApproximatelyEqualExtensionsTests
    public void ApproximatelyEqualExtensions_EnsuresApproximatelyEqual_ShouldThrowWithExpectedDataDictionary_WhenValueIsNotApproximatelyEqualToTarget()
    {
       // Arrange.
-      var value = Single.Pi;
-      var target = Single.Tau;
-      var epsilon = 0.0001F;
-      var comparer = StandardFloatingPointComparers.SingleRelativeErrorComparer;
+      var data = new SingleData();
+      var value = data.Value - data.OutOfToleranceDelta;
+      var target = data.Value;
+      var epsilon = data.RelativeEpsilon;
+      var comparer = data.RelativeErrorComparer;
       var act = () => _ = value.EnsuresApproximatelyEqual(target, epsilon, comparer);
 
       // Act/assert.
@@ -104,10 +105,11 @@ public class ApproximatelyEqualExtensionsTests
    public void ApproximatelyEqualExtensions_EnsuresApproximatelyEqual_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueIsNotApproximatelyEqualToTarget()
    {
       // Arrange.
-      var value = Double.Pi;
-      var target = Double.Tau;
-      var epsilon = 0.0001;
-      var comparer = StandardFloatingPointComparers.DoubleRelativeErrorComparer;
+      var data = new DoubleData();
+      var value = data.Value - data.OutOfToleranceDelta;
+      var target = data.Value;
+      var epsilon = data.RelativeEpsilon;
+      var comparer = data.RelativeErrorComparer;
       var act = () => _ = value.EnsuresApproximatelyEqual(target, epsilon, comparer);
       var expectedMessage = $"Postcondition ApproximatelyEqual failed: {nameof(value)} must be within +/- {epsilon} of {target}";
 
@@ -120,10 +122,11 @@ public class ApproximatelyEqualExtensionsTests
    public void ApproximatelyEqualExtensions_EnsuresApproximatelyEqual_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
    {
       // Arrange.
-      var value = Half.Pi;
-      var target = Half.Tau;
-      var epsilon = (Half)0.001;
-      var comparer = StandardFloatingPointComparers.HalfFixedErrorComparer;
+      var data = new HalfData();
+      var value = data.Value + data.OutOfToleranceDelta;
+      var target = data.Value;
+      var epsilon = data.FixedEpsilon;
+      var comparer = data.FixedErrorComparer;
       var messageTemplate = "Requirement {RequirementName} failed";
       var act = () => _ = value.EnsuresApproximatelyEqual(target, epsilon, comparer, messageTemplate);
       var expectedMessage = $"Requirement ApproximatelyEqual failed";
@@ -137,10 +140,11 @@ public class ApproximatelyEqualExtensionsTests
    public void ApproximatelyEqualExtensions_EnsuresApproximatelyEqual_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      var value = Decimal.One;
-      var target = Decimal.MinusOne;
-      var epsilon = 0.0001M;
-      var comparer = StandardFloatingPointComparers.DecimalFixedErrorComparer;
+      var data = new DecimalData();
+      var value = data.Value + data.OutOfToleranceDelta;
+      var target = data.Value;
+      var epsilon = data.FixedEpsilon;
+      var comparer = data.FixedErrorComparer;
       var act = () => _ = value.EnsuresApproximatelyEqual(target, epsilon, comparer, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
       var expectedMessage = $"Postcondition ApproximatelyEqual failed: {nameof(value)} must be within +/- {epsilon} of {target}";
 
@@ -153,10 +157,11 @@ public class ApproximatelyEqualExtensionsTests
    public void ApproximatelyEqualExtensions_EnsuresApproximatelyEqual_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      var value = Single.Pi;
-      var target = Single.Tau;
-      var epsilon = 0.0001F;
-      var comparer = StandardFloatingPointComparers.SingleRelativeErrorComparer;
+      var data = new SingleData();
+      var value = data.Value - data.OutOfToleranceDelta;
+      var target = data.Value;
+      var epsilon = data.RelativeEpsilon;
+      var comparer = data.RelativeErrorComparer;
       var messageTemplate = "Requirement {RequirementName} failed";
       var act = () => _ = value.EnsuresApproximatelyEqual(target, epsilon, comparer, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
       var expectedMessage = $"Requirement ApproximatelyEqual failed";
@@ -244,10 +249,11 @@ public class ApproximatelyEqualExtensionsTests
    public void ApproximatelyEqualExtensions_RequiresApproximatelyEqual_ShouldThrowWithExpectedDataDictionary_WhenValueIsNotApproximatelyEqualToTarget()
    {
       // Arrange.
-      var value = Single.Pi;
-      var target = Single.Tau;
-      var epsilon = 0.0001F;
-      var comparer = StandardFloatingPointComparers.SingleRelativeErrorComparer;
+      var data = new SingleData();
+      var value = data.Value - data.OutOfToleranceDelta;
+      var target = data.Value;
+      var epsilon = data.RelativeEpsilon;
+      var comparer = data.RelativeErrorComparer;
       var act = () => _ = value.RequiresApproximatelyEqual(target, epsilon, comparer);
 
       // Act/assert.
@@ -268,10 +274,11 @@ public class ApproximatelyEqualExtensionsTests
    public void ApproximatelyEqualExtensions_RequiresApproximatelyEqual_ShouldThrowArgumentExceptionWithExpectedMessage_WhenValueIsNotApproximatelyEqualToTarget()
    {
       // Arrange.
-      var value = Double.Pi;
-      var target = Double.Tau;
-      var epsilon = 0.0001;
-      var comparer = StandardFloatingPointComparers.DoubleRelativeErrorComparer;
+      var data = new DoubleData();
+      var value = data.Value - data.OutOfToleranceDelta;
+      var target = data.Value;
+      var epsilon = data.RelativeEpsilon;
+      var comparer = data.RelativeErrorComparer;
       var act = () => _ = value.RequiresApproximatelyEqual(target, epsilon, comparer);
       var expectedParameterName = nameof(value);
       var expectedMessage = $"Precondition ApproximatelyEqual failed: {nameof(value)} must be within +/- {epsilon} of {target}";
@@ -286,10 +293,11 @@ public class ApproximatelyEqualExtensionsTests
    public void ApproximatelyEqualExtensions_RequiresApproximatelyEqual_ShouldThrowArgumentExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
    {
       // Arrange.
-      var value = Half.Pi;
-      var target = Half.Tau;
-      var epsilon = (Half)0.001;
-      var comparer = StandardFloatingPointComparers.HalfFixedErrorComparer;
+      var data = new HalfData();
+      var value = data.Value + data.OutOfToleranceDelta;
+      var target = data.Value;
+      var epsilon = data.FixedEpsilon;
+      var comparer = data.FixedErrorComparer;
       var messageTemplate = "Requirement {RequirementName} failed";
       var act = () => _ = value.RequiresApproximatelyEqual(target, epsilon, comparer, messageTemplate);
       var expectedParameterName = nameof(value);
@@ -305,10 +313,11 @@ public class ApproximatelyEqualExtensionsTests
    public void ApproximatelyEqualExtensions_RequiresApproximatelyEqual_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      var value = Decimal.One;
-      var target = Decimal.MinusOne;
-      var epsilon = 0.0001M;
-      var comparer = StandardFloatingPointComparers.DecimalFixedErrorComparer;
+      var data = new DecimalData();
+      var value = data.Value + data.OutOfToleranceDelta;
+      var target = data.Value;
+      var epsilon = data.FixedEpsilon;
+      var comparer = data.FixedErrorComparer;
       var act = () => _ = value.RequiresApproximatelyEqual(target, epsilon, comparer, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
       var expectedMessage = $"Precondition ApproximatelyEqual failed: {nameof(value)} must be within +/- {epsilon} of {target}";
 
@@ -321,10 +330,11 @@ public class ApproximatelyEqualExtensionsTests
    public void ApproximatelyEqualExtensions_RequiresApproximatelyEqual_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      var value = Single.Pi;
-      var target = Single.Tau;
-      var epsilon = 0.0001F;
-      var comparer = StandardFloatingPointComparers.SingleRelativeErrorComparer;
+      var data = new SingleData();
+      var value = data.Value - data.OutOfToleranceDelta;
+      var target = data.Value;
+      var epsilon = data.RelativeEpsilon;
+      var comparer = data.RelativeErrorComparer;
       var messageTemplate = "Requirement {RequirementName} failed";
       var act = () => _ = value.RequiresApproximatelyEqual(target, epsilon, comparer, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
       var expectedMessage = $"Requirement ApproximatelyEqual failed";
