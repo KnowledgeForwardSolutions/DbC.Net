@@ -45,12 +45,74 @@ public static class GreaterThanExtensions
       T target,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
-      [CallerArgumentExpression("value")] String valueExpression = null!,
-      [CallerArgumentExpression("target")] String targetExpression = null!) where T : IComparable<T>
+      [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
+      [CallerArgumentExpression(nameof(target))] String targetExpression = null!) where T : IComparable<T>
    {
       CheckGreaterThan(
          value,
          target,
+         RequirementType.Postcondition,
+         messageTemplate,
+         exceptionFactory,
+         valueExpression,
+         targetExpression);
+
+      return value;
+   }
+
+   /// <summary>
+   ///   Value GreaterThan postcondition. Confirm that <paramref name="value"/>
+   ///   is greater than <paramref name="target"/> and throw an exception if it 
+   ///   is not.
+   /// </summary>
+   /// <param name="value">
+   ///   The value to check.
+   /// </param>
+   /// <param name="target">
+   ///   The target that <paramref name="value"/> should be greater than.
+   /// </param>
+   /// <param name="comparer">
+   ///   An <see cref="IComparer{T}"/> used to compare <paramref name="value"/> 
+   ///   and <paramref name="target"/>.
+   /// </param>
+   /// <param name="messageTemplate">
+   ///   Optional. The message template to use if an exception is thrown.
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than {Target}".
+   /// </param>
+   /// <param name="exceptionFactory">
+   ///   Optional. The <see cref="IExceptionFactory"/> used to create the
+   ///   exception that is thrown if the <paramref name="value"/> is 
+   ///   <see langword="null"/>. Defaults to 
+   ///   <see cref="StandardExceptionFactories.PostconditionFailedExceptionFactory"/>.
+   /// </param>
+   /// <param name="valueExpression">
+   ///   Optional. Defaults to the caller expression for
+   ///   <paramref name="value"/>. 
+   /// </param>
+   /// <param name="targetExpression">
+   ///   Optional. Defaults to the caller expression for
+   ///   <paramref name="target"/>. 
+   /// </param>
+   /// <returns>
+   ///   The tested <paramref name="value"/> is returned unaltered to support 
+   ///   chaining requirements.
+   /// </returns>
+   /// <exception cref="ArgumentNullException">
+   ///   <paramref name="comparer"/> is <see langword="null"/>.
+   /// </exception>
+   public static T EnsuresGreaterThan<T>(
+      this T value,
+      T target,
+      IComparer<T> comparer,
+      String? messageTemplate = null,
+      IExceptionFactory? exceptionFactory = null,
+      [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
+      [CallerArgumentExpression(nameof(target))] String targetExpression = null!)
+   {
+      CheckGreaterThan(
+         value,
+         target,
+         comparer ?? throw new ArgumentNullException(nameof(comparer), Messages.ComparerIsNull),
          RequirementType.Postcondition,
          messageTemplate,
          exceptionFactory,
@@ -98,12 +160,74 @@ public static class GreaterThanExtensions
       T target,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
-      [CallerArgumentExpression("value")] String valueExpression = null!,
-      [CallerArgumentExpression("target")] String targetExpression = null!) where T : IComparable<T>
+      [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
+      [CallerArgumentExpression(nameof(target))] String targetExpression = null!) where T : IComparable<T>
    {
       CheckGreaterThan(
          value,
          target,
+         RequirementType.Precondition,
+         messageTemplate,
+         exceptionFactory,
+         valueExpression,
+         targetExpression);
+
+      return value;
+   }
+
+   /// <summary>
+   ///   Value GreaterThan precondition. Confirm that <paramref name="value"/>
+   ///   is greater than <paramref name="target"/> and throw an exception if it 
+   ///   is not.
+   /// </summary>
+   /// <param name="value">
+   ///   The value to check.
+   /// </param>
+   /// <param name="target">
+   ///   The target that <paramref name="value"/> should be greater than.
+   /// </param>
+   /// <param name="comparer">
+   ///   An <see cref="IComparer{T}"/> used to compare <paramref name="value"/> 
+   ///   and <paramref name="target"/>.
+   /// </param>
+   /// <param name="messageTemplate">
+   ///   Optional. The message template to use if an exception is thrown.
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than {Target}".
+   /// </param>
+   /// <param name="exceptionFactory">
+   ///   Optional. The <see cref="IExceptionFactory"/> used to create the
+   ///   exception that is thrown if the <paramref name="value"/> is 
+   ///   <see langword="null"/>. Defaults to 
+   ///   <see cref="StandardExceptionFactories.ArgumentOutOfRangeExceptionFactory"/>.
+   /// </param>
+   /// <param name="valueExpression">
+   ///   Optional. Defaults to the caller expression for
+   ///   <paramref name="value"/>. 
+   /// </param>
+   /// <param name="targetExpression">
+   ///   Optional. Defaults to the caller expression for
+   ///   <paramref name="target"/>. 
+   /// </param>
+   /// <returns>
+   ///   The tested <paramref name="value"/> is returned unaltered to support 
+   ///   chaining requirements.
+   /// </returns>
+   /// <exception cref="ArgumentNullException">
+   ///   <paramref name="comparer"/> is <see langword="null"/>.
+   /// </exception>
+   public static T RequiresGreaterThan<T>(
+      this T value,
+      T target,
+      IComparer<T> comparer,
+      String? messageTemplate = null,
+      IExceptionFactory? exceptionFactory = null,
+      [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
+      [CallerArgumentExpression(nameof(target))] String targetExpression = null!)
+   {
+      CheckGreaterThan(
+         value,
+         target,
+         comparer ?? throw new ArgumentNullException(nameof(comparer), Messages.ComparerIsNull),
          RequirementType.Precondition,
          messageTemplate,
          exceptionFactory,
@@ -123,6 +247,33 @@ public static class GreaterThanExtensions
       String targetExpression) where T : IComparable<T>
    {
       if (value is null || value!.CompareTo(target) <= 0)
+      {
+         messageTemplate ??= MessageTemplates.GreaterThanTemplate;
+         exceptionFactory ??= requirementType == RequirementType.Precondition
+            ? StandardExceptionFactories.ArgumentOutOfRangeExceptionFactory
+            : StandardExceptionFactories.PostconditionFailedExceptionFactory;
+         var data = GetDataDictionary(
+            requirementType,
+            value!,
+            valueExpression,
+            target!,
+            targetExpression);
+
+         throw exceptionFactory.CreateException(data, messageTemplate);
+      }
+   }
+
+   private static void CheckGreaterThan<T>(
+      T value,
+      T target,
+      IComparer<T> comparer,
+      RequirementType requirementType,
+      String? messageTemplate,
+      IExceptionFactory? exceptionFactory,
+      String valueExpression,
+      String targetExpression)
+   {
+      if (comparer.Compare(value, target) <= 0)
       {
          messageTemplate ??= MessageTemplates.GreaterThanTemplate;
          exceptionFactory ??= requirementType == RequirementType.Precondition

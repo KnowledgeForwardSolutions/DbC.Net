@@ -24,6 +24,8 @@ public abstract class FloatingPointValue<T> : IComparableTestData<T> where T : I
       MaxValue = maxValue;
       MinValue = minValue;
       ReverseComparer = reverseComparer;
+      ReverseMaxValue = minValue;
+      ReverseMinValue = maxValue;
    }
 
    public virtual T Value { get; }
@@ -45,4 +47,8 @@ public abstract class FloatingPointValue<T> : IComparableTestData<T> where T : I
    public T MinValue { get; }
 
    public ReverseComparer<T> ReverseComparer { get; }
+
+   public T ReverseMaxValue { get; }
+
+   public T ReverseMinValue { get; }
 }

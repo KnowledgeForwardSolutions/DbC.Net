@@ -12,9 +12,15 @@ public abstract class ComparableValue<T> : EquatableValue<T>, IComparableTestDat
    {
       MinValue = minValue;
       MaxValue = maxValue;
+      ReverseMaxValue = minValue;
+      ReverseMinValue = maxValue;
    }
 
    public T MaxValue { get; }
 
    public T MinValue { get; }
+
+   public T ReverseMaxValue { get; }
+
+   public T ReverseMinValue { get; }
 }
