@@ -365,9 +365,7 @@ public static class NotEqualExtensions
       if ((value is null && target is null) || (value is not null && value.Equals(target)))
       {
          messageTemplate ??= MessageTemplates.NotEqualTemplate;
-         exceptionFactory ??= requirementType == RequirementType.Precondition
-            ? StandardExceptionFactories.ArgumentExceptionFactory
-            : StandardExceptionFactories.PostconditionFailedExceptionFactory;
+         exceptionFactory ??= GetExceptionFactory(requirementType);
          var data = GetDataDictionary(
             requirementType,
             value!,
@@ -392,9 +390,7 @@ public static class NotEqualExtensions
       if (comparer.Equals(value, target))
       {
          messageTemplate ??= MessageTemplates.NotEqualTemplate;
-         exceptionFactory ??= requirementType == RequirementType.Precondition
-            ? StandardExceptionFactories.ArgumentExceptionFactory
-            : StandardExceptionFactories.PostconditionFailedExceptionFactory;
+         exceptionFactory ??= GetExceptionFactory(requirementType);
          var data = GetDataDictionary(
             requirementType,
             value,
@@ -419,9 +415,7 @@ public static class NotEqualExtensions
       if ((value is null && target is null) || (value is not null && value.Equals(target, comparisonType)))
       {
          messageTemplate ??= MessageTemplates.NotEqualTemplate;
-         exceptionFactory ??= requirementType == RequirementType.Precondition
-            ? StandardExceptionFactories.ArgumentExceptionFactory
-            : StandardExceptionFactories.PostconditionFailedExceptionFactory;
+         exceptionFactory ??= GetExceptionFactory(requirementType);
          var data = GetDataDictionary(
             requirementType,
             value,
@@ -449,4 +443,9 @@ public static class NotEqualExtensions
          {  DataNames.Target, target! },
          {  DataNames.TargetExpression, targetExpression }
       };
+
+   private static IExceptionFactory GetExceptionFactory(RequirementType requirementType)
+      => requirementType == RequirementType.Precondition
+         ? StandardExceptionFactories.ArgumentExceptionFactory
+         : StandardExceptionFactories.PostconditionFailedExceptionFactory;
 }

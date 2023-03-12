@@ -387,6 +387,277 @@ public class GreaterThanExtensionsTests
 
    #endregion
 
+   #region EnsuresGreaterThan (String) Tests
+   // ==========================================================================
+   // ==========================================================================
+
+   [UseCulture(CultureData.EnglishUS)]
+   [Theory]
+   [InlineData(StringData.UpperCaseAE, StringData.LowerCaseAE, StringComparison.CurrentCulture)]
+   [InlineData(StringData.LowerCaseZ, StringData.UpperCaseAE, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.UpperCaseAE, StringData.LowerCaseAE, StringComparison.InvariantCulture)]
+   [InlineData(StringData.LowerCaseZ, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.Ordinal)]
+   [InlineData(StringData.LowerCaseZ, StringData.UpperCaseAE, StringComparison.OrdinalIgnoreCase)]
+   public void GreaterThanExtensions_EnsuresGreaterThanString_ShouldReturnOriginalValue_WhenValueIsGreaterThanTargetAndCurrentCultureIs_enUS(
+      String value,
+      String target,
+      StringComparison comparisonType)
+   {
+      // Act.
+      var result = value.EnsuresGreaterThan(target, comparisonType);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [UseCulture(CultureData.TurkishTurkey)]
+   [Theory]
+   [InlineData(StringData.UpperCaseDottedI, StringData.LowerCaseI, StringComparison.CurrentCulture)]
+   [InlineData(StringData.LowerCaseI, StringData.UpperCaseI, StringComparison.CurrentCultureIgnoreCase)] // I without dot sorts before I with dot in tr-TR culture
+   [InlineData(StringData.UpperCaseA, StringData.LowerCaseA, StringComparison.InvariantCulture)]
+   [InlineData(StringData.LowerCaseI, StringData.UpperCaseA, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.UpperCaseDottedI, StringData.UpperCaseZ, StringComparison.Ordinal)]
+   [InlineData(StringData.LowerCaseZ, StringData.UpperCaseAE, StringComparison.OrdinalIgnoreCase)]
+   public void GreaterThanExtensions_EnsuresGreaterThanString_ShouldReturnOriginalValue_WhenValueIsGreaterThanTargetAndCurrentCultureIs_trTR(
+      String value,
+      String target,
+      StringComparison comparisonType)
+   {
+      // Act.
+      var result = value.EnsuresGreaterThan(target, comparisonType);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [UseCulture(CultureData.SwedishSweden)]
+   [Theory]
+   [InlineData(StringData.UpperCaseOWithDiaeresis, StringData.LowerCaseOWithDiaeresis, StringComparison.CurrentCulture)]
+   [InlineData(StringData.UpperCaseOWithDiaeresis, StringData.UpperCaseZ, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.UpperCaseA, StringData.LowerCaseA, StringComparison.InvariantCulture)]
+   [InlineData(StringData.LowerCaseI, StringData.UpperCaseA, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseDiphthongAE, StringData.UpperCaseDiphthongAE, StringComparison.Ordinal)]
+   [InlineData(StringData.UpperCaseDiphthongAE, StringData.UpperCaseAE, StringComparison.OrdinalIgnoreCase)]
+   public void GreaterThanExtensions_EnsuresGreaterThanString_ShouldReturnOriginalValue_WhenValueIsGreaterThanTargetAndCurrentCultureIs_svSE(
+      String value,
+      String target,
+      StringComparison comparisonType)
+   {
+      // Act.
+      var result = value.EnsuresGreaterThan(target, comparisonType);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [UseCulture(CultureData.EnglishUS)]
+   [Theory]
+   [InlineData(StringData.UpperCaseAE, StringData.UpperCaseAE, StringComparison.CurrentCulture)]
+   [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.UpperCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCulture)]
+   [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseSlashedO, StringData.LowerCaseSlashedO, StringComparison.Ordinal)]
+   [InlineData(StringData.LowerCaseSlashedO, StringData.UpperCaseSlashedO, StringComparison.OrdinalIgnoreCase)]
+   public void GreaterThanExtensions_EnsuresGreaterThanString_ShouldThrow_WhenValueIsEqualToTargetAndCurrentCultureIs_enUS(
+      String value,
+      String target,
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      var act = () => _ = value.EnsuresGreaterThan(target, comparisonType);
+
+      // Act/assert.
+      act.Should().Throw<PostconditionFailedException>();
+   }
+
+   [UseCulture(CultureData.TurkishTurkey)]
+   [Theory]
+   [InlineData(StringData.LowerCaseDotlessI, StringData.UpperCaseI, StringComparison.CurrentCulture)]
+   [InlineData(StringData.LowerCaseDotlessI, StringData.LowerCaseI, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.UpperCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCulture)]
+   [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.UpperCaseSlashedO, StringData.LowerCaseSlashedO, StringComparison.Ordinal)]
+   [InlineData(StringData.UpperCaseI, StringData.LowerCaseDotlessI, StringComparison.OrdinalIgnoreCase)]
+   public void GreaterThanExtensions_EnsuresGreaterThanString_ShouldThrow_WhenValueIsLessThanTargetAndCurrentCultureIs_trTR(
+      String value,
+      String target,
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      var act = () => _ = value.EnsuresGreaterThan(target, comparisonType);
+
+      // Act/assert.
+      act.Should().Throw<PostconditionFailedException>();
+   }
+
+   [UseCulture(CultureData.EnglishUS)]
+   [Theory]
+   [InlineData(StringComparison.CurrentCulture)]
+   [InlineData(StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringComparison.InvariantCulture)]
+   [InlineData(StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringComparison.Ordinal)]
+   [InlineData(StringComparison.OrdinalIgnoreCase)]
+   public void GreaterThanExtensions_EnsuresGreaterThanString_ShouldThrow_WhenValueIsDefaultAndTargetIsNotAndCurrentCultureIs_enUS(
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      String value = default!;
+      var target = "asdf";
+      var act = () => _ = value.EnsuresGreaterThan(target, comparisonType);
+
+      // Act/assert.
+      act.Should().Throw<PostconditionFailedException>();
+   }
+
+   [UseCulture(CultureData.SwedishSweden)]
+   [Theory]
+   [InlineData(StringComparison.CurrentCulture)]
+   [InlineData(StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringComparison.InvariantCulture)]
+   [InlineData(StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringComparison.Ordinal)]
+   [InlineData(StringComparison.OrdinalIgnoreCase)]
+   public void GreaterThanExtensions_EnsuresGreaterThanString_ShouldThrow_WhenValueIsDefaultAndTargetIsNotAndCurrentCultureIs_svSE(
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      String value = default!;
+      var target = "asdf";
+      var act = () => _ = value.EnsuresGreaterThan(target, comparisonType);
+
+      // Act/assert.
+      act.Should().Throw<PostconditionFailedException>();
+   }
+
+   [UseCulture(CultureData.EnglishUS)]
+   [Theory]
+   [InlineData(StringComparison.CurrentCulture)]
+   [InlineData(StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringComparison.InvariantCulture)]
+   [InlineData(StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringComparison.Ordinal)]
+   [InlineData(StringComparison.OrdinalIgnoreCase)]
+   public void GreaterThanExtensions_EnsuresGreaterThanString_ShouldThrow_WhenValueAndTargetAreDefaultAndCurrentCultureIs_enUS(
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      String value = default!;
+      String target = default!;
+      var act = () => _ = value.EnsuresGreaterThan(target, comparisonType);
+
+      // Act/assert.
+      act.Should().Throw<PostconditionFailedException>();
+   }
+
+   [UseCulture(CultureData.DanishDenmark)]
+   [Theory]
+   [InlineData(StringComparison.CurrentCulture)]
+   [InlineData(StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringComparison.InvariantCulture)]
+   [InlineData(StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringComparison.Ordinal)]
+   [InlineData(StringComparison.OrdinalIgnoreCase)]
+   public void GreaterThanExtensions_EnsuresGreaterThanString_ShouldThrow_WhenValueAndTargetAreDefaultAndCurrentCultureIs_daDK(
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      String value = default!;
+      String target = default!;
+      var act = () => _ = value.EnsuresGreaterThan(target, comparisonType);
+
+      // Act/assert.
+      act.Should().Throw<PostconditionFailedException>();
+   }
+
+   [Fact]
+   public void GreaterThanExtensions_EnsuresGreaterThanString_ShouldThrowWithExpectedDataDictionary_WhenValueIsLessThanTarget()
+   {
+      // Arrange.
+      var value = StringData.UpperCaseA;
+      var target = StringData.UpperCaseZ;
+      var comparisonType = StringComparison.Ordinal;
+      var act = () => _ = value.EnsuresGreaterThan(target, comparisonType);
+
+      // Act/assert.
+      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+
+      ex.Data.Count.Should().Be(_stringDataCount);
+      ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
+      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.GreaterThan);
+      ex.Data[DataNames.Value].Should().Be(value);
+      ex.Data[DataNames.ValueExpression].Should().Be(nameof(value));
+      ex.Data[DataNames.Target].Should().Be(target);
+      ex.Data[DataNames.TargetExpression].Should().Be(nameof(target));
+      ex.Data[DataNames.StringComparison].Should().Be(comparisonType);
+   }
+
+   [Fact]
+   public void GreaterThanExtensions_EnsuresGreaterThanString_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueIsLessThanTarget()
+   {
+      // Arrange.
+      var value = StringData.LowerCaseA;
+      var target = StringData.LowerCaseZ;
+      var comparisonType = StringComparison.OrdinalIgnoreCase;
+      var act = () => _ = value.EnsuresGreaterThan(target, comparisonType);
+      var expectedMessage = $"Postcondition GreaterThan failed: {nameof(value)} must be greater than {target}";
+
+      // Act/assert.
+      act.Should().Throw<PostconditionFailedException>()
+         .And.Message.Should().StartWith(expectedMessage);
+   }
+
+   [Fact]
+   public void GreaterThanExtensions_EnsuresGreaterThanString_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
+   {
+      // Arrange.
+      var value = StringData.UpperCaseH;
+      var target = StringData.LowerCaseJ;
+      var comparisonType = StringComparison.InvariantCulture;
+      var messageTemplate = "Requirement {RequirementName} failed";
+      var act = () => _ = value.EnsuresGreaterThan(target, comparisonType, messageTemplate);
+      var expectedMessage = $"Requirement GreaterThan failed";
+
+      // Act/assert.
+      act.Should().Throw<PostconditionFailedException>()
+         .And.Message.Should().StartWith(expectedMessage);
+   }
+
+   [Fact]
+   public void GreaterThanExtensions_EnsuresGreaterThanString_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
+   {
+      // Arrange.
+      var value = StringData.UpperCaseJ;
+      var target = StringData.LowerCaseJ;
+      var comparisonType = StringComparison.InvariantCultureIgnoreCase;
+      var act = () => _ = value.EnsuresGreaterThan(target, comparisonType, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Postcondition GreaterThan failed: {nameof(value)} must be greater than {target}";
+
+      // Act/assert.
+      act.Should().Throw<CustomException>()
+         .And.Message.Should().StartWith(expectedMessage);
+   }
+
+   [UseCulture(CultureData.EnglishUS)]
+   [Fact]
+   public void GreaterThanExtensions_EnsuresGreaterThanString_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   {
+      // Arrange.
+      var value = StringData.LowerCaseA;
+      var target = StringData.UpperCaseZ;
+      var comparisonType = StringComparison.CurrentCulture;
+      var messageTemplate = "Requirement {RequirementName} failed";
+      var act = () => _ = value.EnsuresGreaterThan(target, comparisonType, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Requirement GreaterThan failed";
+
+      // Act/assert.
+      act.Should().Throw<CustomException>()
+         .And.Message.Should().StartWith(expectedMessage);
+   }
+
+   #endregion
+
    #region RequiresGreaterThan (IComparable) Tests
    // ==========================================================================
    // ==========================================================================
@@ -774,6 +1045,281 @@ public class GreaterThanExtensionsTests
       act.Should().Throw<ArgumentNullException>()
          .WithParameterName(nameof(comparer))
          .And.Message.Should().StartWith(Messages.ComparerIsNull);
+   }
+
+   #endregion
+
+   #region RequiresGreaterThan (String) Tests
+   // ==========================================================================
+   // ==========================================================================
+
+   [UseCulture(CultureData.EnglishUS)]
+   [Theory]
+   [InlineData(StringData.UpperCaseAE, StringData.LowerCaseAE, StringComparison.CurrentCulture)]
+   [InlineData(StringData.LowerCaseZ, StringData.UpperCaseAE, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.UpperCaseAE, StringData.LowerCaseAE, StringComparison.InvariantCulture)]
+   [InlineData(StringData.LowerCaseZ, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.Ordinal)]
+   [InlineData(StringData.LowerCaseZ, StringData.UpperCaseAE, StringComparison.OrdinalIgnoreCase)]
+   public void GreaterThanExtensions_RequiresGreaterThanString_ShouldReturnOriginalValue_WhenValueIsGreaterThanTargetAndCurrentCultureIs_enUS(
+      String value,
+      String target,
+      StringComparison comparisonType)
+   {
+      // Act.
+      var result = value.RequiresGreaterThan(target, comparisonType);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [UseCulture(CultureData.TurkishTurkey)]
+   [Theory]
+   [InlineData(StringData.UpperCaseDottedI, StringData.LowerCaseI, StringComparison.CurrentCulture)]
+   [InlineData(StringData.LowerCaseI, StringData.UpperCaseI, StringComparison.CurrentCultureIgnoreCase)] // I without dot sorts before I with dot in tr-TR culture
+   [InlineData(StringData.UpperCaseA, StringData.LowerCaseA, StringComparison.InvariantCulture)]
+   [InlineData(StringData.LowerCaseI, StringData.UpperCaseA, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.UpperCaseDottedI, StringData.UpperCaseZ, StringComparison.Ordinal)]
+   [InlineData(StringData.LowerCaseZ, StringData.UpperCaseAE, StringComparison.OrdinalIgnoreCase)]
+   public void GreaterThanExtensions_RequiresGreaterThanString_ShouldReturnOriginalValue_WhenValueIsGreaterThanTargetAndCurrentCultureIs_trTR(
+      String value,
+      String target,
+      StringComparison comparisonType)
+   {
+      // Act.
+      var result = value.RequiresGreaterThan(target, comparisonType);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [UseCulture(CultureData.SwedishSweden)]
+   [Theory]
+   [InlineData(StringData.UpperCaseOWithDiaeresis, StringData.LowerCaseOWithDiaeresis, StringComparison.CurrentCulture)]
+   [InlineData(StringData.UpperCaseOWithDiaeresis, StringData.UpperCaseZ, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.UpperCaseA, StringData.LowerCaseA, StringComparison.InvariantCulture)]
+   [InlineData(StringData.LowerCaseI, StringData.UpperCaseA, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseDiphthongAE, StringData.UpperCaseDiphthongAE, StringComparison.Ordinal)]
+   [InlineData(StringData.UpperCaseDiphthongAE, StringData.UpperCaseAE, StringComparison.OrdinalIgnoreCase)]
+   public void GreaterThanExtensions_RequiresGreaterThanString_ShouldReturnOriginalValue_WhenValueIsGreaterThanTargetAndCurrentCultureIs_svSE(
+      String value,
+      String target,
+      StringComparison comparisonType)
+   {
+      // Act.
+      var result = value.RequiresGreaterThan(target, comparisonType);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [UseCulture(CultureData.EnglishUS)]
+   [Theory]
+   [InlineData(StringData.UpperCaseAE, StringData.UpperCaseAE, StringComparison.CurrentCulture)]
+   [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.UpperCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCulture)]
+   [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseSlashedO, StringData.LowerCaseSlashedO, StringComparison.Ordinal)]
+   [InlineData(StringData.LowerCaseSlashedO, StringData.UpperCaseSlashedO, StringComparison.OrdinalIgnoreCase)]
+   public void GreaterThanExtensions_RequiresGreaterThanString_ShouldThrow_WhenValueIsEqualToTargetAndCurrentCultureIs_enUS(
+      String value,
+      String target,
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      var act = () => _ = value.RequiresGreaterThan(target, comparisonType);
+
+      // Act/assert.
+      act.Should().Throw<ArgumentOutOfRangeException>();
+   }
+
+   [UseCulture(CultureData.TurkishTurkey)]
+   [Theory]
+   [InlineData(StringData.LowerCaseDotlessI, StringData.UpperCaseI, StringComparison.CurrentCulture)]
+   [InlineData(StringData.LowerCaseDotlessI, StringData.LowerCaseI, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.UpperCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCulture)]
+   [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.UpperCaseSlashedO, StringData.LowerCaseSlashedO, StringComparison.Ordinal)]
+   [InlineData(StringData.UpperCaseI, StringData.LowerCaseDotlessI, StringComparison.OrdinalIgnoreCase)]
+   public void GreaterThanExtensions_RequiresGreaterThanString_ShouldThrow_WhenValueIsLessThanTargetAndCurrentCultureIs_trTR(
+      String value,
+      String target,
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      var act = () => _ = value.RequiresGreaterThan(target, comparisonType);
+
+      // Act/assert.
+      act.Should().Throw<ArgumentOutOfRangeException>();
+   }
+
+   [UseCulture(CultureData.EnglishUS)]
+   [Theory]
+   [InlineData(StringComparison.CurrentCulture)]
+   [InlineData(StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringComparison.InvariantCulture)]
+   [InlineData(StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringComparison.Ordinal)]
+   [InlineData(StringComparison.OrdinalIgnoreCase)]
+   public void GreaterThanExtensions_RequiresGreaterThanString_ShouldThrow_WhenValueIsDefaultAndTargetIsNotAndCurrentCultureIs_enUS(
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      String value = default!;
+      var target = "asdf";
+      var act = () => _ = value.RequiresGreaterThan(target, comparisonType);
+
+      // Act/assert.
+      act.Should().Throw<ArgumentOutOfRangeException>();
+   }
+
+   [UseCulture(CultureData.SwedishSweden)]
+   [Theory]
+   [InlineData(StringComparison.CurrentCulture)]
+   [InlineData(StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringComparison.InvariantCulture)]
+   [InlineData(StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringComparison.Ordinal)]
+   [InlineData(StringComparison.OrdinalIgnoreCase)]
+   public void GreaterThanExtensions_RequiresGreaterThanString_ShouldThrow_WhenValueIsDefaultAndTargetIsNotAndCurrentCultureIs_svSE(
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      String value = default!;
+      var target = "asdf";
+      var act = () => _ = value.RequiresGreaterThan(target, comparisonType);
+
+      // Act/assert.
+      act.Should().Throw<ArgumentOutOfRangeException>();
+   }
+
+   [UseCulture(CultureData.EnglishUS)]
+   [Theory]
+   [InlineData(StringComparison.CurrentCulture)]
+   [InlineData(StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringComparison.InvariantCulture)]
+   [InlineData(StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringComparison.Ordinal)]
+   [InlineData(StringComparison.OrdinalIgnoreCase)]
+   public void GreaterThanExtensions_RequiresGreaterThanString_ShouldThrow_WhenValueAndTargetAreDefaultAndCurrentCultureIs_enUS(
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      String value = default!;
+      String target = default!;
+      var act = () => _ = value.RequiresGreaterThan(target, comparisonType);
+
+      // Act/assert.
+      act.Should().Throw<ArgumentOutOfRangeException>();
+   }
+
+   [UseCulture(CultureData.DanishDenmark)]
+   [Theory]
+   [InlineData(StringComparison.CurrentCulture)]
+   [InlineData(StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringComparison.InvariantCulture)]
+   [InlineData(StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringComparison.Ordinal)]
+   [InlineData(StringComparison.OrdinalIgnoreCase)]
+   public void GreaterThanExtensions_RequiresGreaterThanString_ShouldThrow_WhenValueAndTargetAreDefaultAndCurrentCultureIs_daDK(
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      String value = default!;
+      String target = default!;
+      var act = () => _ = value.RequiresGreaterThan(target, comparisonType);
+
+      // Act/assert.
+      act.Should().Throw<ArgumentOutOfRangeException>();
+   }
+
+   [Fact]
+   public void GreaterThanExtensions_RequiresGreaterThanString_ShouldThrowWithExpectedDataDictionary_WhenValueIsLessThanTarget()
+   {
+      // Arrange.
+      var value = StringData.UpperCaseA;
+      var target = StringData.UpperCaseZ;
+      var comparisonType = StringComparison.Ordinal;
+      var act = () => _ = value.RequiresGreaterThan(target, comparisonType);
+
+      // Act/assert.
+      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+
+      ex.Data.Count.Should().Be(_stringDataCount);
+      ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
+      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.GreaterThan);
+      ex.Data[DataNames.Value].Should().Be(value);
+      ex.Data[DataNames.ValueExpression].Should().Be(nameof(value));
+      ex.Data[DataNames.Target].Should().Be(target);
+      ex.Data[DataNames.TargetExpression].Should().Be(nameof(target));
+      ex.Data[DataNames.StringComparison].Should().Be(comparisonType);
+   }
+
+   [Fact]
+   public void GreaterThanExtensions_RequiresGreaterThanString_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenValueIsLessThanTarget()
+   {
+      // Arrange.
+      var value = StringData.LowerCaseA;
+      var target = StringData.LowerCaseZ;
+      var comparisonType = StringComparison.OrdinalIgnoreCase;
+      var act = () => _ = value.RequiresGreaterThan(target, comparisonType);
+      var expectedParameterName = nameof(value);
+      var expectedMessage = $"Precondition GreaterThan failed: {nameof(value)} must be greater than {target}";
+
+      // Act/assert.
+      act.Should().Throw<ArgumentOutOfRangeException>()
+         .WithParameterName(expectedParameterName)
+         .And.Message.Should().StartWith(expectedMessage);
+   }
+
+   [Fact]
+   public void GreaterThanExtensions_RequiresGreaterThanString_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
+   {
+      // Arrange.
+      var value = StringData.UpperCaseH;
+      var target = StringData.LowerCaseJ;
+      var comparisonType = StringComparison.InvariantCulture;
+      var messageTemplate = "Requirement {RequirementName} failed";
+      var act = () => _ = value.RequiresGreaterThan(target, comparisonType, messageTemplate);
+      var expectedParameterName = nameof(value);
+      var expectedMessage = $"Requirement GreaterThan failed";
+
+      // Act/assert.
+      act.Should().Throw<ArgumentOutOfRangeException>()
+         .WithParameterName(expectedParameterName)
+         .And.Message.Should().StartWith(expectedMessage);
+   }
+
+   [Fact]
+   public void GreaterThanExtensions_RequiresGreaterThanString_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
+   {
+      // Arrange.
+      var value = StringData.UpperCaseJ;
+      var target = StringData.LowerCaseJ;
+      var comparisonType = StringComparison.InvariantCultureIgnoreCase;
+      var act = () => _ = value.RequiresGreaterThan(target, comparisonType, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Precondition GreaterThan failed: {nameof(value)} must be greater than {target}";
+
+      // Act/assert.
+      act.Should().Throw<CustomException>()
+         .And.Message.Should().StartWith(expectedMessage);
+   }
+
+   [UseCulture(CultureData.EnglishUS)]
+   [Fact]
+   public void GreaterThanExtensions_RequiresGreaterThanString_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   {
+      // Arrange.
+      var value = StringData.LowerCaseA;
+      var target = StringData.UpperCaseZ;
+      var comparisonType = StringComparison.CurrentCulture;
+      var messageTemplate = "Requirement {RequirementName} failed";
+      var act = () => _ = value.RequiresGreaterThan(target, comparisonType, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Requirement GreaterThan failed";
+
+      // Act/assert.
+      act.Should().Throw<CustomException>()
+         .And.Message.Should().StartWith(expectedMessage);
    }
 
    #endregion

@@ -349,7 +349,7 @@ public class NotEqualExtensionsTests
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.CurrentCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCulture)]
    [InlineData(StringData.LowerCaseA, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
-   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.Ordinal)]
+   [InlineData(StringData.LowerCaseDiphthongAE, StringData.UpperCaseDiphthongAE, StringComparison.Ordinal)]
    [InlineData(StringData.UpperCaseI, StringData.UpperCaseDottedI, StringComparison.OrdinalIgnoreCase)]
    public void NotEqualExtensions_EnsuresNotEqualString_ShouldReturnOriginalValue_WhenValueDoesNotEqualTargetAndCurrentCultureIs_enUS(
       String value,
@@ -369,7 +369,7 @@ public class NotEqualExtensionsTests
    [InlineData(StringData.LowerCaseA, StringData.LowerCaseADash, StringComparison.CurrentCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.InvariantCulture)]
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.InvariantCultureIgnoreCase)]
-   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.Ordinal)]
+   [InlineData(StringData.LowerCaseDiphthongAE, StringData.UpperCaseDiphthongAE, StringComparison.Ordinal)]
    [InlineData(StringData.UpperCaseI, StringData.UpperCaseDottedI, StringComparison.OrdinalIgnoreCase)]
    public void NotEqualExtensions_EnsuresNotEqualString_ShouldReturnOriginalValue_WhenValueDoesNotEqualTargetAndCurrentCultureIs_trTR(
       String value,
@@ -389,7 +389,7 @@ public class NotEqualExtensionsTests
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.CurrentCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.InvariantCulture)]
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.InvariantCultureIgnoreCase)]
-   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.Ordinal)]
+   [InlineData(StringData.LowerCaseDiphthongAE, StringData.UpperCaseDiphthongAE, StringComparison.Ordinal)]
    [InlineData(StringData.UpperCaseI, StringData.UpperCaseDottedI, StringComparison.OrdinalIgnoreCase)]
    public void NotEqualExtensions_EnsuresNotEqualString_ShouldReturnOriginalValue_WhenValueDoesNotEqualTargetAndCurrentCultureIs_thTH(
       String value,
@@ -410,7 +410,7 @@ public class NotEqualExtensionsTests
    [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.InvariantCulture)]
    [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.Ordinal)]
-   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.OrdinalIgnoreCase)]
+   [InlineData(StringData.LowerCaseDiphthongAE, StringData.UpperCaseDiphthongAE, StringComparison.OrdinalIgnoreCase)]
    public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrow_WhenValueEqualsTargetAndCurrentCultureIs_enUS(
       String value,
       String target,
@@ -433,7 +433,7 @@ public class NotEqualExtensionsTests
    [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.InvariantCulture)]
    [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.Ordinal)]
-   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.OrdinalIgnoreCase)]
+   [InlineData(StringData.LowerCaseDiphthongAE, StringData.UpperCaseDiphthongAE, StringComparison.OrdinalIgnoreCase)]
    public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrow_WhenValueEqualsTargetAndCurrentCultureIs_trTR(
       String value,
       String target,
@@ -454,7 +454,7 @@ public class NotEqualExtensionsTests
    [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.InvariantCulture)]
    [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.Ordinal)]
-   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.OrdinalIgnoreCase)]
+   [InlineData(StringData.LowerCaseDiphthongAE, StringData.UpperCaseDiphthongAE, StringComparison.OrdinalIgnoreCase)]
    public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrow_WhenValueEqualsTargetAndCurrentCultureIs_thTH(
       String value,
       String target,
@@ -509,8 +509,8 @@ public class NotEqualExtensionsTests
    public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrowWithExpectedDataDictionary_WhenValueEqualsTarget()
    {
       // Arrange.
-      var value = StringData.LowerCaseDipthongAE;
-      var target = StringData.LowerCaseDipthongAE;
+      var value = StringData.LowerCaseDiphthongAE;
+      var target = StringData.LowerCaseDiphthongAE;
       var comparisonType = StringComparison.Ordinal;
       var act = () => _ = value.EnsuresNotEqual(target, comparisonType);
 
@@ -573,6 +573,7 @@ public class NotEqualExtensionsTests
          .And.Message.Should().StartWith(expectedMessage);
    }
 
+   [UseCulture(CultureData.EnglishUS)]
    [Fact]
    public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
@@ -941,7 +942,7 @@ public class NotEqualExtensionsTests
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.CurrentCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCulture)]
    [InlineData(StringData.LowerCaseA, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
-   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.Ordinal)]
+   [InlineData(StringData.LowerCaseDiphthongAE, StringData.UpperCaseDiphthongAE, StringComparison.Ordinal)]
    [InlineData(StringData.UpperCaseI, StringData.UpperCaseDottedI, StringComparison.OrdinalIgnoreCase)]
    public void NotEqualExtensions_RequiresNotEqualString_ShouldReturnOriginalValue_WhenValueDoesNotEqualTargetAndCurrentCultureIs_enUS(
       String value,
@@ -961,7 +962,7 @@ public class NotEqualExtensionsTests
    [InlineData(StringData.LowerCaseA, StringData.LowerCaseADash, StringComparison.CurrentCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.InvariantCulture)]
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.InvariantCultureIgnoreCase)]
-   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.Ordinal)]
+   [InlineData(StringData.LowerCaseDiphthongAE, StringData.UpperCaseDiphthongAE, StringComparison.Ordinal)]
    [InlineData(StringData.UpperCaseI, StringData.UpperCaseDottedI, StringComparison.OrdinalIgnoreCase)]
    public void NotEqualExtensions_RequiresNotEqualString_ShouldReturnOriginalValue_WhenValueDoesNotEqualTargetAndCurrentCultureIs_trTR(
       String value,
@@ -981,7 +982,7 @@ public class NotEqualExtensionsTests
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.CurrentCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.InvariantCulture)]
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.InvariantCultureIgnoreCase)]
-   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.Ordinal)]
+   [InlineData(StringData.LowerCaseDiphthongAE, StringData.UpperCaseDiphthongAE, StringComparison.Ordinal)]
    [InlineData(StringData.UpperCaseI, StringData.UpperCaseDottedI, StringComparison.OrdinalIgnoreCase)]
    public void NotEqualExtensions_RequiresNotEqualString_ShouldReturnOriginalValue_WhenValueDoesNotEqualTargetAndCurrentCultureIs_thTH(
       String value,
@@ -1002,7 +1003,7 @@ public class NotEqualExtensionsTests
    [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.InvariantCulture)]
    [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.Ordinal)]
-   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.OrdinalIgnoreCase)]
+   [InlineData(StringData.LowerCaseDiphthongAE, StringData.UpperCaseDiphthongAE, StringComparison.OrdinalIgnoreCase)]
    public void NotEqualExtensions_RequiresNotEqualString_ShouldThrow_WhenValueEqualsTargetAndCurrentCultureIs_enUS(
       String value,
       String target,
@@ -1025,7 +1026,7 @@ public class NotEqualExtensionsTests
    [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.InvariantCulture)]
    [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.Ordinal)]
-   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.OrdinalIgnoreCase)]
+   [InlineData(StringData.LowerCaseDiphthongAE, StringData.UpperCaseDiphthongAE, StringComparison.OrdinalIgnoreCase)]
    public void NotEqualExtensions_RequiresNotEqualString_ShouldThrow_WhenValueEqualsTargetAndCurrentCultureIs_trTR(
       String value,
       String target,
@@ -1046,7 +1047,7 @@ public class NotEqualExtensionsTests
    [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.InvariantCulture)]
    [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.Ordinal)]
-   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.OrdinalIgnoreCase)]
+   [InlineData(StringData.LowerCaseDiphthongAE, StringData.UpperCaseDiphthongAE, StringComparison.OrdinalIgnoreCase)]
    public void NotEqualExtensions_RequiresNotEqualString_ShouldThrow_WhenValueEqualsTargetAndCurrentCultureIs_thTH(
       String value,
       String target,
@@ -1101,8 +1102,8 @@ public class NotEqualExtensionsTests
    public void NotEqualExtensions_RequiresNotEqualString_ShouldThrowWithExpectedDataDictionary_WhenValueEqualsTarget()
    {
       // Arrange.
-      var value = StringData.LowerCaseDipthongAE;
-      var target = StringData.LowerCaseDipthongAE;
+      var value = StringData.LowerCaseDiphthongAE;
+      var target = StringData.LowerCaseDiphthongAE;
       var comparisonType = StringComparison.Ordinal;
       var act = () => _ = value.RequiresNotEqual(target, comparisonType);
 
@@ -1169,6 +1170,7 @@ public class NotEqualExtensionsTests
          .And.Message.Should().StartWith(expectedMessage);
    }
 
+   [UseCulture(CultureData.EnglishUS)]
    [Fact]
    public void NotEqualExtensions_RequiresNotEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {

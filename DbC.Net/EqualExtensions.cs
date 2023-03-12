@@ -366,9 +366,7 @@ public static class EqualExtensions
             || (value is null && target is null)))
       {
          messageTemplate ??= MessageTemplates.EqualTemplate;
-         exceptionFactory ??= requirementType == RequirementType.Precondition
-            ? StandardExceptionFactories.ArgumentExceptionFactory
-            : StandardExceptionFactories.PostconditionFailedExceptionFactory;
+         exceptionFactory ??= GetExceptionFactory(requirementType);
          var data = GetDataDictionary(
             requirementType,
             value!,
@@ -393,9 +391,7 @@ public static class EqualExtensions
       if (!comparer.Equals(value, target))
       {
          messageTemplate ??= MessageTemplates.EqualTemplate;
-         exceptionFactory ??= requirementType == RequirementType.Precondition
-            ? StandardExceptionFactories.ArgumentExceptionFactory
-            : StandardExceptionFactories.PostconditionFailedExceptionFactory;
+         exceptionFactory ??= GetExceptionFactory(requirementType);
          var data = GetDataDictionary(
             requirementType,
             value,
@@ -421,9 +417,7 @@ public static class EqualExtensions
             || (value is null && target is null)))
       {
          messageTemplate ??= MessageTemplates.EqualTemplate;
-         exceptionFactory ??= requirementType == RequirementType.Precondition
-            ? StandardExceptionFactories.ArgumentExceptionFactory
-            : StandardExceptionFactories.PostconditionFailedExceptionFactory;
+         exceptionFactory ??= GetExceptionFactory(requirementType);
          var data = GetDataDictionary(
             requirementType,
             value,
@@ -451,4 +445,9 @@ public static class EqualExtensions
          {  DataNames.Target, target! },
          {  DataNames.TargetExpression, targetExpression }
       };
+
+   private static IExceptionFactory GetExceptionFactory(RequirementType requirementType)
+      => requirementType == RequirementType.Precondition
+         ? StandardExceptionFactories.ArgumentExceptionFactory
+         : StandardExceptionFactories.PostconditionFailedExceptionFactory;
 }
