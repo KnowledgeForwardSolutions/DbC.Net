@@ -68,7 +68,7 @@ public sealed class Observation : IEquatable<Observation>, IComparable<Observati
       if (result != 0) return result;
 
       result = Value.CompareTo(other.Value);
-      return result == 0
+      return result != 0
          ? result
          : Units.CompareTo(other.Units);
    }
