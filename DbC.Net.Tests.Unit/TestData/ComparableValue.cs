@@ -1,6 +1,6 @@
 ﻿namespace DbC.Net.Tests.Unit.TestData;
 
-public abstract class ComparableValue<T> : EquatableValue<T>
+public abstract class ComparableValue<T> : EquatableValue<T>, IComparableTestData<T>
    where T : IEquatable<T>, IComparable<T>
 {
    public ComparableValue(
@@ -12,9 +12,15 @@ public abstract class ComparableValue<T> : EquatableValue<T>
    {
       MinValue = minValue;
       MaxValue = maxValue;
+      ReverseMaxValue = minValue;
+      ReverseMinValue = maxValue;
    }
 
    public T MaxValue { get; }
 
    public T MinValue { get; }
+
+   public T ReverseMaxValue { get; }
+
+   public T ReverseMinValue { get; }
 }

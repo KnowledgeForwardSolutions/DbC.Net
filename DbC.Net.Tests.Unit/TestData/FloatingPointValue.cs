@@ -1,6 +1,6 @@
 ﻿namespace DbC.Net.Tests.Unit.TestData;
 
-public abstract class FloatingPointValue<T> where T : IFloatingPoint<T>
+public abstract class FloatingPointValue<T> : IComparableTestData<T> where T : IFloatingPoint<T>
 {
    public FloatingPointValue(
       T value,
@@ -9,7 +9,10 @@ public abstract class FloatingPointValue<T> where T : IFloatingPoint<T>
       T fixedEpsilon,
       IApproximateEqualityComparer<T> fixedErrorComparer,
       T relativeEpsilon,
-      IApproximateEqualityComparer<T> relativeErrorComparer)
+      IApproximateEqualityComparer<T> relativeErrorComparer,
+      T maxValue,
+      T minValue,
+      ReverseComparer<T> reverseComparer)
    {
       Value = value;
       WithinToleranceDelta = withinToleranceDelta;
@@ -18,6 +21,11 @@ public abstract class FloatingPointValue<T> where T : IFloatingPoint<T>
       FixedErrorComparer = fixedErrorComparer;
       RelativeEpsilon = relativeEpsilon;
       RelativeErrorComparer = relativeErrorComparer;
+      MaxValue = maxValue;
+      MinValue = minValue;
+      ReverseComparer = reverseComparer;
+      ReverseMaxValue = minValue;
+      ReverseMinValue = maxValue;
    }
 
    public virtual T Value { get; }
@@ -33,4 +41,14 @@ public abstract class FloatingPointValue<T> where T : IFloatingPoint<T>
    public virtual IApproximateEqualityComparer<T> FixedErrorComparer { get; } = default!;
 
    public virtual IApproximateEqualityComparer<T> RelativeErrorComparer { get; } = default!;
+
+   public T MaxValue { get; }
+
+   public T MinValue { get; }
+
+   public ReverseComparer<T> ReverseComparer { get; }
+
+   public T ReverseMaxValue { get; }
+
+   public T ReverseMinValue { get; }
 }

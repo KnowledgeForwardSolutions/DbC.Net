@@ -1,6 +1,6 @@
 ﻿namespace DbC.Net.Tests.Unit.TestData;
 
-public sealed class EquatableTypesTestData : IEnumerable<Object[]>
+public sealed class ComparableTypesTestData : IEnumerable<Object[]>
 {
    public IEnumerator<Object[]> GetEnumerator()
    {
@@ -11,12 +11,16 @@ public sealed class EquatableTypesTestData : IEnumerable<Object[]>
       yield return new Object[] { new DateOnlyData() };
       yield return new Object[] { new DateTimeData() };
       yield return new Object[] { new DateTimeOffsetData() };
+      yield return new Object[] { new DecimalData() };
+      yield return new Object[] { new DoubleData() };
       yield return new Object[] { new GuidData() };
+      yield return new Object[] { new HalfData() };
       yield return new Object[] { new Int128Data() };
       yield return new Object[] { new Int16Data() };
       yield return new Object[] { new Int32Data() };
       yield return new Object[] { new Int64Data() };
       yield return new Object[] { new SByteData() };
+      yield return new Object[] { new SingleData() };
       yield return new Object[] { new TimeOnlyData() };
       yield return new Object[] { new UInt128Data() };
       yield return new Object[] { new UInt16Data() };

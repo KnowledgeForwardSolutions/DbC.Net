@@ -123,6 +123,9 @@
   <data name="EqualTemplate" xml:space="preserve">
     <value>{RequirementType} {RequirementName} failed: {ValueExpression} must be equal to {Target}</value>
   </data>
+  <data name="GreaterThanTemplate" xml:space="preserve">
+    <value>{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than {Target}</value>
+  </data>
   <data name="NotDefaultTemplate" xml:space="preserve">
     <value>{RequirementType} {RequirementName} failed: {ValueExpression} may not be default({ValueDatatype})</value>
   </data>

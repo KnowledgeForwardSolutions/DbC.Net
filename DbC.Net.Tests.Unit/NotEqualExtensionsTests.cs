@@ -13,7 +13,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldReturnOriginalValue_WhenValueDoesNotEqualTarget<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldReturnOriginalValue_WhenValueDoesNotEqualTarget<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       var value = data.EqualValue;
@@ -28,7 +28,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldReturnOriginalValue_WhenValueIsDefaultAndTargetIsNot<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldReturnOriginalValue_WhenValueIsDefaultAndTargetIsNot<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       T value = default!;
@@ -43,7 +43,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldReturnOriginalValue_WhenValueIsNotDefaultAndTargetIs<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldReturnOriginalValue_WhenValueIsNotDefaultAndTargetIs<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       var value = data.EqualValue;
@@ -58,7 +58,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldThrow_WhenValueEqualsTarget<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldThrow_WhenValueEqualsTarget<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       var value = data.EqualValue;
@@ -71,7 +71,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldThrow_WhenValueAndTargetAreDefault<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldThrow_WhenValueAndTargetAreDefault<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       T value = default!;
@@ -86,8 +86,9 @@ public class NotEqualExtensionsTests
    public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldThrowWithExpectedDataDictionary_WhenValueEqualsTarget()
    {
       // Arrange.
-      var value = 100;
-      var target = value;
+      var data = new Int32Data();
+      var value = data.EqualValue;
+      var target = data.EqualValue;
       var act = () => _ = value.EnsuresNotEqual(target);
 
       // Act/assert.
@@ -106,8 +107,9 @@ public class NotEqualExtensionsTests
    public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueEqualsTarget()
    {
       // Arrange.
-      var value = StringData.UpperCaseAE;
-      var target = StringData.UpperCaseAE;
+      var data = new StringData();
+      var value = data.EqualValue;
+      var target = data.EqualValue;
       var act = () => _ = value.EnsuresNotEqual(target);
       var expectedMessage = $"Postcondition NotEqual failed: {nameof(value)} must not be equal to {target}";
 
@@ -120,8 +122,9 @@ public class NotEqualExtensionsTests
    public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
    {
       // Arrange.
-      var value = new ObservationClassData().EqualValue;
-      var target = new ObservationClassData().EqualValue;
+      var data = new PointStructData();
+      var value = data.EqualValue;
+      var target = data.EqualValue;
       var messageTemplate = "Requirement {RequirementName} failed";
       var act = () => _ = value.EnsuresNotEqual(target, messageTemplate);
       var expectedMessage = $"Requirement NotEqual failed";
@@ -135,8 +138,9 @@ public class NotEqualExtensionsTests
    public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      var value = Double.Pi;
-      var target = Double.Pi;
+      var data = new DateOnlyData();
+      var value = data.EqualValue;
+      var target = data.EqualValue;
       var act = () => _ = value.EnsuresNotEqual(target, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
       var expectedMessage = $"Postcondition NotEqual failed: {nameof(value)} must not be equal to {target}";
 
@@ -149,8 +153,9 @@ public class NotEqualExtensionsTests
    public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      var value = new PointStructData().EqualValue;
-      var target = new PointStructData().EqualValue;
+      var data = new ObservationClassData();
+      var value = data.EqualValue;
+      var target = data.EqualValue;
       var messageTemplate = "Requirement {RequirementName} failed";
       var act = () => _ = value.EnsuresNotEqual(target, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
       var expectedMessage = $"Requirement NotEqual failed";
@@ -168,7 +173,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldReturnOriginalValue_WhenValueDoesNotEqualTarget<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldReturnOriginalValue_WhenValueDoesNotEqualTarget<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       var value = data.EqualValue;
@@ -184,7 +189,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldReturnOriginalValue_WhenValueIsDefaultAndTargetIsNot<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldReturnOriginalValue_WhenValueIsDefaultAndTargetIsNot<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       T value = default!;
@@ -200,7 +205,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldThrow_WhenValueIsNotDefaultAndTargetIs<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldThrow_WhenValueIsNotDefaultAndTargetIs<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       var value = data.EqualValue;
@@ -216,7 +221,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldThrow_WhenAndTargetAreDefault<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldThrow_WhenAndTargetAreDefault<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       T value = default!;
@@ -232,9 +237,10 @@ public class NotEqualExtensionsTests
    public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldThrowWithExpectedDataDictionary_WhenValueDoesNotEqualTarget()
    {
       // Arrange.
-      var value = nint.MinValue;
-      var target = nint.MaxValue;
-      var comparer = new ReverseComparer<nint>();
+      var data = new nuintData();
+      var value = data.MinValue;
+      var target = data.MaxValue;
+      var comparer = data.ReverseComparer;
       var act = () => _ = value.EnsuresNotEqual(target, comparer);
 
       // Act/assert.
@@ -253,9 +259,10 @@ public class NotEqualExtensionsTests
    public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueDoesNotEqualTarget()
    {
       // Arrange.
-      var value = BigInteger.MinusOne;
-      var target = BigInteger.One;
-      var comparer = new ReverseComparer<BigInteger>();
+      var data = new BigIntegerData();
+      var value = data.MinValue;
+      var target = data.MaxValue;
+      var comparer = data.ReverseComparer;
       var act = () => _ = value.EnsuresNotEqual(target, comparer);
       var expectedMessage = $"Postcondition NotEqual failed: {nameof(value)} must not be equal to {target}";
 
@@ -268,9 +275,10 @@ public class NotEqualExtensionsTests
    public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
    {
       // Arrange.
-      var value = UInt16.MaxValue;
-      var target = UInt16.MinValue;
-      var comparer = new ReverseComparer<UInt16>();
+      var data = new UInt16Data();
+      var value = data.MinValue;
+      var target = data.MaxValue;
+      var comparer = data.ReverseComparer;
       var messageTemplate = "Requirement {RequirementName} failed";
       var act = () => _ = value.EnsuresNotEqual(target, comparer, messageTemplate);
       var expectedMessage = $"Requirement NotEqual failed";
@@ -284,9 +292,10 @@ public class NotEqualExtensionsTests
    public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      var value = Double.MaxValue;
-      var target = Double.MinValue;
-      var comparer = new ReverseComparer<Double>();
+      var data = new BooleanData();
+      var value = data.MinValue;
+      var target = data.MaxValue;
+      var comparer = data.ReverseComparer;
       var act = () => _ = value.EnsuresNotEqual(target, comparer, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
       var expectedMessage = $"Postcondition NotEqual failed: {nameof(value)} must not be equal to {target}";
 
@@ -299,9 +308,10 @@ public class NotEqualExtensionsTests
    public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      var value = DateTime.MaxValue;
-      var target = DateTime.MinValue;
-      var comparer = new ReverseComparer<DateTime>();
+      var data = new DateTimeData();
+      var value = data.MinValue;
+      var target = data.MaxValue;
+      var comparer = data.ReverseComparer;
       var messageTemplate = "Requirement {RequirementName} failed";
       var act = () => _ = value.EnsuresNotEqual(target, comparer, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
       var expectedMessage = $"Requirement NotEqual failed";
@@ -315,9 +325,10 @@ public class NotEqualExtensionsTests
    public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldThrowArgumentNullException_WhenComparerIsNull()
    {
       // Arrange.
-      var value = Half.Pi;
-      var target = Half.Tau;
-      IEqualityComparer<Half> comparer = null!;
+      var data = new Int64Data();
+      var value = data.MinValue;
+      var target = data.MaxValue;
+      IEqualityComparer<Int64> comparer = null!;
       var act = () => _ = value.EnsuresNotEqual(target, comparer);
 
       // Act/assert.
@@ -338,7 +349,7 @@ public class NotEqualExtensionsTests
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.CurrentCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCulture)]
    [InlineData(StringData.LowerCaseA, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
-   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.Ordinal)]
+   [InlineData(StringData.LowerCaseDiphthongAE, StringData.UpperCaseDiphthongAE, StringComparison.Ordinal)]
    [InlineData(StringData.UpperCaseI, StringData.UpperCaseDottedI, StringComparison.OrdinalIgnoreCase)]
    public void NotEqualExtensions_EnsuresNotEqualString_ShouldReturnOriginalValue_WhenValueDoesNotEqualTargetAndCurrentCultureIs_enUS(
       String value,
@@ -358,7 +369,7 @@ public class NotEqualExtensionsTests
    [InlineData(StringData.LowerCaseA, StringData.LowerCaseADash, StringComparison.CurrentCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.InvariantCulture)]
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.InvariantCultureIgnoreCase)]
-   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.Ordinal)]
+   [InlineData(StringData.LowerCaseDiphthongAE, StringData.UpperCaseDiphthongAE, StringComparison.Ordinal)]
    [InlineData(StringData.UpperCaseI, StringData.UpperCaseDottedI, StringComparison.OrdinalIgnoreCase)]
    public void NotEqualExtensions_EnsuresNotEqualString_ShouldReturnOriginalValue_WhenValueDoesNotEqualTargetAndCurrentCultureIs_trTR(
       String value,
@@ -378,7 +389,7 @@ public class NotEqualExtensionsTests
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.CurrentCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.InvariantCulture)]
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.InvariantCultureIgnoreCase)]
-   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.Ordinal)]
+   [InlineData(StringData.LowerCaseDiphthongAE, StringData.UpperCaseDiphthongAE, StringComparison.Ordinal)]
    [InlineData(StringData.UpperCaseI, StringData.UpperCaseDottedI, StringComparison.OrdinalIgnoreCase)]
    public void NotEqualExtensions_EnsuresNotEqualString_ShouldReturnOriginalValue_WhenValueDoesNotEqualTargetAndCurrentCultureIs_thTH(
       String value,
@@ -399,7 +410,7 @@ public class NotEqualExtensionsTests
    [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.InvariantCulture)]
    [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.Ordinal)]
-   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.OrdinalIgnoreCase)]
+   [InlineData(StringData.LowerCaseDiphthongAE, StringData.UpperCaseDiphthongAE, StringComparison.OrdinalIgnoreCase)]
    public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrow_WhenValueEqualsTargetAndCurrentCultureIs_enUS(
       String value,
       String target,
@@ -422,7 +433,7 @@ public class NotEqualExtensionsTests
    [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.InvariantCulture)]
    [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.Ordinal)]
-   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.OrdinalIgnoreCase)]
+   [InlineData(StringData.LowerCaseDiphthongAE, StringData.UpperCaseDiphthongAE, StringComparison.OrdinalIgnoreCase)]
    public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrow_WhenValueEqualsTargetAndCurrentCultureIs_trTR(
       String value,
       String target,
@@ -443,7 +454,7 @@ public class NotEqualExtensionsTests
    [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.InvariantCulture)]
    [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.Ordinal)]
-   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.OrdinalIgnoreCase)]
+   [InlineData(StringData.LowerCaseDiphthongAE, StringData.UpperCaseDiphthongAE, StringComparison.OrdinalIgnoreCase)]
    public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrow_WhenValueEqualsTargetAndCurrentCultureIs_thTH(
       String value,
       String target,
@@ -498,8 +509,8 @@ public class NotEqualExtensionsTests
    public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrowWithExpectedDataDictionary_WhenValueEqualsTarget()
    {
       // Arrange.
-      var value = StringData.LowerCaseDipthongAE;
-      var target = StringData.LowerCaseDipthongAE;
+      var value = StringData.LowerCaseDiphthongAE;
+      var target = StringData.LowerCaseDiphthongAE;
       var comparisonType = StringComparison.Ordinal;
       var act = () => _ = value.EnsuresNotEqual(target, comparisonType);
 
@@ -562,6 +573,7 @@ public class NotEqualExtensionsTests
          .And.Message.Should().StartWith(expectedMessage);
    }
 
+   [UseCulture(CultureData.EnglishUS)]
    [Fact]
    public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
@@ -586,7 +598,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldReturnOriginalValue_WhenValueDoesNotEqualTarget<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldReturnOriginalValue_WhenValueDoesNotEqualTarget<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       var value = data.EqualValue;
@@ -601,7 +613,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldReturnOriginalValue_WhenValueIsDefaultAndTargetIsNot<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldReturnOriginalValue_WhenValueIsDefaultAndTargetIsNot<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       T value = default!;
@@ -616,7 +628,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldReturnOriginalValue_WhenValueIsNotDefaultAndTargetIs<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldReturnOriginalValue_WhenValueIsNotDefaultAndTargetIs<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       var value = data.EqualValue;
@@ -631,7 +643,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldThrow_WhenValueEqualsTarget<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldThrow_WhenValueEqualsTarget<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       var value = data.EqualValue;
@@ -644,7 +656,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldThrow_WhenValueAndTargetAreDefault<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldThrow_WhenValueAndTargetAreDefault<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       T value = default!;
@@ -659,8 +671,9 @@ public class NotEqualExtensionsTests
    public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldThrowWithExpectedDataDictionary_WhenValueEqualsTarget()
    {
       // Arrange.
-      var value = 100;
-      var target = value;
+      var data = new Int32Data();
+      var value = data.EqualValue;
+      var target = data.EqualValue;
       var act = () => _ = value.RequiresNotEqual(target);
 
       // Act/assert.
@@ -679,8 +692,9 @@ public class NotEqualExtensionsTests
    public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldThrowArgumentExceptionWithExpectedMessage_WhenValueEqualsTarget()
    {
       // Arrange.
-      var value = StringData.UpperCaseAE;
-      var target = StringData.UpperCaseAE;
+      var data = new StringData();
+      var value = data.EqualValue;
+      var target = data.EqualValue;
       var act = () => _ = value.RequiresNotEqual(target);
       var expectedParameterName = nameof(value);
       var expectedMessage = $"Precondition NotEqual failed: {nameof(value)} must not be equal to {target}";
@@ -695,8 +709,9 @@ public class NotEqualExtensionsTests
    public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldThrowArgumentExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
    {
       // Arrange.
-      var value = new ObservationClassData().EqualValue;
-      var target = new ObservationClassData().EqualValue;
+      var data = new PointStructData();
+      var value = data.EqualValue;
+      var target = data.EqualValue;
       var messageTemplate = "Requirement {RequirementName} failed";
       var act = () => _ = value.RequiresNotEqual(target, messageTemplate);
       var expectedParameterName = nameof(value);
@@ -712,8 +727,9 @@ public class NotEqualExtensionsTests
    public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      var value = Double.Pi;
-      var target = Double.Pi;
+      var data = new DateOnlyData();
+      var value = data.EqualValue;
+      var target = data.EqualValue;
       var act = () => _ = value.RequiresNotEqual(target, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
       var expectedMessage = $"Precondition NotEqual failed: {nameof(value)} must not be equal to {target}";
 
@@ -726,8 +742,9 @@ public class NotEqualExtensionsTests
    public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      var value = new PointStructData().EqualValue;
-      var target = new PointStructData().EqualValue;
+      var data = new ObservationClassData();
+      var value = data.EqualValue;
+      var target = data.EqualValue;
       var messageTemplate = "Requirement {RequirementName} failed";
       var act = () => _ = value.RequiresNotEqual(target, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
       var expectedMessage = $"Requirement NotEqual failed";
@@ -745,7 +762,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldReturnOriginalValue_WhenValueDoesNotEqualTarget<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldReturnOriginalValue_WhenValueDoesNotEqualTarget<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       var value = data.EqualValue;
@@ -761,7 +778,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldReturnOriginalValue_WhenValueIsDefaultAndTargetIsNot<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldReturnOriginalValue_WhenValueIsDefaultAndTargetIsNot<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       T value = default!;
@@ -777,7 +794,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldThrow_WhenValueIsNotDefaultAndTargetIs<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldThrow_WhenValueIsNotDefaultAndTargetIs<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       var value = data.EqualValue;
@@ -793,7 +810,7 @@ public class NotEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(EquatableTypesTestData))]
-   public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldThrow_WhenAndTargetAreDefault<T>(EquatableValue<T> data) where T : IEquatable<T>
+   public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldThrow_WhenAndTargetAreDefault<T>(IEquatableTestData<T> data) where T : IEquatable<T>
    {
       // Arrange.
       T value = default!;
@@ -809,9 +826,10 @@ public class NotEqualExtensionsTests
    public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldThrowWithExpectedDataDictionary_WhenValueDoesNotEqualTarget()
    {
       // Arrange.
-      var value = nint.MinValue;
-      var target = nint.MaxValue;
-      var comparer = new ReverseComparer<nint>();
+      var data = new nuintData();
+      var value = data.MinValue;
+      var target = data.MaxValue;
+      var comparer = data.ReverseComparer;
       var act = () => _ = value.RequiresNotEqual(target, comparer);
 
       // Act/assert.
@@ -830,9 +848,10 @@ public class NotEqualExtensionsTests
    public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldThrowArgumentExceptionWithExpectedMessage_WhenValueDoesNotEqualTarget()
    {
       // Arrange.
-      var value = BigInteger.MinusOne;
-      var target = BigInteger.One;
-      var comparer = new ReverseComparer<BigInteger>();
+      var data = new BigIntegerData();
+      var value = data.MinValue;
+      var target = data.MaxValue;
+      var comparer = data.ReverseComparer;
       var act = () => _ = value.RequiresNotEqual(target, comparer);
       var expectedParameterName = nameof(value);
       var expectedMessage = $"Precondition NotEqual failed: {nameof(value)} must not be equal to {target}";
@@ -847,9 +866,10 @@ public class NotEqualExtensionsTests
    public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldThrowArgumentExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
    {
       // Arrange.
-      var value = UInt16.MaxValue;
-      var target = UInt16.MinValue;
-      var comparer = new ReverseComparer<UInt16>();
+      var data = new UInt16Data();
+      var value = data.MinValue;
+      var target = data.MaxValue;
+      var comparer = data.ReverseComparer;
       var messageTemplate = "Requirement {RequirementName} failed";
       var act = () => _ = value.RequiresNotEqual(target, comparer, messageTemplate);
       var expectedParameterName = nameof(value);
@@ -865,9 +885,10 @@ public class NotEqualExtensionsTests
    public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      var value = Double.MaxValue;
-      var target = Double.MinValue;
-      var comparer = new ReverseComparer<Double>();
+      var data = new BooleanData();
+      var value = data.MinValue;
+      var target = data.MaxValue;
+      var comparer = data.ReverseComparer;
       var act = () => _ = value.RequiresNotEqual(target, comparer, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
       var expectedMessage = $"Precondition NotEqual failed: {nameof(value)} must not be equal to {target}";
 
@@ -880,9 +901,10 @@ public class NotEqualExtensionsTests
    public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      var value = DateTime.MaxValue;
-      var target = DateTime.MinValue;
-      var comparer = new ReverseComparer<DateTime>();
+      var data = new DateTimeData();
+      var value = data.MinValue;
+      var target = data.MaxValue;
+      var comparer = data.ReverseComparer;
       var messageTemplate = "Requirement {RequirementName} failed";
       var act = () => _ = value.RequiresNotEqual(target, comparer, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
       var expectedMessage = $"Requirement NotEqual failed";
@@ -896,9 +918,10 @@ public class NotEqualExtensionsTests
    public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldThrowArgumentNullException_WhenComparerIsNull()
    {
       // Arrange.
-      var value = Half.Pi;
-      var target = Half.Tau;
-      IEqualityComparer<Half> comparer = null!;
+      var data = new Int64Data();
+      var value = data.MinValue;
+      var target = data.MaxValue;
+      IEqualityComparer<Int64> comparer = null!;
       var act = () => _ = value.RequiresNotEqual(target, comparer);
 
       // Act/assert.
@@ -919,7 +942,7 @@ public class NotEqualExtensionsTests
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.CurrentCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCulture)]
    [InlineData(StringData.LowerCaseA, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
-   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.Ordinal)]
+   [InlineData(StringData.LowerCaseDiphthongAE, StringData.UpperCaseDiphthongAE, StringComparison.Ordinal)]
    [InlineData(StringData.UpperCaseI, StringData.UpperCaseDottedI, StringComparison.OrdinalIgnoreCase)]
    public void NotEqualExtensions_RequiresNotEqualString_ShouldReturnOriginalValue_WhenValueDoesNotEqualTargetAndCurrentCultureIs_enUS(
       String value,
@@ -939,7 +962,7 @@ public class NotEqualExtensionsTests
    [InlineData(StringData.LowerCaseA, StringData.LowerCaseADash, StringComparison.CurrentCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.InvariantCulture)]
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.InvariantCultureIgnoreCase)]
-   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.Ordinal)]
+   [InlineData(StringData.LowerCaseDiphthongAE, StringData.UpperCaseDiphthongAE, StringComparison.Ordinal)]
    [InlineData(StringData.UpperCaseI, StringData.UpperCaseDottedI, StringComparison.OrdinalIgnoreCase)]
    public void NotEqualExtensions_RequiresNotEqualString_ShouldReturnOriginalValue_WhenValueDoesNotEqualTargetAndCurrentCultureIs_trTR(
       String value,
@@ -959,7 +982,7 @@ public class NotEqualExtensionsTests
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.CurrentCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.InvariantCulture)]
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.InvariantCultureIgnoreCase)]
-   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.Ordinal)]
+   [InlineData(StringData.LowerCaseDiphthongAE, StringData.UpperCaseDiphthongAE, StringComparison.Ordinal)]
    [InlineData(StringData.UpperCaseI, StringData.UpperCaseDottedI, StringComparison.OrdinalIgnoreCase)]
    public void NotEqualExtensions_RequiresNotEqualString_ShouldReturnOriginalValue_WhenValueDoesNotEqualTargetAndCurrentCultureIs_thTH(
       String value,
@@ -980,7 +1003,7 @@ public class NotEqualExtensionsTests
    [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.InvariantCulture)]
    [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.Ordinal)]
-   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.OrdinalIgnoreCase)]
+   [InlineData(StringData.LowerCaseDiphthongAE, StringData.UpperCaseDiphthongAE, StringComparison.OrdinalIgnoreCase)]
    public void NotEqualExtensions_RequiresNotEqualString_ShouldThrow_WhenValueEqualsTargetAndCurrentCultureIs_enUS(
       String value,
       String target,
@@ -1003,7 +1026,7 @@ public class NotEqualExtensionsTests
    [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.InvariantCulture)]
    [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.Ordinal)]
-   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.OrdinalIgnoreCase)]
+   [InlineData(StringData.LowerCaseDiphthongAE, StringData.UpperCaseDiphthongAE, StringComparison.OrdinalIgnoreCase)]
    public void NotEqualExtensions_RequiresNotEqualString_ShouldThrow_WhenValueEqualsTargetAndCurrentCultureIs_trTR(
       String value,
       String target,
@@ -1024,7 +1047,7 @@ public class NotEqualExtensionsTests
    [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.InvariantCulture)]
    [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.Ordinal)]
-   [InlineData(StringData.LowerCaseDipthongAE, StringData.UpperCaseDipthongAE, StringComparison.OrdinalIgnoreCase)]
+   [InlineData(StringData.LowerCaseDiphthongAE, StringData.UpperCaseDiphthongAE, StringComparison.OrdinalIgnoreCase)]
    public void NotEqualExtensions_RequiresNotEqualString_ShouldThrow_WhenValueEqualsTargetAndCurrentCultureIs_thTH(
       String value,
       String target,
@@ -1079,8 +1102,8 @@ public class NotEqualExtensionsTests
    public void NotEqualExtensions_RequiresNotEqualString_ShouldThrowWithExpectedDataDictionary_WhenValueEqualsTarget()
    {
       // Arrange.
-      var value = StringData.LowerCaseDipthongAE;
-      var target = StringData.LowerCaseDipthongAE;
+      var value = StringData.LowerCaseDiphthongAE;
+      var target = StringData.LowerCaseDiphthongAE;
       var comparisonType = StringComparison.Ordinal;
       var act = () => _ = value.RequiresNotEqual(target, comparisonType);
 
@@ -1147,6 +1170,7 @@ public class NotEqualExtensionsTests
          .And.Message.Should().StartWith(expectedMessage);
    }
 
+   [UseCulture(CultureData.EnglishUS)]
    [Fact]
    public void NotEqualExtensions_RequiresNotEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {

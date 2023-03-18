@@ -1,31 +1,32 @@
 ﻿namespace DbC.Net;
 
 /// <summary>
-///   Extension methods that implement NotEqual requirement for types that
-///   implement <see cref="IEquatable{T}"/> or that use 
-///   <see cref="IEqualityComparer{T}"/>.
+///   Extension methods that implement GreaterThan requirement for types that
+///   implement <see cref="IComparable{T}"/> or that use 
+///   <see cref="IComparer{T}"/>.
 /// </summary>
-public static class NotEqualExtensions
+public static class GreaterThanExtensions
 {
    /// <summary>
-   ///   Value NotEqual postcondition. Confirm that <paramref name="value"/> is 
-   ///   not equal to <paramref name="target"/> and throw an exception if it is.
+   ///   Value GreaterThan postcondition. Confirm that <paramref name="value"/>
+   ///   is greater than <paramref name="target"/> and throw an exception if it 
+   ///   is not.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
    /// </param>
    /// <param name="target">
-   ///   The target that <paramref name="value"/> should not equal.
+   ///   The target that <paramref name="value"/> should be greater than.
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {Value} must not be equal to {Target}".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than {Target}".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
    ///   exception that is thrown if the <paramref name="value"/> is 
    ///   <see langword="null"/>. Defaults to 
-   ///   <see cref="StandardExceptionFactories.ArgumentExceptionFactory"/>.
+   ///   <see cref="StandardExceptionFactories.PostconditionFailedExceptionFactory"/>.
    /// </param>
    /// <param name="valueExpression">
    ///   Optional. Defaults to the caller expression for
@@ -39,15 +40,15 @@ public static class NotEqualExtensions
    ///   The tested <paramref name="value"/> is returned unaltered to support 
    ///   chaining requirements.
    /// </returns>
-   public static T EnsuresNotEqual<T>(
+   public static T EnsuresGreaterThan<T>(
       this T value,
       T target,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
-      [CallerArgumentExpression("value")] String valueExpression = null!,
-      [CallerArgumentExpression("target")] String targetExpression = null!) where T : IEquatable<T>
+      [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
+      [CallerArgumentExpression(nameof(target))] String targetExpression = null!) where T : IComparable<T>
    {
-      CheckNotEqual(
+      CheckGreaterThan(
          value,
          target,
          RequirementType.Postcondition,
@@ -60,22 +61,23 @@ public static class NotEqualExtensions
    }
 
    /// <summary>
-   ///   Value NotEqual postcondition. Confirm that <paramref name="value"/> is 
-   ///   not equal to <paramref name="target"/> and throw an exception if it is.
+   ///   Value GreaterThan postcondition. Confirm that <paramref name="value"/>
+   ///   is greater than <paramref name="target"/> and throw an exception if it 
+   ///   is not.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
    /// </param>
    /// <param name="target">
-   ///   The target that <paramref name="value"/> should not equal.
+   ///   The target that <paramref name="value"/> should be greater than.
    /// </param>
    /// <param name="comparer">
-   ///   An <see cref="IEqualityComparer{T}"/> used to check for equality 
-   ///   between <paramref name="value"/> and <paramref name="target"/>.
+   ///   An <see cref="IComparer{T}"/> used to compare <paramref name="value"/> 
+   ///   and <paramref name="target"/>.
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {Value} must not be equal to {Target}".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than {Target}".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
@@ -98,16 +100,16 @@ public static class NotEqualExtensions
    /// <exception cref="ArgumentNullException">
    ///   <paramref name="comparer"/> is <see langword="null"/>.
    /// </exception>
-   public static T EnsuresNotEqual<T>(
+   public static T EnsuresGreaterThan<T>(
       this T value,
       T target,
-      IEqualityComparer<T> comparer,
+      IComparer<T> comparer,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
-      [CallerArgumentExpression("value")] String valueExpression = null!,
-      [CallerArgumentExpression("target")] String targetExpression = null!)
+      [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
+      [CallerArgumentExpression(nameof(target))] String targetExpression = null!)
    {
-      CheckNotEqual(
+      CheckGreaterThan(
          value,
          target,
          comparer ?? throw new ArgumentNullException(nameof(comparer), Messages.ComparerIsNull),
@@ -121,15 +123,15 @@ public static class NotEqualExtensions
    }
 
    /// <summary>
-   ///   Value NotEqual postcondition. Confirm that the <see cref="String"/>
-   ///   <paramref name="value"/> is not equal to the <see cref="String"/> 
-   ///   <paramref name="target"/> and throw an exception if it is.
+   ///   Value GreaterThan postcondition. Confirm that the <see cref="String"/>
+   ///   <paramref name="value"/> is greater than the <see cref="String"/> 
+   ///   <paramref name="target"/> and throw an exception if it is not.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
    /// </param>
    /// <param name="target">
-   ///   The target that <paramref name="value"/> should not equal.
+   ///   The target that <paramref name="value"/> should be greater than.
    /// </param>
    /// <param name="comparisonType">
    ///   <see cref="StringComparison"/> enumeration value that specified how the
@@ -138,7 +140,7 @@ public static class NotEqualExtensions
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {Value} must not be equal to {Target}".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than {Target}".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
@@ -158,16 +160,16 @@ public static class NotEqualExtensions
    ///   The tested <paramref name="value"/> is returned unaltered to support 
    ///   chaining requirements.
    /// </returns>
-   public static String EnsuresNotEqual(
+   public static String EnsuresGreaterThan(
       this String value,
       String target,
       StringComparison comparisonType,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
-      [CallerArgumentExpression("value")] String valueExpression = null!,
-      [CallerArgumentExpression("target")] String targetExpression = null!)
+      [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
+      [CallerArgumentExpression(nameof(target))] String targetExpression = null!)
    {
-      CheckNotEqual(
+      CheckGreaterThan(
          value,
          target,
          comparisonType,
@@ -181,24 +183,25 @@ public static class NotEqualExtensions
    }
 
    /// <summary>
-   ///   Value NotEqual precondition. Confirm that <paramref name="value"/> is 
-   ///   not equal to <paramref name="target"/> and throw an exception if it is.
+   ///   Value GreaterThan precondition. Confirm that <paramref name="value"/>
+   ///   is greater than <paramref name="target"/> and throw an exception if it 
+   ///   is not.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
    /// </param>
    /// <param name="target">
-   ///   The target that <paramref name="value"/> should not equal.
+   ///   The target that <paramref name="value"/> should be greater than.
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {Value} must not be equal to {Target}".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than {Target}".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
    ///   exception that is thrown if the <paramref name="value"/> is 
    ///   <see langword="null"/>. Defaults to 
-   ///   <see cref="StandardExceptionFactories.ArgumentExceptionFactory"/>.
+   ///   <see cref="StandardExceptionFactories.ArgumentOutOfRangeExceptionFactory"/>.
    /// </param>
    /// <param name="valueExpression">
    ///   Optional. Defaults to the caller expression for
@@ -212,15 +215,15 @@ public static class NotEqualExtensions
    ///   The tested <paramref name="value"/> is returned unaltered to support 
    ///   chaining requirements.
    /// </returns>
-   public static T RequiresNotEqual<T>(
+   public static T RequiresGreaterThan<T>(
       this T value,
       T target,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
-      [CallerArgumentExpression("value")] String valueExpression = null!,
-      [CallerArgumentExpression("target")] String targetExpression = null!) where T : IEquatable<T>
+      [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
+      [CallerArgumentExpression(nameof(target))] String targetExpression = null!) where T : IComparable<T>
    {
-      CheckNotEqual(
+      CheckGreaterThan(
          value,
          target,
          RequirementType.Precondition,
@@ -233,28 +236,29 @@ public static class NotEqualExtensions
    }
 
    /// <summary>
-   ///   Value NotEqual precondition. Confirm that <paramref name="value"/> is 
-   ///   not equal to <paramref name="target"/> and throw an exception if it is.
+   ///   Value GreaterThan precondition. Confirm that <paramref name="value"/>
+   ///   is greater than <paramref name="target"/> and throw an exception if it 
+   ///   is not.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
    /// </param>
    /// <param name="target">
-   ///   The target that <paramref name="value"/> should not equal.
+   ///   The target that <paramref name="value"/> should be greater than.
    /// </param>
    /// <param name="comparer">
-   ///   An <see cref="IEqualityComparer{T}"/> used to check for equality 
-   ///   between <paramref name="value"/> and <paramref name="target"/>.
+   ///   An <see cref="IComparer{T}"/> used to compare <paramref name="value"/> 
+   ///   and <paramref name="target"/>.
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {Value} must not be equal to {Target}".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than {Target}".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
    ///   exception that is thrown if the <paramref name="value"/> is 
    ///   <see langword="null"/>. Defaults to 
-   ///   <see cref="StandardExceptionFactories.ArgumentExceptionFactory"/>.
+   ///   <see cref="StandardExceptionFactories.ArgumentOutOfRangeExceptionFactory"/>.
    /// </param>
    /// <param name="valueExpression">
    ///   Optional. Defaults to the caller expression for
@@ -271,16 +275,16 @@ public static class NotEqualExtensions
    /// <exception cref="ArgumentNullException">
    ///   <paramref name="comparer"/> is <see langword="null"/>.
    /// </exception>
-   public static T RequiresNotEqual<T>(
+   public static T RequiresGreaterThan<T>(
       this T value,
       T target,
-      IEqualityComparer<T> comparer,
+      IComparer<T> comparer,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
-      [CallerArgumentExpression("value")] String valueExpression = null!,
-      [CallerArgumentExpression("target")] String targetExpression = null!)
+      [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
+      [CallerArgumentExpression(nameof(target))] String targetExpression = null!)
    {
-      CheckNotEqual(
+      CheckGreaterThan(
          value,
          target,
          comparer ?? throw new ArgumentNullException(nameof(comparer), Messages.ComparerIsNull),
@@ -294,15 +298,15 @@ public static class NotEqualExtensions
    }
 
    /// <summary>
-   ///   Value NotEqual precondition. Confirm that the <see cref="String"/>
-   ///   <paramref name="value"/> is not equal to the <see cref="String"/> 
-   ///   <paramref name="target"/> and throw an exception if it is.
+   ///   Value GreaterThan precondition. Confirm that the <see cref="String"/>
+   ///   <paramref name="value"/> is greater than the <see cref="String"/> 
+   ///   <paramref name="target"/> and throw an exception if it is not.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
    /// </param>
    /// <param name="target">
-   ///   The target that <paramref name="value"/> should not equal.
+   ///   The target that <paramref name="value"/> should be greater than.
    /// </param>
    /// <param name="comparisonType">
    ///   <see cref="StringComparison"/> enumeration value that specified how the
@@ -311,13 +315,13 @@ public static class NotEqualExtensions
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {Value} must not be equal to {Target}".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than {Target}".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
    ///   exception that is thrown if the <paramref name="value"/> is 
    ///   <see langword="null"/>. Defaults to 
-   ///   <see cref="StandardExceptionFactories.ArgumentExceptionFactory"/>.
+   ///   <see cref="StandardExceptionFactories.ArgumentOutOfRangeExceptionFactory"/>.
    /// </param>
    /// <param name="valueExpression">
    ///   Optional. Defaults to the caller expression for
@@ -331,16 +335,16 @@ public static class NotEqualExtensions
    ///   The tested <paramref name="value"/> is returned unaltered to support 
    ///   chaining requirements.
    /// </returns>
-   public static String RequiresNotEqual(
+   public static String RequiresGreaterThan(
       this String value,
       String target,
       StringComparison comparisonType,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
-      [CallerArgumentExpression("value")] String valueExpression = null!,
-      [CallerArgumentExpression("target")] String targetExpression = null!)
+      [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
+      [CallerArgumentExpression(nameof(target))] String targetExpression = null!)
    {
-      CheckNotEqual(
+      CheckGreaterThan(
          value,
          target,
          comparisonType,
@@ -353,18 +357,18 @@ public static class NotEqualExtensions
       return value;
    }
 
-   private static void CheckNotEqual<T>(
+   private static void CheckGreaterThan<T>(
       T value,
       T target,
       RequirementType requirementType,
       String? messageTemplate,
       IExceptionFactory? exceptionFactory,
       String valueExpression,
-      String targetExpression) where T : IEquatable<T>
+      String targetExpression) where T : IComparable<T>
    {
-      if ((value is null && target is null) || (value is not null && value.Equals(target)))
+      if (value is null || value!.CompareTo(target) <= 0)
       {
-         messageTemplate ??= MessageTemplates.NotEqualTemplate;
+         messageTemplate ??= MessageTemplates.GreaterThanTemplate;
          exceptionFactory ??= GetExceptionFactory(requirementType);
          var data = GetDataDictionary(
             requirementType,
@@ -377,32 +381,32 @@ public static class NotEqualExtensions
       }
    }
 
-   private static void CheckNotEqual<T>(
+   private static void CheckGreaterThan<T>(
       T value,
       T target,
-      IEqualityComparer<T> comparer,
+      IComparer<T> comparer,
       RequirementType requirementType,
       String? messageTemplate,
       IExceptionFactory? exceptionFactory,
       String valueExpression,
       String targetExpression)
    {
-      if (comparer.Equals(value, target))
+      if (comparer.Compare(value, target) <= 0)
       {
-         messageTemplate ??= MessageTemplates.NotEqualTemplate;
+         messageTemplate ??= MessageTemplates.GreaterThanTemplate;
          exceptionFactory ??= GetExceptionFactory(requirementType);
          var data = GetDataDictionary(
             requirementType,
-            value,
+            value!,
             valueExpression,
-            target,
+            target!,
             targetExpression);
 
          throw exceptionFactory.CreateException(data, messageTemplate);
       }
    }
 
-   private static void CheckNotEqual(
+   private static void CheckGreaterThan(
       String value,
       String target,
       StringComparison comparisonType,
@@ -412,15 +416,15 @@ public static class NotEqualExtensions
       String valueExpression,
       String targetExpression)
    {
-      if ((value is null && target is null) || (value is not null && value.Equals(target, comparisonType)))
+      if (String.Compare(value, target, comparisonType) <= 0)
       {
-         messageTemplate ??= MessageTemplates.NotEqualTemplate;
+         messageTemplate ??= MessageTemplates.GreaterThanTemplate;
          exceptionFactory ??= GetExceptionFactory(requirementType);
          var data = GetDataDictionary(
             requirementType,
-            value,
+            value!,
             valueExpression,
-            target,
+            target!,
             targetExpression);
          data[DataNames.StringComparison] = comparisonType;
 
@@ -437,7 +441,7 @@ public static class NotEqualExtensions
       => new()
       {
          {  DataNames.RequirementType, requirementType },
-         {  DataNames.RequirementName, RequirementNames.NotEqual },
+         {  DataNames.RequirementName, RequirementNames.GreaterThan },
          {  DataNames.Value, value! },
          {  DataNames.ValueExpression, valueExpression },
          {  DataNames.Target, target! },
@@ -446,6 +450,6 @@ public static class NotEqualExtensions
 
    private static IExceptionFactory GetExceptionFactory(RequirementType requirementType)
       => requirementType == RequirementType.Precondition
-         ? StandardExceptionFactories.ArgumentExceptionFactory
+         ? StandardExceptionFactories.ArgumentOutOfRangeExceptionFactory
          : StandardExceptionFactories.PostconditionFailedExceptionFactory;
 }

@@ -11,13 +11,13 @@ T RequiresNotEqual<T>(this T value, T target, [String? messageTemplate = null], 
 
 T RequiresNotEqual<T>(this T value, T target, IEqualityComparer<T> comparer, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null])
 
-String RequiresNotEqual<T>(this String value, String target, StringComparison comparisonType, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null])
+String RequiresNotEqual(this String value, String target, StringComparison comparisonType, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null])
 
 T EnsuresNotEqual<T>(this T value, T target, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null]) where T : IEquatable<T>
 
 T EnsuresNotEqual<T>(this T value, T target, IEqualityComparer<T> comparer, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null])
 
-String EnsuresNotEqual<T>(this String value, String target, StringComparison comparisonType, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null])
+String EnsuresNotEqual(this String value, String target, StringComparison comparisonType, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null])
 ```
 
 The default message template for NotEqual is "{RequirementType} {RequirementName} failed: {ValueExpression} must not be equal to {Target}".

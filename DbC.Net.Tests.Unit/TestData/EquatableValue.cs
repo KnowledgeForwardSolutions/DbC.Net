@@ -1,6 +1,6 @@
 ﻿namespace DbC.Net.Tests.Unit.TestData;
 
-public abstract class EquatableValue<T> where T : IEquatable<T>
+public abstract class EquatableValue<T> : IEquatableTestData<T> where T : IEquatable<T>
 {
     public EquatableValue(
        T equalValue,

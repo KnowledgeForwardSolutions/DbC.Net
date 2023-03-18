@@ -6,9 +6,15 @@ public struct Point : IEquatable<Point>, IComparable<Point>
 
    public Int32 Y { get; set; }
 
-    public Int32 CompareTo(Point other) => throw new NotImplementedException();
+   public Int32 CompareTo(Point other)
+   {
+      var result = X.CompareTo(other.X);
+      return result != 0
+         ? result
+         : Y.CompareTo(other.Y);
+   }
 
-    public override Boolean Equals([NotNullWhen(true)] Object? obj)
+   public override Boolean Equals([NotNullWhen(true)] Object? obj)
    {
       if (obj is null)
       {
