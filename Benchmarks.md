@@ -185,7 +185,7 @@ parameter was omitted.
 ### GreaterThan Benchmarks
 
 | Method              | Value Type  | Comparer         | Message Template | Exception Factory |       Mean |     Error |    StdDev | Allocated |
-|-------------------- |:------------|:----------------:|:----------------:|:-----------------:|--- -------:|----------:|----------:|----------:|
+|-------------------- |:------------|:----------------:|:----------------:|:-----------------:|-----------:|----------:|----------:|----------:|
 | RequiresGreaterThan | Int32       |                  |                  |                   |  0.0033 ns | 0.0073 ns | 0.0068 ns |         - |
 | RequiresGreaterThan | Int32       |                  | X                |                   |  0.0062 ns | 0.0078 ns | 0.0069 ns |         - |
 | RequiresGreaterThan | Int32       |                  |                  | X                 |  1.6264 ns | 0.0053 ns | 0.0049 ns |         - |
@@ -194,18 +194,18 @@ parameter was omitted.
 | RequiresGreaterThan | Int32       | IComparer<T>     | X                |                   |  2.4138 ns | 0.0686 ns | 0.0573 ns |         - |
 | RequiresGreaterThan | Int32       | IComparer<T>     |                  | X                 |  2.7780 ns | 0.0334 ns | 0.0261 ns |         - |
 | RequiresGreaterThan | Int32       | IComparer<T>     | X                | X                 |  2.2379 ns | 0.0337 ns | 0.0315 ns |         - |
-| RequiresGreaterThan | String      |                  |                  |                   | 38.6920 ns | 0.4605 ns | 0.4308 ns |         - |
-| RequiresGreaterThan | String      |                  | X                |                   | 37.9370 ns | 0.2191 ns | 0.1830 ns |         - |
-| RequiresGreaterThan | String      |                  |                  | X                 | 40.1133 ns | 0.5171 ns | 0.4318 ns |         - |
-| RequiresGreaterThan | String      |                  | X                | X                 | 41.2393 ns | 0.3261 ns | 0.2723 ns |         - |
-| RequiresGreaterThan | String      | IComparer<T>     |                  |                   | 47.3337 ns | 0.2442 ns | 0.2164 ns |         - |
-| RequiresGreaterThan | String      | IComparer<T>     | X                |                   | 41.4094 ns | 0.4057 ns | 0.3388 ns |         - |
-| RequiresGreaterThan | String      | IComparer<T>     |                  | X                 | 43.7585 ns | 0.2490 ns | 0.2329 ns |         - |
-| RequiresGreaterThan | String      | IComparer<T>     | X                | X                 | 42.7079 ns | 0.2531 ns | 0.2368 ns |         - |
-| RequiresGreaterThan | String      | StringComparison |                  |                   |  5.6071 ns | 0.0380 ns | 0.0356 ns |         - |
-| RequiresGreaterThan | String      | StringComparison | X                |                   |  5.6291 ns | 0.0430 ns | 0.0402 ns |         - |
-| RequiresGreaterThan | String      | StringComparison |                  | X                 |  5.5199 ns | 0.0298 ns | 0.0249 ns |         - |
-| RequiresGreaterThan | String      | StringComparison | X                | X                 |  6.0922 ns | 0.0328 ns | 0.0291 ns |         - |
+| RequiresGreaterThan | String      |                  |                  |                   | 41.4850 ns | 0.3105 ns | 0.2905 ns |         - |
+| RequiresGreaterThan | String      |                  | X                |                   | 40.9680 ns | 0.3176 ns | 0.2815 ns |         - |
+| RequiresGreaterThan | String      |                  |                  | X                 | 40.3530 ns | 0.5610 ns | 0.5248 ns |         - |
+| RequiresGreaterThan | String      |                  | X                | X                 | 42.0430 ns | 0.2408 ns | 0.2134 ns |         - |
+| RequiresGreaterThan | String      | IComparer<T>     |                  |                   |  6.7720 ns | 0.0450 ns | 0.0375 ns |         - |
+| RequiresGreaterThan | String      | IComparer<T>     | X                |                   |  6.0890 ns | 0.0450 ns | 0.0399 ns |         - |
+| RequiresGreaterThan | String      | IComparer<T>     |                  | X                 |  6.8730 ns | 0.0791 ns | 0.0740 ns |         - |
+| RequiresGreaterThan | String      | IComparer<T>     | X                | X                 |  7.2860 ns | 0.0827 ns | 0.0773 ns |         - |
+| RequiresGreaterThan | String      | StringComparison |                  |                   |  5.6310 ns | 0.0349 ns | 0.0310 ns |         - |
+| RequiresGreaterThan | String      | StringComparison | X                |                   |  5.5750 ns | 0.0338 ns | 0.0299 ns |         - |
+| RequiresGreaterThan | String      | StringComparison |                  | X                 |  5.5400 ns | 0.0337 ns | 0.0315 ns |         - |
+| RequiresGreaterThan | String      | StringComparison | X                | X                 |  6.1180 ns | 0.0340 ns | 0.0318 ns |         - |
 | RequiresGreaterThan | Record      |                  |                  |                   |  4.9939 ns | 0.1279 ns | 0.1953 ns |         - |
 | RequiresGreaterThan | Record      |                  | X                |                   |  4.6437 ns | 0.0168 ns | 0.0157 ns |         - |
 | RequiresGreaterThan | Record      |                  |                  | X                 |  4.7160 ns | 0.0850 ns | 0.0795 ns |         - |

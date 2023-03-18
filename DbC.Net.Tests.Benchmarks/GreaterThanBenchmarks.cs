@@ -9,7 +9,7 @@ public class GreaterThanBenchmarks
 
    private const String _strValue = "qwerty";
    private const String _strTarget = "ASDF";
-   private static readonly IComparer<String> _stringComparer = Comparer<String>.Default;
+   private static readonly IComparer<String> _stringComparer = StringComparer.OrdinalIgnoreCase;
    private const StringComparison _comparisonType = StringComparison.OrdinalIgnoreCase;
 
    private static readonly Box _boxValue = new(4, 16, 36, "Purple");
