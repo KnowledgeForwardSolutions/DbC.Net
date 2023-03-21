@@ -7,6 +7,8 @@
 /// </summary>
 public static class GreaterThanExtensions
 {
+   private const String _requirementName = RequirementNames.GreaterThan;
+
    /// <summary>
    ///   Value GreaterThan postcondition. Confirm that <paramref name="value"/>
    ///   is greater than <paramref name="target"/> and throw an exception if it 
@@ -370,12 +372,11 @@ public static class GreaterThanExtensions
       {
          messageTemplate ??= MessageTemplates.GreaterThanTemplate;
          exceptionFactory ??= GetExceptionFactory(requirementType);
-         var data = GetDataDictionary(
-            requirementType,
-            value!,
-            valueExpression,
-            target!,
-            targetExpression);
+         var data = ExceptionDataBuilder.Create()
+            .WithRequirement(requirementType, _requirementName)
+            .WithValue(value!, valueExpression)
+            .WithTarget(target, targetExpression)
+            .Build();
 
          throw exceptionFactory.CreateException(data, messageTemplate);
       }
@@ -395,12 +396,11 @@ public static class GreaterThanExtensions
       {
          messageTemplate ??= MessageTemplates.GreaterThanTemplate;
          exceptionFactory ??= GetExceptionFactory(requirementType);
-         var data = GetDataDictionary(
-            requirementType,
-            value!,
-            valueExpression,
-            target!,
-            targetExpression);
+         var data = ExceptionDataBuilder.Create()
+            .WithRequirement(requirementType, _requirementName)
+            .WithValue(value!, valueExpression)
+            .WithTarget(target!, targetExpression)
+            .Build();
 
          throw exceptionFactory.CreateException(data, messageTemplate);
       }
@@ -420,33 +420,16 @@ public static class GreaterThanExtensions
       {
          messageTemplate ??= MessageTemplates.GreaterThanTemplate;
          exceptionFactory ??= GetExceptionFactory(requirementType);
-         var data = GetDataDictionary(
-            requirementType,
-            value!,
-            valueExpression,
-            target!,
-            targetExpression);
-         data[DataNames.StringComparison] = comparisonType;
+         var data = ExceptionDataBuilder.Create()
+            .WithRequirement(requirementType, _requirementName)
+            .WithValue(value!, valueExpression)
+            .WithTarget(target, targetExpression)
+            .WithItem(DataNames.StringComparison, comparisonType)
+            .Build();
 
          throw exceptionFactory.CreateException(data, messageTemplate);
       }
    }
-
-   private static Dictionary<String, Object> GetDataDictionary<T>(
-      RequirementType requirementType,
-      T value,
-      String valueExpression,
-      T target,
-      String targetExpression)
-      => new()
-      {
-         {  DataNames.RequirementType, requirementType },
-         {  DataNames.RequirementName, RequirementNames.GreaterThan },
-         {  DataNames.Value, value! },
-         {  DataNames.ValueExpression, valueExpression },
-         {  DataNames.Target, target! },
-         {  DataNames.TargetExpression, targetExpression }
-      };
 
    private static IExceptionFactory GetExceptionFactory(RequirementType requirementType)
       => requirementType == RequirementType.Precondition

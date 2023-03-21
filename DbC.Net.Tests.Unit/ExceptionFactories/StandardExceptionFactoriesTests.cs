@@ -100,9 +100,9 @@ public class StandardExceptionFactoriesTests
          { DataNames.RequirementName, "GreaterThan" },
          { DataNames.Value, 99.9 },
          { DataNames.ValueExpression, "sum" },
-         { DataNames.Limit, 100.0 },
-         { DataNames.LimitExpression, "lowerBound" } };
-      var messageTemplate = "{RequirementType} {RequirementName} failed: value ({Value}) is not greater than {Limit}";
+         { DataNames.LowerBound, 100.0 },
+         { DataNames.LowerBoundExpression, "lowerBound" } };
+      var messageTemplate = "{RequirementType} {RequirementName} failed: value ({Value}) is not greater than {LowerBound}";
 
       var expectedMessage = "Precondition GreaterThan failed: value (99.9) is not greater than 100";
 
@@ -119,8 +119,8 @@ public class StandardExceptionFactoriesTests
       ex.Data[DataNames.RequirementName].Should().Be(data[DataNames.RequirementName]);
       ex.Data[DataNames.Value].Should().Be(data[DataNames.Value]);
       ex.Data[DataNames.ValueExpression].Should().Be(data[DataNames.ValueExpression]);
-      ex.Data[DataNames.Limit].Should().Be(data[DataNames.Limit]);
-      ex.Data[DataNames.LimitExpression].Should().Be(data[DataNames.LimitExpression]);
+      ex.Data[DataNames.LowerBound].Should().Be(data[DataNames.LowerBound]);
+      ex.Data[DataNames.LowerBoundExpression].Should().Be(data[DataNames.LowerBoundExpression]);
    }
 
    #endregion
@@ -345,9 +345,9 @@ public class StandardExceptionFactoriesTests
          { DataNames.RequirementName, "GreaterThan" },
          { DataNames.Value, 99.9 },
          { DataNames.ValueExpression, "sum" },
-         { DataNames.Limit, 100.0 },
-         { DataNames.LimitExpression, "lowerBound" } };
-      var messageTemplate = "{RequirementType} {RequirementName} failed: value ({Value}) is not greater than {Limit}";
+         { DataNames.LowerBound, 100.0 },
+         { DataNames.LowerBoundExpression, "lowerBound" } };
+      var messageTemplate = "{RequirementType} {RequirementName} failed: value ({Value}) is not greater than {LowerBound}";
 
       var expectedValue = "****";
       var expectedMessage = "Precondition GreaterThan failed: value (****) is not greater than 100";
@@ -365,8 +365,8 @@ public class StandardExceptionFactoriesTests
       ex.Data[DataNames.RequirementName].Should().Be(data[DataNames.RequirementName]);
       ex.Data[DataNames.Value].Should().Be(expectedValue);
       ex.Data[DataNames.ValueExpression].Should().Be(data[DataNames.ValueExpression]);
-      ex.Data[DataNames.Limit].Should().Be(data[DataNames.Limit]);
-      ex.Data[DataNames.LimitExpression].Should().Be(data[DataNames.LimitExpression]);
+      ex.Data[DataNames.LowerBound].Should().Be(data[DataNames.LowerBound]);
+      ex.Data[DataNames.LowerBoundExpression].Should().Be(data[DataNames.LowerBoundExpression]);
    }
 
    #endregion

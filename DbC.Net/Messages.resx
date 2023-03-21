@@ -129,6 +129,9 @@
   <data name="DataDictionaryIsNull" xml:space="preserve">
     <value>Data may not be null</value>
   </data>
+  <data name="ExceptionDataAlreadyBuilt" xml:space="preserve">
+    <value>The Build method was previously invoked</value>
+  </data>
   <data name="ExceptionIsNull" xml:space="preserve">
     <value>ex may not be null</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="PadCharacterIsNull" xml:space="preserve">
     <value>Pad character may not be null ('\0')</value>
+  </data>
+  <data name="RequirementTypeIsNotDefined" xml:space="preserve">
+    <value>The value is not a defined member of the RequirementType enumeration</value>
   </data>
   <data name="SensitiveValuesListIsNull" xml:space="preserve">
     <value>List of sensitive value names may not be null</value>

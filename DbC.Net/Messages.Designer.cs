@@ -97,6 +97,15 @@ namespace DbC.Net {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The Build method was previously invoked.
+        /// </summary>
+        internal static string ExceptionDataAlreadyBuilt {
+            get {
+                return ResourceManager.GetString("ExceptionDataAlreadyBuilt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ex may not be null.
         /// </summary>
         internal static string ExceptionIsNull {
@@ -138,6 +147,15 @@ namespace DbC.Net {
         internal static string PadCharacterIsNull {
             get {
                 return ResourceManager.GetString("PadCharacterIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The value is not a defined member of the RequirementType enumeration.
+        /// </summary>
+        internal static string RequirementTypeIsNotDefined {
+            get {
+                return ResourceManager.GetString("RequirementTypeIsNotDefined", resourceCulture);
             }
         }
         

@@ -10,15 +10,15 @@ public class ArgumentOutOfRangeExceptionFactoryTests
       { DataNames.ValueExpression, StandardTransforms.AsteriskMaskTransform }
    };
 
-   private const String _messageTemplate = "{RequirementType} {RequirementName} failed: value ({Value}) is not greater than {Limit}";
+   private const String _messageTemplate = "{RequirementType} {RequirementName} failed: value ({Value}) is not greater than {LowerBound}";
 
    private readonly IReadOnlyDictionary<String, Object> _data = new Dictionary<String, Object>() {
       { DataNames.RequirementType, RequirementType.Precondition },
       { DataNames.RequirementName, "GreaterThan" },
       { DataNames.Value, 99.9 },
       { DataNames.ValueExpression, "sum" },
-      { DataNames.Limit, 100.0 },
-      { DataNames.LimitExpression, "lowerBound" } };
+      { DataNames.LowerBound, 100.0 },
+      { DataNames.LowerBoundExpression, "lowerBound" } };
 
    #region Constructor Tests
    // ==========================================================================
@@ -130,8 +130,8 @@ public class ArgumentOutOfRangeExceptionFactoryTests
       ex.Data[DataNames.RequirementName].Should().Be(_data[DataNames.RequirementName]);
       ex.Data[DataNames.Value].Should().Be(_data[DataNames.Value]);
       ex.Data[DataNames.ValueExpression].Should().Be(_data[DataNames.ValueExpression]);
-      ex.Data[DataNames.Limit].Should().Be(_data[DataNames.Limit]);
-      ex.Data[DataNames.LimitExpression].Should().Be(_data[DataNames.LimitExpression]);
+      ex.Data[DataNames.LowerBound].Should().Be(_data[DataNames.LowerBound]);
+      ex.Data[DataNames.LowerBoundExpression].Should().Be(_data[DataNames.LowerBoundExpression]);
    }
 
    [Fact]
@@ -152,8 +152,8 @@ public class ArgumentOutOfRangeExceptionFactoryTests
       ex.Data[DataNames.RequirementName].Should().Be(_data[DataNames.RequirementName]);
       ex.Data[DataNames.Value].Should().Be(expectedValue);
       ex.Data[DataNames.ValueExpression].Should().Be(_data[DataNames.ValueExpression]);
-      ex.Data[DataNames.Limit].Should().Be(_data[DataNames.Limit]);
-      ex.Data[DataNames.LimitExpression].Should().Be(_data[DataNames.LimitExpression]);
+      ex.Data[DataNames.LowerBound].Should().Be(_data[DataNames.LowerBound]);
+      ex.Data[DataNames.LowerBoundExpression].Should().Be(_data[DataNames.LowerBoundExpression]);
    }
 
    [Fact]
