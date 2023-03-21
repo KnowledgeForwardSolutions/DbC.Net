@@ -309,8 +309,8 @@ public class GreaterThanExtensionsTests
    {
       // Arrange.
       var data = new BoxRecordData();
-      var value = data.MaxValue;
-      var lowerBound = data.MaxValue;
+      var value = data.ReverseMinValue;
+      var lowerBound = data.ReverseMaxValue;
       var comparer = data.ReverseComparer;
       var act = () => _ = value.EnsuresGreaterThan(lowerBound, comparer);
       var expectedMessage = $"Postcondition GreaterThan failed: {nameof(value)} must be greater than {lowerBound}";
@@ -965,8 +965,8 @@ public class GreaterThanExtensionsTests
    {
       // Arrange.
       var data = new BoxRecordData();
-      var value = data.MaxValue;
-      var lowerBound = data.MaxValue;
+      var value = data.ReverseMinValue;
+      var lowerBound = data.ReverseMaxValue;
       var comparer = data.ReverseComparer;
       var act = () => _ = value.RequiresGreaterThan(lowerBound, comparer);
       var expectedParameterName = nameof(value);
