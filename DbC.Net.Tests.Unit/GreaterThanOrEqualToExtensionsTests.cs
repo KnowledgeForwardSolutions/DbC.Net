@@ -8,6 +8,186 @@ public class GreaterThanOrEqualToExtensionsTests
    private const Int32 _dataCount = 6;
    private const Int32 _stringDataCount = 7;
 
+   #region EnsuresGreaterThanOrEqual (IComparable) Tests
+   // ==========================================================================
+   // ==========================================================================
+
+   [Theory]
+   [ClassData(typeof(ComparableTypesTestData))]
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparable_ShouldReturnOriginalValue_WhenValueIsGreaterThanLowerBound<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      var value = data.MaxValue;
+      var lowerBound = data.MinValue;
+
+      // Act.
+      var result = value.EnsuresGreaterThanOrEqual(lowerBound);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [Theory]
+   [ClassData(typeof(ComparableTypesTestData))]
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparable_ShouldReturnOriginalValue_WhenValueIsEqualToLowerBound<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      var value = data.MaxValue;
+      var lowerBound = data.MaxValue;
+
+      // Act.
+      var result = value.EnsuresGreaterThanOrEqual(lowerBound);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [Theory]
+   [ClassData(typeof(ReferenceTypesTestData))]
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterOrEqualThanIComparable_ShouldReturnOriginalValue_WhenReferenceValueIsNotNullAndLowerBoundIsNull<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      var value = data.MaxValue;
+      T lowerBound = default!;
+
+      // Act.
+      var result = value.EnsuresGreaterThanOrEqual(lowerBound);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [Theory]
+   [ClassData(typeof(ReferenceTypesTestData))]
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterOrEqualThanIComparable_ShouldReturnOriginalValue_WhenReferenceValueIsNullAndLowerBoundIsNull<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      T value = default!;
+      T lowerBound = default!;
+
+      // Act.
+      var result = value.EnsuresGreaterThanOrEqual(lowerBound);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [Theory]
+   [ClassData(typeof(ComparableTypesTestData))]
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparable_ShouldThrow_WhenValueIsLessThanLowerBound<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      var value = data.MinValue;
+      var lowerBound = data.MaxValue;
+      var act = () => _ = value.EnsuresGreaterThanOrEqual(lowerBound);
+
+      // Act/assert.
+      act.Should().Throw<PostconditionFailedException>();
+   }
+
+   [Theory]
+   [ClassData(typeof(ReferenceTypesTestData))]
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparable_ShouldThrow_WhenReferenceValueIsNullAndLowerBoundIsNotNull<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      T value = default!;
+      T lowerBound = data.MaxValue;
+      var act = () => _ = value.EnsuresGreaterThanOrEqual(lowerBound);
+
+      // Act/assert.
+      act.Should().Throw<PostconditionFailedException>();
+   }
+
+   [Fact]
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparable_ShouldThrowWithExpectedDataDictionary_WhenValueIsNotGreaterThanOrEqualToLowerBound()
+   {
+      // Arrange.
+      var data = new Int32Data();
+      var value = data.MinValue;
+      var lowerBound = data.MaxValue;
+      var act = () => _ = value.EnsuresGreaterThanOrEqual(lowerBound);
+
+      // Act/assert.
+      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+
+      ex.Data.Count.Should().Be(_dataCount);
+      ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
+      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.GreaterThanOrEqual);
+      ex.Data[DataNames.Value].Should().Be(value);
+      ex.Data[DataNames.ValueExpression].Should().Be(nameof(value));
+      ex.Data[DataNames.LowerBound].Should().Be(lowerBound);
+      ex.Data[DataNames.LowerBoundExpression].Should().Be(nameof(lowerBound));
+   }
+
+   [Fact]
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparable_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueIsNotGreaterThanOrEqualToLowerBound()
+   {
+      // Arrange.
+      var data = new PointStructData();
+      var value = data.MinValue;
+      var lowerBound = data.MaxValue;
+      var act = () => _ = value.EnsuresGreaterThanOrEqual(lowerBound);
+      var expectedMessage = $"Postcondition GreaterThanOrEqual failed: {nameof(value)} must be greater than or equal to {lowerBound}";
+
+      // Act/assert.
+      act.Should().Throw<PostconditionFailedException>()
+         .And.Message.Should().StartWith(expectedMessage);
+   }
+
+   [Fact]
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparable_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
+   {
+      // Arrange.
+      var data = new HalfData();
+      var value = data.MinValue;
+      var lowerBound = data.MaxValue;
+      var messageTemplate = "Requirement {RequirementName} failed";
+      var act = () => _ = value.EnsuresGreaterThanOrEqual(lowerBound, messageTemplate);
+      var expectedMessage = $"Requirement GreaterThanOrEqual failed";
+
+      // Act/assert.
+      act.Should().Throw<PostconditionFailedException>()
+         .And.Message.Should().StartWith(expectedMessage);
+   }
+
+   [Fact]
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparable_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
+   {
+      // Arrange.
+      var data = new UInt128Data();
+      var value = data.MinValue;
+      var lowerBound = data.MaxValue;
+      var act = () => _ = value.EnsuresGreaterThanOrEqual(lowerBound, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Postcondition GreaterThanOrEqual failed: {nameof(value)} must be greater than or equal to {lowerBound}";
+
+      // Act/assert.
+      act.Should().Throw<CustomException>()
+         .And.Message.Should().StartWith(expectedMessage);
+   }
+
+   [Fact]
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparable_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   {
+      // Arrange.
+      String value = null!;
+      var lowerBound = "ABC";
+      var messageTemplate = "Requirement {RequirementName} failed";
+      var act = () => _ = value.EnsuresGreaterThanOrEqual(lowerBound, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Requirement GreaterThanOrEqual failed";
+
+      // Act/assert.
+      act.Should().Throw<CustomException>()
+         .And.Message.Should().StartWith(expectedMessage);
+   }
+
+   #endregion
+
    #region RequiresGreaterThanOrEqual (IComparable) Tests
    // ==========================================================================
    // ==========================================================================

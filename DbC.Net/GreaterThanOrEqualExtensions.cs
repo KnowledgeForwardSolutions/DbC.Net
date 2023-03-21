@@ -10,6 +10,60 @@ public static class GreaterThanOrEqualToExtensions
    private const String _requirementName = RequirementNames.GreaterThanOrEqual;
 
    /// <summary>
+   ///   Value GreaterThanOrEqual postcondition. Confirm that 
+   ///   <paramref name="value"/> is greater than or equal to 
+   ///   <paramref name="lowerBound"/> and throw an exception if it is not.
+   /// </summary>
+   /// <param name="value">
+   ///   The value to check.
+   /// </param>
+   /// <param name="lowerBound">
+   ///   The lower bound that <paramref name="value"/> should be greater than or
+   ///   equal to.
+   /// </param>
+   /// <param name="messageTemplate">
+   ///   Optional. The message template to use if an exception is thrown.
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than or equal to {LowerBound}".
+   /// </param>
+   /// <param name="exceptionFactory">
+   ///   Optional. The <see cref="IExceptionFactory"/> used to create the
+   ///   exception that is thrown if the <paramref name="value"/> is 
+   ///   <see langword="null"/>. Defaults to 
+   ///   <see cref="StandardExceptionFactories.PostconditionFailedExceptionFactory"/>.
+   /// </param>
+   /// <param name="valueExpression">
+   ///   Optional. Defaults to the caller expression for
+   ///   <paramref name="value"/>. 
+   /// </param>
+   /// <param name="lowerBoundExpression">
+   ///   Optional. Defaults to the caller expression for
+   ///   <paramref name="lowerBound"/>. 
+   /// </param>
+   /// <returns>
+   ///   The tested <paramref name="value"/> is returned unaltered to support 
+   ///   chaining requirements.
+   /// </returns>
+   public static T EnsuresGreaterThanOrEqual<T>(
+      this T value,
+      T lowerBound,
+      String? messageTemplate = null,
+      IExceptionFactory? exceptionFactory = null,
+      [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
+      [CallerArgumentExpression(nameof(lowerBound))] String lowerBoundExpression = null!) where T : IComparable<T>
+   {
+      CheckGreaterThanOrEqual(
+         value,
+         lowerBound,
+         RequirementType.Postcondition,
+         messageTemplate,
+         exceptionFactory,
+         valueExpression,
+         lowerBoundExpression);
+
+      return value;
+   }
+
+   /// <summary>
    ///   Value GreaterThanOrEqual precondition. Confirm that 
    ///   <paramref name="value"/> is greater than or equal to 
    ///   <paramref name="lowerBound"/> and throw an exception if it is not.
