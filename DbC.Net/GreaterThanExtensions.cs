@@ -11,18 +11,18 @@ public static class GreaterThanExtensions
 
    /// <summary>
    ///   Value GreaterThan postcondition. Confirm that <paramref name="value"/>
-   ///   is greater than <paramref name="target"/> and throw an exception if it 
-   ///   is not.
+   ///   is greater than <paramref name="lowerBound"/> and throw an exception if
+   ///   it is not.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
    /// </param>
-   /// <param name="target">
-   ///   The target that <paramref name="value"/> should be greater than.
+   /// <param name="lowerBound">
+   ///   The lower bound that <paramref name="value"/> should be greater than.
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than {Target}".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than {LowerBound}".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
@@ -34,9 +34,9 @@ public static class GreaterThanExtensions
    ///   Optional. Defaults to the caller expression for
    ///   <paramref name="value"/>. 
    /// </param>
-   /// <param name="targetExpression">
+   /// <param name="lowerBoundExpression">
    ///   Optional. Defaults to the caller expression for
-   ///   <paramref name="target"/>. 
+   ///   <paramref name="lowerBound"/>. 
    /// </param>
    /// <returns>
    ///   The tested <paramref name="value"/> is returned unaltered to support 
@@ -44,42 +44,42 @@ public static class GreaterThanExtensions
    /// </returns>
    public static T EnsuresGreaterThan<T>(
       this T value,
-      T target,
+      T lowerBound,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
       [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
-      [CallerArgumentExpression(nameof(target))] String targetExpression = null!) where T : IComparable<T>
+      [CallerArgumentExpression(nameof(lowerBound))] String lowerBoundExpression = null!) where T : IComparable<T>
    {
       CheckGreaterThan(
          value,
-         target,
+         lowerBound,
          RequirementType.Postcondition,
          messageTemplate,
          exceptionFactory,
          valueExpression,
-         targetExpression);
+         lowerBoundExpression);
 
       return value;
    }
 
    /// <summary>
    ///   Value GreaterThan postcondition. Confirm that <paramref name="value"/>
-   ///   is greater than <paramref name="target"/> and throw an exception if it 
-   ///   is not.
+   ///   is greater than <paramref name="lowerBound"/> and throw an exception if
+   ///   it is not.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
    /// </param>
-   /// <param name="target">
-   ///   The target that <paramref name="value"/> should be greater than.
+   /// <param name="lowerBound">
+   ///   The lower bound that <paramref name="value"/> should be greater than.
    /// </param>
    /// <param name="comparer">
    ///   An <see cref="IComparer{T}"/> used to compare <paramref name="value"/> 
-   ///   and <paramref name="target"/>.
+   ///   and <paramref name="lowerBound"/>.
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than {Target}".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than {LowerBound}".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
@@ -91,9 +91,9 @@ public static class GreaterThanExtensions
    ///   Optional. Defaults to the caller expression for
    ///   <paramref name="value"/>. 
    /// </param>
-   /// <param name="targetExpression">
+   /// <param name="lowerBoundExpression">
    ///   Optional. Defaults to the caller expression for
-   ///   <paramref name="target"/>. 
+   ///   <paramref name="lowerBound"/>. 
    /// </param>
    /// <returns>
    ///   The tested <paramref name="value"/> is returned unaltered to support 
@@ -104,22 +104,22 @@ public static class GreaterThanExtensions
    /// </exception>
    public static T EnsuresGreaterThan<T>(
       this T value,
-      T target,
+      T lowerBound,
       IComparer<T> comparer,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
       [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
-      [CallerArgumentExpression(nameof(target))] String targetExpression = null!)
+      [CallerArgumentExpression(nameof(lowerBound))] String lowerBoundExpression = null!)
    {
       CheckGreaterThan(
          value,
-         target,
+         lowerBound,
          comparer ?? throw new ArgumentNullException(nameof(comparer), Messages.ComparerIsNull),
          RequirementType.Postcondition,
          messageTemplate,
          exceptionFactory,
          valueExpression,
-         targetExpression);
+         lowerBoundExpression);
 
       return value;
    }
@@ -127,22 +127,22 @@ public static class GreaterThanExtensions
    /// <summary>
    ///   Value GreaterThan postcondition. Confirm that the <see cref="String"/>
    ///   <paramref name="value"/> is greater than the <see cref="String"/> 
-   ///   <paramref name="target"/> and throw an exception if it is not.
+   ///   <paramref name="lowerBound"/> and throw an exception if it is not.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
    /// </param>
-   /// <param name="target">
-   ///   The target that <paramref name="value"/> should be greater than.
+   /// <param name="lowerBound">
+   ///   The lower bound that <paramref name="value"/> should be greater than.
    /// </param>
    /// <param name="comparisonType">
    ///   <see cref="StringComparison"/> enumeration value that specified how the
-   ///   <paramref name="value"/> and <paramref name="target"/> strings are 
+   ///   <paramref name="value"/> and <paramref name="lowerBound"/> strings are 
    ///   compared.
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than {Target}".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than {LowerBound}".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
@@ -154,9 +154,9 @@ public static class GreaterThanExtensions
    ///   Optional. Defaults to the caller expression for
    ///   <paramref name="value"/>. 
    /// </param>
-   /// <param name="targetExpression">
+   /// <param name="lowerBoundExpression">
    ///   Optional. Defaults to the caller expression for
-   ///   <paramref name="target"/>. 
+   ///   <paramref name="lowerBound"/>. 
    /// </param>
    /// <returns>
    ///   The tested <paramref name="value"/> is returned unaltered to support 
@@ -164,40 +164,40 @@ public static class GreaterThanExtensions
    /// </returns>
    public static String EnsuresGreaterThan(
       this String value,
-      String target,
+      String lowerBound,
       StringComparison comparisonType,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
       [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
-      [CallerArgumentExpression(nameof(target))] String targetExpression = null!)
+      [CallerArgumentExpression(nameof(lowerBound))] String lowerBoundExpression = null!)
    {
       CheckGreaterThan(
          value,
-         target,
+         lowerBound,
          comparisonType,
          RequirementType.Postcondition,
          messageTemplate,
          exceptionFactory,
          valueExpression,
-         targetExpression);
+         lowerBoundExpression);
 
       return value;
    }
 
    /// <summary>
    ///   Value GreaterThan precondition. Confirm that <paramref name="value"/>
-   ///   is greater than <paramref name="target"/> and throw an exception if it 
-   ///   is not.
+   ///   is greater than <paramref name="lowerBound"/> and throw an exception if
+   ///   it is not.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
    /// </param>
-   /// <param name="target">
-   ///   The target that <paramref name="value"/> should be greater than.
+   /// <param name="lowerBound">
+   ///   The lower bound that <paramref name="value"/> should be greater than.
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than {Target}".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than {LowerBound}".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
@@ -209,9 +209,9 @@ public static class GreaterThanExtensions
    ///   Optional. Defaults to the caller expression for
    ///   <paramref name="value"/>. 
    /// </param>
-   /// <param name="targetExpression">
+   /// <param name="lowerBoundExpression">
    ///   Optional. Defaults to the caller expression for
-   ///   <paramref name="target"/>. 
+   ///   <paramref name="lowerBound"/>. 
    /// </param>
    /// <returns>
    ///   The tested <paramref name="value"/> is returned unaltered to support 
@@ -219,42 +219,42 @@ public static class GreaterThanExtensions
    /// </returns>
    public static T RequiresGreaterThan<T>(
       this T value,
-      T target,
+      T lowerBound,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
       [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
-      [CallerArgumentExpression(nameof(target))] String targetExpression = null!) where T : IComparable<T>
+      [CallerArgumentExpression(nameof(lowerBound))] String lowerBoundExpression = null!) where T : IComparable<T>
    {
       CheckGreaterThan(
          value,
-         target,
+         lowerBound,
          RequirementType.Precondition,
          messageTemplate,
          exceptionFactory,
          valueExpression,
-         targetExpression);
+         lowerBoundExpression);
 
       return value;
    }
 
    /// <summary>
    ///   Value GreaterThan precondition. Confirm that <paramref name="value"/>
-   ///   is greater than <paramref name="target"/> and throw an exception if it 
-   ///   is not.
+   ///   is greater than <paramref name="lowerBound"/> and throw an exception if
+   ///   it is not.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
    /// </param>
-   /// <param name="target">
-   ///   The target that <paramref name="value"/> should be greater than.
+   /// <param name="lowerBound">
+   ///   The lower bound that <paramref name="value"/> should be greater than.
    /// </param>
    /// <param name="comparer">
    ///   An <see cref="IComparer{T}"/> used to compare <paramref name="value"/> 
-   ///   and <paramref name="target"/>.
+   ///   and <paramref name="lowerBound"/>.
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than {Target}".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than {LowerBound}".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
@@ -266,9 +266,9 @@ public static class GreaterThanExtensions
    ///   Optional. Defaults to the caller expression for
    ///   <paramref name="value"/>. 
    /// </param>
-   /// <param name="targetExpression">
+   /// <param name="lowerBoundExpression">
    ///   Optional. Defaults to the caller expression for
-   ///   <paramref name="target"/>. 
+   ///   <paramref name="lowerBound"/>. 
    /// </param>
    /// <returns>
    ///   The tested <paramref name="value"/> is returned unaltered to support 
@@ -279,22 +279,22 @@ public static class GreaterThanExtensions
    /// </exception>
    public static T RequiresGreaterThan<T>(
       this T value,
-      T target,
+      T lowerBound,
       IComparer<T> comparer,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
       [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
-      [CallerArgumentExpression(nameof(target))] String targetExpression = null!)
+      [CallerArgumentExpression(nameof(lowerBound))] String lowerBoundExpression = null!)
    {
       CheckGreaterThan(
          value,
-         target,
+         lowerBound,
          comparer ?? throw new ArgumentNullException(nameof(comparer), Messages.ComparerIsNull),
          RequirementType.Precondition,
          messageTemplate,
          exceptionFactory,
          valueExpression,
-         targetExpression);
+         lowerBoundExpression);
 
       return value;
    }
@@ -302,22 +302,22 @@ public static class GreaterThanExtensions
    /// <summary>
    ///   Value GreaterThan precondition. Confirm that the <see cref="String"/>
    ///   <paramref name="value"/> is greater than the <see cref="String"/> 
-   ///   <paramref name="target"/> and throw an exception if it is not.
+   ///   <paramref name="lowerBound"/> and throw an exception if it is not.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
    /// </param>
-   /// <param name="target">
-   ///   The target that <paramref name="value"/> should be greater than.
+   /// <param name="lowerBound">
+   ///   The lower bound that <paramref name="value"/> should be greater than.
    /// </param>
    /// <param name="comparisonType">
    ///   <see cref="StringComparison"/> enumeration value that specified how the
-   ///   <paramref name="value"/> and <paramref name="target"/> strings are 
+   ///   <paramref name="value"/> and <paramref name="lowerBound"/> strings are 
    ///   compared.
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than {Target}".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than {LowerBound}".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
@@ -329,9 +329,9 @@ public static class GreaterThanExtensions
    ///   Optional. Defaults to the caller expression for
    ///   <paramref name="value"/>. 
    /// </param>
-   /// <param name="targetExpression">
+   /// <param name="lowerBoundExpression">
    ///   Optional. Defaults to the caller expression for
-   ///   <paramref name="target"/>. 
+   ///   <paramref name="lowerBound"/>. 
    /// </param>
    /// <returns>
    ///   The tested <paramref name="value"/> is returned unaltered to support 
@@ -339,43 +339,43 @@ public static class GreaterThanExtensions
    /// </returns>
    public static String RequiresGreaterThan(
       this String value,
-      String target,
+      String lowerBound,
       StringComparison comparisonType,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
       [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
-      [CallerArgumentExpression(nameof(target))] String targetExpression = null!)
+      [CallerArgumentExpression(nameof(lowerBound))] String lowerBoundExpression = null!)
    {
       CheckGreaterThan(
          value,
-         target,
+         lowerBound,
          comparisonType,
          RequirementType.Precondition,
          messageTemplate,
          exceptionFactory,
          valueExpression,
-         targetExpression);
+         lowerBoundExpression);
 
       return value;
    }
 
    private static void CheckGreaterThan<T>(
       T value,
-      T target,
+      T lowerBound,
       RequirementType requirementType,
       String? messageTemplate,
       IExceptionFactory? exceptionFactory,
       String valueExpression,
-      String targetExpression) where T : IComparable<T>
+      String lowerBoundExpression) where T : IComparable<T>
    {
-      if (value is null || value!.CompareTo(target) <= 0)
+      if (value is null || value!.CompareTo(lowerBound) <= 0)
       {
          messageTemplate ??= MessageTemplates.GreaterThanTemplate;
          exceptionFactory ??= GetExceptionFactory(requirementType);
          var data = ExceptionDataBuilder.Create()
             .WithRequirement(requirementType, _requirementName)
             .WithValue(value!, valueExpression)
-            .WithTarget(target, targetExpression)
+            .WithLowerBound(lowerBound, lowerBoundExpression)
             .Build();
 
          throw exceptionFactory.CreateException(data, messageTemplate);
@@ -384,22 +384,22 @@ public static class GreaterThanExtensions
 
    private static void CheckGreaterThan<T>(
       T value,
-      T target,
+      T lowerBound,
       IComparer<T> comparer,
       RequirementType requirementType,
       String? messageTemplate,
       IExceptionFactory? exceptionFactory,
       String valueExpression,
-      String targetExpression)
+      String lowerBoundExpression)
    {
-      if (comparer.Compare(value, target) <= 0)
+      if (comparer.Compare(value, lowerBound) <= 0)
       {
          messageTemplate ??= MessageTemplates.GreaterThanTemplate;
          exceptionFactory ??= GetExceptionFactory(requirementType);
          var data = ExceptionDataBuilder.Create()
             .WithRequirement(requirementType, _requirementName)
             .WithValue(value!, valueExpression)
-            .WithTarget(target!, targetExpression)
+            .WithLowerBound(lowerBound, lowerBoundExpression)
             .Build();
 
          throw exceptionFactory.CreateException(data, messageTemplate);
@@ -408,22 +408,22 @@ public static class GreaterThanExtensions
 
    private static void CheckGreaterThan(
       String value,
-      String target,
+      String lowerBound,
       StringComparison comparisonType,
       RequirementType requirementType,
       String? messageTemplate,
       IExceptionFactory? exceptionFactory,
       String valueExpression,
-      String targetExpression)
+      String lowerBoundExpression)
    {
-      if (String.Compare(value, target, comparisonType) <= 0)
+      if (String.Compare(value, lowerBound, comparisonType) <= 0)
       {
          messageTemplate ??= MessageTemplates.GreaterThanTemplate;
          exceptionFactory ??= GetExceptionFactory(requirementType);
          var data = ExceptionDataBuilder.Create()
             .WithRequirement(requirementType, _requirementName)
             .WithValue(value!, valueExpression)
-            .WithTarget(target, targetExpression)
+            .WithLowerBound(lowerBound, lowerBoundExpression)
             .WithItem(DataNames.StringComparison, comparisonType)
             .Build();
 

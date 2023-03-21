@@ -124,10 +124,10 @@
     <value>{RequirementType} {RequirementName} failed: {ValueExpression} must be equal to {Target}</value>
   </data>
   <data name="GreaterThanOrEqualToTemplate" xml:space="preserve">
-    <value>{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than or equal to {Target}</value>
+    <value>{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than or equal to {LowerBound}</value>
   </data>
   <data name="GreaterThanTemplate" xml:space="preserve">
-    <value>{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than {Target}</value>
+    <value>{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than {LowerBound}</value>
   </data>
   <data name="NotDefaultTemplate" xml:space="preserve">
     <value>{RequirementType} {RequirementName} failed: {ValueExpression} may not be default({ValueDatatype})</value>

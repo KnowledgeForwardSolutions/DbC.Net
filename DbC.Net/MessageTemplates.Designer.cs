@@ -79,7 +79,7 @@ namespace DbC.Net {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} must be greater than or equal to {Target}.
+        ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} must be greater than or equal to {LowerBound}.
         /// </summary>
         internal static string GreaterThanOrEqualToTemplate {
             get {
@@ -88,7 +88,7 @@ namespace DbC.Net {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} must be greater than {Target}.
+        ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} must be greater than {LowerBound}.
         /// </summary>
         internal static string GreaterThanTemplate {
             get {
