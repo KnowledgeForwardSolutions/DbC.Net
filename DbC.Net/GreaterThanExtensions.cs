@@ -399,7 +399,7 @@ public static class GreaterThanExtensions
          var data = ExceptionDataBuilder.Create()
             .WithRequirement(requirementType, _requirementName)
             .WithValue(value!, valueExpression)
-            .WithLowerBound(lowerBound, lowerBoundExpression)
+            .WithLowerBound(lowerBound!, lowerBoundExpression)
             .Build();
 
          throw exceptionFactory.CreateException(data, messageTemplate);
