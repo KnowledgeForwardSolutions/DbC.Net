@@ -1,4 +1,6 @@
-﻿namespace DbC.Net.TestAndExampleResources;
+﻿using DbC.Net.Exceptions;
+
+namespace DbC.Net.TestAndExampleResources;
 
 public sealed class CustomExceptionFactory : ExceptionFactoryBase
 {

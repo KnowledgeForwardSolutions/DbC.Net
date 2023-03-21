@@ -395,7 +395,7 @@ public static class NotEqualExtensions
          var data = ExceptionDataBuilder.Create()
             .WithRequirement(requirementType, _requirementName)
             .WithValue(value!, valueExpression)
-            .WithTarget(target, targetExpression)
+            .WithTarget(target!, targetExpression)
             .Build();
 
          throw exceptionFactory.CreateException(data, messageTemplate);
