@@ -44,7 +44,7 @@
   - Range Requirements
 
     - [GreaterThan](/Documentation/GreaterThan.md)
-    - [GreaterThanOrEqualTo](/Documentation/GreaterThanOrEqualTo.md)
+    - [GreaterThanOrEqual](/Documentation/GreaterThanOrEqual.md)
 
 - **[Release History/Release Notes](#release-historyrelease-notes)**
 
