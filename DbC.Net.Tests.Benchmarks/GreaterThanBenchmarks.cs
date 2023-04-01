@@ -34,7 +34,7 @@ public class GreaterThanBenchmarks
    };
    private static readonly IComparer<Observation> _observationComparer = ObservationComparers.AllFieldsComparer;
 
-   private const String _messageTemplate = "Requires{RequirementName} failed: {Value} must be greater than to {Target}";
+   private const String _messageTemplate = "Requires{RequirementName} failed: {Value} must be greater than {Target}";
    private static readonly IExceptionFactory _exceptionFactory = StandardExceptionFactories.InvalidOperationExceptionFactory;
 
    [Benchmark]
