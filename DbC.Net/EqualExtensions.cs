@@ -7,6 +7,8 @@
 /// </summary>
 public static class EqualExtensions
 {
+   private const String _requirementName = RequirementNames.Equal;
+
    /// <summary>
    ///   Value Equal postcondition. Confirm that <paramref name="value"/> is 
    ///   equal to <paramref name="target"/> and throw an exception if it is not.
@@ -367,12 +369,11 @@ public static class EqualExtensions
       {
          messageTemplate ??= MessageTemplates.EqualTemplate;
          exceptionFactory ??= GetExceptionFactory(requirementType);
-         var data = GetDataDictionary(
-            requirementType,
-            value!,
-            valueExpression,
-            target,
-            targetExpression);
+         var data = ExceptionDataBuilder.Create()
+            .WithRequirement(requirementType, _requirementName)
+            .WithValue(value!, valueExpression)
+            .WithTarget(target, targetExpression)
+            .Build();
 
          throw exceptionFactory.CreateException(data, messageTemplate);
       }
@@ -392,12 +393,11 @@ public static class EqualExtensions
       {
          messageTemplate ??= MessageTemplates.EqualTemplate;
          exceptionFactory ??= GetExceptionFactory(requirementType);
-         var data = GetDataDictionary(
-            requirementType,
-            value,
-            valueExpression,
-            target,
-            targetExpression);
+         var data = ExceptionDataBuilder.Create()
+            .WithRequirement(requirementType, _requirementName)
+            .WithValue(value!, valueExpression)
+            .WithTarget(target!, targetExpression)
+            .Build();
 
          throw exceptionFactory.CreateException(data, messageTemplate);
       }
@@ -418,33 +418,16 @@ public static class EqualExtensions
       {
          messageTemplate ??= MessageTemplates.EqualTemplate;
          exceptionFactory ??= GetExceptionFactory(requirementType);
-         var data = GetDataDictionary(
-            requirementType,
-            value,
-            valueExpression,
-            target,
-            targetExpression);
-         data[DataNames.StringComparison] = comparisonType;
+         var data = ExceptionDataBuilder.Create()
+            .WithRequirement(requirementType, _requirementName)
+            .WithValue(value!, valueExpression)
+            .WithTarget(target, targetExpression)
+            .WithItem(DataNames.StringComparison, comparisonType)
+            .Build();
 
          throw exceptionFactory.CreateException(data, messageTemplate);
       }
    }
-
-   private static Dictionary<String, Object> GetDataDictionary<T>(
-      RequirementType requirementType,
-      T value,
-      String valueExpression,
-      T target,
-      String targetExpression)
-      => new()
-      {
-         {  DataNames.RequirementType, requirementType },
-         {  DataNames.RequirementName, RequirementNames.Equal },
-         {  DataNames.Value, value! },
-         {  DataNames.ValueExpression, valueExpression },
-         {  DataNames.Target, target! },
-         {  DataNames.TargetExpression, targetExpression }
-      };
 
    private static IExceptionFactory GetExceptionFactory(RequirementType requirementType)
       => requirementType == RequirementType.Precondition

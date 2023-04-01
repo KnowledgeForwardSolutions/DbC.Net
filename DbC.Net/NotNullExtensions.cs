@@ -5,6 +5,8 @@
 /// </summary>
 public static class NotNullExtensions
 {
+   private const String _requirementName = RequirementNames.NotNull;
+
    /// <summary>
    ///   NotNull postcondition. Confirm that the reference type 
    ///   <paramref name="value"/> is not <see langword="null"/> and throw an 
@@ -102,12 +104,10 @@ public static class NotNullExtensions
          exceptionFactory ??= requirementType == RequirementType.Precondition
             ? StandardExceptionFactories.ArgumentNullExceptionFactory
             : StandardExceptionFactories.PostconditionFailedExceptionFactory;
-         var data = new Dictionary<String, Object>()
-         {
-            {  DataNames.RequirementType, requirementType },
-            {  DataNames.RequirementName, RequirementNames.NotNull },
-            {  DataNames.ValueExpression, valueExpression },
-         };
+         var data = ExceptionDataBuilder.Create()
+            .WithRequirement(requirementType, _requirementName)
+            .WithItem(DataNames.ValueExpression, valueExpression)
+            .Build();
 
          throw exceptionFactory.CreateException(data, messageTemplate);
       }

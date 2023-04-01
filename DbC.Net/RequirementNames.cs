@@ -5,10 +5,11 @@
 /// </summary>
 public static class RequirementNames
 {
-   public static String ApproximatelyEqual = nameof(ApproximatelyEqual);
-   public static String Equal = nameof(Equal);
-   public static String GreaterThan = nameof(GreaterThan);
-   public static String NotDefault = nameof(NotDefault);
-   public static String NotEqual = nameof(NotEqual);
-   public static String NotNull = nameof(NotNull);
+   public const String ApproximatelyEqual = nameof(ApproximatelyEqual);
+   public const String Equal = nameof(Equal);
+   public const String GreaterThan = nameof(GreaterThan);
+   public const String GreaterThanOrEqual = nameof(GreaterThanOrEqual);
+   public const String NotDefault = nameof(NotDefault);
+   public const String NotEqual = nameof(NotEqual);
+   public const String NotNull = nameof(NotNull);
 }

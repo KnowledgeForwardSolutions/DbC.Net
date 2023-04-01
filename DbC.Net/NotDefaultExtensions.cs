@@ -5,6 +5,8 @@
 /// </summary>
 public static class NotDefaultExtensions
 {
+   private const String _requirementName = RequirementNames.NotDefault;
+
    /// <summary>
    ///   NotDefault postcondition. Confirm that <paramref name="value"/> is not 
    ///   the default for type {T} and throw an exception if it is default for 
@@ -102,13 +104,11 @@ public static class NotDefaultExtensions
          exceptionFactory ??= requirementType == RequirementType.Precondition
             ? StandardExceptionFactories.ArgumentExceptionFactory
             : StandardExceptionFactories.PostconditionFailedExceptionFactory;
-         var data = new Dictionary<String, Object>()
-         {
-            {  DataNames.RequirementType, requirementType },
-            {  DataNames.RequirementName, RequirementNames.NotDefault },
-            {  DataNames.ValueExpression, valueExpression },
-            {  DataNames.ValueDatatype, typeof(T).Name },
-         };
+         var data = ExceptionDataBuilder.Create()
+            .WithRequirement(requirementType, _requirementName)
+            .WithItem(DataNames.ValueExpression, valueExpression)
+            .WithItem(DataNames.ValueDatatype, typeof(T).Name)
+            .Build();
 
          throw exceptionFactory.CreateException(data, messageTemplate);
       }

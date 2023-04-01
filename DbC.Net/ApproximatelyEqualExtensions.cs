@@ -1,7 +1,13 @@
 ﻿namespace DbC.Net;
 
+/// <summary>
+///   Extension methods that implement ApproximatelyEqual requirement for
+///   floating point types.
+/// </summary>
 public static class ApproximatelyEqualExtensions
 {
+   private const String _requirementName = RequirementNames.ApproximatelyEqual;
+
    /// <summary>
    ///   Value ApproximatelyEqual postcondition. Confirm that the 
    ///   <see cref="IFloatingPoint{T}"/> <paramref name="value"/> is within
@@ -169,17 +175,12 @@ public static class ApproximatelyEqualExtensions
          exceptionFactory ??= requirementType == RequirementType.Precondition
             ? StandardExceptionFactories.ArgumentExceptionFactory
             : StandardExceptionFactories.PostconditionFailedExceptionFactory;
-         var data = new Dictionary<String, Object>
-         {
-            {  DataNames.RequirementType, requirementType },
-            {  DataNames.RequirementName, RequirementNames.ApproximatelyEqual },
-            {  DataNames.Value, value },
-            {  DataNames.ValueExpression, valueExpression },
-            {  DataNames.Target, target },
-            {  DataNames.TargetExpression, targetExpression },
-            {  DataNames.Epsilon, epsilon },
-            {  DataNames.EpsilonExpression, epsilonExpression }
-         };
+         var data = ExceptionDataBuilder.Create()
+            .WithRequirement(requirementType, _requirementName)
+            .WithValue(value!, valueExpression)
+            .WithTarget(target, targetExpression)
+            .WithEpsilon(epsilon, epsilonExpression)
+            .Build();
 
          throw exceptionFactory.CreateException(data, messageTemplate);
       }
