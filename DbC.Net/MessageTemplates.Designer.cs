@@ -97,6 +97,15 @@ namespace DbC.Net {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} must be less than {UpperBound}.
+        /// </summary>
+        internal static string LessThanTemplate {
+            get {
+                return ResourceManager.GetString("LessThanTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} may not be default({ValueDatatype}).
         /// </summary>
         internal static string NotDefaultTemplate {

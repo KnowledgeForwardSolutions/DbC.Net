@@ -97,7 +97,7 @@ public class GreaterThanOrEqualToExtensionsTests
    {
       // Arrange.
       T value = default!;
-      T lowerBound = data.MaxValue;
+      var lowerBound = data.MaxValue;
       var act = () => _ = value.EnsuresGreaterThanOrEqual(lowerBound);
 
       // Act/assert.
@@ -282,7 +282,7 @@ public class GreaterThanOrEqualToExtensionsTests
    {
       // Arrange.
       T value = default!;
-      T lowerBound = data.ReverseMaxValue;
+      var lowerBound = data.ReverseMaxValue;
       var comparer = Comparer<T>.Default;
       var act = () => _ = value.EnsuresGreaterThanOrEqual(lowerBound, comparer);
 
@@ -759,7 +759,7 @@ public class GreaterThanOrEqualToExtensionsTests
    {
       // Arrange.
       T value = default!;
-      T lowerBound = data.MaxValue;
+      var lowerBound = data.MaxValue;
       var act = () => _ = value.RequiresGreaterThanOrEqual(lowerBound);
 
       // Act/assert.
@@ -950,7 +950,7 @@ public class GreaterThanOrEqualToExtensionsTests
    {
       // Arrange.
       T value = default!;
-      T lowerBound = data.ReverseMaxValue;
+      var lowerBound = data.ReverseMaxValue;
       var comparer = Comparer<T>.Default;
       var act = () => _ = value.RequiresGreaterThanOrEqual(lowerBound, comparer);
 
