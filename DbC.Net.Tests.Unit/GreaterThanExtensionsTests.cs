@@ -1267,9 +1267,10 @@ public class GreaterThanExtensionsTests
       var expectedMessage = $"Precondition GreaterThan failed: {nameof(value)} must be greater than {lowerBound}";
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>()
-         .WithParameterName(expectedParameterName)
-         .And.Message.Should().StartWith(expectedMessage);
+      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      ex.ParamName.Should().Be(expectedParameterName);
+      ex.Message.Should().StartWith(expectedMessage);
+      ex.ActualValue.Should().Be(value);
    }
 
    [Fact]
@@ -1285,9 +1286,10 @@ public class GreaterThanExtensionsTests
       var expectedMessage = $"Requirement GreaterThan failed";
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>()
-         .WithParameterName(expectedParameterName)
-         .And.Message.Should().StartWith(expectedMessage);
+      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      ex.ParamName.Should().Be(expectedParameterName);
+      ex.Message.Should().StartWith(expectedMessage);
+      ex.ActualValue.Should().Be(value);
    }
 
    [Fact]
