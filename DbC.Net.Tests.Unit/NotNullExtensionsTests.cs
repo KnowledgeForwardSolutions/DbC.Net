@@ -44,7 +44,7 @@ public class NotNullExtensionsTests
    }
 
    [Fact]
-   public void NotNull_EnsuresNotNull_ShouldThrowExceptionWithExpectedDataDictionary_WhenValueIsReferenceTypeAndIsDefault()
+   public void NotNull_EnsuresNotNull_ShouldThrowExceptionWithExpectedDataDictionary_WhenRequirementIsFailed()
    {
       // Arrange.
       String value = null!;
@@ -60,7 +60,7 @@ public class NotNullExtensionsTests
    }
 
    [Fact]
-   public void NotNull_EnsuresNotNull_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenAllDefaultsUsed()
+   public void NotNull_EnsuresNotNull_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
    {
       // Arrange.
       String value = null!;
@@ -73,7 +73,7 @@ public class NotNullExtensionsTests
    }
 
    [Fact]
-   public void NotNull_EnsuresNotNull_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
+   public void NotNull_EnsuresNotNull_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       String value = null!;
@@ -87,7 +87,7 @@ public class NotNullExtensionsTests
    }
 
    [Fact]
-   public void NotNull_EnsuresNotNull_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
+   public void NotNull_EnsuresNotNull_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       String value = null!;
@@ -100,7 +100,7 @@ public class NotNullExtensionsTests
    }
 
    [Fact]
-   public void NotNull_EnsuresNotNull_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void NotNull_EnsuresNotNull_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       String value = null!;
@@ -155,7 +155,7 @@ public class NotNullExtensionsTests
    }
 
    [Fact]
-   public void NotNull_RequiresNotNull_ShouldThrowExceptionWithExpectedDataDictionary_WhenValueIsReferenceTypeAndIsDefault()
+   public void NotNull_RequiresNotNull_ShouldThrowExceptionWithExpectedDataDictionary_WhenRequirementIsFailed()
    {
       // Arrange.
       String value = null!;
@@ -171,7 +171,7 @@ public class NotNullExtensionsTests
    }
 
    [Fact]
-   public void NotNull_RequiresNotNull_ShouldThrowArgumentNullExceptionWithExpectedMessage_WhenAllDefaultsUsed()
+   public void NotNull_RequiresNotNull_ShouldThrowArgumentNullExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
    {
       // Arrange.
       String value = null!;
@@ -186,7 +186,7 @@ public class NotNullExtensionsTests
    }
 
    [Fact]
-   public void NotNull_RequiresNotNull_ShouldThrowArgumentNullExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
+   public void NotNull_RequiresNotNull_ShouldThrowArgumentNullExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       String value = null!;
@@ -202,7 +202,7 @@ public class NotNullExtensionsTests
    }
 
    [Fact]
-   public void NotNull_RequiresNotNull_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
+   public void NotNull_RequiresNotNull_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       String value = null!;
@@ -215,7 +215,7 @@ public class NotNullExtensionsTests
    }
 
    [Fact]
-   public void NotNull_RequiresNotNull_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void NotNull_RequiresNotNull_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       String value = null!;

@@ -77,7 +77,7 @@ public class ApproximatelyEqualExtensionsTests
    }
 
    [Fact]
-   public void ApproximatelyEqualExtensions_EnsuresApproximatelyEqual_ShouldThrowWithExpectedDataDictionary_WhenValueIsNotApproximatelyEqualToTarget()
+   public void ApproximatelyEqualExtensions_EnsuresApproximatelyEqual_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
    {
       // Arrange.
       var data = new SingleData();
@@ -102,7 +102,7 @@ public class ApproximatelyEqualExtensionsTests
    }
 
    [Fact]
-   public void ApproximatelyEqualExtensions_EnsuresApproximatelyEqual_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueIsNotApproximatelyEqualToTarget()
+   public void ApproximatelyEqualExtensions_EnsuresApproximatelyEqual_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
    {
       // Arrange.
       var data = new DoubleData();
@@ -119,7 +119,7 @@ public class ApproximatelyEqualExtensionsTests
    }
 
    [Fact]
-   public void ApproximatelyEqualExtensions_EnsuresApproximatelyEqual_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
+   public void ApproximatelyEqualExtensions_EnsuresApproximatelyEqual_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       var data = new HalfData();
@@ -137,7 +137,7 @@ public class ApproximatelyEqualExtensionsTests
    }
 
    [Fact]
-   public void ApproximatelyEqualExtensions_EnsuresApproximatelyEqual_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
+   public void ApproximatelyEqualExtensions_EnsuresApproximatelyEqual_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var data = new DecimalData();
@@ -154,7 +154,7 @@ public class ApproximatelyEqualExtensionsTests
    }
 
    [Fact]
-   public void ApproximatelyEqualExtensions_EnsuresApproximatelyEqual_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void ApproximatelyEqualExtensions_EnsuresApproximatelyEqual_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var data = new SingleData();
@@ -246,7 +246,7 @@ public class ApproximatelyEqualExtensionsTests
    }
 
    [Fact]
-   public void ApproximatelyEqualExtensions_RequiresApproximatelyEqual_ShouldThrowWithExpectedDataDictionary_WhenValueIsNotApproximatelyEqualToTarget()
+   public void ApproximatelyEqualExtensions_RequiresApproximatelyEqual_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
    {
       // Arrange.
       var data = new SingleData();
@@ -271,7 +271,7 @@ public class ApproximatelyEqualExtensionsTests
    }
 
    [Fact]
-   public void ApproximatelyEqualExtensions_RequiresApproximatelyEqual_ShouldThrowArgumentExceptionWithExpectedMessage_WhenValueIsNotApproximatelyEqualToTarget()
+   public void ApproximatelyEqualExtensions_RequiresApproximatelyEqual_ShouldThrowArgumentExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
    {
       // Arrange.
       var data = new DoubleData();
@@ -290,7 +290,7 @@ public class ApproximatelyEqualExtensionsTests
    }
 
    [Fact]
-   public void ApproximatelyEqualExtensions_RequiresApproximatelyEqual_ShouldThrowArgumentExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
+   public void ApproximatelyEqualExtensions_RequiresApproximatelyEqual_ShouldThrowArgumentExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       var data = new HalfData();
@@ -310,7 +310,7 @@ public class ApproximatelyEqualExtensionsTests
    }
 
    [Fact]
-   public void ApproximatelyEqualExtensions_RequiresApproximatelyEqual_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
+   public void ApproximatelyEqualExtensions_RequiresApproximatelyEqual_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var data = new DecimalData();
@@ -327,7 +327,7 @@ public class ApproximatelyEqualExtensionsTests
    }
 
    [Fact]
-   public void ApproximatelyEqualExtensions_RequiresApproximatelyEqual_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void ApproximatelyEqualExtensions_RequiresApproximatelyEqual_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var data = new SingleData();

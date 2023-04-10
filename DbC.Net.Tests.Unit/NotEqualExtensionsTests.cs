@@ -83,7 +83,7 @@ public class NotEqualExtensionsTests
    }
 
    [Fact]
-   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldThrowWithExpectedDataDictionary_WhenValueEqualsTarget()
+   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
    {
       // Arrange.
       var data = new Int32Data();
@@ -104,7 +104,7 @@ public class NotEqualExtensionsTests
    }
 
    [Fact]
-   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueEqualsTarget()
+   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
    {
       // Arrange.
       var data = new StringData();
@@ -119,7 +119,7 @@ public class NotEqualExtensionsTests
    }
 
    [Fact]
-   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
+   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       var data = new PointStructData();
@@ -135,7 +135,7 @@ public class NotEqualExtensionsTests
    }
 
    [Fact]
-   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
+   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var data = new DateOnlyData();
@@ -150,7 +150,7 @@ public class NotEqualExtensionsTests
    }
 
    [Fact]
-   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void NotEqualExtensions_EnsuresNotEqualIEquatable_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var data = new ObservationClassData();
@@ -234,7 +234,7 @@ public class NotEqualExtensionsTests
    }
 
    [Fact]
-   public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldThrowWithExpectedDataDictionary_WhenValueDoesNotEqualTarget()
+   public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
    {
       // Arrange.
       var data = new nuintData();
@@ -256,7 +256,7 @@ public class NotEqualExtensionsTests
    }
 
    [Fact]
-   public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueDoesNotEqualTarget()
+   public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
    {
       // Arrange.
       var data = new BigIntegerData();
@@ -272,7 +272,7 @@ public class NotEqualExtensionsTests
    }
 
    [Fact]
-   public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
+   public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       var data = new UInt16Data();
@@ -289,7 +289,7 @@ public class NotEqualExtensionsTests
    }
 
    [Fact]
-   public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
+   public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var data = new BooleanData();
@@ -305,7 +305,7 @@ public class NotEqualExtensionsTests
    }
 
    [Fact]
-   public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void NotEqualExtensions_EnsuresNotEqualIEqualityComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var data = new DateTimeData();
@@ -506,7 +506,7 @@ public class NotEqualExtensionsTests
    }
 
    [Fact]
-   public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrowWithExpectedDataDictionary_WhenValueEqualsTarget()
+   public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
    {
       // Arrange.
       var value = StringData.LowerCaseDiphthongAE;
@@ -528,7 +528,7 @@ public class NotEqualExtensionsTests
    }
 
    [Fact]
-   public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueEqualsTarget()
+   public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
    {
       // Arrange.
       var value = StringData.LowerCaseAE;
@@ -543,7 +543,7 @@ public class NotEqualExtensionsTests
    }
 
    [Fact]
-   public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
+   public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       var value = StringData.UpperCaseSlashedO;
@@ -559,7 +559,7 @@ public class NotEqualExtensionsTests
    }
 
    [Fact]
-   public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
+   public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var value = StringData.UpperCaseI;
@@ -575,7 +575,7 @@ public class NotEqualExtensionsTests
 
    [UseCulture(CultureData.EnglishUS)]
    [Fact]
-   public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void NotEqualExtensions_EnsuresNotEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var value = StringData.LowerCaseA;
@@ -668,7 +668,7 @@ public class NotEqualExtensionsTests
    }
 
    [Fact]
-   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldThrowWithExpectedDataDictionary_WhenValueEqualsTarget()
+   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
    {
       // Arrange.
       var data = new Int32Data();
@@ -689,7 +689,7 @@ public class NotEqualExtensionsTests
    }
 
    [Fact]
-   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldThrowArgumentExceptionWithExpectedMessage_WhenValueEqualsTarget()
+   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldThrowArgumentExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
    {
       // Arrange.
       var data = new StringData();
@@ -706,7 +706,7 @@ public class NotEqualExtensionsTests
    }
 
    [Fact]
-   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldThrowArgumentExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
+   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldThrowArgumentExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       var data = new PointStructData();
@@ -724,7 +724,7 @@ public class NotEqualExtensionsTests
    }
 
    [Fact]
-   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
+   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var data = new DateOnlyData();
@@ -739,7 +739,7 @@ public class NotEqualExtensionsTests
    }
 
    [Fact]
-   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void NotEqualExtensions_RequiresNotEqualIEquatable_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var data = new ObservationClassData();
@@ -823,7 +823,7 @@ public class NotEqualExtensionsTests
    }
 
    [Fact]
-   public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldThrowWithExpectedDataDictionary_WhenValueDoesNotEqualTarget()
+   public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
    {
       // Arrange.
       var data = new nuintData();
@@ -845,7 +845,7 @@ public class NotEqualExtensionsTests
    }
 
    [Fact]
-   public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldThrowArgumentExceptionWithExpectedMessage_WhenValueDoesNotEqualTarget()
+   public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldThrowArgumentExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
    {
       // Arrange.
       var data = new BigIntegerData();
@@ -863,7 +863,7 @@ public class NotEqualExtensionsTests
    }
 
    [Fact]
-   public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldThrowArgumentExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
+   public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldThrowArgumentExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       var data = new UInt16Data();
@@ -882,7 +882,7 @@ public class NotEqualExtensionsTests
    }
 
    [Fact]
-   public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
+   public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var data = new BooleanData();
@@ -898,7 +898,7 @@ public class NotEqualExtensionsTests
    }
 
    [Fact]
-   public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void NotEqualExtensions_RequiresNotEqualIEqualityComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var data = new DateTimeData();
@@ -1099,7 +1099,7 @@ public class NotEqualExtensionsTests
    }
 
    [Fact]
-   public void NotEqualExtensions_RequiresNotEqualString_ShouldThrowWithExpectedDataDictionary_WhenValueEqualsTarget()
+   public void NotEqualExtensions_RequiresNotEqualString_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
    {
       // Arrange.
       var value = StringData.LowerCaseDiphthongAE;
@@ -1121,7 +1121,7 @@ public class NotEqualExtensionsTests
    }
 
    [Fact]
-   public void NotEqualExtensions_RequiresNotEqualString_ShouldThrowArgumentExceptionWithExpectedMessage_WhenValueEqualsTarget()
+   public void NotEqualExtensions_RequiresNotEqualString_ShouldThrowArgumentExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
    {
       // Arrange.
       var value = StringData.LowerCaseAE;
@@ -1138,7 +1138,7 @@ public class NotEqualExtensionsTests
    }
 
    [Fact]
-   public void NotEqualExtensions_RequiresNotEqualString_ShouldThrowArgumentExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
+   public void NotEqualExtensions_RequiresNotEqualString_ShouldThrowArgumentExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       var value = StringData.UpperCaseSlashedO;
@@ -1156,7 +1156,7 @@ public class NotEqualExtensionsTests
    }
 
    [Fact]
-   public void NotEqualExtensions_RequiresNotEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
+   public void NotEqualExtensions_RequiresNotEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var value = StringData.UpperCaseI;
@@ -1172,7 +1172,7 @@ public class NotEqualExtensionsTests
 
    [UseCulture(CultureData.EnglishUS)]
    [Fact]
-   public void NotEqualExtensions_RequiresNotEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void NotEqualExtensions_RequiresNotEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var value = StringData.LowerCaseA;
