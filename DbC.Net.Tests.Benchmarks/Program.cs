@@ -4,4 +4,5 @@
 //BenchmarkRunner.Run<NotEqualBenchmarks>();
 //BenchmarkRunner.Run<ApproximatelyEqualBenchmarks>();
 //BenchmarkRunner.Run<GreaterThanBenchmarks>();
-BenchmarkRunner.Run<GreaterThanOrEqualBenchmarks>();
+//BenchmarkRunner.Run<GreaterThanOrEqualBenchmarks>();
+BenchmarkRunner.Run<LessThanBenchmarks>();

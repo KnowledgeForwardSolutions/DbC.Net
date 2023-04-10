@@ -4,7 +4,8 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Title>DbC.Net - Requirements based pre- and post-conditions for .Net</Title>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<Title>DbC.Net - Requirements based pre- and post-conditions for .Net</Title>
         <Authors>Knowledge Forward Solutions</Authors>
         <Version>0.1.0-alpha</Version>
         <Description>DbC.Net lets you create robust requirements based pre- and post-conditions with an expressive fluent syntax.</Description>
@@ -16,6 +17,12 @@
         <PackageReleaseNotes>Initial alpha release</PackageReleaseNotes>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
     </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="ExceptionFactories\**" />
+      <EmbeddedResource Remove="ExceptionFactories\**" />
+      <None Remove="ExceptionFactories\**" />
+    </ItemGroup>
 
     <ItemGroup>
         <Compile Update="Messages.Designer.cs">
@@ -50,10 +57,6 @@
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>
 	  </None>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="ExceptionFactories\" />
 	</ItemGroup>
 
 </Project>

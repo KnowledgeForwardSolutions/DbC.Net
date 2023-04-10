@@ -45,6 +45,7 @@
 
     - [GreaterThan](/Documentation/GreaterThan.md)
     - [GreaterThanOrEqual](/Documentation/GreaterThanOrEqual.md)
+    - [LessThan](/Documentation/LessThan.md)
 
 - **[Release History/Release Notes](#release-historyrelease-notes)**
 

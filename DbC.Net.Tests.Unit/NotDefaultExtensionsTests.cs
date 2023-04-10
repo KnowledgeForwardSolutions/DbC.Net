@@ -119,7 +119,7 @@ public class NotDefaultExtensionsTests
    }
 
    [Fact]
-   public void NotDefault_EnsuresNotDefault_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenAllDefaultsUsed()
+   public void NotDefault_EnsuresNotDefault_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
    {
       // Arrange.
       String value = default!;
@@ -132,7 +132,7 @@ public class NotDefaultExtensionsTests
    }
 
    [Fact]
-   public void NotDefault_EnsuresNotDefault_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
+   public void NotDefault_EnsuresNotDefault_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       String value = null!;
@@ -146,7 +146,7 @@ public class NotDefaultExtensionsTests
    }
 
    [Fact]
-   public void NotDefault_EnsuresNotDefault_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
+   public void NotDefault_EnsuresNotDefault_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       Single value = default;
@@ -159,7 +159,7 @@ public class NotDefaultExtensionsTests
    }
 
    [Fact]
-   public void NotDefault_EnsuresNotDefault_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void NotDefault_EnsuresNotDefault_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       Point value = default;
@@ -289,7 +289,7 @@ public class NotDefaultExtensionsTests
    }
 
    [Fact]
-   public void NotDefault_RequiresNotDefault_ShouldThrowArgumentExceptionWithExpectedMessage_WhenAllDefaultsUsed()
+   public void NotDefault_RequiresNotDefault_ShouldThrowArgumentExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
    {
       // Arrange.
       String value = default!;
@@ -304,7 +304,7 @@ public class NotDefaultExtensionsTests
    }
 
    [Fact]
-   public void NotDefault_RequiresNotDefault_ShouldThrowArgumentExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
+   public void NotDefault_RequiresNotDefault_ShouldThrowArgumentExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       String value = null!;
@@ -320,7 +320,7 @@ public class NotDefaultExtensionsTests
    }
 
    [Fact]
-   public void NotDefault_RequiresNotDefault_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
+   public void NotDefault_RequiresNotDefault_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       Single value = default;
@@ -333,7 +333,7 @@ public class NotDefaultExtensionsTests
    }
 
    [Fact]
-   public void NotDefault_RequiresNotDefault_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void NotDefault_RequiresNotDefault_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       Point value = default;

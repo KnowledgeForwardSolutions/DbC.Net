@@ -19,6 +19,7 @@ Intel Core i7-8700K CPU 3.70GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical 
   - [ApproximatelyEqual Benchmarks](#approximatelyequal-benchmarks)
   - [GreaterThan Benchmarks](#greaterthan-benchmarks)
   - [GreaterThanOrEqual Benchmarks](#greaterthanorequal-benchmarks)
+  - [LessThan Benchmarks](#lessthan-benchmarks)
 
 ### NotNull Benchmarks
 
@@ -265,3 +266,44 @@ parameter was omitted.
 | RequiresGreaterThanOrEqual | Class       | IComparer<T>     |                  | X                 |  6.1544 ns | 0.0711 ns | 0.0665 ns |         - |
 | RequiresGreaterThanOrEqual | Class       | IComparer<T>     | X                | X                 |  5.7887 ns | 0.0562 ns | 0.0526 ns |         - |
 
+
+### LessThan Benchmarks
+
+| Method           | Value Type  | Comparer         | Message Template | Exception Factory |       Mean |     Error |    StdDev | Allocated |
+|----------------- |:------------|:----------------:|:----------------:|:-----------------:|-----------:|----------:|----------:|----------:|
+| RequiresLessThan | Int32       |                  |                  |                   |  0.0049 ns | 0.0086 ns | 0.0076 ns |         - |
+| RequiresLessThan | Int32       |                  | X                |                   |  0.0063 ns | 0.0096 ns | 0.0085 ns |         - |
+| RequiresLessThan | Int32       |                  |                  | X                 |  2.2213 ns | 0.0309 ns | 0.0274 ns |         - |
+| RequiresLessThan | Int32       |                  | X                | X                 |  2.0005 ns | 0.0209 ns | 0.0185 ns |         - |
+| RequiresLessThan | Int32       | IComparer<T>     |                  |                   |  2.7763 ns | 0.0169 ns | 0.0141 ns |         - |
+| RequiresLessThan | Int32       | IComparer<T>     | X                |                   |  2.3148 ns | 0.0290 ns | 0.0272 ns |         - |
+| RequiresLessThan | Int32       | IComparer<T>     |                  | X                 |  3.0788 ns | 0.0880 ns | 0.0903 ns |         - |
+| RequiresLessThan | Int32       | IComparer<T>     | X                | X                 |  2.9196 ns | 0.0886 ns | 0.2139 ns |         - |
+| RequiresLessThan | String      |                  |                  |                   | 41.9424 ns | 0.6503 ns | 0.6083 ns |         - |
+| RequiresLessThan | String      |                  | X                |                   | 52.3400 ns | 1.0718 ns | 3.0054 ns |         - |
+| RequiresLessThan | String      |                  |                  | X                 | 42.3073 ns | 0.6900 ns | 0.6117 ns |         - |
+| RequiresLessThan | String      |                  | X                | X                 | 43.9661 ns | 0.9066 ns | 2.0278 ns |         - |
+| RequiresLessThan | String      | IComparer<T>     |                  |                   |  7.4133 ns | 0.1780 ns | 0.3164 ns |         - |
+| RequiresLessThan | String      | IComparer<T>     | X                |                   |  7.2638 ns | 0.1605 ns | 0.1784 ns |         - |
+| RequiresLessThan | String      | IComparer<T>     |                  | X                 |  8.3081 ns | 0.2083 ns | 0.5874 ns |         - |
+| RequiresLessThan | String      | IComparer<T>     | X                | X                 |  7.7006 ns | 0.0727 ns | 0.0644 ns |         - |
+| RequiresLessThan | String      | StringComparison |                  |                   |  5.5466 ns | 0.0423 ns | 0.0375 ns |         - |
+| RequiresLessThan | String      | StringComparison | X                |                   |  5.8392 ns | 0.0410 ns | 0.0364 ns |         - |
+| RequiresLessThan | String      | StringComparison |                  | X                 |  6.1740 ns | 0.0831 ns | 0.0777 ns |         - |
+| RequiresLessThan | String      | StringComparison | X                | X                 |  5.9900 ns | 0.0700 ns | 0.0585 ns |         - |
+| RequiresLessThan | Record      |                  |                  |                   |  6.4274 ns | 0.0426 ns | 0.0378 ns |         - |
+| RequiresLessThan | Record      |                  | X                |                   |  7.3372 ns | 0.1296 ns | 0.1212 ns |         - |
+| RequiresLessThan | Record      |                  |                  | X                 |  7.2741 ns | 0.0362 ns | 0.0321 ns |         - |
+| RequiresLessThan | Record      |                  | X                | X                 |  7.3785 ns | 0.0390 ns | 0.0346 ns |         - |
+| RequiresLessThan | Record      | IComparer<T>     |                  |                   |  5.4820 ns | 0.0430 ns | 0.0402 ns |         - |
+| RequiresLessThan | Record      | IComparer<T>     | X                |                   |  5.6602 ns | 0.0528 ns | 0.0494 ns |         - |
+| RequiresLessThan | Record      | IComparer<T>     |                  | X                 |  5.9396 ns | 0.0528 ns | 0.0468 ns |         - |
+| RequiresLessThan | Record      | IComparer<T>     | X                | X                 |  5.9010 ns | 0.0215 ns | 0.0180 ns |         - |
+| RequiresLessThan | Class       |                  |                  |                   |  6.5335 ns | 0.0429 ns | 0.0381 ns |         - |
+| RequiresLessThan | Class       |                  | X                |                   |  7.2292 ns | 0.0746 ns | 0.0662 ns |         - |
+| RequiresLessThan | Class       |                  |                  | X                 |  7.2350 ns | 0.0362 ns | 0.0339 ns |         - |
+| RequiresLessThan | Class       |                  | X                | X                 |  7.1378 ns | 0.0292 ns | 0.0259 ns |         - |
+| RequiresLessThan | Class       | IComparer<T>     |                  |                   |  5.6671 ns | 0.0455 ns | 0.0403 ns |         - |
+| RequiresLessThan | Class       | IComparer<T>     | X                |                   |  5.6437 ns | 0.0316 ns | 0.0280 ns |         - |
+| RequiresLessThan | Class       | IComparer<T>     |                  | X                 |  5.7431 ns | 0.0508 ns | 0.0475 ns |         - |
+| RequiresLessThan | Class       | IComparer<T>     | X                | X                 |  5.6304 ns | 0.0434 ns | 0.0406 ns |         - |

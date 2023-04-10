@@ -14,7 +14,7 @@ public class GreaterThanOrEqualToExtensionsTests
 
    [Theory]
    [ClassData(typeof(ComparableTypesTestData))]
-   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparable_ShouldReturnOriginalValue_WhenValueIsGreaterThanLowerBound<T>(
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparable_ShouldReturnOriginalValue_WhenValueIsAboveLowerBound<T>(
       IComparableTestData<T> data) where T : IComparable<T>
    {
       // Arrange.
@@ -78,7 +78,7 @@ public class GreaterThanOrEqualToExtensionsTests
 
    [Theory]
    [ClassData(typeof(ComparableTypesTestData))]
-   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparable_ShouldThrow_WhenValueIsLessThanLowerBound<T>(
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparable_ShouldThrow_WhenValueIsBelowLowerBound<T>(
       IComparableTestData<T> data) where T : IComparable<T>
    {
       // Arrange.
@@ -97,7 +97,7 @@ public class GreaterThanOrEqualToExtensionsTests
    {
       // Arrange.
       T value = default!;
-      T lowerBound = data.MaxValue;
+      var lowerBound = data.MaxValue;
       var act = () => _ = value.EnsuresGreaterThanOrEqual(lowerBound);
 
       // Act/assert.
@@ -105,7 +105,7 @@ public class GreaterThanOrEqualToExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparable_ShouldThrowWithExpectedDataDictionary_WhenValueIsNotGreaterThanOrEqualToLowerBound()
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparable_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
    {
       // Arrange.
       var data = new Int32Data();
@@ -126,7 +126,7 @@ public class GreaterThanOrEqualToExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparable_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueIsNotGreaterThanOrEqualToLowerBound()
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparable_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
    {
       // Arrange.
       var data = new PointStructData();
@@ -141,7 +141,7 @@ public class GreaterThanOrEqualToExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparable_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparable_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       var data = new HalfData();
@@ -157,7 +157,7 @@ public class GreaterThanOrEqualToExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparable_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparable_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var data = new UInt128Data();
@@ -172,7 +172,7 @@ public class GreaterThanOrEqualToExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparable_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparable_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       String value = null!;
@@ -194,7 +194,7 @@ public class GreaterThanOrEqualToExtensionsTests
 
    [Theory]
    [ClassData(typeof(ComparableTypesTestData))]
-   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparer_ShouldReturnOriginalValue_WhenValueIsGreaterThanLowerBound<T>(
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparer_ShouldReturnOriginalValue_WhenValueIsAboveLowerBound<T>(
       IComparableTestData<T> data) where T : IComparable<T>
    {
       // Arrange.
@@ -262,7 +262,7 @@ public class GreaterThanOrEqualToExtensionsTests
 
    [Theory]
    [ClassData(typeof(ComparableTypesTestData))]
-   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparer_ShouldThrow_WhenValueIsLessThanLowerBound<T>(
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparer_ShouldThrow_WhenValueIsBelowLowerBound<T>(
       IComparableTestData<T> data) where T : IComparable<T>
    {
       // Arrange.
@@ -282,7 +282,7 @@ public class GreaterThanOrEqualToExtensionsTests
    {
       // Arrange.
       T value = default!;
-      T lowerBound = data.ReverseMaxValue;
+      var lowerBound = data.ReverseMaxValue;
       var comparer = Comparer<T>.Default;
       var act = () => _ = value.EnsuresGreaterThanOrEqual(lowerBound, comparer);
 
@@ -291,7 +291,7 @@ public class GreaterThanOrEqualToExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparer_ShouldThrowWithExpectedDataDictionary_WhenValueIsNotGreaterThanLowerBound()
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparer_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
    {
       // Arrange.
       var data = new DateTimeData();
@@ -313,7 +313,7 @@ public class GreaterThanOrEqualToExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparer_ShouldThrowPostconditionFailedExceptionExceptionWithExpectedMessage_WhenValueIsNotGreaterThanLowerBound()
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparer_ShouldThrowPostconditionFailedExceptionExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
    {
       // Arrange.
       var data = new BoxRecordData();
@@ -329,7 +329,7 @@ public class GreaterThanOrEqualToExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparer_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparer_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       var data = new ByteData();
@@ -346,7 +346,7 @@ public class GreaterThanOrEqualToExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var data = new DoubleData();
@@ -362,7 +362,7 @@ public class GreaterThanOrEqualToExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualIComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       String value = "ABC";
@@ -407,7 +407,7 @@ public class GreaterThanOrEqualToExtensionsTests
    [InlineData(StringData.LowerCaseZ, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.Ordinal)]
    [InlineData(StringData.LowerCaseZ, StringData.UpperCaseAE, StringComparison.OrdinalIgnoreCase)]
-   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualString_ShouldReturnOriginalValue_WhenValueIsGreaterThanLowerBoundAndCurrentCultureIs_enUS(
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualString_ShouldReturnOriginalValue_WhenValueIsAboveLowerBoundAndCurrentCultureIs_enUS(
       String value,
       String lowerBound,
       StringComparison comparisonType)
@@ -427,7 +427,7 @@ public class GreaterThanOrEqualToExtensionsTests
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseA, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.UpperCaseDottedI, StringData.UpperCaseZ, StringComparison.Ordinal)]
    [InlineData(StringData.LowerCaseZ, StringData.UpperCaseAE, StringComparison.OrdinalIgnoreCase)]
-   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualString_ShouldReturnOriginalValue_WhenValueIsGreaterThanLowerBoundAndCurrentCultureIs_trTR(
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualString_ShouldReturnOriginalValue_WhenValueIsAboveLowerBoundAndCurrentCultureIs_trTR(
       String value,
       String lowerBound,
       StringComparison comparisonType)
@@ -447,7 +447,7 @@ public class GreaterThanOrEqualToExtensionsTests
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseA, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseDiphthongAE, StringData.UpperCaseDiphthongAE, StringComparison.Ordinal)]
    [InlineData(StringData.UpperCaseDiphthongAE, StringData.UpperCaseAE, StringComparison.OrdinalIgnoreCase)]
-   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualString_ShouldReturnOriginalValue_WhenValueIsGreaterThanLowerBoundAndCurrentCultureIs_svSE(
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualString_ShouldReturnOriginalValue_WhenValueIsAboveLowerBoundAndCurrentCultureIs_svSE(
       String value,
       String lowerBound,
       StringComparison comparisonType)
@@ -531,7 +531,7 @@ public class GreaterThanOrEqualToExtensionsTests
    [InlineData(StringData.LowerCaseAE, StringData.UpperCaseZ, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.UpperCaseSlashedO, StringData.LowerCaseSlashedO, StringComparison.Ordinal)]
    [InlineData(StringData.UpperCaseI, StringData.LowerCaseDotlessI, StringComparison.OrdinalIgnoreCase)]
-   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualString_ShouldThrow_WhenValueIsLessThanLowerBoundAndCurrentCultureIs_trTR(
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualString_ShouldThrow_WhenValueIsBelowLowerBoundAndCurrentCultureIs_trTR(
       String value,
       String lowerBound,
       StringComparison comparisonType)
@@ -584,7 +584,7 @@ public class GreaterThanOrEqualToExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualString_ShouldThrowWithExpectedDataDictionary_WhenValueIsLessThanLowerBound()
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualString_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
    {
       // Arrange.
       var value = StringData.UpperCaseA;
@@ -606,7 +606,7 @@ public class GreaterThanOrEqualToExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualString_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueIsLessThanLowerBound()
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualString_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
    {
       // Arrange.
       var value = StringData.LowerCaseA;
@@ -621,7 +621,7 @@ public class GreaterThanOrEqualToExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualString_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualString_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       var value = StringData.UpperCaseH;
@@ -637,7 +637,7 @@ public class GreaterThanOrEqualToExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var value = StringData.UpperCaseJ;
@@ -653,7 +653,7 @@ public class GreaterThanOrEqualToExtensionsTests
 
    [UseCulture(CultureData.EnglishUS)]
    [Fact]
-   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void GreaterThanOrEqualExtensions_EnsuresGreaterThanOrEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var value = StringData.LowerCaseA;
@@ -676,7 +676,7 @@ public class GreaterThanOrEqualToExtensionsTests
 
    [Theory]
    [ClassData(typeof(ComparableTypesTestData))]
-   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualIComparable_ShouldReturnOriginalValue_WhenValueIsGreaterThanLowerBound<T>(
+   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualIComparable_ShouldReturnOriginalValue_WhenValueIsAboveLowerBound<T>(
       IComparableTestData<T> data) where T : IComparable<T>
    {
       // Arrange.
@@ -740,7 +740,7 @@ public class GreaterThanOrEqualToExtensionsTests
 
    [Theory]
    [ClassData(typeof(ComparableTypesTestData))]
-   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualIComparable_ShouldThrow_WhenValueIsLessThanLowerBound<T>(
+   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualIComparable_ShouldThrow_WhenValueIsBelowLowerBound<T>(
       IComparableTestData<T> data) where T : IComparable<T>
    {
       // Arrange.
@@ -759,7 +759,7 @@ public class GreaterThanOrEqualToExtensionsTests
    {
       // Arrange.
       T value = default!;
-      T lowerBound = data.MaxValue;
+      var lowerBound = data.MaxValue;
       var act = () => _ = value.RequiresGreaterThanOrEqual(lowerBound);
 
       // Act/assert.
@@ -767,7 +767,7 @@ public class GreaterThanOrEqualToExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualIComparable_ShouldThrowWithExpectedDataDictionary_WhenValueIsNotGreaterThanOrEqualToLowerBound()
+   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualIComparable_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
    {
       // Arrange.
       var data = new Int32Data();
@@ -788,7 +788,7 @@ public class GreaterThanOrEqualToExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualIComparable_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenValueIsNotGreaterThanOrEqualToLowerBound()
+   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualIComparable_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenRequirementIsFailedAndAndAllDefaultsAreUsed()
    {
       // Arrange.
       var data = new PointStructData();
@@ -806,7 +806,7 @@ public class GreaterThanOrEqualToExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualIComparable_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
+   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualIComparable_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       var data = new HalfData();
@@ -825,7 +825,7 @@ public class GreaterThanOrEqualToExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualIComparable_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
+   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualIComparable_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var data = new UInt128Data();
@@ -840,7 +840,7 @@ public class GreaterThanOrEqualToExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualIComparable_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualIComparable_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       String value = null!;
@@ -862,7 +862,7 @@ public class GreaterThanOrEqualToExtensionsTests
 
    [Theory]
    [ClassData(typeof(ComparableTypesTestData))]
-   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualIComparer_ShouldReturnOriginalValue_WhenValueIsGreaterThanLowerBound<T>(
+   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualIComparer_ShouldReturnOriginalValue_WhenValueIsAboveLowerBound<T>(
       IComparableTestData<T> data) where T : IComparable<T>
    {
       // Arrange.
@@ -930,7 +930,7 @@ public class GreaterThanOrEqualToExtensionsTests
 
    [Theory]
    [ClassData(typeof(ComparableTypesTestData))]
-   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualIComparer_ShouldThrow_WhenValueIsLessThanLowerBound<T>(
+   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualIComparer_ShouldThrow_WhenValueIsBelowLowerBound<T>(
       IComparableTestData<T> data) where T : IComparable<T>
    {
       // Arrange.
@@ -950,7 +950,7 @@ public class GreaterThanOrEqualToExtensionsTests
    {
       // Arrange.
       T value = default!;
-      T lowerBound = data.ReverseMaxValue;
+      var lowerBound = data.ReverseMaxValue;
       var comparer = Comparer<T>.Default;
       var act = () => _ = value.RequiresGreaterThanOrEqual(lowerBound, comparer);
 
@@ -959,7 +959,7 @@ public class GreaterThanOrEqualToExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualIComparer_ShouldThrowWithExpectedDataDictionary_WhenValueIsNotGreaterThanLowerBound()
+   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualIComparer_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
    {
       // Arrange.
       var data = new DateTimeData();
@@ -981,7 +981,7 @@ public class GreaterThanOrEqualToExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualIComparer_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenValueIsNotGreaterThanLowerBound()
+   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualIComparer_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
    {
       // Arrange.
       var data = new BoxRecordData();
@@ -1000,7 +1000,7 @@ public class GreaterThanOrEqualToExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualIComparer_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
+   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualIComparer_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       var data = new ByteData();
@@ -1020,7 +1020,7 @@ public class GreaterThanOrEqualToExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualIComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
+   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualIComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var data = new DoubleData();
@@ -1036,7 +1036,7 @@ public class GreaterThanOrEqualToExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualIComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualIComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       String value = "ABC";
@@ -1081,7 +1081,7 @@ public class GreaterThanOrEqualToExtensionsTests
    [InlineData(StringData.LowerCaseZ, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.Ordinal)]
    [InlineData(StringData.LowerCaseZ, StringData.UpperCaseAE, StringComparison.OrdinalIgnoreCase)]
-   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualString_ShouldReturnOriginalValue_WhenValueIsGreaterThanLowerBoundAndCurrentCultureIs_enUS(
+   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualString_ShouldReturnOriginalValue_WhenValueIsAboveLowerBoundAndCurrentCultureIs_enUS(
       String value,
       String lowerBound,
       StringComparison comparisonType)
@@ -1101,7 +1101,7 @@ public class GreaterThanOrEqualToExtensionsTests
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseA, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.UpperCaseDottedI, StringData.UpperCaseZ, StringComparison.Ordinal)]
    [InlineData(StringData.LowerCaseZ, StringData.UpperCaseAE, StringComparison.OrdinalIgnoreCase)]
-   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualString_ShouldReturnOriginalValue_WhenValueIsGreaterThanLowerBoundAndCurrentCultureIs_trTR(
+   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualString_ShouldReturnOriginalValue_WhenValueIsAboveLowerBoundAndCurrentCultureIs_trTR(
       String value,
       String lowerBound,
       StringComparison comparisonType)
@@ -1121,7 +1121,7 @@ public class GreaterThanOrEqualToExtensionsTests
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseA, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseDiphthongAE, StringData.UpperCaseDiphthongAE, StringComparison.Ordinal)]
    [InlineData(StringData.UpperCaseDiphthongAE, StringData.UpperCaseAE, StringComparison.OrdinalIgnoreCase)]
-   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualString_ShouldReturnOriginalValue_WhenValueIsGreaterThanLowerBoundAndCurrentCultureIs_svSE(
+   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualString_ShouldReturnOriginalValue_WhenValueIsAboveLowerBoundAndCurrentCultureIs_svSE(
       String value,
       String lowerBound,
       StringComparison comparisonType)
@@ -1258,7 +1258,7 @@ public class GreaterThanOrEqualToExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualString_ShouldThrowWithExpectedDataDictionary_WhenValueIsLessThanLowerBound()
+   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualString_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
    {
       // Arrange.
       var value = StringData.UpperCaseA;
@@ -1280,7 +1280,7 @@ public class GreaterThanOrEqualToExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualString_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenValueIsLessThanLowerBound()
+   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualString_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
    {
       // Arrange.
       var value = StringData.LowerCaseA;
@@ -1291,13 +1291,14 @@ public class GreaterThanOrEqualToExtensionsTests
       var expectedMessage = $"Precondition GreaterThanOrEqual failed: {nameof(value)} must be greater than or equal to {lowerBound}";
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>()
-         .WithParameterName(expectedParameterName)
-         .And.Message.Should().StartWith(expectedMessage);
+      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      ex.ParamName.Should().Be(expectedParameterName);
+      ex.Message.Should().StartWith(expectedMessage);
+      ex.ActualValue.Should().Be(value);
    }
 
    [Fact]
-   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualString_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenCustomMessageTemplateIsUsed()
+   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualString_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       var value = StringData.UpperCaseH;
@@ -1309,13 +1310,14 @@ public class GreaterThanOrEqualToExtensionsTests
       var expectedMessage = $"Requirement GreaterThanOrEqual failed";
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>()
-         .WithParameterName(expectedParameterName)
-         .And.Message.Should().StartWith(expectedMessage);
+      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      ex.ParamName.Should().Be(expectedParameterName);
+      ex.Message.Should().StartWith(expectedMessage);
+      ex.ActualValue.Should().Be(value);
    }
 
    [Fact]
-   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomExceptionFactoryIsUsed()
+   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var value = StringData.UpperCaseJ;
@@ -1331,7 +1333,7 @@ public class GreaterThanOrEqualToExtensionsTests
 
    [UseCulture(CultureData.EnglishUS)]
    [Fact]
-   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var value = StringData.LowerCaseA;
