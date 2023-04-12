@@ -186,6 +186,213 @@ public class LessThanOrEqualExtensionsTests
 
    #endregion
 
+   #region EnsuresLessThanOrEqual (IComparer) Tests
+   // ==========================================================================
+   // ==========================================================================
+
+   [Theory]
+   [ClassData(typeof(ComparableTypesTestData))]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparer_ShouldReturnOriginalValue_WhenValueIsBelowUpperBound<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      var value = data.ReverseMinValue;
+      var upperBound = data.ReverseMaxValue;
+      var comparer = data.ReverseComparer;
+
+      // Act.
+      var result = value.EnsuresLessThanOrEqual(upperBound, comparer);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [Theory]
+   [ClassData(typeof(ComparableTypesTestData))]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparer_ShouldReturnOriginalValue_WhenValueIsEqualToUpperBound<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      var value = data.ReverseMinValue;
+      var upperBound = data.ReverseMinValue;
+      var comparer = data.ReverseComparer;
+
+      // Act.
+      var result = value.EnsuresLessThanOrEqual(upperBound, comparer);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [Theory]
+   [ClassData(typeof(ReferenceTypesTestData))]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparer_ShouldReturnOriginalValue_WhenReferenceValueIsNullAndUpperBoundIsNull<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      T value = default!;
+      T upperBound = default!;
+      var comparer = Comparer<T>.Default;
+
+      // Act.
+      var result = value.EnsuresLessThanOrEqual(upperBound, comparer);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [Theory]
+   [ClassData(typeof(ReferenceTypesTestData))]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparer_ShouldReturnOriginalValue_WhenReferenceValueIsNullAndUpperBoundIsNotNull<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      T value = default!;
+      var upperBound = data.ReverseMaxValue;
+      var comparer = Comparer<T>.Default;
+
+      // Act.
+      var result = value.EnsuresLessThanOrEqual(upperBound, comparer);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [Theory]
+   [ClassData(typeof(ComparableTypesTestData))]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparer_ShouldThrow_WhenValueIsAboveUpperBound<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      var value = data.ReverseMaxValue;
+      var upperBound = data.ReverseMinValue;
+      var comparer = data.ReverseComparer;
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparer);
+
+      // Act/assert.
+      act.Should().Throw<PostconditionFailedException>();
+   }
+
+   [Theory]
+   [ClassData(typeof(ReferenceTypesTestData))]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparer_ShouldThrow_WhenReferenceValueIsNotNullAndUpperBoundIsNull<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      var value = data.ReverseMaxValue;
+      T upperBound = default!;
+      var comparer = Comparer<T>.Default;
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparer);
+
+      // Act/assert.
+      act.Should().Throw<PostconditionFailedException>();
+   }
+
+   [Fact]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparer_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
+   {
+      // Arrange.
+      var data = new DateTimeData();
+      var value = data.ReverseMaxValue;
+      var upperBound = data.ReverseMinValue;
+      var comparer = data.ReverseComparer;
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparer);
+
+      // Act/assert.
+      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+
+      ex.Data.Count.Should().Be(_dataCount);
+      ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
+      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.LessThanOrEqual);
+      ex.Data[DataNames.Value].Should().Be(value);
+      ex.Data[DataNames.ValueExpression].Should().Be(nameof(value));
+      ex.Data[DataNames.UpperBound].Should().Be(upperBound);
+      ex.Data[DataNames.UpperBoundExpression].Should().Be(nameof(upperBound));
+   }
+
+   [Fact]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparer_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
+   {
+      // Arrange.
+      var data = new BoxRecordData();
+      var value = data.ReverseMaxValue;
+      var upperBound = data.ReverseMinValue;
+      var comparer = data.ReverseComparer;
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparer);
+      var expectedMessage = $"Postcondition LessThanOrEqual failed: {nameof(value)} must be less than or equal to {upperBound}";
+
+      // Act/assert.
+      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      ex.Message.Should().StartWith(expectedMessage);
+   }
+
+   [Fact]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparer_ShouldThrowPostconditionFailedExceptionExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
+   {
+      // Arrange.
+      var data = new ByteData();
+      var value = data.ReverseMaxValue;
+      var upperBound = data.ReverseMinValue;
+      var comparer = data.ReverseComparer;
+      var messageTemplate = "Requirement {RequirementName} failed";
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparer, messageTemplate);
+      var expectedMessage = $"Requirement LessThanOrEqual failed";
+
+      // Act/assert.
+      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      ex.Message.Should().StartWith(expectedMessage);
+   }
+
+   [Fact]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
+   {
+      // Arrange.
+      var data = new DoubleData();
+      var value = data.ReverseMaxValue;
+      var upperBound = data.ReverseMinValue;
+      var comparer = data.ReverseComparer;
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparer, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Postcondition LessThanOrEqual failed: {nameof(value)} must be less than or equal to {upperBound}";
+
+      // Act/assert.
+      act.Should().Throw<CustomException>()
+         .And.Message.Should().StartWith(expectedMessage);
+   }
+
+   [Fact]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   {
+      // Arrange.
+      String value = "def";
+      var upperBound = "ABC";
+      var comparer = StringComparer.OrdinalIgnoreCase;
+      var messageTemplate = "Requirement {RequirementName} failed";
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparer, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Requirement LessThanOrEqual failed";
+
+      // Act/assert.
+      act.Should().Throw<CustomException>()
+         .And.Message.Should().StartWith(expectedMessage);
+   }
+
+   [Fact]
+   public void LessThanOrEqualExtensions_EnsuresLessOrEqualThanIComparer_ShouldThrowArgumentNullException_WhenComparerIsNull()
+   {
+      // Arrange.
+      var data = new TimeOnlyData();
+      var value = data.ReverseMaxValue;
+      var upperBound = data.ReverseMinValue;
+      IComparer<TimeOnly> comparer = null!;
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparer);
+
+      // Act/assert.
+      act.Should().Throw<ArgumentNullException>()
+         .WithParameterName(nameof(comparer))
+         .And.Message.Should().StartWith(Messages.ComparerIsNull);
+   }
+
+   #endregion
+
    #region RequiresLessThanOrEqual (IComparable) Tests
    // ==========================================================================
    // ==========================================================================
@@ -366,6 +573,219 @@ public class LessThanOrEqualExtensionsTests
       // Act/assert.
       act.Should().Throw<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
+   }
+
+   #endregion
+
+   #region RequiresLessThanOrEqual (IComparer) Tests
+   // ==========================================================================
+   // ==========================================================================
+
+   [Theory]
+   [ClassData(typeof(ComparableTypesTestData))]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparer_ShouldReturnOriginalValue_WhenValueIsBelowUpperBound<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      var value = data.ReverseMinValue;
+      var upperBound = data.ReverseMaxValue;
+      var comparer = data.ReverseComparer;
+
+      // Act.
+      var result = value.RequiresLessThanOrEqual(upperBound, comparer);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [Theory]
+   [ClassData(typeof(ComparableTypesTestData))]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparer_ShouldReturnOriginalValue_WhenValueIsEqualToUpperBound<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      var value = data.ReverseMinValue;
+      var upperBound = data.ReverseMinValue;
+      var comparer = data.ReverseComparer;
+
+      // Act.
+      var result = value.RequiresLessThanOrEqual(upperBound, comparer);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [Theory]
+   [ClassData(typeof(ReferenceTypesTestData))]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparer_ShouldReturnOriginalValue_WhenReferenceValueIsNullAndUpperBoundIsNull<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      T value = default!;
+      T upperBound = default!;
+      var comparer = Comparer<T>.Default;
+
+      // Act.
+      var result = value.RequiresLessThanOrEqual(upperBound, comparer);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [Theory]
+   [ClassData(typeof(ReferenceTypesTestData))]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparer_ShouldReturnOriginalValue_WhenReferenceValueIsNullAndUpperBoundIsNotNull<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      T value = default!;
+      var upperBound = data.ReverseMaxValue;
+      var comparer = Comparer<T>.Default;
+
+      // Act.
+      var result = value.RequiresLessThanOrEqual(upperBound, comparer);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [Theory]
+   [ClassData(typeof(ComparableTypesTestData))]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparer_ShouldThrow_WhenValueIsAboveUpperBound<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      var value = data.ReverseMaxValue;
+      var upperBound = data.ReverseMinValue;
+      var comparer = data.ReverseComparer;
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparer);
+
+      // Act/assert.
+      act.Should().Throw<ArgumentOutOfRangeException>();
+   }
+
+   [Theory]
+   [ClassData(typeof(ReferenceTypesTestData))]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparer_ShouldThrow_WhenReferenceValueIsNotNullAndUpperBoundIsNull<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      var value = data.ReverseMaxValue;
+      T upperBound = default!;
+      var comparer = Comparer<T>.Default;
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparer);
+
+      // Act/assert.
+      act.Should().Throw<ArgumentOutOfRangeException>();
+   }
+
+   [Fact]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparer_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
+   {
+      // Arrange.
+      var data = new DateTimeData();
+      var value = data.ReverseMaxValue;
+      var upperBound = data.ReverseMinValue;
+      var comparer = data.ReverseComparer;
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparer);
+
+      // Act/assert.
+      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+
+      ex.Data.Count.Should().Be(_dataCount);
+      ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
+      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.LessThanOrEqual);
+      ex.Data[DataNames.Value].Should().Be(value);
+      ex.Data[DataNames.ValueExpression].Should().Be(nameof(value));
+      ex.Data[DataNames.UpperBound].Should().Be(upperBound);
+      ex.Data[DataNames.UpperBoundExpression].Should().Be(nameof(upperBound));
+   }
+
+   [Fact]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparer_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
+   {
+      // Arrange.
+      var data = new BoxRecordData();
+      var value = data.ReverseMaxValue;
+      var upperBound = data.ReverseMinValue;
+      var comparer = data.ReverseComparer;
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparer);
+      var expectedParameterName = nameof(value);
+      var expectedMessage = $"Precondition LessThanOrEqual failed: {nameof(value)} must be less than or equal to {upperBound}";
+
+      // Act/assert.
+      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      ex.ParamName.Should().Be(expectedParameterName);
+      ex.Message.Should().StartWith(expectedMessage);
+      ex.ActualValue.Should().Be(value);
+   }
+
+   [Fact]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparer_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
+   {
+      // Arrange.
+      var data = new ByteData();
+      var value = data.ReverseMaxValue;
+      var upperBound = data.ReverseMinValue;
+      var comparer = data.ReverseComparer;
+      var messageTemplate = "Requirement {RequirementName} failed";
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparer, messageTemplate);
+      var expectedParameterName = nameof(value);
+      var expectedMessage = $"Requirement LessThanOrEqual failed";
+
+      // Act/assert.
+      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      ex.ParamName.Should().Be(expectedParameterName);
+      ex.Message.Should().StartWith(expectedMessage);
+      ex.ActualValue.Should().Be(value);
+   }
+
+   [Fact]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
+   {
+      // Arrange.
+      var data = new DoubleData();
+      var value = data.ReverseMaxValue;
+      var upperBound = data.ReverseMinValue;
+      var comparer = data.ReverseComparer;
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparer, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Precondition LessThanOrEqual failed: {nameof(value)} must be less than or equal to {upperBound}";
+
+      // Act/assert.
+      act.Should().Throw<CustomException>()
+         .And.Message.Should().StartWith(expectedMessage);
+   }
+
+   [Fact]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   {
+      // Arrange.
+      String value = "def";
+      var upperBound = "ABC";
+      var comparer = StringComparer.OrdinalIgnoreCase;
+      var messageTemplate = "Requirement {RequirementName} failed";
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparer, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Requirement LessThanOrEqual failed";
+
+      // Act/assert.
+      act.Should().Throw<CustomException>()
+         .And.Message.Should().StartWith(expectedMessage);
+   }
+
+   [Fact]
+   public void LessThanOrEqualExtensions_RequiresLessOrEqualThanIComparer_ShouldThrowArgumentNullException_WhenComparerIsNull()
+   {
+      // Arrange.
+      var data = new TimeOnlyData();
+      var value = data.ReverseMaxValue;
+      var upperBound = data.ReverseMinValue;
+      IComparer<TimeOnly> comparer = null!;
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparer);
+
+      // Act/assert.
+      act.Should().Throw<ArgumentNullException>()
+         .WithParameterName(nameof(comparer))
+         .And.Message.Should().StartWith(Messages.ComparerIsNull);
    }
 
    #endregion
