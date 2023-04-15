@@ -1205,7 +1205,7 @@ public class GreaterThanOrEqualExtensionsTests
    [InlineData(StringData.LowerCaseAE, StringData.UpperCaseZ, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.UpperCaseSlashedO, StringData.LowerCaseSlashedO, StringComparison.Ordinal)]
    [InlineData(StringData.UpperCaseI, StringData.LowerCaseDotlessI, StringComparison.OrdinalIgnoreCase)]
-   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualString_ShouldThrow_WhenValueIsLessThanLowerBoundAndCurrentCultureIs_trTR(
+   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualString_ShouldThrow_WhenValueIsBelowLowerBoundAndCurrentCultureIs_trTR(
       String value,
       String lowerBound,
       StringComparison comparisonType)

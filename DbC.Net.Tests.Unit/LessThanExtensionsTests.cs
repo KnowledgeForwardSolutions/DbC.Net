@@ -479,7 +479,7 @@ public class LessThanExtensionsTests
    [InlineData(StringData.UpperCaseAE, StringData.LowerCaseAE, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseSlashedO, StringData.UpperCaseSlashedO, StringComparison.Ordinal)]
    [InlineData(StringData.LowerCaseDotlessI, StringData.UpperCaseI, StringComparison.OrdinalIgnoreCase)]
-   public void LessThanExtensions_EnsuresLessThanString_ShouldThrow_WhenValueExceedsUpperBoundAndCurrentCultureIs_trTR(
+   public void LessThanExtensions_EnsuresLessThanString_ShouldThrow_WhenValueIsAboveUpperBoundAndCurrentCultureIs_trTR(
       String value,
       String upperBound,
       StringComparison comparisonType)
@@ -1141,7 +1141,7 @@ public class LessThanExtensionsTests
    [InlineData(StringData.UpperCaseAE, StringData.LowerCaseAE, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseSlashedO, StringData.UpperCaseSlashedO, StringComparison.Ordinal)]
    [InlineData(StringData.LowerCaseDotlessI, StringData.UpperCaseI, StringComparison.OrdinalIgnoreCase)]
-   public void LessThanExtensions_RequiresLessThanString_ShouldThrow_WhenValueExceedsUpperBoundAndCurrentCultureIs_trTR(
+   public void LessThanExtensions_RequiresLessThanString_ShouldThrow_WhenValueIsAboveUpperBoundAndCurrentCultureIs_trTR(
       String value,
       String upperBound,
       StringComparison comparisonType)

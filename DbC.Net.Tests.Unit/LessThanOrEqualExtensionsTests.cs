@@ -393,6 +393,281 @@ public class LessThanOrEqualExtensionsTests
 
    #endregion
 
+   #region EnsuresLessThanOrEqual (String) Tests
+   // ==========================================================================
+   // ==========================================================================
+
+   [UseCulture(CultureData.EnglishUS)]
+   [Theory]
+   [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.CurrentCulture)]
+   [InlineData(StringData.UpperCaseAE, StringData.LowerCaseZ, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCulture)]
+   [InlineData(StringData.UpperCaseAE, StringData.LowerCaseZ, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.UpperCaseAE, StringData.LowerCaseAE, StringComparison.Ordinal)]
+   [InlineData(StringData.UpperCaseAE, StringData.LowerCaseZ, StringComparison.OrdinalIgnoreCase)]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualString_ShouldReturnOriginalValue_WhenValueIsBelowUpperBoundAndCurrentCultureIs_enUS(
+      String value,
+      String upperBound,
+      StringComparison comparisonType)
+   {
+      // Act.
+      var result = value.EnsuresLessThanOrEqual(upperBound, comparisonType);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [UseCulture(CultureData.TurkishTurkey)]
+   [Theory]
+   [InlineData(StringData.UpperCaseI, StringData.UpperCaseDottedI, StringComparison.CurrentCulture)] // I without dot sorts before I with dot in tr-TR culture
+   [InlineData(StringData.LowerCaseDotlessI, StringData.UpperCaseDottedI, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseA, StringData.UpperCaseA, StringComparison.InvariantCulture)]
+   [InlineData(StringData.UpperCaseA, StringData.LowerCaseI, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.UpperCaseZ, StringData.UpperCaseDottedI, StringComparison.Ordinal)]
+   [InlineData(StringData.UpperCaseAE, StringData.LowerCaseZ, StringComparison.OrdinalIgnoreCase)]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualString_ShouldReturnOriginalValue_WhenValueIsBelowLowerBoundAndCurrentCultureIs_trTR(
+      String value,
+      String upperBound,
+      StringComparison comparisonType)
+   {
+      // Act.
+      var result = value.EnsuresLessThanOrEqual(upperBound, comparisonType);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [UseCulture(CultureData.SwedishSweden)]
+   [Theory]
+   [InlineData(StringData.LowerCaseOWithDiaeresis, StringData.UpperCaseOWithDiaeresis, StringComparison.CurrentCulture)]
+   [InlineData(StringData.UpperCaseZ, StringData.UpperCaseOWithDiaeresis, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseA, StringData.UpperCaseA, StringComparison.InvariantCulture)]
+   [InlineData(StringData.UpperCaseA, StringData.LowerCaseI, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.UpperCaseDiphthongAE, StringData.LowerCaseDiphthongAE, StringComparison.Ordinal)]
+   [InlineData(StringData.UpperCaseAE, StringData.UpperCaseDiphthongAE, StringComparison.OrdinalIgnoreCase)]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualString_ShouldReturnOriginalValue_WhenValueIsBelowUpperBoundAndCurrentCultureIs_svSE(
+      String value,
+      String upperBound,
+      StringComparison comparisonType)
+   {
+      // Act.
+      var result = value.EnsuresLessThanOrEqual(upperBound, comparisonType);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [UseCulture(CultureData.EnglishUS)]
+   [Theory]
+   [InlineData(StringData.UpperCaseAE, StringData.UpperCaseAE, StringComparison.CurrentCulture)]
+   [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.UpperCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCulture)]
+   [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseSlashedO, StringData.LowerCaseSlashedO, StringComparison.Ordinal)]
+   [InlineData(StringData.LowerCaseSlashedO, StringData.UpperCaseSlashedO, StringComparison.OrdinalIgnoreCase)]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualString_ShouldReturnOriginalValue_WhenValueIsEqualToUpperBoundAndCurrentCultureIs_enUS(
+      String value,
+      String upperBound,
+      StringComparison comparisonType)
+   {
+      // Act.
+      var result = value.EnsuresLessThanOrEqual(upperBound, comparisonType);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [UseCulture(CultureData.EnglishUS)]
+   [Theory]
+   [InlineData(StringComparison.CurrentCulture)]
+   [InlineData(StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringComparison.InvariantCulture)]
+   [InlineData(StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringComparison.Ordinal)]
+   [InlineData(StringComparison.OrdinalIgnoreCase)]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualString_ShouldReturnOriginalValue_WhenValueAndUpperBoundAreDefaultAndCurrentCultureIs_enUS(
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      String value = default!;
+      String upperBound = default!;
+
+      // Act.
+      var result = value.EnsuresLessThanOrEqual(upperBound, comparisonType);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [UseCulture(CultureData.DanishDenmark)]
+   [Theory]
+   [InlineData(StringComparison.CurrentCulture)]
+   [InlineData(StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringComparison.InvariantCulture)]
+   [InlineData(StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringComparison.Ordinal)]
+   [InlineData(StringComparison.OrdinalIgnoreCase)]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualString_ShouldReturnOriginalValue_WhenValueAndUpperBoundAreDefaultAndCurrentCultureIs_daDK(
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      String value = default!;
+      String upperBound = default!;
+
+      // Act.
+      var result = value.EnsuresLessThanOrEqual(upperBound, comparisonType);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [UseCulture(CultureData.TurkishTurkey)]
+   [Theory]
+   [InlineData(StringData.UpperCaseI, StringData.LowerCaseDotlessI, StringComparison.CurrentCulture)]
+   [InlineData(StringData.LowerCaseI, StringData.LowerCaseDotlessI, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.UpperCaseAE, StringData.LowerCaseAE, StringComparison.InvariantCulture)]
+   [InlineData(StringData.UpperCaseZ, StringData.LowerCaseAE, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseSlashedO, StringData.UpperCaseSlashedO, StringComparison.Ordinal)]
+   [InlineData(StringData.LowerCaseDotlessI, StringData.UpperCaseI, StringComparison.OrdinalIgnoreCase)]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualString_ShouldThrow_WhenValueIsAboveUpperBoundAndCurrentCultureIs_trTR(
+      String value,
+      String upperBound,
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparisonType);
+
+      // Act/assert.
+      act.Should().Throw<PostconditionFailedException>();
+   }
+
+   [UseCulture(CultureData.EnglishUS)]
+   [Theory]
+   [InlineData(StringComparison.CurrentCulture)]
+   [InlineData(StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringComparison.InvariantCulture)]
+   [InlineData(StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringComparison.Ordinal)]
+   [InlineData(StringComparison.OrdinalIgnoreCase)]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualString_ShouldThrow_WhenValueIsNotDefaultAndUpperBoundIsDefaultAndCurrentCultureIs_enUS(
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      String value = "asdf";
+      String upperBound = default!;
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparisonType);
+
+      // Act/assert.
+      act.Should().Throw<PostconditionFailedException>();
+   }
+
+   [UseCulture(CultureData.SwedishSweden)]
+   [Theory]
+   [InlineData(StringComparison.CurrentCulture)]
+   [InlineData(StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringComparison.InvariantCulture)]
+   [InlineData(StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringComparison.Ordinal)]
+   [InlineData(StringComparison.OrdinalIgnoreCase)]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualString_ShouldThrow_WhenValueIsNotDefaultAndUpperBoundIsDefaultAndCurrentCultureIs_svSE(
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      String value = "asdf";
+      String upperBound = default!;
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparisonType);
+
+      // Act/assert.
+      act.Should().Throw<PostconditionFailedException>();
+   }
+
+   [Fact]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualString_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
+   {
+      // Arrange.
+      var value = StringData.UpperCaseZ;
+      var upperBound = StringData.UpperCaseA;
+      var comparisonType = StringComparison.Ordinal;
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparisonType);
+
+      // Act/assert.
+      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+
+      ex.Data.Count.Should().Be(_stringDataCount);
+      ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
+      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.LessThanOrEqual);
+      ex.Data[DataNames.Value].Should().Be(value);
+      ex.Data[DataNames.ValueExpression].Should().Be(nameof(value));
+      ex.Data[DataNames.UpperBound].Should().Be(upperBound);
+      ex.Data[DataNames.UpperBoundExpression].Should().Be(nameof(upperBound));
+      ex.Data[DataNames.StringComparison].Should().Be(comparisonType);
+   }
+
+   [Fact]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualString_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
+   {
+      // Arrange.
+      var value = StringData.LowerCaseZ;
+      var upperBound = StringData.UpperCaseA;
+      var comparisonType = StringComparison.OrdinalIgnoreCase;
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparisonType);
+      var expectedMessage = $"Postcondition LessThanOrEqual failed: {nameof(value)} must be less than or equal to {upperBound}";
+
+      // Act/assert.
+      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      ex.Message.Should().StartWith(expectedMessage);
+   }
+
+   [Fact]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualString_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
+   {
+      // Arrange.
+      var value = StringData.LowerCaseJ;
+      var upperBound = StringData.UpperCaseH;
+      var comparisonType = StringComparison.InvariantCulture;
+      var messageTemplate = "Requirement {RequirementName} failed";
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparisonType, messageTemplate);
+      var expectedMessage = $"Requirement LessThanOrEqual failed";
+
+      // Act/assert.
+      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      ex.Message.Should().StartWith(expectedMessage);
+   }
+
+   [Fact]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
+   {
+      // Arrange.
+      var value = StringData.LowerCaseZ;
+      var upperBound = StringData.UpperCaseJ;
+      var comparisonType = StringComparison.InvariantCultureIgnoreCase;
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparisonType, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Postcondition LessThanOrEqual failed: {nameof(value)} must be less than or equal to {upperBound}";
+
+      // Act/assert.
+      act.Should().Throw<CustomException>()
+         .And.Message.Should().StartWith(expectedMessage);
+   }
+
+   [UseCulture(CultureData.EnglishUS)]
+   [Fact]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   {
+      // Arrange.
+      var value = StringData.UpperCaseZ;
+      var upperBound = StringData.LowerCaseA;
+      var comparisonType = StringComparison.CurrentCulture;
+      var messageTemplate = "Requirement {RequirementName} failed";
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparisonType, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Requirement LessThanOrEqual failed";
+
+      // Act/assert.
+      act.Should().Throw<CustomException>()
+         .And.Message.Should().StartWith(expectedMessage);
+   }
+
+   #endregion
+
    #region RequiresLessThanOrEqual (IComparable) Tests
    // ==========================================================================
    // ==========================================================================
@@ -786,6 +1061,287 @@ public class LessThanOrEqualExtensionsTests
       act.Should().Throw<ArgumentNullException>()
          .WithParameterName(nameof(comparer))
          .And.Message.Should().StartWith(Messages.ComparerIsNull);
+   }
+
+   #endregion
+
+   #region RequiresLessThanOrEqual (String) Tests
+   // ==========================================================================
+   // ==========================================================================
+
+   [UseCulture(CultureData.EnglishUS)]
+   [Theory]
+   [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.CurrentCulture)]
+   [InlineData(StringData.UpperCaseAE, StringData.LowerCaseZ, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCulture)]
+   [InlineData(StringData.UpperCaseAE, StringData.LowerCaseZ, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.UpperCaseAE, StringData.LowerCaseAE, StringComparison.Ordinal)]
+   [InlineData(StringData.UpperCaseAE, StringData.LowerCaseZ, StringComparison.OrdinalIgnoreCase)]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualString_ShouldReturnOriginalValue_WhenValueIsBelowUpperBoundAndCurrentCultureIs_enUS(
+      String value,
+      String upperBound,
+      StringComparison comparisonType)
+   {
+      // Act.
+      var result = value.RequiresLessThanOrEqual(upperBound, comparisonType);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [UseCulture(CultureData.TurkishTurkey)]
+   [Theory]
+   [InlineData(StringData.UpperCaseI, StringData.UpperCaseDottedI, StringComparison.CurrentCulture)] // I without dot sorts before I with dot in tr-TR culture
+   [InlineData(StringData.LowerCaseDotlessI, StringData.UpperCaseDottedI, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseA, StringData.UpperCaseA, StringComparison.InvariantCulture)]
+   [InlineData(StringData.UpperCaseA, StringData.LowerCaseI, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.UpperCaseZ, StringData.UpperCaseDottedI, StringComparison.Ordinal)]
+   [InlineData(StringData.UpperCaseAE, StringData.LowerCaseZ, StringComparison.OrdinalIgnoreCase)]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualString_ShouldReturnOriginalValue_WhenValueIsBelowLowerBoundAndCurrentCultureIs_trTR(
+      String value,
+      String upperBound,
+      StringComparison comparisonType)
+   {
+      // Act.
+      var result = value.RequiresLessThanOrEqual(upperBound, comparisonType);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [UseCulture(CultureData.SwedishSweden)]
+   [Theory]
+   [InlineData(StringData.LowerCaseOWithDiaeresis, StringData.UpperCaseOWithDiaeresis, StringComparison.CurrentCulture)]
+   [InlineData(StringData.UpperCaseZ, StringData.UpperCaseOWithDiaeresis, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseA, StringData.UpperCaseA, StringComparison.InvariantCulture)]
+   [InlineData(StringData.UpperCaseA, StringData.LowerCaseI, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.UpperCaseDiphthongAE, StringData.LowerCaseDiphthongAE, StringComparison.Ordinal)]
+   [InlineData(StringData.UpperCaseAE, StringData.UpperCaseDiphthongAE, StringComparison.OrdinalIgnoreCase)]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualString_ShouldReturnOriginalValue_WhenValueIsBelowUpperBoundAndCurrentCultureIs_svSE(
+      String value,
+      String upperBound,
+      StringComparison comparisonType)
+   {
+      // Act.
+      var result = value.RequiresLessThanOrEqual(upperBound, comparisonType);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [UseCulture(CultureData.EnglishUS)]
+   [Theory]
+   [InlineData(StringData.UpperCaseAE, StringData.UpperCaseAE, StringComparison.CurrentCulture)]
+   [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.UpperCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCulture)]
+   [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseSlashedO, StringData.LowerCaseSlashedO, StringComparison.Ordinal)]
+   [InlineData(StringData.LowerCaseSlashedO, StringData.UpperCaseSlashedO, StringComparison.OrdinalIgnoreCase)]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualString_ShouldReturnOriginalValue_WhenValueIsEqualToUpperBoundAndCurrentCultureIs_enUS(
+      String value,
+      String upperBound,
+      StringComparison comparisonType)
+   {
+      // Act.
+      var result = value.RequiresLessThanOrEqual(upperBound, comparisonType);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [UseCulture(CultureData.EnglishUS)]
+   [Theory]
+   [InlineData(StringComparison.CurrentCulture)]
+   [InlineData(StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringComparison.InvariantCulture)]
+   [InlineData(StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringComparison.Ordinal)]
+   [InlineData(StringComparison.OrdinalIgnoreCase)]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualString_ShouldReturnOriginalValue_WhenValueAndUpperBoundAreDefaultAndCurrentCultureIs_enUS(
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      String value = default!;
+      String upperBound = default!;
+
+      // Act.
+      var result = value.RequiresLessThanOrEqual(upperBound, comparisonType);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [UseCulture(CultureData.DanishDenmark)]
+   [Theory]
+   [InlineData(StringComparison.CurrentCulture)]
+   [InlineData(StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringComparison.InvariantCulture)]
+   [InlineData(StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringComparison.Ordinal)]
+   [InlineData(StringComparison.OrdinalIgnoreCase)]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualString_ShouldReturnOriginalValue_WhenValueAndUpperBoundAreDefaultAndCurrentCultureIs_daDK(
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      String value = default!;
+      String upperBound = default!;
+
+      // Act.
+      var result = value.RequiresLessThanOrEqual(upperBound, comparisonType);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [UseCulture(CultureData.TurkishTurkey)]
+   [Theory]
+   [InlineData(StringData.UpperCaseI, StringData.LowerCaseDotlessI, StringComparison.CurrentCulture)]
+   [InlineData(StringData.LowerCaseI, StringData.LowerCaseDotlessI, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringData.UpperCaseAE, StringData.LowerCaseAE, StringComparison.InvariantCulture)]
+   [InlineData(StringData.UpperCaseZ, StringData.LowerCaseAE, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.LowerCaseSlashedO, StringData.UpperCaseSlashedO, StringComparison.Ordinal)]
+   [InlineData(StringData.LowerCaseDotlessI, StringData.UpperCaseI, StringComparison.OrdinalIgnoreCase)]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualString_ShouldThrow_WhenValueIsAboveUpperBoundAndCurrentCultureIs_trTR(
+      String value,
+      String upperBound,
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparisonType);
+
+      // Act/assert.
+      act.Should().Throw<ArgumentOutOfRangeException>();
+   }
+
+   [UseCulture(CultureData.EnglishUS)]
+   [Theory]
+   [InlineData(StringComparison.CurrentCulture)]
+   [InlineData(StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringComparison.InvariantCulture)]
+   [InlineData(StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringComparison.Ordinal)]
+   [InlineData(StringComparison.OrdinalIgnoreCase)]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualString_ShouldThrow_WhenValueIsNotDefaultAndUpperBoundIsDefaultAndCurrentCultureIs_enUS(
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      String value = "asdf";
+      String upperBound = default!;
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparisonType);
+
+      // Act/assert.
+      act.Should().Throw<ArgumentOutOfRangeException>();
+   }
+
+   [UseCulture(CultureData.SwedishSweden)]
+   [Theory]
+   [InlineData(StringComparison.CurrentCulture)]
+   [InlineData(StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringComparison.InvariantCulture)]
+   [InlineData(StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringComparison.Ordinal)]
+   [InlineData(StringComparison.OrdinalIgnoreCase)]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualString_ShouldThrow_WhenValueIsNotDefaultAndUpperBoundIsDefaultAndCurrentCultureIs_svSE(
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      String value = "asdf";
+      String upperBound = default!;
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparisonType);
+
+      // Act/assert.
+      act.Should().Throw<ArgumentOutOfRangeException>();
+   }
+
+   [Fact]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualString_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
+   {
+      // Arrange.
+      var value = StringData.UpperCaseZ;
+      var upperBound = StringData.UpperCaseA;
+      var comparisonType = StringComparison.Ordinal;
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparisonType);
+
+      // Act/assert.
+      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+
+      ex.Data.Count.Should().Be(_stringDataCount);
+      ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
+      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.LessThanOrEqual);
+      ex.Data[DataNames.Value].Should().Be(value);
+      ex.Data[DataNames.ValueExpression].Should().Be(nameof(value));
+      ex.Data[DataNames.UpperBound].Should().Be(upperBound);
+      ex.Data[DataNames.UpperBoundExpression].Should().Be(nameof(upperBound));
+      ex.Data[DataNames.StringComparison].Should().Be(comparisonType);
+   }
+
+   [Fact]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualString_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
+   {
+      // Arrange.
+      var value = StringData.LowerCaseZ;
+      var upperBound = StringData.UpperCaseA;
+      var comparisonType = StringComparison.OrdinalIgnoreCase;
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparisonType);
+      var expectedParameterName = nameof(value);
+      var expectedMessage = $"Precondition LessThanOrEqual failed: {nameof(value)} must be less than or equal to {upperBound}";
+
+      // Act/assert.
+      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      ex.ParamName.Should().Be(expectedParameterName);
+      ex.Message.Should().StartWith(expectedMessage);
+      ex.ActualValue.Should().Be(value);
+   }
+
+   [Fact]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualString_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
+   {
+      // Arrange.
+      var value = StringData.LowerCaseJ;
+      var upperBound = StringData.UpperCaseH;
+      var comparisonType = StringComparison.InvariantCulture;
+      var messageTemplate = "Requirement {RequirementName} failed";
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparisonType, messageTemplate);
+      var expectedParameterName = nameof(value);
+      var expectedMessage = $"Requirement LessThanOrEqual failed";
+
+      // Act/assert.
+      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      ex.ParamName.Should().Be(expectedParameterName);
+      ex.Message.Should().StartWith(expectedMessage);
+      ex.ActualValue.Should().Be(value);
+   }
+
+   [Fact]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
+   {
+      // Arrange.
+      var value = StringData.LowerCaseZ;
+      var upperBound = StringData.UpperCaseJ;
+      var comparisonType = StringComparison.InvariantCultureIgnoreCase;
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparisonType, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Precondition LessThanOrEqual failed: {nameof(value)} must be less than or equal to {upperBound}";
+
+      // Act/assert.
+      act.Should().Throw<CustomException>()
+         .And.Message.Should().StartWith(expectedMessage);
+   }
+
+   [UseCulture(CultureData.EnglishUS)]
+   [Fact]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   {
+      // Arrange.
+      var value = StringData.UpperCaseZ;
+      var upperBound = StringData.LowerCaseA;
+      var comparisonType = StringComparison.CurrentCulture;
+      var messageTemplate = "Requirement {RequirementName} failed";
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparisonType, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Requirement LessThanOrEqual failed";
+
+      // Act/assert.
+      act.Should().Throw<CustomException>()
+         .And.Message.Should().StartWith(expectedMessage);
    }
 
    #endregion
