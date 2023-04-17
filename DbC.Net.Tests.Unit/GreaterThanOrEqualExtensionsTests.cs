@@ -3,7 +3,7 @@
 #pragma warning disable IDE0060 // Remove unused parameter
 #pragma warning disable xUnit1026 // Theory methods should use all of their parameters
 
-public class GreaterThanOrEqualToExtensionsTests
+public class GreaterThanOrEqualExtensionsTests
 {
    private const Int32 _dataCount = 6;
    private const Int32 _stringDataCount = 7;
@@ -1205,7 +1205,7 @@ public class GreaterThanOrEqualToExtensionsTests
    [InlineData(StringData.LowerCaseAE, StringData.UpperCaseZ, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.UpperCaseSlashedO, StringData.LowerCaseSlashedO, StringComparison.Ordinal)]
    [InlineData(StringData.UpperCaseI, StringData.LowerCaseDotlessI, StringComparison.OrdinalIgnoreCase)]
-   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualString_ShouldThrow_WhenValueIsLessThanLowerBoundAndCurrentCultureIs_trTR(
+   public void GreaterThanOrEqualExtensions_RequiresGreaterThanOrEqualString_ShouldThrow_WhenValueIsBelowLowerBoundAndCurrentCultureIs_trTR(
       String value,
       String lowerBound,
       StringComparison comparisonType)

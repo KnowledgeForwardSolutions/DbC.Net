@@ -3,18 +3,18 @@
 #pragma warning disable IDE0060 // Remove unused parameter
 #pragma warning disable xUnit1026 // Theory methods should use all of their parameters
 
-public class LessThanExtensionsTests
+public class LessThanOrEqualExtensionsTests
 {
    private const Int32 _dataCount = 6;
    private const Int32 _stringDataCount = 7;
 
-   #region EnsuresLessThan (IComparable) Tests
+   #region EnsuresLessThanOrEqual (IComparable) Tests
    // ==========================================================================
    // ==========================================================================
 
    [Theory]
    [ClassData(typeof(ComparableTypesTestData))]
-   public void LessThanExtensions_EnsuresLessThanIComparable_ShouldReturnOriginalValue_WhenValueIsBelowUpperBound<T>(
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparable_ShouldReturnOriginalValue_WhenValueIsBelowUpperBound<T>(
       IComparableTestData<T> data) where T : IComparable<T>
    {
       // Arrange.
@@ -22,23 +22,7 @@ public class LessThanExtensionsTests
       var upperBound = data.MaxValue;
 
       // Act.
-      var result = value.EnsuresLessThan(upperBound);
-
-      // Assert.
-      result.Should().Be(value);
-   }
-
-   [Theory]
-   [ClassData(typeof(ReferenceTypesTestData))]
-   public void LessThanExtensions_EnsuresLessThanIComparable_ShouldReturnOriginalValue_WhenReferenceValueIsNullAndUpperBoundIsNotNull<T>(
-      IComparableTestData<T> data) where T : IComparable<T>
-   {
-      // Arrange.
-      T value = default!;
-      var upperBound = data.MinValue;
-
-      // Act.
-      var result = value.EnsuresLessThan(upperBound);
+      var result = value.EnsuresLessThanOrEqual(upperBound);
 
       // Assert.
       result.Should().Be(value);
@@ -46,75 +30,93 @@ public class LessThanExtensionsTests
 
    [Theory]
    [ClassData(typeof(ComparableTypesTestData))]
-   public void LessThanExtensions_EnsuresLessThanIComparable_ShouldThrow_WhenValueIsEqualToUpperBound<T>(
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparable_ShouldReturnOriginalValue_WhenValueIsEqualToUpperBound<T>(
       IComparableTestData<T> data) where T : IComparable<T>
    {
       // Arrange.
       var value = data.MaxValue;
       var upperBound = data.MaxValue;
-      var act = () => _ = value.EnsuresLessThan(upperBound);
 
-      // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
-   }
+      // Act.
+      var result = value.EnsuresLessThanOrEqual(upperBound);
 
-   [Theory]
-   [ClassData(typeof(ComparableTypesTestData))]
-   public void LessThanExtensions_EnsuresLessThanIComparable_ShouldThrow_WhenValueIsAboveUpperBound<T>(
-      IComparableTestData<T> data) where T : IComparable<T>
-   {
-      // Arrange.
-      var value = data.MaxValue;
-      var upperBound = data.MinValue;
-      var act = () => _ = value.EnsuresLessThan(upperBound);
-
-      // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      // Assert.
+      result.Should().Be(value);
    }
 
    [Theory]
    [ClassData(typeof(ReferenceTypesTestData))]
-   public void LessThanExtensions_EnsuresLessThanIComparable_ShouldThrow_WhenReferenceValueIsNotNullAndUpperBoundIsNull<T>(
-      IComparableTestData<T> data) where T : IComparable<T>
-   {
-      // Arrange.
-      var value = data.MaxValue;
-      T upperBound = default!;
-      var act = () => _ = value.EnsuresLessThan(upperBound);
-
-      // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
-   }
-
-   [Theory]
-   [ClassData(typeof(ReferenceTypesTestData))]
-   public void LessThanExtensions_EnsuresLessThanIComparable_ShouldThrow_ReferenceValueIsNullAndUpperBoundIsNull<T>(
+   public void LessThanOrEqualExtensions_EnsuresLessOrEqualThanIComparable_ShouldReturnOriginalValue_WhenReferenceValueIsNullAndUpperBoundIsNull<T>(
       IComparableTestData<T> data) where T : IComparable<T>
    {
       // Arrange.
       T value = default!;
       T upperBound = default!;
-      var act = () => _ = value.EnsuresLessThan(upperBound);
+
+      // Act.
+      var result = value.EnsuresLessThanOrEqual(upperBound);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [Theory]
+   [ClassData(typeof(ComparableTypesTestData))]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparable_ShouldThrow_WhenValueIsAboveUpperBound<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      var value = data.MaxValue;
+      var upperBound = data.MinValue;
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound);
+
+      // Act/assert.
+      act.Should().Throw<PostconditionFailedException>();
+   }
+
+   [Theory]
+   [ClassData(typeof(ReferenceTypesTestData))]
+   public void LessThanOrEqualExtensions_EnsuresLessOrEqualThanIComparable_ShouldThrow_WhenReferenceValueIsNotNullAndUpperBoundIsNull<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      var value = data.MaxValue;
+      T upperBound = default!;
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound);
+
+      // Act/assert.
+      act.Should().Throw<PostconditionFailedException>();
+   }
+
+   [Theory]
+   [ClassData(typeof(ReferenceTypesTestData))]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparable_ShouldThrow_WhenReferenceValueIsNullAndUpperBoundIsNotNull<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      T value = default!;
+      var upperBound = data.MinValue;
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound);
 
       // Act/assert.
       act.Should().Throw<PostconditionFailedException>();
    }
 
    [Fact]
-   public void LessThanExtensions_EnsuresLessThanIComparable_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparable_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
    {
       // Arrange.
       var data = new Int32Data();
       var value = data.MaxValue;
       var upperBound = data.MinValue;
-      var act = () => _ = value.EnsuresLessThan(upperBound);
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound);
 
       // Act/assert.
       var ex = act.Should().Throw<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
-      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.LessThan);
+      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.LessThanOrEqual);
       ex.Data[DataNames.Value].Should().Be(value);
       ex.Data[DataNames.ValueExpression].Should().Be(nameof(value));
       ex.Data[DataNames.UpperBound].Should().Be(upperBound);
@@ -122,14 +124,14 @@ public class LessThanExtensionsTests
    }
 
    [Fact]
-   public void LessThanExtensions_EnsuresLessThanIComparable_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparable_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndAndAllDefaultsAreUsed()
    {
       // Arrange.
       var data = new PointStructData();
       var value = data.MaxValue;
-      var upperBound = data.MaxValue;
-      var act = () => _ = value.EnsuresLessThan(upperBound);
-      var expectedMessage = $"Postcondition LessThan failed: {nameof(value)} must be less than {upperBound}";
+      var upperBound = data.MinValue;
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound);
+      var expectedMessage = $"Postcondition LessThanOrEqual failed: {nameof(value)} must be less than or equal to {upperBound}";
 
       // Act/assert.
       var ex = act.Should().Throw<PostconditionFailedException>().Which;
@@ -137,15 +139,15 @@ public class LessThanExtensionsTests
    }
 
    [Fact]
-   public void LessThanExtensions_EnsuresLessThanIComparable_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparable_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       var data = new HalfData();
       var value = data.MaxValue;
       var upperBound = data.MinValue;
       var messageTemplate = "Requirement {RequirementName} failed";
-      var act = () => _ = value.EnsuresLessThan(upperBound, messageTemplate);
-      var expectedMessage = $"Requirement LessThan failed";
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, messageTemplate);
+      var expectedMessage = $"Requirement LessThanOrEqual failed";
 
       // Act/assert.
       var ex = act.Should().Throw<PostconditionFailedException>().Which;
@@ -153,14 +155,14 @@ public class LessThanExtensionsTests
    }
 
    [Fact]
-   public void LessThanExtensions_EnsuresLessThanIComparable_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparable_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var data = new UInt128Data();
       var value = data.MaxValue;
       var upperBound = data.MinValue;
-      var act = () => _ = value.EnsuresLessThan(upperBound, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
-      var expectedMessage = $"Postcondition LessThan failed: {nameof(value)} must be less than {upperBound}";
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Postcondition LessThanOrEqual failed: {nameof(value)} must be less than or equal to {upperBound}";
 
       // Act/assert.
       act.Should().Throw<CustomException>()
@@ -168,14 +170,14 @@ public class LessThanExtensionsTests
    }
 
    [Fact]
-   public void LessThanExtensions_EnsuresLessThanIComparable_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparable_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      var value = "Abc";
+      var value = "ABC";
       String upperBound = null!;
       var messageTemplate = "Requirement {RequirementName} failed";
-      var act = () => _ = value.EnsuresLessThan(upperBound, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
-      var expectedMessage = $"Requirement LessThan failed";
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Requirement LessThanOrEqual failed";
 
       // Act/assert.
       act.Should().Throw<CustomException>()
@@ -184,13 +186,13 @@ public class LessThanExtensionsTests
 
    #endregion
 
-   #region EnsuresLessThan (IComparer) Tests
+   #region EnsuresLessThanOrEqual (IComparer) Tests
    // ==========================================================================
    // ==========================================================================
 
    [Theory]
    [ClassData(typeof(ComparableTypesTestData))]
-   public void LessThanExtensions_EnsuresLessThanIComparer_ShouldReturnOriginalValue_WhenValueIsBelowUpperBound<T>(
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparer_ShouldReturnOriginalValue_WhenValueIsBelowUpperBound<T>(
       IComparableTestData<T> data) where T : IComparable<T>
    {
       // Arrange.
@@ -199,7 +201,24 @@ public class LessThanExtensionsTests
       var comparer = data.ReverseComparer;
 
       // Act.
-      var result = value.EnsuresLessThan(upperBound, comparer);
+      var result = value.EnsuresLessThanOrEqual(upperBound, comparer);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [Theory]
+   [ClassData(typeof(ComparableTypesTestData))]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparer_ShouldReturnOriginalValue_WhenValueIsEqualToUpperBound<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      var value = data.ReverseMinValue;
+      var upperBound = data.ReverseMinValue;
+      var comparer = data.ReverseComparer;
+
+      // Act.
+      var result = value.EnsuresLessThanOrEqual(upperBound, comparer);
 
       // Assert.
       result.Should().Be(value);
@@ -207,7 +226,24 @@ public class LessThanExtensionsTests
 
    [Theory]
    [ClassData(typeof(ReferenceTypesTestData))]
-   public void LessThanExtensions_EnsuresLessThanIComparer_ShouldReturnOriginalValue_WhenReferenceValueIsNullAndUpperBoundIsNotNull<T>(
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparer_ShouldReturnOriginalValue_WhenReferenceValueIsNullAndUpperBoundIsNull<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      T value = default!;
+      T upperBound = default!;
+      var comparer = Comparer<T>.Default;
+
+      // Act.
+      var result = value.EnsuresLessThanOrEqual(upperBound, comparer);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [Theory]
+   [ClassData(typeof(ReferenceTypesTestData))]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparer_ShouldReturnOriginalValue_WhenReferenceValueIsNullAndUpperBoundIsNotNull<T>(
       IComparableTestData<T> data) where T : IComparable<T>
    {
       // Arrange.
@@ -216,7 +252,7 @@ public class LessThanExtensionsTests
       var comparer = Comparer<T>.Default;
 
       // Act.
-      var result = value.EnsuresLessThan(upperBound, comparer);
+      var result = value.EnsuresLessThanOrEqual(upperBound, comparer);
 
       // Assert.
       result.Should().Be(value);
@@ -224,29 +260,14 @@ public class LessThanExtensionsTests
 
    [Theory]
    [ClassData(typeof(ComparableTypesTestData))]
-   public void LessThanExtensions_EnsuresLessThanIComparer_ShouldThrow_WhenValueIsEqualToUpperBound<T>(
-      IComparableTestData<T> data) where T : IComparable<T>
-   {
-      // Arrange.
-      var value = data.ReverseMaxValue;
-      var upperBound = data.ReverseMaxValue;
-      var comparer = data.ReverseComparer;
-      var act = () => _ = value.EnsuresLessThan(upperBound, comparer);
-
-      // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
-   }
-
-   [Theory]
-   [ClassData(typeof(ComparableTypesTestData))]
-   public void LessThanExtensions_EnsuresLessThanIComparer_ShouldThrow_WhenValueIsAboveUpperBound<T>(
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparer_ShouldThrow_WhenValueIsAboveUpperBound<T>(
       IComparableTestData<T> data) where T : IComparable<T>
    {
       // Arrange.
       var value = data.ReverseMaxValue;
       var upperBound = data.ReverseMinValue;
       var comparer = data.ReverseComparer;
-      var act = () => _ = value.EnsuresLessThan(upperBound, comparer);
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparer);
 
       // Act/assert.
       act.Should().Throw<PostconditionFailedException>();
@@ -254,50 +275,35 @@ public class LessThanExtensionsTests
 
    [Theory]
    [ClassData(typeof(ReferenceTypesTestData))]
-   public void LessThanExtensions_EnsuresLessThanIComparer_ShouldThrow_WhenReferenceValueIsNotNullAndUpperBoundIsNull<T>(
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparer_ShouldThrow_WhenReferenceValueIsNotNullAndUpperBoundIsNull<T>(
       IComparableTestData<T> data) where T : IComparable<T>
    {
       // Arrange.
       var value = data.ReverseMaxValue;
       T upperBound = default!;
       var comparer = Comparer<T>.Default;
-      var act = () => _ = value.EnsuresLessThan(upperBound, comparer);
-
-      // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
-   }
-
-   [Theory]
-   [ClassData(typeof(ReferenceTypesTestData))]
-   public void LessThanExtensions_EnsuresLessThanIComparer_ShouldThrow_ReferenceValueIsNullAndUpperBoundIsNull<T>(
-      IComparableTestData<T> data) where T : IComparable<T>
-   {
-      // Arrange.
-      T value = default!;
-      T upperBound = default!;
-      var comparer = data.ReverseComparer;
-      var act = () => _ = value.EnsuresLessThan(upperBound, comparer);
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparer);
 
       // Act/assert.
       act.Should().Throw<PostconditionFailedException>();
    }
 
    [Fact]
-   public void LessThanExtensions_EnsuresLessThanIComparer_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparer_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
    {
       // Arrange.
       var data = new DateTimeData();
       var value = data.ReverseMaxValue;
       var upperBound = data.ReverseMinValue;
       var comparer = data.ReverseComparer;
-      var act = () => _ = value.EnsuresLessThan(upperBound, comparer);
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparer);
 
       // Act/assert.
       var ex = act.Should().Throw<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
-      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.LessThan);
+      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.LessThanOrEqual);
       ex.Data[DataNames.Value].Should().Be(value);
       ex.Data[DataNames.ValueExpression].Should().Be(nameof(value));
       ex.Data[DataNames.UpperBound].Should().Be(upperBound);
@@ -305,15 +311,15 @@ public class LessThanExtensionsTests
    }
 
    [Fact]
-   public void LessThanExtensions_EnsuresLessThanIComparer_ShouldThrowPostconditionFailedExceptionExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparer_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
    {
       // Arrange.
       var data = new BoxRecordData();
       var value = data.ReverseMaxValue;
       var upperBound = data.ReverseMinValue;
       var comparer = data.ReverseComparer;
-      var act = () => _ = value.EnsuresLessThan(upperBound, comparer);
-      var expectedMessage = $"Postcondition LessThan failed: {nameof(value)} must be less than {upperBound}";
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparer);
+      var expectedMessage = $"Postcondition LessThanOrEqual failed: {nameof(value)} must be less than or equal to {upperBound}";
 
       // Act/assert.
       var ex = act.Should().Throw<PostconditionFailedException>().Which;
@@ -321,7 +327,7 @@ public class LessThanExtensionsTests
    }
 
    [Fact]
-   public void LessThanExtensions_EnsuresLessThanIComparer_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparer_ShouldThrowPostconditionFailedExceptionExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       var data = new ByteData();
@@ -329,8 +335,8 @@ public class LessThanExtensionsTests
       var upperBound = data.ReverseMinValue;
       var comparer = data.ReverseComparer;
       var messageTemplate = "Requirement {RequirementName} failed";
-      var act = () => _ = value.EnsuresLessThan(upperBound, comparer, messageTemplate);
-      var expectedMessage = $"Requirement LessThan failed";
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparer, messageTemplate);
+      var expectedMessage = $"Requirement LessThanOrEqual failed";
 
       // Act/assert.
       var ex = act.Should().Throw<PostconditionFailedException>().Which;
@@ -338,15 +344,15 @@ public class LessThanExtensionsTests
    }
 
    [Fact]
-   public void LessThanExtensions_EnsuresLessThanIComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var data = new DoubleData();
       var value = data.ReverseMaxValue;
       var upperBound = data.ReverseMinValue;
       var comparer = data.ReverseComparer;
-      var act = () => _ = value.EnsuresLessThan(upperBound, comparer, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
-      var expectedMessage = $"Postcondition LessThan failed: {nameof(value)} must be less than {upperBound}";
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparer, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Postcondition LessThanOrEqual failed: {nameof(value)} must be less than or equal to {upperBound}";
 
       // Act/assert.
       act.Should().Throw<CustomException>()
@@ -354,15 +360,15 @@ public class LessThanExtensionsTests
    }
 
    [Fact]
-   public void LessThanExtensions_EnsuresLessThanIComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      String value = "abc";
+      String value = "def";
       var upperBound = "ABC";
       var comparer = StringComparer.OrdinalIgnoreCase;
       var messageTemplate = "Requirement {RequirementName} failed";
-      var act = () => _ = value.EnsuresLessThan(upperBound, comparer, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
-      var expectedMessage = $"Requirement LessThan failed";
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparer, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Requirement LessThanOrEqual failed";
 
       // Act/assert.
       act.Should().Throw<CustomException>()
@@ -370,14 +376,14 @@ public class LessThanExtensionsTests
    }
 
    [Fact]
-   public void LessThanExtensions_EnsuresLessThanIComparer_ShouldThrowArgumentNullException_WhenComparerIsNull()
+   public void LessThanOrEqualExtensions_EnsuresLessOrEqualThanIComparer_ShouldThrowArgumentNullException_WhenComparerIsNull()
    {
       // Arrange.
       var data = new TimeOnlyData();
-      var value = data.ReverseMinValue;
-      var upperBound = data.ReverseMaxValue;
+      var value = data.ReverseMaxValue;
+      var upperBound = data.ReverseMinValue;
       IComparer<TimeOnly> comparer = null!;
-      var act = () => _ = value.EnsuresLessThan(upperBound, comparer);
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparer);
 
       // Act/assert.
       act.Should().Throw<ArgumentNullException>()
@@ -387,7 +393,7 @@ public class LessThanExtensionsTests
 
    #endregion
 
-   #region EnsuresLessThan (String) Tests
+   #region EnsuresLessThanOrEqual (String) Tests
    // ==========================================================================
    // ==========================================================================
 
@@ -399,13 +405,13 @@ public class LessThanExtensionsTests
    [InlineData(StringData.UpperCaseAE, StringData.LowerCaseZ, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.UpperCaseAE, StringData.LowerCaseAE, StringComparison.Ordinal)]
    [InlineData(StringData.UpperCaseAE, StringData.LowerCaseZ, StringComparison.OrdinalIgnoreCase)]
-   public void LessThanExtensions_EnsuresLessThanString_ShouldReturnOriginalValue_WhenValueIsBelowUpperBoundAndCurrentCultureIs_enUS(
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualString_ShouldReturnOriginalValue_WhenValueIsBelowUpperBoundAndCurrentCultureIs_enUS(
       String value,
       String upperBound,
       StringComparison comparisonType)
    {
       // Act.
-      var result = value.EnsuresLessThan(upperBound, comparisonType);
+      var result = value.EnsuresLessThanOrEqual(upperBound, comparisonType);
 
       // Assert.
       result.Should().Be(value);
@@ -419,13 +425,13 @@ public class LessThanExtensionsTests
    [InlineData(StringData.UpperCaseA, StringData.LowerCaseI, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.UpperCaseZ, StringData.UpperCaseDottedI, StringComparison.Ordinal)]
    [InlineData(StringData.UpperCaseAE, StringData.LowerCaseZ, StringComparison.OrdinalIgnoreCase)]
-   public void LessThanExtensions_EnsuresLessThanString_ShouldReturnOriginalValue_WhenValueIsBelowUpperBoundAndCurrentCultureIs_trTR(
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualString_ShouldReturnOriginalValue_WhenValueIsBelowLowerBoundAndCurrentCultureIs_trTR(
       String value,
       String upperBound,
       StringComparison comparisonType)
    {
       // Act.
-      var result = value.EnsuresLessThan(upperBound, comparisonType);
+      var result = value.EnsuresLessThanOrEqual(upperBound, comparisonType);
 
       // Assert.
       result.Should().Be(value);
@@ -439,13 +445,13 @@ public class LessThanExtensionsTests
    [InlineData(StringData.UpperCaseA, StringData.LowerCaseI, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.UpperCaseDiphthongAE, StringData.LowerCaseDiphthongAE, StringComparison.Ordinal)]
    [InlineData(StringData.UpperCaseAE, StringData.UpperCaseDiphthongAE, StringComparison.OrdinalIgnoreCase)]
-   public void LessThanExtensions_EnsuresLessThanString_ShouldReturnOriginalValue_WhenValueIsBelowUpperBoundAndCurrentCultureIs_svSE(
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualString_ShouldReturnOriginalValue_WhenValueIsBelowUpperBoundAndCurrentCultureIs_svSE(
       String value,
       String upperBound,
       StringComparison comparisonType)
    {
       // Act.
-      var result = value.EnsuresLessThan(upperBound, comparisonType);
+      var result = value.EnsuresLessThanOrEqual(upperBound, comparisonType);
 
       // Assert.
       result.Should().Be(value);
@@ -459,33 +465,77 @@ public class LessThanExtensionsTests
    [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseSlashedO, StringData.LowerCaseSlashedO, StringComparison.Ordinal)]
    [InlineData(StringData.LowerCaseSlashedO, StringData.UpperCaseSlashedO, StringComparison.OrdinalIgnoreCase)]
-   public void LessThanExtensions_EnsuresLessThanString_ShouldThrow_WhenValueIsEqualToUpperBoundAndCurrentCultureIs_enUS(
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualString_ShouldReturnOriginalValue_WhenValueIsEqualToUpperBoundAndCurrentCultureIs_enUS(
       String value,
       String upperBound,
       StringComparison comparisonType)
    {
-      // Arrange.
-      var act = () => _ = value.EnsuresLessThan(upperBound, comparisonType);
+      // Act.
+      var result = value.EnsuresLessThanOrEqual(upperBound, comparisonType);
 
-      // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [UseCulture(CultureData.EnglishUS)]
+   [Theory]
+   [InlineData(StringComparison.CurrentCulture)]
+   [InlineData(StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringComparison.InvariantCulture)]
+   [InlineData(StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringComparison.Ordinal)]
+   [InlineData(StringComparison.OrdinalIgnoreCase)]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualString_ShouldReturnOriginalValue_WhenValueAndUpperBoundAreDefaultAndCurrentCultureIs_enUS(
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      String value = default!;
+      String upperBound = default!;
+
+      // Act.
+      var result = value.EnsuresLessThanOrEqual(upperBound, comparisonType);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [UseCulture(CultureData.DanishDenmark)]
+   [Theory]
+   [InlineData(StringComparison.CurrentCulture)]
+   [InlineData(StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringComparison.InvariantCulture)]
+   [InlineData(StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringComparison.Ordinal)]
+   [InlineData(StringComparison.OrdinalIgnoreCase)]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualString_ShouldReturnOriginalValue_WhenValueAndUpperBoundAreDefaultAndCurrentCultureIs_daDK(
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      String value = default!;
+      String upperBound = default!;
+
+      // Act.
+      var result = value.EnsuresLessThanOrEqual(upperBound, comparisonType);
+
+      // Assert.
+      result.Should().Be(value);
    }
 
    [UseCulture(CultureData.TurkishTurkey)]
    [Theory]
    [InlineData(StringData.UpperCaseI, StringData.LowerCaseDotlessI, StringComparison.CurrentCulture)]
    [InlineData(StringData.LowerCaseI, StringData.LowerCaseDotlessI, StringComparison.CurrentCultureIgnoreCase)]
-   [InlineData(StringData.UpperCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCulture)]
-   [InlineData(StringData.UpperCaseAE, StringData.LowerCaseAE, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.UpperCaseAE, StringData.LowerCaseAE, StringComparison.InvariantCulture)]
+   [InlineData(StringData.UpperCaseZ, StringData.LowerCaseAE, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseSlashedO, StringData.UpperCaseSlashedO, StringComparison.Ordinal)]
    [InlineData(StringData.LowerCaseDotlessI, StringData.UpperCaseI, StringComparison.OrdinalIgnoreCase)]
-   public void LessThanExtensions_EnsuresLessThanString_ShouldThrow_WhenValueIsAboveUpperBoundAndCurrentCultureIs_trTR(
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualString_ShouldThrow_WhenValueIsAboveUpperBoundAndCurrentCultureIs_trTR(
       String value,
       String upperBound,
       StringComparison comparisonType)
    {
       // Arrange.
-      var act = () => _ = value.EnsuresLessThan(upperBound, comparisonType);
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparisonType);
 
       // Act/assert.
       act.Should().Throw<PostconditionFailedException>();
@@ -499,13 +549,13 @@ public class LessThanExtensionsTests
    [InlineData(StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringComparison.Ordinal)]
    [InlineData(StringComparison.OrdinalIgnoreCase)]
-   public void LessThanExtensions_EnsuresLessThanString_ShouldThrow_WhenValueIsNotDefaultAndUpperBoundIsDefaultAndCurrentCultureIs_enUS(
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualString_ShouldThrow_WhenValueIsNotDefaultAndUpperBoundIsDefaultAndCurrentCultureIs_enUS(
       StringComparison comparisonType)
    {
       // Arrange.
-      var value = "asdf";
+      String value = "asdf";
       String upperBound = default!;
-      var act = () => _ = value.EnsuresLessThan(upperBound, comparisonType);
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparisonType);
 
       // Act/assert.
       act.Should().Throw<PostconditionFailedException>();
@@ -519,73 +569,33 @@ public class LessThanExtensionsTests
    [InlineData(StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringComparison.Ordinal)]
    [InlineData(StringComparison.OrdinalIgnoreCase)]
-   public void LessThanExtensions_EnsuresLessThanString_ShouldThrow_WhenValueIsNotDefaultAndUpperBoundIsDefaultAndCurrentCultureIs_svSE(
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualString_ShouldThrow_WhenValueIsNotDefaultAndUpperBoundIsDefaultAndCurrentCultureIs_svSE(
       StringComparison comparisonType)
    {
       // Arrange.
-      var value = "asdf";
+      String value = "asdf";
       String upperBound = default!;
-      var act = () => _ = value.EnsuresLessThan(upperBound, comparisonType);
-
-      // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
-   }
-
-   [UseCulture(CultureData.EnglishUS)]
-   [Theory]
-   [InlineData(StringComparison.CurrentCulture)]
-   [InlineData(StringComparison.CurrentCultureIgnoreCase)]
-   [InlineData(StringComparison.InvariantCulture)]
-   [InlineData(StringComparison.InvariantCultureIgnoreCase)]
-   [InlineData(StringComparison.Ordinal)]
-   [InlineData(StringComparison.OrdinalIgnoreCase)]
-   public void LessThanExtensions_EnsuresLessThanString_ShouldThrow_WhenValueAndUpperBoundAreDefaultAndCurrentCultureIs_enUS(
-      StringComparison comparisonType)
-   {
-      // Arrange.
-      String value = default!;
-      String upperBound = default!;
-      var act = () => _ = value.EnsuresLessThan(upperBound, comparisonType);
-
-      // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
-   }
-
-   [UseCulture(CultureData.DanishDenmark)]
-   [Theory]
-   [InlineData(StringComparison.CurrentCulture)]
-   [InlineData(StringComparison.CurrentCultureIgnoreCase)]
-   [InlineData(StringComparison.InvariantCulture)]
-   [InlineData(StringComparison.InvariantCultureIgnoreCase)]
-   [InlineData(StringComparison.Ordinal)]
-   [InlineData(StringComparison.OrdinalIgnoreCase)]
-   public void LessThanExtensions_EnsuresLessThanString_ShouldThrow_WhenValueAndUpperBoundAreDefaultAndCurrentCultureIs_daDK(
-      StringComparison comparisonType)
-   {
-      // Arrange.
-      String value = default!;
-      String upperBound = default!;
-      var act = () => _ = value.EnsuresLessThan(upperBound, comparisonType);
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparisonType);
 
       // Act/assert.
       act.Should().Throw<PostconditionFailedException>();
    }
 
    [Fact]
-   public void LessThanExtensions_EnsuresLessThanString_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualString_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
    {
       // Arrange.
       var value = StringData.UpperCaseZ;
       var upperBound = StringData.UpperCaseA;
       var comparisonType = StringComparison.Ordinal;
-      var act = () => _ = value.EnsuresLessThan(upperBound, comparisonType);
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparisonType);
 
       // Act/assert.
       var ex = act.Should().Throw<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_stringDataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
-      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.LessThan);
+      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.LessThanOrEqual);
       ex.Data[DataNames.Value].Should().Be(value);
       ex.Data[DataNames.ValueExpression].Should().Be(nameof(value));
       ex.Data[DataNames.UpperBound].Should().Be(upperBound);
@@ -594,45 +604,45 @@ public class LessThanExtensionsTests
    }
 
    [Fact]
-   public void LessThanExtensions_EnsuresLessThanString_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailed()
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualString_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
    {
       // Arrange.
       var value = StringData.LowerCaseZ;
-      var upperBound = StringData.LowerCaseA;
+      var upperBound = StringData.UpperCaseA;
       var comparisonType = StringComparison.OrdinalIgnoreCase;
-      var act = () => _ = value.EnsuresLessThan(upperBound, comparisonType);
-      var expectedMessage = $"Postcondition LessThan failed: {nameof(value)} must be less than {upperBound}";
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparisonType);
+      var expectedMessage = $"Postcondition LessThanOrEqual failed: {nameof(value)} must be less than or equal to {upperBound}";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
-         .And.Message.Should().StartWith(expectedMessage);
+      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      ex.Message.Should().StartWith(expectedMessage);
    }
 
    [Fact]
-   public void LessThanExtensions_EnsuresLessThanString_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualString_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
-      var value = StringData.UpperCaseJ;
-      var upperBound = StringData.LowerCaseH;
+      var value = StringData.LowerCaseJ;
+      var upperBound = StringData.UpperCaseH;
       var comparisonType = StringComparison.InvariantCulture;
       var messageTemplate = "Requirement {RequirementName} failed";
-      var act = () => _ = value.EnsuresLessThan(upperBound, comparisonType, messageTemplate);
-      var expectedMessage = $"Requirement LessThan failed";
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparisonType, messageTemplate);
+      var expectedMessage = $"Requirement LessThanOrEqual failed";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
-         .And.Message.Should().StartWith(expectedMessage);
+      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      ex.Message.Should().StartWith(expectedMessage);
    }
 
    [Fact]
-   public void LessThanExtensions_EnsuresLessThanString_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      var value = StringData.UpperCaseJ;
-      var upperBound = StringData.LowerCaseJ;
+      var value = StringData.LowerCaseZ;
+      var upperBound = StringData.UpperCaseJ;
       var comparisonType = StringComparison.InvariantCultureIgnoreCase;
-      var act = () => _ = value.EnsuresLessThan(upperBound, comparisonType, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
-      var expectedMessage = $"Postcondition LessThan failed: {nameof(value)} must be less than {upperBound}";
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparisonType, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Postcondition LessThanOrEqual failed: {nameof(value)} must be less than or equal to {upperBound}";
 
       // Act/assert.
       act.Should().Throw<CustomException>()
@@ -641,15 +651,15 @@ public class LessThanExtensionsTests
 
    [UseCulture(CultureData.EnglishUS)]
    [Fact]
-   public void LessThanExtensions_EnsuresLessThanString_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      var value = StringData.LowerCaseZ;
-      var upperBound = StringData.UpperCaseA;
+      var value = StringData.UpperCaseZ;
+      var upperBound = StringData.LowerCaseA;
       var comparisonType = StringComparison.CurrentCulture;
       var messageTemplate = "Requirement {RequirementName} failed";
-      var act = () => _ = value.EnsuresLessThan(upperBound, comparisonType, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
-      var expectedMessage = $"Requirement LessThan failed";
+      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound, comparisonType, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Requirement LessThanOrEqual failed";
 
       // Act/assert.
       act.Should().Throw<CustomException>()
@@ -658,13 +668,13 @@ public class LessThanExtensionsTests
 
    #endregion
 
-   #region RequiresLessThan (IComparable) Tests
+   #region RequiresLessThanOrEqual (IComparable) Tests
    // ==========================================================================
    // ==========================================================================
 
    [Theory]
    [ClassData(typeof(ComparableTypesTestData))]
-   public void LessThanExtensions_RequiresLessThanIComparable_ShouldReturnOriginalValue_WhenValueIsBelowUpperBound<T>(
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparable_ShouldReturnOriginalValue_WhenValueIsBelowUpperBound<T>(
       IComparableTestData<T> data) where T : IComparable<T>
    {
       // Arrange.
@@ -672,23 +682,7 @@ public class LessThanExtensionsTests
       var upperBound = data.MaxValue;
 
       // Act.
-      var result = value.RequiresLessThan(upperBound);
-
-      // Assert.
-      result.Should().Be(value);
-   }
-
-   [Theory]
-   [ClassData(typeof(ReferenceTypesTestData))]
-   public void LessThanExtensions_RequiresLessThanIComparable_ShouldReturnOriginalValue_WhenReferenceValueIsNullAndUpperBoundIsNotNull<T>(
-      IComparableTestData<T> data) where T : IComparable<T>
-   {
-      // Arrange.
-      T value = default!;
-      var upperBound = data.MinValue;
-
-      // Act.
-      var result = value.RequiresLessThan(upperBound);
+      var result = value.RequiresLessThanOrEqual(upperBound);
 
       // Assert.
       result.Should().Be(value);
@@ -696,75 +690,93 @@ public class LessThanExtensionsTests
 
    [Theory]
    [ClassData(typeof(ComparableTypesTestData))]
-   public void LessThanExtensions_RequiresLessThanIComparable_ShouldThrow_WhenValueIsEqualToUpperBound<T>(
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparable_ShouldReturnOriginalValue_WhenValueIsEqualToUpperBound<T>(
       IComparableTestData<T> data) where T : IComparable<T>
    {
       // Arrange.
       var value = data.MaxValue;
       var upperBound = data.MaxValue;
-      var act = () => _ = value.RequiresLessThan(upperBound);
 
-      // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
-   }
+      // Act.
+      var result = value.RequiresLessThanOrEqual(upperBound);
 
-   [Theory]
-   [ClassData(typeof(ComparableTypesTestData))]
-   public void LessThanExtensions_RequiresLessThanIComparable_ShouldThrow_WhenValueIsAboveUpperBound<T>(
-      IComparableTestData<T> data) where T : IComparable<T>
-   {
-      // Arrange.
-      var value = data.MaxValue;
-      var upperBound = data.MinValue;
-      var act = () => _ = value.RequiresLessThan(upperBound);
-
-      // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      // Assert.
+      result.Should().Be(value);
    }
 
    [Theory]
    [ClassData(typeof(ReferenceTypesTestData))]
-   public void LessThanExtensions_RequiresLessThanIComparable_ShouldThrow_WhenReferenceValueIsNotNullAndUpperBoundIsNull<T>(
-      IComparableTestData<T> data) where T : IComparable<T>
-   {
-      // Arrange.
-      var value = data.MaxValue;
-      T upperBound = default!;
-      var act = () => _ = value.RequiresLessThan(upperBound);
-
-      // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
-   }
-
-   [Theory]
-   [ClassData(typeof(ReferenceTypesTestData))]
-   public void LessThanExtensions_RequiresLessThanIComparable_ShouldThrow_ReferenceValueIsNullAndUpperBoundIsNull<T>(
+   public void LessThanOrEqualExtensions_RequiresLessOrEqualThanIComparable_ShouldReturnOriginalValue_WhenReferenceValueIsNullAndUpperBoundIsNull<T>(
       IComparableTestData<T> data) where T : IComparable<T>
    {
       // Arrange.
       T value = default!;
       T upperBound = default!;
-      var act = () => _ = value.RequiresLessThan(upperBound);
+
+      // Act.
+      var result = value.RequiresLessThanOrEqual(upperBound);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [Theory]
+   [ClassData(typeof(ComparableTypesTestData))]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparable_ShouldThrow_WhenValueIsAboveUpperBound<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      var value = data.MaxValue;
+      var upperBound = data.MinValue;
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound);
+
+      // Act/assert.
+      act.Should().Throw<ArgumentOutOfRangeException>();
+   }
+
+   [Theory]
+   [ClassData(typeof(ReferenceTypesTestData))]
+   public void LessThanOrEqualExtensions_RequiresLessOrEqualThanIComparable_ShouldThrow_WhenReferenceValueIsNotNullAndUpperBoundIsNull<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      var value = data.MaxValue;
+      T upperBound = default!;
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound);
+
+      // Act/assert.
+      act.Should().Throw<ArgumentOutOfRangeException>();
+   }
+
+   [Theory]
+   [ClassData(typeof(ReferenceTypesTestData))]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparable_ShouldThrow_WhenReferenceValueIsNullAndUpperBoundIsNotNull<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      T value = default!;
+      var upperBound = data.MinValue;
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound);
 
       // Act/assert.
       act.Should().Throw<ArgumentOutOfRangeException>();
    }
 
    [Fact]
-   public void LessThanExtensions_RequiresLessThanIComparable_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparable_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
    {
       // Arrange.
       var data = new Int32Data();
       var value = data.MaxValue;
       var upperBound = data.MinValue;
-      var act = () => _ = value.RequiresLessThan(upperBound);
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound);
 
       // Act/assert.
       var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
-      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.LessThan);
+      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.LessThanOrEqual);
       ex.Data[DataNames.Value].Should().Be(value);
       ex.Data[DataNames.ValueExpression].Should().Be(nameof(value));
       ex.Data[DataNames.UpperBound].Should().Be(upperBound);
@@ -772,15 +784,15 @@ public class LessThanExtensionsTests
    }
 
    [Fact]
-   public void LessThanExtensions_RequiresLessThanIComparable_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparable_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenRequirementIsFailedAndAndAllDefaultsAreUsed()
    {
       // Arrange.
       var data = new PointStructData();
       var value = data.MaxValue;
-      var upperBound = data.MaxValue;
-      var act = () => _ = value.RequiresLessThan(upperBound);
+      var upperBound = data.MinValue;
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound);
       var expectedParameterName = nameof(value);
-      var expectedMessage = $"Precondition LessThan failed: {nameof(value)} must be less than {upperBound}";
+      var expectedMessage = $"Precondition LessThanOrEqual failed: {nameof(value)} must be less than or equal to {upperBound}";
 
       // Act/assert.
       var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
@@ -790,16 +802,16 @@ public class LessThanExtensionsTests
    }
 
    [Fact]
-   public void LessThanExtensions_RequiresLessThanIComparable_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparable_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       var data = new HalfData();
       var value = data.MaxValue;
       var upperBound = data.MinValue;
       var messageTemplate = "Requirement {RequirementName} failed";
-      var act = () => _ = value.RequiresLessThan(upperBound, messageTemplate);
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, messageTemplate);
       var expectedParameterName = nameof(value);
-      var expectedMessage = $"Requirement LessThan failed";
+      var expectedMessage = $"Requirement LessThanOrEqual failed";
 
       // Act/assert.
       var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
@@ -809,14 +821,14 @@ public class LessThanExtensionsTests
    }
 
    [Fact]
-   public void LessThanExtensions_RequiresLessThanIComparable_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparable_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var data = new UInt128Data();
       var value = data.MaxValue;
       var upperBound = data.MinValue;
-      var act = () => _ = value.RequiresLessThan(upperBound, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
-      var expectedMessage = $"Precondition LessThan failed: {nameof(value)} must be less than {upperBound}";
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Precondition LessThanOrEqual failed: {nameof(value)} must be less than or equal to {upperBound}";
 
       // Act/assert.
       act.Should().Throw<CustomException>()
@@ -824,14 +836,14 @@ public class LessThanExtensionsTests
    }
 
    [Fact]
-   public void LessThanExtensions_RequiresLessThanIComparable_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparable_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      var value = "Abc";
+      var value = "ABC";
       String upperBound = null!;
       var messageTemplate = "Requirement {RequirementName} failed";
-      var act = () => _ = value.RequiresLessThan(upperBound, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
-      var expectedMessage = $"Requirement LessThan failed";
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Requirement LessThanOrEqual failed";
 
       // Act/assert.
       act.Should().Throw<CustomException>()
@@ -840,13 +852,13 @@ public class LessThanExtensionsTests
 
    #endregion
 
-   #region RequiresLessThan (IComparer) Tests
+   #region RequiresLessThanOrEqual (IComparer) Tests
    // ==========================================================================
    // ==========================================================================
 
    [Theory]
    [ClassData(typeof(ComparableTypesTestData))]
-   public void LessThanExtensions_RequiresLessThanIComparer_ShouldReturnOriginalValue_WhenValueIsBelowUpperBound<T>(
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparer_ShouldReturnOriginalValue_WhenValueIsBelowUpperBound<T>(
       IComparableTestData<T> data) where T : IComparable<T>
    {
       // Arrange.
@@ -855,7 +867,24 @@ public class LessThanExtensionsTests
       var comparer = data.ReverseComparer;
 
       // Act.
-      var result = value.RequiresLessThan(upperBound, comparer);
+      var result = value.RequiresLessThanOrEqual(upperBound, comparer);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [Theory]
+   [ClassData(typeof(ComparableTypesTestData))]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparer_ShouldReturnOriginalValue_WhenValueIsEqualToUpperBound<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      var value = data.ReverseMinValue;
+      var upperBound = data.ReverseMinValue;
+      var comparer = data.ReverseComparer;
+
+      // Act.
+      var result = value.RequiresLessThanOrEqual(upperBound, comparer);
 
       // Assert.
       result.Should().Be(value);
@@ -863,7 +892,24 @@ public class LessThanExtensionsTests
 
    [Theory]
    [ClassData(typeof(ReferenceTypesTestData))]
-   public void LessThanExtensions_RequiresLessThanIComparer_ShouldReturnOriginalValue_WhenReferenceValueIsNullAndUpperBoundIsNotNull<T>(
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparer_ShouldReturnOriginalValue_WhenReferenceValueIsNullAndUpperBoundIsNull<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      T value = default!;
+      T upperBound = default!;
+      var comparer = Comparer<T>.Default;
+
+      // Act.
+      var result = value.RequiresLessThanOrEqual(upperBound, comparer);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [Theory]
+   [ClassData(typeof(ReferenceTypesTestData))]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparer_ShouldReturnOriginalValue_WhenReferenceValueIsNullAndUpperBoundIsNotNull<T>(
       IComparableTestData<T> data) where T : IComparable<T>
    {
       // Arrange.
@@ -872,7 +918,7 @@ public class LessThanExtensionsTests
       var comparer = Comparer<T>.Default;
 
       // Act.
-      var result = value.RequiresLessThan(upperBound, comparer);
+      var result = value.RequiresLessThanOrEqual(upperBound, comparer);
 
       // Assert.
       result.Should().Be(value);
@@ -880,29 +926,14 @@ public class LessThanExtensionsTests
 
    [Theory]
    [ClassData(typeof(ComparableTypesTestData))]
-   public void LessThanExtensions_RequiresLessThanIComparer_ShouldThrow_WhenValueIsEqualToUpperBound<T>(
-      IComparableTestData<T> data) where T : IComparable<T>
-   {
-      // Arrange.
-      var value = data.ReverseMaxValue;
-      var upperBound = data.ReverseMaxValue;
-      var comparer = data.ReverseComparer;
-      var act = () => _ = value.RequiresLessThan(upperBound, comparer);
-
-      // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
-   }
-
-   [Theory]
-   [ClassData(typeof(ComparableTypesTestData))]
-   public void LessThanExtensions_RequiresLessThanIComparer_ShouldThrow_WhenValueIsAboveUpperBound<T>(
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparer_ShouldThrow_WhenValueIsAboveUpperBound<T>(
       IComparableTestData<T> data) where T : IComparable<T>
    {
       // Arrange.
       var value = data.ReverseMaxValue;
       var upperBound = data.ReverseMinValue;
       var comparer = data.ReverseComparer;
-      var act = () => _ = value.RequiresLessThan(upperBound, comparer);
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparer);
 
       // Act/assert.
       act.Should().Throw<ArgumentOutOfRangeException>();
@@ -910,50 +941,35 @@ public class LessThanExtensionsTests
 
    [Theory]
    [ClassData(typeof(ReferenceTypesTestData))]
-   public void LessThanExtensions_RequiresLessThanIComparer_ShouldThrow_WhenReferenceValueIsNotNullAndUpperBoundIsNull<T>(
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparer_ShouldThrow_WhenReferenceValueIsNotNullAndUpperBoundIsNull<T>(
       IComparableTestData<T> data) where T : IComparable<T>
    {
       // Arrange.
       var value = data.ReverseMaxValue;
       T upperBound = default!;
       var comparer = Comparer<T>.Default;
-      var act = () => _ = value.RequiresLessThan(upperBound, comparer);
-
-      // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
-   }
-
-   [Theory]
-   [ClassData(typeof(ReferenceTypesTestData))]
-   public void LessThanExtensions_RequiresLessThanIComparer_ShouldThrow_ReferenceValueIsNullAndUpperBoundIsNull<T>(
-      IComparableTestData<T> data) where T : IComparable<T>
-   {
-      // Arrange.
-      T value = default!;
-      T upperBound = default!;
-      var comparer = data.ReverseComparer;
-      var act = () => _ = value.RequiresLessThan(upperBound, comparer);
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparer);
 
       // Act/assert.
       act.Should().Throw<ArgumentOutOfRangeException>();
    }
 
    [Fact]
-   public void LessThanExtensions_RequiresLessThanIComparer_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparer_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
    {
       // Arrange.
       var data = new DateTimeData();
       var value = data.ReverseMaxValue;
       var upperBound = data.ReverseMinValue;
       var comparer = data.ReverseComparer;
-      var act = () => _ = value.RequiresLessThan(upperBound, comparer);
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparer);
 
       // Act/assert.
       var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
-      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.LessThan);
+      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.LessThanOrEqual);
       ex.Data[DataNames.Value].Should().Be(value);
       ex.Data[DataNames.ValueExpression].Should().Be(nameof(value));
       ex.Data[DataNames.UpperBound].Should().Be(upperBound);
@@ -961,16 +977,16 @@ public class LessThanExtensionsTests
    }
 
    [Fact]
-   public void LessThanExtensions_RequiresLessThanIComparer_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparer_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
    {
       // Arrange.
       var data = new BoxRecordData();
       var value = data.ReverseMaxValue;
       var upperBound = data.ReverseMinValue;
       var comparer = data.ReverseComparer;
-      var act = () => _ = value.RequiresLessThan(upperBound, comparer);
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparer);
       var expectedParameterName = nameof(value);
-      var expectedMessage = $"Precondition LessThan failed: {nameof(value)} must be less than {upperBound}";
+      var expectedMessage = $"Precondition LessThanOrEqual failed: {nameof(value)} must be less than or equal to {upperBound}";
 
       // Act/assert.
       var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
@@ -980,7 +996,7 @@ public class LessThanExtensionsTests
    }
 
    [Fact]
-   public void LessThanExtensions_RequiresLessThanIComparer_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparer_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       var data = new ByteData();
@@ -988,9 +1004,9 @@ public class LessThanExtensionsTests
       var upperBound = data.ReverseMinValue;
       var comparer = data.ReverseComparer;
       var messageTemplate = "Requirement {RequirementName} failed";
-      var act = () => _ = value.RequiresLessThan(upperBound, comparer, messageTemplate);
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparer, messageTemplate);
       var expectedParameterName = nameof(value);
-      var expectedMessage = $"Requirement LessThan failed";
+      var expectedMessage = $"Requirement LessThanOrEqual failed";
 
       // Act/assert.
       var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
@@ -1000,15 +1016,15 @@ public class LessThanExtensionsTests
    }
 
    [Fact]
-   public void LessThanExtensions_RequiresLessThanIComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var data = new DoubleData();
       var value = data.ReverseMaxValue;
       var upperBound = data.ReverseMinValue;
       var comparer = data.ReverseComparer;
-      var act = () => _ = value.RequiresLessThan(upperBound, comparer, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
-      var expectedMessage = $"Precondition LessThan failed: {nameof(value)} must be less than {upperBound}";
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparer, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Precondition LessThanOrEqual failed: {nameof(value)} must be less than or equal to {upperBound}";
 
       // Act/assert.
       act.Should().Throw<CustomException>()
@@ -1016,15 +1032,15 @@ public class LessThanExtensionsTests
    }
 
    [Fact]
-   public void LessThanExtensions_RequiresLessThanIComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparer_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      String value = "abc";
+      String value = "def";
       var upperBound = "ABC";
       var comparer = StringComparer.OrdinalIgnoreCase;
       var messageTemplate = "Requirement {RequirementName} failed";
-      var act = () => _ = value.RequiresLessThan(upperBound, comparer, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
-      var expectedMessage = $"Requirement LessThan failed";
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparer, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Requirement LessThanOrEqual failed";
 
       // Act/assert.
       act.Should().Throw<CustomException>()
@@ -1032,14 +1048,14 @@ public class LessThanExtensionsTests
    }
 
    [Fact]
-   public void LessThanExtensions_RequiresLessThanIComparer_ShouldThrowArgumentNullException_WhenComparerIsNull()
+   public void LessThanOrEqualExtensions_RequiresLessOrEqualThanIComparer_ShouldThrowArgumentNullException_WhenComparerIsNull()
    {
       // Arrange.
       var data = new TimeOnlyData();
-      var value = data.ReverseMinValue;
-      var upperBound = data.ReverseMaxValue;
+      var value = data.ReverseMaxValue;
+      var upperBound = data.ReverseMinValue;
       IComparer<TimeOnly> comparer = null!;
-      var act = () => _ = value.RequiresLessThan(upperBound, comparer);
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparer);
 
       // Act/assert.
       act.Should().Throw<ArgumentNullException>()
@@ -1049,7 +1065,7 @@ public class LessThanExtensionsTests
 
    #endregion
 
-   #region RequiresLessThan (String) Tests
+   #region RequiresLessThanOrEqual (String) Tests
    // ==========================================================================
    // ==========================================================================
 
@@ -1061,13 +1077,13 @@ public class LessThanExtensionsTests
    [InlineData(StringData.UpperCaseAE, StringData.LowerCaseZ, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.UpperCaseAE, StringData.LowerCaseAE, StringComparison.Ordinal)]
    [InlineData(StringData.UpperCaseAE, StringData.LowerCaseZ, StringComparison.OrdinalIgnoreCase)]
-   public void LessThanExtensions_RequiresLessThanString_ShouldReturnOriginalValue_WhenValueIsBelowUpperBoundAndCurrentCultureIs_enUS(
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualString_ShouldReturnOriginalValue_WhenValueIsBelowUpperBoundAndCurrentCultureIs_enUS(
       String value,
       String upperBound,
       StringComparison comparisonType)
    {
       // Act.
-      var result = value.RequiresLessThan(upperBound, comparisonType);
+      var result = value.RequiresLessThanOrEqual(upperBound, comparisonType);
 
       // Assert.
       result.Should().Be(value);
@@ -1081,13 +1097,13 @@ public class LessThanExtensionsTests
    [InlineData(StringData.UpperCaseA, StringData.LowerCaseI, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.UpperCaseZ, StringData.UpperCaseDottedI, StringComparison.Ordinal)]
    [InlineData(StringData.UpperCaseAE, StringData.LowerCaseZ, StringComparison.OrdinalIgnoreCase)]
-   public void LessThanExtensions_RequiresLessThanString_ShouldReturnOriginalValue_WhenValueIsBelowUpperBoundAndCurrentCultureIs_trTR(
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualString_ShouldReturnOriginalValue_WhenValueIsBelowLowerBoundAndCurrentCultureIs_trTR(
       String value,
       String upperBound,
       StringComparison comparisonType)
    {
       // Act.
-      var result = value.RequiresLessThan(upperBound, comparisonType);
+      var result = value.RequiresLessThanOrEqual(upperBound, comparisonType);
 
       // Assert.
       result.Should().Be(value);
@@ -1101,13 +1117,13 @@ public class LessThanExtensionsTests
    [InlineData(StringData.UpperCaseA, StringData.LowerCaseI, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.UpperCaseDiphthongAE, StringData.LowerCaseDiphthongAE, StringComparison.Ordinal)]
    [InlineData(StringData.UpperCaseAE, StringData.UpperCaseDiphthongAE, StringComparison.OrdinalIgnoreCase)]
-   public void LessThanExtensions_RequiresLessThanString_ShouldReturnOriginalValue_WhenValueIsBelowUpperBoundAndCurrentCultureIs_svSE(
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualString_ShouldReturnOriginalValue_WhenValueIsBelowUpperBoundAndCurrentCultureIs_svSE(
       String value,
       String upperBound,
       StringComparison comparisonType)
    {
       // Act.
-      var result = value.RequiresLessThan(upperBound, comparisonType);
+      var result = value.RequiresLessThanOrEqual(upperBound, comparisonType);
 
       // Assert.
       result.Should().Be(value);
@@ -1121,33 +1137,77 @@ public class LessThanExtensionsTests
    [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseSlashedO, StringData.LowerCaseSlashedO, StringComparison.Ordinal)]
    [InlineData(StringData.LowerCaseSlashedO, StringData.UpperCaseSlashedO, StringComparison.OrdinalIgnoreCase)]
-   public void LessThanExtensions_RequiresLessThanString_ShouldThrow_WhenValueIsEqualToUpperBoundAndCurrentCultureIs_enUS(
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualString_ShouldReturnOriginalValue_WhenValueIsEqualToUpperBoundAndCurrentCultureIs_enUS(
       String value,
       String upperBound,
       StringComparison comparisonType)
    {
-      // Arrange.
-      var act = () => _ = value.RequiresLessThan(upperBound, comparisonType);
+      // Act.
+      var result = value.RequiresLessThanOrEqual(upperBound, comparisonType);
 
-      // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [UseCulture(CultureData.EnglishUS)]
+   [Theory]
+   [InlineData(StringComparison.CurrentCulture)]
+   [InlineData(StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringComparison.InvariantCulture)]
+   [InlineData(StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringComparison.Ordinal)]
+   [InlineData(StringComparison.OrdinalIgnoreCase)]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualString_ShouldReturnOriginalValue_WhenValueAndUpperBoundAreDefaultAndCurrentCultureIs_enUS(
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      String value = default!;
+      String upperBound = default!;
+
+      // Act.
+      var result = value.RequiresLessThanOrEqual(upperBound, comparisonType);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [UseCulture(CultureData.DanishDenmark)]
+   [Theory]
+   [InlineData(StringComparison.CurrentCulture)]
+   [InlineData(StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData(StringComparison.InvariantCulture)]
+   [InlineData(StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringComparison.Ordinal)]
+   [InlineData(StringComparison.OrdinalIgnoreCase)]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualString_ShouldReturnOriginalValue_WhenValueAndUpperBoundAreDefaultAndCurrentCultureIs_daDK(
+      StringComparison comparisonType)
+   {
+      // Arrange.
+      String value = default!;
+      String upperBound = default!;
+
+      // Act.
+      var result = value.RequiresLessThanOrEqual(upperBound, comparisonType);
+
+      // Assert.
+      result.Should().Be(value);
    }
 
    [UseCulture(CultureData.TurkishTurkey)]
    [Theory]
    [InlineData(StringData.UpperCaseI, StringData.LowerCaseDotlessI, StringComparison.CurrentCulture)]
    [InlineData(StringData.LowerCaseI, StringData.LowerCaseDotlessI, StringComparison.CurrentCultureIgnoreCase)]
-   [InlineData(StringData.UpperCaseAE, StringData.UpperCaseAE, StringComparison.InvariantCulture)]
-   [InlineData(StringData.UpperCaseAE, StringData.LowerCaseAE, StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData(StringData.UpperCaseAE, StringData.LowerCaseAE, StringComparison.InvariantCulture)]
+   [InlineData(StringData.UpperCaseZ, StringData.LowerCaseAE, StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringData.LowerCaseSlashedO, StringData.UpperCaseSlashedO, StringComparison.Ordinal)]
    [InlineData(StringData.LowerCaseDotlessI, StringData.UpperCaseI, StringComparison.OrdinalIgnoreCase)]
-   public void LessThanExtensions_RequiresLessThanString_ShouldThrow_WhenValueIsAboveUpperBoundAndCurrentCultureIs_trTR(
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualString_ShouldThrow_WhenValueIsAboveUpperBoundAndCurrentCultureIs_trTR(
       String value,
       String upperBound,
       StringComparison comparisonType)
    {
       // Arrange.
-      var act = () => _ = value.RequiresLessThan(upperBound, comparisonType);
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparisonType);
 
       // Act/assert.
       act.Should().Throw<ArgumentOutOfRangeException>();
@@ -1161,13 +1221,13 @@ public class LessThanExtensionsTests
    [InlineData(StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringComparison.Ordinal)]
    [InlineData(StringComparison.OrdinalIgnoreCase)]
-   public void LessThanExtensions_RequiresLessThanString_ShouldThrow_WhenValueIsNotDefaultAndUpperBoundIsDefaultAndCurrentCultureIs_enUS(
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualString_ShouldThrow_WhenValueIsNotDefaultAndUpperBoundIsDefaultAndCurrentCultureIs_enUS(
       StringComparison comparisonType)
    {
       // Arrange.
-      var value = "asdf";
+      String value = "asdf";
       String upperBound = default!;
-      var act = () => _ = value.RequiresLessThan(upperBound, comparisonType);
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparisonType);
 
       // Act/assert.
       act.Should().Throw<ArgumentOutOfRangeException>();
@@ -1181,73 +1241,33 @@ public class LessThanExtensionsTests
    [InlineData(StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringComparison.Ordinal)]
    [InlineData(StringComparison.OrdinalIgnoreCase)]
-   public void LessThanExtensions_RequiresLessThanString_ShouldThrow_WhenValueIsNotDefaultAndUpperBoundIsDefaultAndCurrentCultureIs_svSE(
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualString_ShouldThrow_WhenValueIsNotDefaultAndUpperBoundIsDefaultAndCurrentCultureIs_svSE(
       StringComparison comparisonType)
    {
       // Arrange.
-      var value = "asdf";
+      String value = "asdf";
       String upperBound = default!;
-      var act = () => _ = value.RequiresLessThan(upperBound, comparisonType);
-
-      // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
-   }
-
-   [UseCulture(CultureData.EnglishUS)]
-   [Theory]
-   [InlineData(StringComparison.CurrentCulture)]
-   [InlineData(StringComparison.CurrentCultureIgnoreCase)]
-   [InlineData(StringComparison.InvariantCulture)]
-   [InlineData(StringComparison.InvariantCultureIgnoreCase)]
-   [InlineData(StringComparison.Ordinal)]
-   [InlineData(StringComparison.OrdinalIgnoreCase)]
-   public void LessThanExtensions_RequiresLessThanString_ShouldThrow_WhenValueAndUpperBoundAreDefaultAndCurrentCultureIs_enUS(
-      StringComparison comparisonType)
-   {
-      // Arrange.
-      String value = default!;
-      String upperBound = default!;
-      var act = () => _ = value.RequiresLessThan(upperBound, comparisonType);
-
-      // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
-   }
-
-   [UseCulture(CultureData.DanishDenmark)]
-   [Theory]
-   [InlineData(StringComparison.CurrentCulture)]
-   [InlineData(StringComparison.CurrentCultureIgnoreCase)]
-   [InlineData(StringComparison.InvariantCulture)]
-   [InlineData(StringComparison.InvariantCultureIgnoreCase)]
-   [InlineData(StringComparison.Ordinal)]
-   [InlineData(StringComparison.OrdinalIgnoreCase)]
-   public void LessThanExtensions_RequiresLessThanString_ShouldThrow_WhenValueAndUpperBoundAreDefaultAndCurrentCultureIs_daDK(
-      StringComparison comparisonType)
-   {
-      // Arrange.
-      String value = default!;
-      String upperBound = default!;
-      var act = () => _ = value.RequiresLessThan(upperBound, comparisonType);
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparisonType);
 
       // Act/assert.
       act.Should().Throw<ArgumentOutOfRangeException>();
    }
 
    [Fact]
-   public void LessThanExtensions_RequiresLessThanString_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualString_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
    {
       // Arrange.
       var value = StringData.UpperCaseZ;
       var upperBound = StringData.UpperCaseA;
       var comparisonType = StringComparison.Ordinal;
-      var act = () => _ = value.RequiresLessThan(upperBound, comparisonType);
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparisonType);
 
       // Act/assert.
       var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
 
       ex.Data.Count.Should().Be(_stringDataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
-      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.LessThan);
+      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.LessThanOrEqual);
       ex.Data[DataNames.Value].Should().Be(value);
       ex.Data[DataNames.ValueExpression].Should().Be(nameof(value));
       ex.Data[DataNames.UpperBound].Should().Be(upperBound);
@@ -1256,15 +1276,15 @@ public class LessThanExtensionsTests
    }
 
    [Fact]
-   public void LessThanExtensions_RequiresLessThanString_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenRequirementIsFailed()
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualString_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
    {
       // Arrange.
       var value = StringData.LowerCaseZ;
-      var upperBound = StringData.LowerCaseA;
+      var upperBound = StringData.UpperCaseA;
       var comparisonType = StringComparison.OrdinalIgnoreCase;
-      var act = () => _ = value.RequiresLessThan(upperBound, comparisonType);
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparisonType);
       var expectedParameterName = nameof(value);
-      var expectedMessage = $"Precondition LessThan failed: {nameof(value)} must be less than {upperBound}";
+      var expectedMessage = $"Precondition LessThanOrEqual failed: {nameof(value)} must be less than or equal to {upperBound}";
 
       // Act/assert.
       var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
@@ -1274,16 +1294,16 @@ public class LessThanExtensionsTests
    }
 
    [Fact]
-   public void LessThanExtensions_RequiresLessThanString_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualString_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
-      var value = StringData.UpperCaseJ;
-      var upperBound = StringData.LowerCaseH;
+      var value = StringData.LowerCaseJ;
+      var upperBound = StringData.UpperCaseH;
       var comparisonType = StringComparison.InvariantCulture;
       var messageTemplate = "Requirement {RequirementName} failed";
-      var act = () => _ = value.RequiresLessThan(upperBound, comparisonType, messageTemplate);
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparisonType, messageTemplate);
       var expectedParameterName = nameof(value);
-      var expectedMessage = $"Requirement LessThan failed";
+      var expectedMessage = $"Requirement LessThanOrEqual failed";
 
       // Act/assert.
       var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
@@ -1293,14 +1313,14 @@ public class LessThanExtensionsTests
    }
 
    [Fact]
-   public void LessThanExtensions_RequiresLessThanString_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      var value = StringData.UpperCaseJ;
-      var upperBound = StringData.LowerCaseJ;
+      var value = StringData.LowerCaseZ;
+      var upperBound = StringData.UpperCaseJ;
       var comparisonType = StringComparison.InvariantCultureIgnoreCase;
-      var act = () => _ = value.RequiresLessThan(upperBound, comparisonType, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
-      var expectedMessage = $"Precondition LessThan failed: {nameof(value)} must be less than {upperBound}";
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparisonType, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Precondition LessThanOrEqual failed: {nameof(value)} must be less than or equal to {upperBound}";
 
       // Act/assert.
       act.Should().Throw<CustomException>()
@@ -1309,15 +1329,15 @@ public class LessThanExtensionsTests
 
    [UseCulture(CultureData.EnglishUS)]
    [Fact]
-   public void LessThanExtensions_RequiresLessThanString_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualString_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
-      var value = StringData.LowerCaseZ;
-      var upperBound = StringData.UpperCaseA;
+      var value = StringData.UpperCaseZ;
+      var upperBound = StringData.LowerCaseA;
       var comparisonType = StringComparison.CurrentCulture;
       var messageTemplate = "Requirement {RequirementName} failed";
-      var act = () => _ = value.RequiresLessThan(upperBound, comparisonType, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
-      var expectedMessage = $"Requirement LessThan failed";
+      var act = () => _ = value.RequiresLessThanOrEqual(upperBound, comparisonType, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Requirement LessThanOrEqual failed";
 
       // Act/assert.
       act.Should().Throw<CustomException>()
