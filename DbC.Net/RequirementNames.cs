@@ -6,6 +6,7 @@
 public static class RequirementNames
 {
    public const String ApproximatelyEqual = nameof(ApproximatelyEqual);
+   public const String Between = nameof(Between);
    public const String Equal = nameof(Equal);
    public const String GreaterThan = nameof(GreaterThan);
    public const String GreaterThanOrEqual = nameof(GreaterThanOrEqual);

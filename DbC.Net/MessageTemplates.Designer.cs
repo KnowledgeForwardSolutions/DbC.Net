@@ -70,6 +70,15 @@ namespace DbC.Net {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} must be between {LowerBound} and {UpperBound} (inclusive).
+        /// </summary>
+        internal static string BetweenTemplate {
+            get {
+                return ResourceManager.GetString("BetweenTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} must be equal to {Target}.
         /// </summary>
         internal static string EqualTemplate {

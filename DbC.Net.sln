@@ -24,6 +24,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{72254BA1-52A7-4B81-A595-76580B77647E}"
 	ProjectSection(SolutionItems) = preProject
 		Documentation\ApproximatelyEqual.md = Documentation\ApproximatelyEqual.md
+		Documentation\Between.md = Documentation\Between.md
 		Documentation\Equal.md = Documentation\Equal.md
 		Documentation\GreaterThan.md = Documentation\GreaterThan.md
 		Documentation\GreaterThanOrEqual.md = Documentation\GreaterThanOrEqual.md
