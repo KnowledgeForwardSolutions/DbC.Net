@@ -7,6 +7,11 @@ public class GuidData : ComparableValue<Guid>
       new Guid("88888888-8888-8888-8888-888888888888"),
       new ReverseComparer<Guid>(),
       new Guid("11111111-1111-1111-1111-111111111111"),
+      new Guid("FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF"),
+      new Guid("33333333-3333-3333-3333-333333333333"),
+      new Guid("CCCCCCCC-CCCC-CCCC-CCCC-CCCCCCCCCCCC"),
+      new Guid("11111111-1111-1111-1111-111111111111"),
+      new Guid("88888888-8888-8888-8888-888888888888"),
       new Guid("FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF"))
    { }
 }

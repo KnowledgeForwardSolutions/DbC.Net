@@ -9,6 +9,11 @@ public class nintData : ComparableValue<nint>
       101,
       new ReverseComparer<nint>(),
       nint.MinValue,
+      nint.MaxValue,
+      nint.MinValue / 2,
+      nint.MaxValue / 2,
+      nint.MinValue,
+      0,
       nint.MaxValue)
    { }
 }

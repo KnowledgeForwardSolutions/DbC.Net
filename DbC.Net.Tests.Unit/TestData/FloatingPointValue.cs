@@ -12,7 +12,12 @@ public abstract class FloatingPointValue<T> : IComparableTestData<T> where T : I
       IApproximateEqualityComparer<T> relativeErrorComparer,
       T maxValue,
       T minValue,
-      ReverseComparer<T> reverseComparer)
+      ReverseComparer<T> reverseComparer,
+      T lowerBound,
+      T upperBound,
+      T belowLowerBoundValue,
+      T withinBoundsValue,
+      T aboveUpperBoundValue)
    {
       Value = value;
       WithinToleranceDelta = withinToleranceDelta;
@@ -26,6 +31,12 @@ public abstract class FloatingPointValue<T> : IComparableTestData<T> where T : I
       ReverseComparer = reverseComparer;
       ReverseMaxValue = minValue;
       ReverseMinValue = maxValue;
+
+      LowerBound = lowerBound;
+      UpperBound = upperBound;
+      BelowLowerBoundValue = belowLowerBoundValue;
+      WithinBoundsValue = withinBoundsValue;
+      AboveUpperBoundValue = aboveUpperBoundValue;
    }
 
    public virtual T Value { get; }
@@ -51,4 +62,14 @@ public abstract class FloatingPointValue<T> : IComparableTestData<T> where T : I
    public T ReverseMaxValue { get; }
 
    public T ReverseMinValue { get; }
+
+   public T LowerBound { get; }
+
+   public T UpperBound { get; }
+
+   public T BelowLowerBoundValue { get; }
+
+   public T WithinBoundsValue { get; }
+
+   public T AboveUpperBoundValue { get; }
 }

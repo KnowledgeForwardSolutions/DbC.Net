@@ -7,6 +7,11 @@ public class CharData : ComparableValue<Char>
       'z',
       new ReverseComparer<Char>(),
       Char.MinValue,
-      Char.MaxValue)
+      Char.MaxValue,
+      'A',
+      'Z',
+      '*',
+      'M',
+      '~')
    { }
 }

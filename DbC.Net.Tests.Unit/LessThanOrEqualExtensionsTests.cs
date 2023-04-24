@@ -46,6 +46,22 @@ public class LessThanOrEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(ReferenceTypesTestData))]
+   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparable_ShouldReturnOriginalValue_WhenReferenceValueIsNullAndUpperBoundIsNotNull<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      T value = default!;
+      var upperBound = data.MinValue;
+
+      // Act.
+      var result = value.EnsuresLessThanOrEqual(upperBound);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [Theory]
+   [ClassData(typeof(ReferenceTypesTestData))]
    public void LessThanOrEqualExtensions_EnsuresLessOrEqualThanIComparable_ShouldReturnOriginalValue_WhenReferenceValueIsNullAndUpperBoundIsNull<T>(
       IComparableTestData<T> data) where T : IComparable<T>
    {
@@ -82,20 +98,6 @@ public class LessThanOrEqualExtensionsTests
       // Arrange.
       var value = data.MaxValue;
       T upperBound = default!;
-      var act = () => _ = value.EnsuresLessThanOrEqual(upperBound);
-
-      // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
-   }
-
-   [Theory]
-   [ClassData(typeof(ReferenceTypesTestData))]
-   public void LessThanOrEqualExtensions_EnsuresLessThanOrEqualIComparable_ShouldThrow_WhenReferenceValueIsNullAndUpperBoundIsNotNull<T>(
-      IComparableTestData<T> data) where T : IComparable<T>
-   {
-      // Arrange.
-      T value = default!;
-      var upperBound = data.MinValue;
       var act = () => _ = value.EnsuresLessThanOrEqual(upperBound);
 
       // Act/assert.
@@ -706,6 +708,22 @@ public class LessThanOrEqualExtensionsTests
 
    [Theory]
    [ClassData(typeof(ReferenceTypesTestData))]
+   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparable_ShouldReturnOriginalValue_WhenReferenceValueIsNullAndUpperBoundIsNotNull<T>(
+      IComparableTestData<T> data) where T : IComparable<T>
+   {
+      // Arrange.
+      T value = default!;
+      var upperBound = data.MinValue;
+
+      // Act.
+      var result = value.RequiresLessThanOrEqual(upperBound);
+
+      // Assert.
+      result.Should().Be(value);
+   }
+
+   [Theory]
+   [ClassData(typeof(ReferenceTypesTestData))]
    public void LessThanOrEqualExtensions_RequiresLessOrEqualThanIComparable_ShouldReturnOriginalValue_WhenReferenceValueIsNullAndUpperBoundIsNull<T>(
       IComparableTestData<T> data) where T : IComparable<T>
    {
@@ -742,20 +760,6 @@ public class LessThanOrEqualExtensionsTests
       // Arrange.
       var value = data.MaxValue;
       T upperBound = default!;
-      var act = () => _ = value.RequiresLessThanOrEqual(upperBound);
-
-      // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
-   }
-
-   [Theory]
-   [ClassData(typeof(ReferenceTypesTestData))]
-   public void LessThanOrEqualExtensions_RequiresLessThanOrEqualIComparable_ShouldThrow_WhenReferenceValueIsNullAndUpperBoundIsNotNull<T>(
-      IComparableTestData<T> data) where T : IComparable<T>
-   {
-      // Arrange.
-      T value = default!;
-      var upperBound = data.MinValue;
       var act = () => _ = value.RequiresLessThanOrEqual(upperBound);
 
       // Act/assert.

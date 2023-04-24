@@ -7,6 +7,11 @@ public class UInt128Data : ComparableValue<UInt128>
       101,
       new ReverseComparer<UInt128>(),
       UInt128.MinValue,
+      UInt128.MaxValue,
+      UInt128.MaxValue / 4,
+      UInt128.MaxValue / 4 * 3,
+      UInt128.MinValue,
+      UInt128.MaxValue / 2,
       UInt128.MaxValue)
    { }
 }

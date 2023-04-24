@@ -7,6 +7,11 @@ public class Int32Data : ComparableValue<Int32>
       101,
       new ReverseComparer<Int32>(),
       Int32.MinValue,
+      Int32.MaxValue,
+      Int32.MinValue / 2,
+      Int32.MaxValue / 2,
+      Int32.MinValue,
+      0,
       Int32.MaxValue)
    { }
 }

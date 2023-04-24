@@ -370,8 +370,7 @@ public static class LessThanOrEqualExtensions
       String valueExpression,
       String upperBoundExpression) where T : IComparable<T>
    {
-      if ((value is null && upperBound is not null)
-         || (value is not null && value.CompareTo(upperBound) > 0))
+      if (value is not null && value.CompareTo(upperBound) > 0)
       {
          messageTemplate ??= MessageTemplates.LessThanOrEqualTemplate;
          exceptionFactory ??= StandardExceptionFactories.ResolveArgumentOutOfRangeFactory(requirementType);

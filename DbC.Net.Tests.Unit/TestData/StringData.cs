@@ -7,6 +7,11 @@ public class StringData : ComparableValue<String>
       "qwerty",
       new ReverseComparer<String>(),
       "AA",
+      "zz",
+      "BB",
+      "ww",
+      "AA",
+      "Mm",
       "zz")
    { }
 

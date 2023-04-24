@@ -17,17 +17,17 @@ ArgumentNullException if the comparer parameter is null.
 
 **Method signatures:**
 ```C#
-T RequiresBetween<T>(this T value, T lowerBound, T upperBound, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null]) where T : IComparable<T>
+T RequiresBetween<T>(this T value, T lowerBound, T upperBound, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? lowerBoundExpression = null], [String? upperBoundExpression = null]) where T : IComparable<T>
 
-T RequiresBetween<T>(this T value, T lowerBound, T upperBound, IComparer<T> comparer, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null])
+T RequiresBetween<T>(this T value, T lowerBound, T upperBound, IComparer<T> comparer, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? lowerBoundExpression = null], [String? upperBoundExpression = null])
 
-String RequiresBetween(this String value, String lowerBound, String upperBound, StringComparison comparisonType, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null])
+String RequiresBetween(this String value, String lowerBound, String upperBound, StringComparison comparisonType, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? lowerBoundExpression = null], [String? upperBoundExpression = null])
 
-T EnsuresBetween<T>(this T value, T lowerBound, T upperBound, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null]) where T : IComparable<T>
+T EnsuresBetween<T>(this T value, T lowerBound, T upperBound, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? lowerBoundExpression = null], [String? upperBoundExpression = null]) where T : IComparable<T>
 
-T EnsuresBetween<T>(this T value, T lowerBound, T upperBound, IComparer<T> comparer, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null])
+T EnsuresBetween<T>(this T value, T lowerBound, T upperBound, IComparer<T> comparer, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? lowerBoundExpression = null], [String? upperBoundExpression = null])
 
-String EnsuresBetween(this String value, String lowerBound, String upperBound, StringComparison comparisonType, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null])
+String EnsuresBetween(this String value, String lowerBound, String upperBound, StringComparison comparisonType, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? lowerBoundExpression = null], [String? upperBoundExpression = null])
 ```
 
 The default message template for Between is "{RequirementType} {RequirementName} failed: {ValueExpression} must be between {LowerBound} and {UpperBound} (inclusive)".

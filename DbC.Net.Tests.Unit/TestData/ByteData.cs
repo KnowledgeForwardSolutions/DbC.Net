@@ -7,6 +7,11 @@ public class ByteData : ComparableValue<Byte>
       101,
       new ReverseComparer<Byte>(),
       Byte.MinValue,
-      Byte.MaxValue)
+      Byte.MaxValue,
+      10,
+      100,
+      5,
+      45,
+      105)
    { }
 }

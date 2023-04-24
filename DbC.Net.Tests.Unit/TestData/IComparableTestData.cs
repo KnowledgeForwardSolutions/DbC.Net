@@ -11,4 +11,14 @@ public interface IComparableTestData<T> where T : IComparable<T>
    T ReverseMaxValue { get; }
 
    T ReverseMinValue { get; }
+
+   T LowerBound { get; }
+
+   T UpperBound { get; }
+
+   T BelowLowerBoundValue { get; }
+
+   T WithinBoundsValue { get; }
+
+   T AboveUpperBoundValue { get; }
 }

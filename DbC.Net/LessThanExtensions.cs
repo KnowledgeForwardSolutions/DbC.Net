@@ -374,8 +374,7 @@ public static class LessThanExtensions
       String valueExpression,
       String upperBoundExpression) where T : IComparable<T>
    {
-      if ((value is null && upperBound is null)
-         || (value is not null && value.CompareTo(upperBound) >= 0))
+      if (upperBound is null || (value is not null && value.CompareTo(upperBound) >= 0))
       {
          messageTemplate ??= MessageTemplates.LessThanTemplate;
          exceptionFactory ??= StandardExceptionFactories.ResolveArgumentOutOfRangeFactory(requirementType);
