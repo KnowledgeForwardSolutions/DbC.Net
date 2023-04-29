@@ -11,4 +11,6 @@ public sealed class ReverseComparer<T> : IComparer<T>, IEqualityComparer<T>
    public Boolean Equals(T? x, T? y) => !EqualityComparer<T>.Default.Equals(x, y);
 
    public Int32 GetHashCode([DisallowNull] T obj) => throw new NotImplementedException();
+
+   public (T, T) ReverseValues(T lower, T upper) => (upper, lower);
 }

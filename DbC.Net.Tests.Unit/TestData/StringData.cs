@@ -5,6 +5,7 @@ public class StringData : ComparableValue<String>
    public StringData() : base(
       "asdf",
       "qwerty",
+      StringComparer.OrdinalIgnoreCase,
       new ReverseComparer<String>(),
       "AA",
       "zz",

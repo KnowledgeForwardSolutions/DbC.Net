@@ -5,6 +5,7 @@ public class PointStructData : ComparableValue<Point>
    public PointStructData() : base(
       new Point { X = 1, Y = 1 },
       new Point { X = -1, Y = -1 },
+      new PointDistanceFromOriginComparer(),
       new ReverseComparer<Point>(),
       new Point { X = 0, Y = 0 },
       new Point { X = 10, Y = 10 },

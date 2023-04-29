@@ -7,6 +7,7 @@ public class nintData : ComparableValue<nint>
    public nintData() : base(
       100,
       101,
+      Comparer<nint>.Default,
       new ReverseComparer<nint>(),
       nint.MinValue,
       nint.MaxValue,

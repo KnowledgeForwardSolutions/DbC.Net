@@ -12,6 +12,7 @@ public class DoubleData : FloatingPointValue<Double>
       StandardFloatingPointComparers.DoubleRelativeErrorComparer,
       Double.MaxValue,
       Double.MinValue,
+      Comparer<Double>.Default,
       new ReverseComparer<Double>(),
       Double.MinValue / 2,
       Double.MaxValue / 2,

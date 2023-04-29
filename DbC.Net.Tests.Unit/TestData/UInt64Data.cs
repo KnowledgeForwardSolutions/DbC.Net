@@ -5,6 +5,7 @@ public class UInt64Data : ComparableValue<UInt64>
    public UInt64Data() : base(
       100,
       101,
+      Comparer<UInt64>.Default,
       new ReverseComparer<UInt64>(),
       UInt64.MinValue,
       UInt64.MaxValue,

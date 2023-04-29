@@ -17,6 +17,7 @@ public class ObservationClassData : ComparableValue<Observation>
          Value = 3.056,
          Units = Units.DegreesCelsius
       },
+      ObservationComparers.AllFieldsComparer,
       new ReverseComparer<Observation>(),
       new Observation
       {

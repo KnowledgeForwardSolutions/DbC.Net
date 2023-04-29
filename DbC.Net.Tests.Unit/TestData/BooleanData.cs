@@ -4,7 +4,8 @@ public class BooleanData : ComparableValue<Boolean>
 {
    public BooleanData() : base(
       true, 
-      false, 
+      false,
+      Comparer<Boolean>.Default,
       new ReverseComparer<Boolean>(), 
       false, 
       true,
@@ -25,4 +26,12 @@ public class BooleanData : ComparableValue<Boolean>
    public override Boolean WithinBoundsValue => throw new NotImplementedException();
 
    public override Boolean AboveUpperBoundValue => throw new NotImplementedException();
+
+   public override Boolean ReverseLowerBound => throw new NotImplementedException();
+
+   public override Boolean ReverseUpperBound => throw new NotImplementedException();
+
+   public override Boolean ReverseBelowLowerBoundValue => throw new NotImplementedException();
+
+   public override Boolean ReverseAboveUpperBoundValue => throw new NotImplementedException();
 }

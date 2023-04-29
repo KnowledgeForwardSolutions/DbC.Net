@@ -21,6 +21,7 @@ public class BoundedTypesTestData : IEnumerable<Object[]>
       yield return new Object[] { new SByteData() };
       yield return new Object[] { new SingleData() };
       yield return new Object[] { new TimeOnlyData() };
+      yield return new Object[] { new TimeSpanData() };
       yield return new Object[] { new UInt128Data() };
       yield return new Object[] { new UInt16Data() };
       yield return new Object[] { new UInt32Data() };

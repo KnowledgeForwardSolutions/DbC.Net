@@ -6,6 +6,7 @@ public abstract class ComparableValue<T> : EquatableValue<T>, IComparableTestDat
    public ComparableValue(
       T equalValue,
       T notEqualValue,
+      IComparer<T> comparer,
       ReverseComparer<T> reverseComparer,
       T minValue,
       T maxValue,
@@ -13,7 +14,7 @@ public abstract class ComparableValue<T> : EquatableValue<T>, IComparableTestDat
       T upperBound,
       T belowLowerBoundValue,
       T withinBoundsValue,
-      T aboveUpperBoundValue) : base(equalValue, notEqualValue, reverseComparer)
+      T aboveUpperBoundValue) : base(equalValue, notEqualValue, comparer, reverseComparer)
    {
       MinValue = minValue;
       MaxValue = maxValue;
@@ -25,6 +26,10 @@ public abstract class ComparableValue<T> : EquatableValue<T>, IComparableTestDat
       BelowLowerBoundValue = belowLowerBoundValue;
       WithinBoundsValue = withinBoundsValue;
       AboveUpperBoundValue = aboveUpperBoundValue;
+      ReverseLowerBound = upperBound;
+      ReverseUpperBound = lowerBound;
+      ReverseBelowLowerBoundValue = aboveUpperBoundValue;
+      ReverseAboveUpperBoundValue = belowLowerBoundValue;
    }
 
    public T MaxValue { get; }
@@ -44,4 +49,12 @@ public abstract class ComparableValue<T> : EquatableValue<T>, IComparableTestDat
    public virtual T WithinBoundsValue { get; }
 
    public virtual T AboveUpperBoundValue { get; }
+
+   public virtual T ReverseLowerBound { get; }
+
+   public virtual T ReverseUpperBound { get; }
+
+   public virtual T ReverseBelowLowerBoundValue { get; }
+
+   public virtual T ReverseAboveUpperBoundValue { get; }
 }

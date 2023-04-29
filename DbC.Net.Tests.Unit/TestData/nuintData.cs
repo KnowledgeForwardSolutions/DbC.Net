@@ -7,6 +7,7 @@ public class nuintData : ComparableValue<nuint>
    public nuintData() : base(
       100,
       101,
+      Comparer<nuint>.Default,
       new ReverseComparer<nuint>(),
       nuint.MinValue,
       nuint.MaxValue,
