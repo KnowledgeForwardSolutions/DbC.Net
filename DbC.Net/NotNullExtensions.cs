@@ -101,9 +101,7 @@ public static class NotNullExtensions
       if (value is null)
       {
          messageTemplate ??= MessageTemplates.NotNullTemplate;
-         exceptionFactory ??= requirementType == RequirementType.Precondition
-            ? StandardExceptionFactories.ArgumentNullExceptionFactory
-            : StandardExceptionFactories.PostconditionFailedExceptionFactory;
+         exceptionFactory ??= StandardExceptionFactories.ResolveArgumentNullExceptionFactory(requirementType);
          var data = ExceptionDataBuilder.Create()
             .WithRequirement(requirementType, _requirementName)
             .WithItem(DataNames.ValueExpression, valueExpression)

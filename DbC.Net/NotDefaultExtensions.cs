@@ -23,7 +23,7 @@ public static class NotDefaultExtensions
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
    ///   exception that is thrown if the <paramref name="value"/> is 
    ///   <see langword="null"/>. Defaults to 
-   ///   <see cref="StandardExceptionFactories.ArgumentExceptionFactory"/>.
+   ///   <see cref="StandardExceptionFactories.PostconditionFailedExceptionFactory"/>.
    /// </param>
    /// <param name="valueExpression">
    ///   Optional. Defaults to the caller expression for
@@ -101,9 +101,7 @@ public static class NotDefaultExtensions
       if (EqualityComparer<T>.Default.Equals(value, default))
       {
          messageTemplate ??= MessageTemplates.NotDefaultTemplate;
-         exceptionFactory ??= requirementType == RequirementType.Precondition
-            ? StandardExceptionFactories.ArgumentExceptionFactory
-            : StandardExceptionFactories.PostconditionFailedExceptionFactory;
+         exceptionFactory ??= StandardExceptionFactories.ResolveArgumentExceptionFactory(requirementType);
          var data = ExceptionDataBuilder.Create()
             .WithRequirement(requirementType, _requirementName)
             .WithItem(DataNames.ValueExpression, valueExpression)

@@ -172,9 +172,7 @@ public static class ApproximatelyEqualExtensions
       if (!comparer.ApproximatelyEquals(value, target, epsilon))
       {
          messageTemplate ??= MessageTemplates.ApproximatelyEqualTemplate;
-         exceptionFactory ??= requirementType == RequirementType.Precondition
-            ? StandardExceptionFactories.ArgumentExceptionFactory
-            : StandardExceptionFactories.PostconditionFailedExceptionFactory;
+         exceptionFactory ??= StandardExceptionFactories.ResolveArgumentExceptionFactory(requirementType);
          var data = ExceptionDataBuilder.Create()
             .WithRequirement(requirementType, _requirementName)
             .WithValue(value!, valueExpression)
