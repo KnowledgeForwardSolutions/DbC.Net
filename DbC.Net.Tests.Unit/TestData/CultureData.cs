@@ -6,6 +6,8 @@ public static class CultureData
 
    public const String EnglishUS = "en-US";
 
+   public const String LatinAzerbaijan = "az-Latn-AZ";
+
    public const String SwedishSweden = "sv-SE";
 
    public const String ThaiThailand = "th-TH";
