@@ -7,17 +7,17 @@ StringComparison value that specifies how the comparison is performed.
 
 **Method signatures:**
 ```C#
-T RequiresLessThan<T>(this T value, T upperBound, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null]) where T : IComparable<T>
+T RequiresLessThan<T>(this T value, T upperBound, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? upperBoundExpression = null]) where T : IComparable<T>
 
-T RequiresLessThan<T>(this T value, T upperBound, IComparer<T> comparer, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null])
+T RequiresLessThan<T>(this T value, T upperBound, IComparer<T> comparer, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? upperBoundExpression = null])
 
-String RequiresLessThan(this String value, String upperBound, StringComparison comparisonType, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null])
+String RequiresLessThan(this String value, String upperBound, StringComparison comparisonType, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? upperBoundExpression = null])
 
-T EnsuresLessThan<T>(this T value, T upperBound, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null]) where T : IComparable<T>
+T EnsuresLessThan<T>(this T value, T upperBound, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? upperBoundExpression = null]) where T : IComparable<T>
 
-T EnsuresLessThan<T>(this T value, T upperBound, IComparer<T> comparer, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null])
+T EnsuresLessThan<T>(this T value, T upperBound, IComparer<T> comparer, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? upperBoundExpression = null])
 
-String EnsuresLessThan(this String value, String upperBound, StringComparison comparisonType, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null])
+String EnsuresLessThan(this String value, String upperBound, StringComparison comparisonType, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? upperBoundExpression = null])
 ```
 
 The default message template for LessThan is "{RequirementType} {RequirementName} failed: {ValueExpression} must be less than {UpperBound}".
