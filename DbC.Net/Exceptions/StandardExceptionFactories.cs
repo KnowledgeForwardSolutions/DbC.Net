@@ -132,6 +132,28 @@ public class StandardExceptionFactories
 
    /// <summary>
    ///   Internal helper method for obtaining either
+   ///   <see cref="StandardExceptionFactories.ArgumentExceptionFactory"/>
+   ///   or <see cref="StandardExceptionFactories.PostconditionFailedExceptionFactory"/>,
+   ///   depending on the <paramref name="requirementType"/>.
+   /// </summary>
+   internal static IExceptionFactory ResolveArgumentExceptionFactory(RequirementType requirementType)
+      => requirementType == RequirementType.Precondition
+         ? ArgumentExceptionFactory
+         : PostconditionFailedExceptionFactory;
+
+   /// <summary>
+   ///   Internal helper method for obtaining either
+   ///   <see cref="StandardExceptionFactories.ArgumentNullExceptionFactory"/>
+   ///   or <see cref="StandardExceptionFactories.PostconditionFailedExceptionFactory"/>,
+   ///   depending on the <paramref name="requirementType"/>.
+   /// </summary>
+   internal static IExceptionFactory ResolveArgumentNullExceptionFactory(RequirementType requirementType)
+      => requirementType == RequirementType.Precondition
+         ? ArgumentNullExceptionFactory
+         : PostconditionFailedExceptionFactory;
+
+   /// <summary>
+   ///   Internal helper method for obtaining either
    ///   <see cref="StandardExceptionFactories.ArgumentOutOfRangeExceptionFactory"/>
    ///   or <see cref="StandardExceptionFactories.PostconditionFailedExceptionFactory"/>,
    ///   depending on the <paramref name="requirementType"/>.

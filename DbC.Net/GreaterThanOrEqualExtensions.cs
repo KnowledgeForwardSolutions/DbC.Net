@@ -380,7 +380,7 @@ public static class GreaterThanOrEqualToExtensions
          || (value is not null && value.CompareTo(lowerBound) < 0))
       {
          messageTemplate ??= MessageTemplates.GreaterThanOrEqualTemplate;
-         exceptionFactory ??= GetExceptionFactory(requirementType);
+         exceptionFactory ??= StandardExceptionFactories.ResolveArgumentOutOfRangeFactory(requirementType);
          var data = ExceptionDataBuilder.Create()
             .WithRequirement(requirementType, _requirementName)
             .WithValue(value!, valueExpression)
@@ -404,7 +404,7 @@ public static class GreaterThanOrEqualToExtensions
       if (comparer.Compare(value, lowerBound) < 0)
       {
          messageTemplate ??= MessageTemplates.GreaterThanOrEqualTemplate;
-         exceptionFactory ??= GetExceptionFactory(requirementType);
+         exceptionFactory ??= StandardExceptionFactories.ResolveArgumentOutOfRangeFactory(requirementType);
          var data = ExceptionDataBuilder.Create()
             .WithRequirement(requirementType, _requirementName)
             .WithValue(value!, valueExpression)
@@ -428,7 +428,7 @@ public static class GreaterThanOrEqualToExtensions
       if (String.Compare(value, lowerBound, comparisonType) < 0)
       {
          messageTemplate ??= MessageTemplates.GreaterThanOrEqualTemplate;
-         exceptionFactory ??= GetExceptionFactory(requirementType);
+         exceptionFactory ??= StandardExceptionFactories.ResolveArgumentOutOfRangeFactory(requirementType);
          var data = ExceptionDataBuilder.Create()
             .WithRequirement(requirementType, _requirementName)
             .WithValue(value!, valueExpression)
@@ -439,9 +439,4 @@ public static class GreaterThanOrEqualToExtensions
          throw exceptionFactory.CreateException(data, messageTemplate);
       }
    }
-
-   private static IExceptionFactory GetExceptionFactory(RequirementType requirementType)
-      => requirementType == RequirementType.Precondition
-         ? StandardExceptionFactories.ArgumentOutOfRangeExceptionFactory
-         : StandardExceptionFactories.PostconditionFailedExceptionFactory;
 }

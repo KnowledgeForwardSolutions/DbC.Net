@@ -70,6 +70,15 @@ namespace DbC.Net {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lower bound may not be greater than upper bound.
+        /// </summary>
+        internal static string BetweenBoundsNotNormalized {
+            get {
+                return ResourceManager.GetString("BetweenBoundsNotNormalized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Comparer may not be null.
         /// </summary>
         internal static string ComparerIsNull {

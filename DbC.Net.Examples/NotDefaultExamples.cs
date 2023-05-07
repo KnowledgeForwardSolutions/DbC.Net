@@ -11,29 +11,29 @@ public sealed class NotDefaultExamples
 
       List<Guid> identifiers = default!;
 
-      // Precondition with default message template/default exception factory.
+      // Precondition with default message template and default exception factory.
       id.RequiresNotDefault();
 
-      // Precondition with custom message template/default exception factory.
+      // Precondition with custom message template and default exception factory.
       id.RequiresNotDefault(customMessageTemplate);
 
-      // Precondition with default message template/custom exception factory.
+      // Precondition with default message template and custom exception factory.
       id.RequiresNotDefault(exceptionFactory: customExceptionFactory);
 
-      // Precondition with custom message template/custom exception factory.
+      // Precondition with custom message template and custom exception factory.
       id.RequiresNotDefault(customMessageTemplate, customExceptionFactory);
 
 
-      // Postcondition with default message template/default exception factory.
+      // Postcondition with default message template and default exception factory.
       identifiers.EnsuresNotDefault();
 
-      // Postcondition with custom message template/default exception factory.
+      // Postcondition with custom message template and default exception factory.
       identifiers.EnsuresNotDefault(customMessageTemplate);
 
-      // Postcondition with default message template/custom exception factory.
+      // Postcondition with default message template and custom exception factory.
       identifiers.EnsuresNotDefault(exceptionFactory: customExceptionFactory);
 
-      // Postcondition with custom message template/custom exception factory.
+      // Postcondition with custom message template and custom exception factory.
       identifiers.EnsuresNotDefault(customMessageTemplate, customExceptionFactory);
    }
 }

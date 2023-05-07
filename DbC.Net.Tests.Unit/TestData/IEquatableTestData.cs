@@ -8,5 +8,7 @@ public interface IEquatableTestData<T> where T : IEquatable<T>
 
    T NonDefaultNotEqualValue { get; }
 
+   IComparer<T> Comparer { get; }
+
    ReverseComparer<T> ReverseComparer { get; }
 }

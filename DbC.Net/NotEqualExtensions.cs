@@ -27,7 +27,7 @@ public static class NotEqualExtensions
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
    ///   exception that is thrown if the <paramref name="value"/> is 
    ///   <see langword="null"/>. Defaults to 
-   ///   <see cref="StandardExceptionFactories.ArgumentExceptionFactory"/>.
+   ///   <see cref="StandardExceptionFactories.PostconditionFailedExceptionFactory"/>.
    /// </param>
    /// <param name="valueExpression">
    ///   Optional. Defaults to the caller expression for
@@ -367,7 +367,7 @@ public static class NotEqualExtensions
       if ((value is null && target is null) || (value is not null && value.Equals(target)))
       {
          messageTemplate ??= MessageTemplates.NotEqualTemplate;
-         exceptionFactory ??= GetExceptionFactory(requirementType);
+         exceptionFactory ??= StandardExceptionFactories.ResolveArgumentExceptionFactory(requirementType);
          var data = ExceptionDataBuilder.Create()
             .WithRequirement(requirementType, _requirementName)
             .WithValue(value!, valueExpression)
@@ -391,7 +391,7 @@ public static class NotEqualExtensions
       if (comparer.Equals(value, target))
       {
          messageTemplate ??= MessageTemplates.NotEqualTemplate;
-         exceptionFactory ??= GetExceptionFactory(requirementType);
+         exceptionFactory ??= StandardExceptionFactories.ResolveArgumentExceptionFactory(requirementType);
          var data = ExceptionDataBuilder.Create()
             .WithRequirement(requirementType, _requirementName)
             .WithValue(value!, valueExpression)
@@ -415,7 +415,7 @@ public static class NotEqualExtensions
       if ((value is null && target is null) || (value is not null && value.Equals(target, comparisonType)))
       {
          messageTemplate ??= MessageTemplates.NotEqualTemplate;
-         exceptionFactory ??= GetExceptionFactory(requirementType);
+         exceptionFactory ??= StandardExceptionFactories.ResolveArgumentExceptionFactory(requirementType);
          var data = ExceptionDataBuilder.Create()
             .WithRequirement(requirementType, _requirementName)
             .WithValue(value!, valueExpression)
@@ -426,9 +426,4 @@ public static class NotEqualExtensions
          throw exceptionFactory.CreateException(data, messageTemplate);
       }
    }
-
-   private static IExceptionFactory GetExceptionFactory(RequirementType requirementType)
-      => requirementType == RequirementType.Precondition
-         ? StandardExceptionFactories.ArgumentExceptionFactory
-         : StandardExceptionFactories.PostconditionFailedExceptionFactory;
 }

@@ -12,6 +12,12 @@ public class SingleData : FloatingPointValue<Single>
       StandardFloatingPointComparers.SingleRelativeErrorComparer,
       Single.MaxValue,
       Single.MinValue,
-      new ReverseComparer<Single>())
+      Comparer<Single>.Default,
+      new ReverseComparer<Single>(),
+      Single.MinValue / 2,
+      Single.MaxValue / 2,
+      Single.MaxValue,
+      0,
+      Single.MinValue)
    { }
 }

@@ -1,11 +1,10 @@
 ﻿namespace DbC.Net.Tests.Unit.TestData;
 
-public sealed class ComparableTypesTestData : IEnumerable<Object[]>
+public class BoundedTypesTestData : IEnumerable<Object[]>
 {
    public IEnumerator<Object[]> GetEnumerator()
    {
       yield return new Object[] { new BigIntegerData() };
-      yield return new Object[] { new BooleanData() };
       yield return new Object[] { new ByteData() };
       yield return new Object[] { new CharData() };
       yield return new Object[] { new DateOnlyData() };

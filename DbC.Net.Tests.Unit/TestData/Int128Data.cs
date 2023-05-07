@@ -5,8 +5,14 @@ public class Int128Data : ComparableValue<Int128>
    public Int128Data() : base(
       100,
       101,
+      Comparer<Int128>.Default,
       new ReverseComparer<Int128>(),
       Int128.MinValue,
+      Int128.MaxValue,
+      Int128.MinValue / 2,
+      Int128.MaxValue / 2,
+      Int128.MinValue,
+      0,
       Int128.MaxValue)
    { }
 }

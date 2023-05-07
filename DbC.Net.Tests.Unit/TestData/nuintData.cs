@@ -7,8 +7,14 @@ public class nuintData : ComparableValue<nuint>
    public nuintData() : base(
       100,
       101,
+      Comparer<nuint>.Default,
       new ReverseComparer<nuint>(),
       nuint.MinValue,
+      nuint.MaxValue,
+      nuint.MaxValue / 4,
+      nuint.MaxValue / 4 * 3,
+      nuint.MinValue,
+      nuint.MaxValue / 2,
       nuint.MaxValue)
    { }
 }

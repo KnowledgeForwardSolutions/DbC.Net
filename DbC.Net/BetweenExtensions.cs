@@ -1,28 +1,32 @@
 ﻿namespace DbC.Net;
 
 /// <summary>
-///   Extension methods that implement LessThanOrEqual requirement for types that
+///   Extension methods that implement Between requirement for types that
 ///   implement <see cref="IComparable{T}"/> or that use 
 ///   <see cref="IComparer{T}"/>.
 /// </summary>
-public static class LessThanOrEqualExtensions
+public static class BetweenExtensions
 {
-   private const String _requirementName = RequirementNames.LessThanOrEqual;
+   private const String _requirementName = RequirementNames.Between;
 
    /// <summary>
-   ///   Value LessThanOrEqual postcondition. Confirm that <paramref name="value"/>
-   ///   is less than or equal to <paramref name="upperBound"/> and throw an 
-   ///   exception if it is not.
+   ///   Value Between postcondition. Confirm that <paramref name="value"/>
+   ///   is greater than or equal to <paramref name="lowerBound"/> and less than 
+   ///   or equal to <paramref name="upperBound"/> and throw an exception if
+   ///   it is not.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
+   /// </param>
+   /// <param name="lowerBound">
+   ///   The lower bound that <paramref name="value"/> should be fall below.
    /// </param>
    /// <param name="upperBound">
    ///   The upper bound that <paramref name="value"/> should not exceed.
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be less than or equal to {UpperBound}".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be between {LowerBound} and {UpperBound} (inclusive)".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
@@ -34,6 +38,10 @@ public static class LessThanOrEqualExtensions
    ///   Optional. Defaults to the caller expression for
    ///   <paramref name="value"/>. 
    /// </param>
+   /// <param name="lowerBoundExpression">
+   ///   Optional. Defaults to the caller expression for
+   ///   <paramref name="lowerBound"/>. 
+   /// </param>
    /// <param name="upperBoundExpression">
    ///   Optional. Defaults to the caller expression for
    ///   <paramref name="upperBound"/>. 
@@ -42,44 +50,56 @@ public static class LessThanOrEqualExtensions
    ///   The tested <paramref name="value"/> is returned unaltered to support 
    ///   chaining requirements.
    /// </returns>
-   public static T EnsuresLessThanOrEqual<T>(
+   /// <exception cref="InvalidOperationException">
+   ///   Lower bound is greater than upper bound.
+   /// </exception>
+   public static T EnsuresBetween<T>(
       this T value,
+      T lowerBound,
       T upperBound,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
       [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
+      [CallerArgumentExpression(nameof(lowerBound))] String lowerBoundExpression = null!,
       [CallerArgumentExpression(nameof(upperBound))] String upperBoundExpression = null!) where T : IComparable<T>
    {
-      CheckLessThanOrEqual(
+      CheckNormalizedBounds(lowerBound, upperBound);
+      CheckBetween(
          value,
+         lowerBound,
          upperBound,
          RequirementType.Postcondition,
          messageTemplate,
          exceptionFactory,
          valueExpression,
+         lowerBoundExpression,
          upperBoundExpression);
 
       return value;
    }
 
    /// <summary>
-   ///   Value LessThanOrEqual postcondition. Confirm that <paramref name="value"/>
-   ///   is less than or equal to <paramref name="upperBound"/> and throw an 
-   ///   exception if it is not.
+   ///   Value Between postcondition. Confirm that <paramref name="value"/>
+   ///   is greater than or equal to <paramref name="lowerBound"/> and less than 
+   ///   or equal to <paramref name="upperBound"/> and throw an exception if
+   ///   it is not.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
+   /// </param>
+   /// <param name="lowerBound">
+   ///   The lower bound that <paramref name="value"/> should be fall below.
    /// </param>
    /// <param name="upperBound">
    ///   The upper bound that <paramref name="value"/> should not exceed.
    /// </param>
    /// <param name="comparer">
    ///   An <see cref="IComparer{T}"/> used to compare <paramref name="value"/> 
-   ///   and <paramref name="upperBound"/>.
+   ///   and <paramref name="lowerBound"/> and <paramref name="upperBound"/>.
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be less than or equal to {UpperBound}".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be between {LowerBound} and {UpperBound} (inclusive)".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
@@ -91,6 +111,10 @@ public static class LessThanOrEqualExtensions
    ///   Optional. Defaults to the caller expression for
    ///   <paramref name="value"/>. 
    /// </param>
+   /// <param name="lowerBoundExpression">
+   ///   Optional. Defaults to the caller expression for
+   ///   <paramref name="lowerBound"/>. 
+   /// </param>
    /// <param name="upperBoundExpression">
    ///   Optional. Defaults to the caller expression for
    ///   <paramref name="upperBound"/>. 
@@ -99,51 +123,65 @@ public static class LessThanOrEqualExtensions
    ///   The tested <paramref name="value"/> is returned unaltered to support 
    ///   chaining requirements.
    /// </returns>
+   /// <exception cref="InvalidOperationException">
+   ///   Lower bound is greater than upper bound.
+   /// </exception>
    /// <exception cref="ArgumentNullException">
    ///   <paramref name="comparer"/> is <see langword="null"/>.
    /// </exception>
-   public static T EnsuresLessThanOrEqual<T>(
+   public static T EnsuresBetween<T>(
       this T value,
+      T lowerBound,
       T upperBound,
       IComparer<T> comparer,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
       [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
+      [CallerArgumentExpression(nameof(lowerBound))] String lowerBoundExpression = null!,
       [CallerArgumentExpression(nameof(upperBound))] String upperBoundExpression = null!)
    {
-      CheckLessThanOrEqual(
-         value,
+      CheckNormalizedBounds(
+         lowerBound,
          upperBound,
-         comparer ?? throw new ArgumentNullException(nameof(comparer), Messages.ComparerIsNull),
+         comparer ?? throw new ArgumentNullException(nameof(comparer), Messages.ComparerIsNull));
+      CheckBetween(
+         value,
+         lowerBound,
+         upperBound,
+         comparer,
          RequirementType.Postcondition,
          messageTemplate,
          exceptionFactory,
          valueExpression,
+         lowerBoundExpression,
          upperBoundExpression);
 
       return value;
    }
 
    /// <summary>
-   ///   Value LessThanOrEqual postcondition. Confirm that the 
-   ///   <see cref="String"/> <paramref name="value"/> is less than or equal
-   ///   to the <see cref="String"/> <paramref name="upperBound"/> and throw an 
-   ///   exception if it is not.
+   ///   Value Between postcondition. Confirm that the <see cref="String"/>
+   ///   <paramref name="value"/> is greater than or equal to 
+   ///   <paramref name="lowerBound"/> and less than or equal to 
+   ///   <paramref name="upperBound"/> and throw an exception if it is not.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
+   /// </param>
+   /// <param name="lowerBound">
+   ///   The lower bound that <paramref name="value"/> should be fall below.
    /// </param>
    /// <param name="upperBound">
    ///   The upper bound that <paramref name="value"/> should not exceed.
    /// </param>
    /// <param name="comparisonType">
    ///   <see cref="StringComparison"/> enumeration value that specified how the
-   ///   <paramref name="value"/> and <paramref name="upperBound"/> strings are 
-   ///   compared.
+   ///   <paramref name="value"/> and the <paramref name="lowerBound"/> and
+   ///   <paramref name="upperBound"/> strings are compared.
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be less than or equal to {UpperBound}".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be between {LowerBound} and {UpperBound} (inclusive)".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
@@ -155,6 +193,10 @@ public static class LessThanOrEqualExtensions
    ///   Optional. Defaults to the caller expression for
    ///   <paramref name="value"/>. 
    /// </param>
+   /// <param name="lowerBoundExpression">
+   ///   Optional. Defaults to the caller expression for
+   ///   <paramref name="lowerBound"/>. 
+   /// </param>
    /// <param name="upperBoundExpression">
    ///   Optional. Defaults to the caller expression for
    ///   <paramref name="upperBound"/>. 
@@ -163,42 +205,54 @@ public static class LessThanOrEqualExtensions
    ///   The tested <paramref name="value"/> is returned unaltered to support 
    ///   chaining requirements.
    /// </returns>
-   public static String EnsuresLessThanOrEqual(
+   /// <exception cref="InvalidOperationException">
+   ///   Lower bound is greater than upper bound.
+   /// </exception>
+   public static String EnsuresBetween(
       this String value,
+      String lowerBound,
       String upperBound,
       StringComparison comparisonType,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
       [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
+      [CallerArgumentExpression(nameof(lowerBound))] String lowerBoundExpression = null!,
       [CallerArgumentExpression(nameof(upperBound))] String upperBoundExpression = null!)
    {
-      CheckLessThanOrEqual(
+      CheckNormalizedBounds(lowerBound, upperBound, comparisonType);
+      CheckBetween(
          value,
+         lowerBound,
          upperBound,
          comparisonType,
          RequirementType.Postcondition,
          messageTemplate,
          exceptionFactory,
          valueExpression,
+         lowerBoundExpression,
          upperBoundExpression);
 
       return value;
    }
 
    /// <summary>
-   ///   Value LessThanOrEqual precondition. Confirm that <paramref name="value"/>
-   ///   is less than or equal to <paramref name="upperBound"/> and throw an 
-   ///   exception if it is not.
+   ///   Value Between precondition. Confirm that <paramref name="value"/>
+   ///   is greater than or equal to <paramref name="lowerBound"/> and less than 
+   ///   or equal to <paramref name="upperBound"/> and throw an exception if
+   ///   it is not.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
+   /// </param>
+   /// <param name="lowerBound">
+   ///   The lower bound that <paramref name="value"/> should be fall below.
    /// </param>
    /// <param name="upperBound">
    ///   The upper bound that <paramref name="value"/> should not exceed.
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be less than or equal to {UpperBound}".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be between {LowerBound} and {UpperBound} (inclusive)".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
@@ -210,6 +264,10 @@ public static class LessThanOrEqualExtensions
    ///   Optional. Defaults to the caller expression for
    ///   <paramref name="value"/>. 
    /// </param>
+   /// <param name="lowerBoundExpression">
+   ///   Optional. Defaults to the caller expression for
+   ///   <paramref name="lowerBound"/>. 
+   /// </param>
    /// <param name="upperBoundExpression">
    ///   Optional. Defaults to the caller expression for
    ///   <paramref name="upperBound"/>. 
@@ -218,44 +276,56 @@ public static class LessThanOrEqualExtensions
    ///   The tested <paramref name="value"/> is returned unaltered to support 
    ///   chaining requirements.
    /// </returns>
-   public static T RequiresLessThanOrEqual<T>(
+   /// <exception cref="InvalidOperationException">
+   ///   Lower bound is greater than upper bound.
+   /// </exception>
+   public static T RequiresBetween<T>(
       this T value,
+      T lowerBound,
       T upperBound,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
       [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
+      [CallerArgumentExpression(nameof(lowerBound))] String lowerBoundExpression = null!,
       [CallerArgumentExpression(nameof(upperBound))] String upperBoundExpression = null!) where T : IComparable<T>
    {
-      CheckLessThanOrEqual(
+      CheckNormalizedBounds(lowerBound, upperBound);
+      CheckBetween(
          value,
+         lowerBound,
          upperBound,
          RequirementType.Precondition,
          messageTemplate,
          exceptionFactory,
          valueExpression,
+         lowerBoundExpression,
          upperBoundExpression);
 
       return value;
    }
 
    /// <summary>
-   ///   Value LessThanOrEqual precondition. Confirm that <paramref name="value"/>
-   ///   is less than or equal to <paramref name="upperBound"/> and throw an 
-   ///   exception if it is not.
+   ///   Value Between precondition. Confirm that <paramref name="value"/>
+   ///   is greater than or equal to <paramref name="lowerBound"/> and less than 
+   ///   or equal to <paramref name="upperBound"/> and throw an exception if
+   ///   it is not.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
+   /// </param>
+   /// <param name="lowerBound">
+   ///   The lower bound that <paramref name="value"/> should be fall below.
    /// </param>
    /// <param name="upperBound">
    ///   The upper bound that <paramref name="value"/> should not exceed.
    /// </param>
    /// <param name="comparer">
    ///   An <see cref="IComparer{T}"/> used to compare <paramref name="value"/> 
-   ///   and <paramref name="upperBound"/>.
+   ///   and <paramref name="lowerBound"/> and <paramref name="upperBound"/>.
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be less than or equal to {UpperBound}".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be between {LowerBound} and {UpperBound} (inclusive)".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
@@ -267,6 +337,10 @@ public static class LessThanOrEqualExtensions
    ///   Optional. Defaults to the caller expression for
    ///   <paramref name="value"/>. 
    /// </param>
+   /// <param name="lowerBoundExpression">
+   ///   Optional. Defaults to the caller expression for
+   ///   <paramref name="lowerBound"/>. 
+   /// </param>
    /// <param name="upperBoundExpression">
    ///   Optional. Defaults to the caller expression for
    ///   <paramref name="upperBound"/>. 
@@ -275,51 +349,65 @@ public static class LessThanOrEqualExtensions
    ///   The tested <paramref name="value"/> is returned unaltered to support 
    ///   chaining requirements.
    /// </returns>
+   /// <exception cref="InvalidOperationException">
+   ///   Lower bound is greater than upper bound.
+   /// </exception>
    /// <exception cref="ArgumentNullException">
    ///   <paramref name="comparer"/> is <see langword="null"/>.
    /// </exception>
-   public static T RequiresLessThanOrEqual<T>(
+   public static T RequiresBetween<T>(
       this T value,
+      T lowerBound,
       T upperBound,
       IComparer<T> comparer,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
       [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
+      [CallerArgumentExpression(nameof(lowerBound))] String lowerBoundExpression = null!,
       [CallerArgumentExpression(nameof(upperBound))] String upperBoundExpression = null!)
    {
-      CheckLessThanOrEqual(
+      CheckNormalizedBounds(
+         lowerBound, 
+         upperBound, 
+         comparer ?? throw new ArgumentNullException(nameof(comparer), Messages.ComparerIsNull));
+      CheckBetween(
          value,
+         lowerBound,
          upperBound,
-         comparer ?? throw new ArgumentNullException(nameof(comparer), Messages.ComparerIsNull),
+         comparer,
          RequirementType.Precondition,
          messageTemplate,
          exceptionFactory,
          valueExpression,
+         lowerBoundExpression,
          upperBoundExpression);
 
       return value;
    }
 
    /// <summary>
-   ///   Value LessThanOrEqual precondition. Confirm that the 
-   ///   <see cref="String"/> <paramref name="value"/> is less than or equal
-   ///   to the <see cref="String"/> <paramref name="upperBound"/> and throw an 
-   ///   exception if it is not.
+   ///   Value Between precondition. Confirm that the <see cref="String"/>
+   ///   <paramref name="value"/> is greater than or equal to 
+   ///   <paramref name="lowerBound"/> and less than or equal to 
+   ///   <paramref name="upperBound"/> and throw an exception if it is not.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
+   /// </param>
+   /// <param name="lowerBound">
+   ///   The lower bound that <paramref name="value"/> should be fall below.
    /// </param>
    /// <param name="upperBound">
    ///   The upper bound that <paramref name="value"/> should not exceed.
    /// </param>
    /// <param name="comparisonType">
    ///   <see cref="StringComparison"/> enumeration value that specified how the
-   ///   <paramref name="value"/> and <paramref name="upperBound"/> strings are 
-   ///   compared.
+   ///   <paramref name="value"/> and the <paramref name="lowerBound"/> and
+   ///   <paramref name="upperBound"/> strings are compared.
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be less than or equal to {UpperBound}".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be between {LowerBound} and {UpperBound} (inclusive)".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
@@ -331,6 +419,10 @@ public static class LessThanOrEqualExtensions
    ///   Optional. Defaults to the caller expression for
    ///   <paramref name="value"/>. 
    /// </param>
+   /// <param name="lowerBoundExpression">
+   ///   Optional. Defaults to the caller expression for
+   ///   <paramref name="lowerBound"/>. 
+   /// </param>
    /// <param name="upperBoundExpression">
    ///   Optional. Defaults to the caller expression for
    ///   <paramref name="upperBound"/>. 
@@ -339,44 +431,56 @@ public static class LessThanOrEqualExtensions
    ///   The tested <paramref name="value"/> is returned unaltered to support 
    ///   chaining requirements.
    /// </returns>
-   public static String RequiresLessThanOrEqual(
+   /// <exception cref="InvalidOperationException">
+   ///   Lower bound is greater than upper bound.
+   /// </exception>
+   public static String RequiresBetween(
       this String value,
+      String lowerBound,
       String upperBound,
       StringComparison comparisonType,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
       [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
+      [CallerArgumentExpression(nameof(lowerBound))] String lowerBoundExpression = null!,
       [CallerArgumentExpression(nameof(upperBound))] String upperBoundExpression = null!)
    {
-      CheckLessThanOrEqual(
+      CheckNormalizedBounds(lowerBound, upperBound, comparisonType);
+      CheckBetween(
          value,
+         lowerBound,
          upperBound,
          comparisonType,
          RequirementType.Precondition,
          messageTemplate,
          exceptionFactory,
          valueExpression,
+         lowerBoundExpression,
          upperBoundExpression);
 
       return value;
    }
 
-   private static void CheckLessThanOrEqual<T>(
+   private static void CheckBetween<T>(
       T value,
+      T lowerBound,
       T upperBound,
       RequirementType requirementType,
       String? messageTemplate,
       IExceptionFactory? exceptionFactory,
       String valueExpression,
+      String lowerBoundExpression,
       String upperBoundExpression) where T : IComparable<T>
    {
-      if (value is not null && value.CompareTo(upperBound) > 0)
+      if ((value is null && lowerBound is not null)
+         ||(value is not null && (value!.CompareTo(lowerBound) < 0 || value.CompareTo(upperBound) > 0))) 
       {
-         messageTemplate ??= MessageTemplates.LessThanOrEqualTemplate;
+         messageTemplate ??= MessageTemplates.BetweenTemplate;
          exceptionFactory ??= StandardExceptionFactories.ResolveArgumentOutOfRangeFactory(requirementType);
          var data = ExceptionDataBuilder.Create()
             .WithRequirement(requirementType, _requirementName)
             .WithValue(value!, valueExpression)
+            .WithLowerBound(lowerBound!, lowerBoundExpression)
             .WithUpperBound(upperBound!, upperBoundExpression)
             .Build();
 
@@ -384,23 +488,26 @@ public static class LessThanOrEqualExtensions
       }
    }
 
-   private static void CheckLessThanOrEqual<T>(
+   private static void CheckBetween<T>(
       T value,
+      T lowerBound,
       T upperBound,
       IComparer<T> comparer,
       RequirementType requirementType,
       String? messageTemplate,
       IExceptionFactory? exceptionFactory,
       String valueExpression,
+      String lowerBoundExpression,
       String upperBoundExpression)
    {
-      if (comparer.Compare(value, upperBound) > 0)
+      if (comparer.Compare(value, lowerBound) < 0 || comparer.Compare(value, upperBound) > 0)
       {
-         messageTemplate ??= MessageTemplates.LessThanOrEqualTemplate;
+         messageTemplate ??= MessageTemplates.BetweenTemplate;
          exceptionFactory ??= StandardExceptionFactories.ResolveArgumentOutOfRangeFactory(requirementType);
          var data = ExceptionDataBuilder.Create()
             .WithRequirement(requirementType, _requirementName)
             .WithValue(value!, valueExpression)
+            .WithLowerBound(lowerBound!, lowerBoundExpression)
             .WithUpperBound(upperBound!, upperBoundExpression)
             .Build();
 
@@ -408,28 +515,59 @@ public static class LessThanOrEqualExtensions
       }
    }
 
-   private static void CheckLessThanOrEqual(
+   private static void CheckBetween(
       String value,
+      String lowerBound,
       String upperBound,
       StringComparison comparisonType,
       RequirementType requirementType,
       String? messageTemplate,
       IExceptionFactory? exceptionFactory,
       String valueExpression,
+      String lowerBoundExpression,
       String upperBoundExpression)
    {
-      if (String.Compare(value, upperBound, comparisonType) > 0)
+      if (String.Compare(value, lowerBound, comparisonType) < 0 
+         || String.Compare(value, upperBound, comparisonType) > 0)
       {
-         messageTemplate ??= MessageTemplates.LessThanOrEqualTemplate;
+         messageTemplate ??= MessageTemplates.BetweenTemplate;
          exceptionFactory ??= StandardExceptionFactories.ResolveArgumentOutOfRangeFactory(requirementType);
          var data = ExceptionDataBuilder.Create()
             .WithRequirement(requirementType, _requirementName)
             .WithValue(value!, valueExpression)
+            .WithLowerBound(lowerBound, lowerBoundExpression)
             .WithUpperBound(upperBound!, upperBoundExpression)
             .WithItem(DataNames.StringComparison, comparisonType)
             .Build();
 
          throw exceptionFactory.CreateException(data, messageTemplate);
+      }
+   }
+
+   private static void CheckNormalizedBounds<T>(T lowerBound, T upperBound) where T : IComparable<T>
+   {
+      // Lower bound must be less than or equal to upper bound.
+      if (lowerBound is not null && lowerBound.CompareTo(upperBound) > 0)
+      {
+         throw new InvalidOperationException(Messages.BetweenBoundsNotNormalized);
+      }
+   }
+
+   private static void CheckNormalizedBounds<T>(T lowerBound, T upperBound, IComparer<T> comparer)
+   {
+      // Lower bound must be less than or equal to upper bound.
+      if (comparer.Compare(lowerBound, upperBound) > 0)
+      {
+         throw new InvalidOperationException(Messages.BetweenBoundsNotNormalized);
+      }
+   }
+
+   private static void CheckNormalizedBounds(String lowerBound, String upperBound, StringComparison comparisonType)
+   {
+      // Lower bound must be less than or equal to upper bound.
+      if (String.Compare(lowerBound, upperBound, comparisonType) > 0)
+      {
+         throw new InvalidOperationException(Messages.BetweenBoundsNotNormalized);
       }
    }
 }

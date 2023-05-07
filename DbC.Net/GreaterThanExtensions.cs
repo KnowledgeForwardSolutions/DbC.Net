@@ -371,7 +371,7 @@ public static class GreaterThanExtensions
       if (value is null || value!.CompareTo(lowerBound) <= 0)
       {
          messageTemplate ??= MessageTemplates.GreaterThanTemplate;
-         exceptionFactory ??= GetExceptionFactory(requirementType);
+         exceptionFactory ??= StandardExceptionFactories.ResolveArgumentOutOfRangeFactory(requirementType);
          var data = ExceptionDataBuilder.Create()
             .WithRequirement(requirementType, _requirementName)
             .WithValue(value!, valueExpression)
@@ -395,7 +395,7 @@ public static class GreaterThanExtensions
       if (comparer.Compare(value, lowerBound) <= 0)
       {
          messageTemplate ??= MessageTemplates.GreaterThanTemplate;
-         exceptionFactory ??= GetExceptionFactory(requirementType);
+         exceptionFactory ??= StandardExceptionFactories.ResolveArgumentOutOfRangeFactory(requirementType);
          var data = ExceptionDataBuilder.Create()
             .WithRequirement(requirementType, _requirementName)
             .WithValue(value!, valueExpression)
@@ -419,7 +419,7 @@ public static class GreaterThanExtensions
       if (String.Compare(value, lowerBound, comparisonType) <= 0)
       {
          messageTemplate ??= MessageTemplates.GreaterThanTemplate;
-         exceptionFactory ??= GetExceptionFactory(requirementType);
+         exceptionFactory ??= StandardExceptionFactories.ResolveArgumentOutOfRangeFactory(requirementType);
          var data = ExceptionDataBuilder.Create()
             .WithRequirement(requirementType, _requirementName)
             .WithValue(value!, valueExpression)
@@ -430,9 +430,4 @@ public static class GreaterThanExtensions
          throw exceptionFactory.CreateException(data, messageTemplate);
       }
    }
-
-   private static IExceptionFactory GetExceptionFactory(RequirementType requirementType)
-      => requirementType == RequirementType.Precondition
-         ? StandardExceptionFactories.ArgumentOutOfRangeExceptionFactory
-         : StandardExceptionFactories.PostconditionFailedExceptionFactory;
 }

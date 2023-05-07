@@ -12,7 +12,13 @@ public class HalfData : FloatingPointValue<Half>
       StandardFloatingPointComparers.HalfRelativeErrorComparer,
       Half.MaxValue,
       Half.MinValue,
-      new ReverseComparer<Half>())
+      Comparer<Half>.Default,
+      new ReverseComparer<Half>(),
+      Half.MinValue / (Half)2,
+      Half.MaxValue / (Half)2,
+      Half.MaxValue,
+      (Half)0,
+      Half.MinValue)
    { }
 }
 

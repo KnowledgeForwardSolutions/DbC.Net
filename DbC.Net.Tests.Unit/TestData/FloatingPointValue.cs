@@ -12,7 +12,13 @@ public abstract class FloatingPointValue<T> : IComparableTestData<T> where T : I
       IApproximateEqualityComparer<T> relativeErrorComparer,
       T maxValue,
       T minValue,
-      ReverseComparer<T> reverseComparer)
+      IComparer<T> comparer,
+      ReverseComparer<T> reverseComparer,
+      T lowerBound,
+      T upperBound,
+      T belowLowerBoundValue,
+      T withinBoundsValue,
+      T aboveUpperBoundValue)
    {
       Value = value;
       WithinToleranceDelta = withinToleranceDelta;
@@ -23,9 +29,20 @@ public abstract class FloatingPointValue<T> : IComparableTestData<T> where T : I
       RelativeErrorComparer = relativeErrorComparer;
       MaxValue = maxValue;
       MinValue = minValue;
+      Comparer = comparer;
       ReverseComparer = reverseComparer;
       ReverseMaxValue = minValue;
       ReverseMinValue = maxValue;
+
+      LowerBound = lowerBound;
+      UpperBound = upperBound;
+      BelowLowerBoundValue = belowLowerBoundValue;
+      WithinBoundsValue = withinBoundsValue;
+      AboveUpperBoundValue = aboveUpperBoundValue;
+      ReverseLowerBound = upperBound;
+      ReverseUpperBound = lowerBound;
+      ReverseBelowLowerBoundValue = aboveUpperBoundValue;
+      ReverseAboveUpperBoundValue = belowLowerBoundValue;
    }
 
    public virtual T Value { get; }
@@ -46,9 +63,29 @@ public abstract class FloatingPointValue<T> : IComparableTestData<T> where T : I
 
    public T MinValue { get; }
 
+   public IComparer<T> Comparer { get; }
+
    public ReverseComparer<T> ReverseComparer { get; }
 
    public T ReverseMaxValue { get; }
 
    public T ReverseMinValue { get; }
+
+   public T LowerBound { get; }
+
+   public T UpperBound { get; }
+
+   public T BelowLowerBoundValue { get; }
+
+   public T WithinBoundsValue { get; }
+
+   public T AboveUpperBoundValue { get; }
+
+   public virtual T ReverseLowerBound { get; }
+
+   public virtual T ReverseUpperBound { get; }
+
+   public virtual T ReverseBelowLowerBoundValue { get; }
+
+   public virtual T ReverseAboveUpperBoundValue { get; }
 }
