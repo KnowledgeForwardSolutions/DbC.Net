@@ -5,9 +5,9 @@ zero.
 
 **Method signatures:**
 ```C#
-T RequiresGreaterThanZero<T>(this T value, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null]) where T : INumberBase<T>
+T RequiresGreaterThanZero<T>(this T value, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null]) where T : INumber<T>
 
-T EnsuresGreaterThanZero<T>(this T value, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null]) where T : INumberBase<T>
+T EnsuresGreaterThanZero<T>(this T value, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null]) where T : INumber<T>
 ```
 
 The default message template for GreaterThanZero is "{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than zero".

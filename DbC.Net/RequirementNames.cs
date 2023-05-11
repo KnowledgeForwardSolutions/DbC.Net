@@ -10,6 +10,7 @@ public static class RequirementNames
    public const String Equal = nameof(Equal);
    public const String GreaterThan = nameof(GreaterThan);
    public const String GreaterThanOrEqual = nameof(GreaterThanOrEqual);
+   public const String GreaterThanZero = nameof(GreaterThanZero);
    public const String LessThan = nameof(LessThan);
    public const String LessThanOrEqual = nameof(LessThanOrEqual);
    public const String NotDefault = nameof(NotDefault);
