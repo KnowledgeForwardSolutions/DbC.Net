@@ -46,6 +46,7 @@
     - [GreaterThan](/Documentation/GreaterThan.md)
     - [GreaterThanOrEqual](/Documentation/GreaterThanOrEqual.md)
     - [GreaterThanZero](/Documentation/GreaterThanZero.md)
+    - [GreaterThanOrEqualToZero](/Documentation/GreaterThanOrEqualToZero.md)
     - [LessThan](/Documentation/LessThan.md)
     - [LessThanOrEqual](/Documentation/LessThanOrEqual.md)
     - [Between](/Documentation/Between.md)
@@ -61,8 +62,8 @@
 DbC.Net is inspired by the concept of Design by Contract, first introduced by 
 Bertrand Meyer in the Eiffel programming language and also by Microsoft's Code 
 Contracts (no longer supported by .NET 5 or higher). DbC.Net lets you create
-robust requirements based pre- and post-conditions with an expressive fluent
-syntax.
+robust requirements based pre-conditions and post-conditions with an expressive 
+fluent syntax.
 
 # Using DbC.Net
 
