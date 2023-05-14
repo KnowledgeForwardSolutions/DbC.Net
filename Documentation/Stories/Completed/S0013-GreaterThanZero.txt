@@ -4,7 +4,6 @@ Requirements:
 
   RequiresGreaterThanZero (precondition), default ArgumentOutOfRangeException
   EnsuresGreaterThanZero (postcondition), default PostconditionFailedException
-  Support supplying IComparer<T> object to perform the comparison
 
 DEFINITION OF DONE:
 
