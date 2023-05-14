@@ -28,6 +28,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		Documentation\Equal.md = Documentation\Equal.md
 		Documentation\GreaterThan.md = Documentation\GreaterThan.md
 		Documentation\GreaterThanOrEqual.md = Documentation\GreaterThanOrEqual.md
+		Documentation\GreaterThanZero.md = Documentation\GreaterThanZero.md
 		Documentation\LessThan.md = Documentation\LessThan.md
 		Documentation\LessThanOrEqual.md = Documentation\LessThanOrEqual.md
 		Documentation\NotDefault.md = Documentation\NotDefault.md

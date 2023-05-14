@@ -24,6 +24,7 @@ Intel Core i7-8700K CPU 3.70GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical 
   - [LessThan Benchmarks](#lessthan-benchmarks)
   - [LessThanOrEqual Benchmarks](#lessthanorequal-benchmarks)
   - [Between Benchmarks](#between-benchmarks)
+  - [GreaterThanZero Benchmarks](#greaterthanzero-benchmarks)
 
 ### NotNull Benchmarks
 
@@ -392,3 +393,17 @@ parameter was omitted.
 | RequiresBetween | Class       | IComparer<T>     | X                |                   |  13.202 ns | 0.1368 ns | 0.1213 ns |         - |
 | RequiresBetween | Class       | IComparer<T>     |                  | X                 |  13.560 ns | 0.2960 ns | 0.5106 ns |         - |
 | RequiresBetween | Class       | IComparer<T>     | X                | X                 |  13.211 ns | 0.1913 ns | 0.1696 ns |         - |
+
+### GreaterThanZero Benchmarks
+
+| Method                  | Value Type  | Message Template | Exception Factory |      Mean |     Error |    StdDev | Allocated |
+|:----------------------- |:------------|:----------------:|:-----------------:|----------:|----------:|----------:|----------:|
+| RequiresGreaterThanZero | Double      |                  |                   | 0.6312 ns | 0.0198 ns | 0.0185 ns |         - |
+| RequiresGreaterThanZero | Double      | X                |                   | 0.9438 ns | 0.0115 ns | 0.0102 ns |         - |
+| RequiresGreaterThanZero | Double      |                  | X                 | 2.0147 ns | 0.0189 ns | 0.0177 ns |         - |
+| RequiresGreaterThanZero | Double      | X                | X                 | 2.0258 ns | 0.0251 ns | 0.0235 ns |         - |
+| RequiresGreaterThanZero | Decimal     |                  |                   | 2.4109 ns | 0.0531 ns | 0.0471 ns |         - |
+| RequiresGreaterThanZero | Decimal     | X                |                   | 2.1276 ns | 0.0199 ns | 0.0177 ns |         - |
+| RequiresGreaterThanZero | Decimal     |                  | X                 | 3.9250 ns | 0.0179 ns | 0.0158 ns |         - |
+| RequiresGreaterThanZero | Decimal     | X                | X                 | 3.9672 ns | 0.0404 ns | 0.0359 ns |         - |
+

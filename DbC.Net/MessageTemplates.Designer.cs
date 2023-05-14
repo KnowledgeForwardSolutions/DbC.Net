@@ -106,6 +106,15 @@ namespace DbC.Net {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} must be greater than zero.
+        /// </summary>
+        internal static string GreaterThanZeroTemplate {
+            get {
+                return ResourceManager.GetString("GreaterThanZeroTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} must be less than or equal to {UpperBound}.
         /// </summary>
         internal static string LessThanOrEqualTemplate {

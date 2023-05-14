@@ -7,17 +7,17 @@ StringComparison value that specifies how the comparison is performed.
 
 **Method signatures:**
 ```C#
-T RequiresGreaterThan<T>(this T value, T lowerBound, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null]) where T : IComparable<T>
+T RequiresGreaterThan<T>(this T value, T lowerBound, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? lowerBoundExpression = null]) where T : IComparable<T>
 
-T RequiresGreaterThan<T>(this T value, T lowerBound, IComparer<T> comparer, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null])
+T RequiresGreaterThan<T>(this T value, T lowerBound, IComparer<T> comparer, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? lowerBoundExpression = null])
 
-String RequiresGreaterThan(this String value, String lowerBound, StringComparison comparisonType, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null])
+String RequiresGreaterThan(this String value, String lowerBound, StringComparison comparisonType, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? lowerBoundExpression = null])
 
-T EnsuresGreaterThan<T>(this T value, T lowerBound, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null]) where T : IComparable<T>
+T EnsuresGreaterThan<T>(this T value, T lowerBound, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? lowerBoundExpression = null]) where T : IComparable<T>
 
-T EnsuresGreaterThan<T>(this T value, T lowerBound, IComparer<T> comparer, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null])
+T EnsuresGreaterThan<T>(this T value, T lowerBound, IComparer<T> comparer, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? lowerBoundExpression = null])
 
-String EnsuresGreaterThan(this String value, String lowerBound, StringComparison comparisonType, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? targetExpression = null])
+String EnsuresGreaterThan(this String value, String lowerBound, StringComparison comparisonType, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null], [String? lowerBoundExpression = null])
 ```
 
 The default message template for GreaterThan is "{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than {LowerBound}".

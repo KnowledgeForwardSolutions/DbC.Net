@@ -45,6 +45,7 @@
 
     - [GreaterThan](/Documentation/GreaterThan.md)
     - [GreaterThanOrEqual](/Documentation/GreaterThanOrEqual.md)
+    - [GreaterThanZero](/Documentation/GreaterThanZero.md)
     - [LessThan](/Documentation/LessThan.md)
     - [LessThanOrEqual](/Documentation/LessThanOrEqual.md)
     - [Between](/Documentation/Between.md)
