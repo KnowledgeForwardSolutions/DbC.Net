@@ -13,7 +13,7 @@ public class GreaterThanZeroExtensionsTests
 
    [Theory]
    [ClassData(typeof(NumberTypesTestData))]
-   public void GreaterThanZeroExtensions_EnsuresGreaterThan_ShouldNotThrow_WhenValueIsGreaterThanZero<T>(
+   public void GreaterThanZeroExtensions_EnsuresGreaterThanZero_ShouldNotThrow_WhenValueIsGreaterThanZero<T>(
       IComparableTestData<T> data) where T : INumber<T>
    {
       // Arrange.
@@ -26,7 +26,7 @@ public class GreaterThanZeroExtensionsTests
 
    [Theory]
    [ClassData(typeof(NumberTypesTestData))]
-   public void GreaterThanZeroExtensions_EnsuresGreaterThan_ShouldThrow_WhenValueIsZero<T>(
+   public void GreaterThanZeroExtensions_EnsuresGreaterThanZero_ShouldThrow_WhenValueIsZero<T>(
       IComparableTestData<T> data) where T : INumber<T>
    {
       // Arrange.
@@ -39,7 +39,7 @@ public class GreaterThanZeroExtensionsTests
 
    [Theory]
    [ClassData(typeof(SignedNumberTypesTestData))]
-   public void GreaterThanZeroExtensions_EnsuresGreaterThan_ShouldThrow_WhenValueIsLessThanZero<T>(
+   public void GreaterThanZeroExtensions_EnsuresGreaterThanZero_ShouldThrow_WhenValueIsLessThanZero<T>(
       IComparableTestData<T> data) where T : INumber<T>
    {
       // Arrange.
@@ -52,7 +52,7 @@ public class GreaterThanZeroExtensionsTests
 
    [Theory]
    [ClassData(typeof(NumberTypesTestData))]
-   public void GreaterThanZeroExtensions_EnsuresGreaterThan_ShouldReturnOriginalValue_WhenValueIsGreaterThanZero<T>(
+   public void GreaterThanZeroExtensions_EnsuresGreaterThanZero_ShouldReturnOriginalValue_WhenValueIsGreaterThanZero<T>(
       IComparableTestData<T> data) where T : INumber<T>
    {
       // Arrange.
@@ -66,7 +66,7 @@ public class GreaterThanZeroExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanExtensions_EnsuresGreaterThan_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
+   public void GreaterThanZeroExtensions_EnsuresGreaterThanZero_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
    {
       // Arrange.
       var value = 0;
@@ -83,7 +83,7 @@ public class GreaterThanZeroExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanExtensions_EnsuresGreaterThan_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
+   public void GreaterThanZeroExtensions_EnsuresGreaterThanZero_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
    {
       // Arrange.
       var value = -1.5;
@@ -96,7 +96,7 @@ public class GreaterThanZeroExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanExtensions_EnsuresGreaterThan_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
+   public void GreaterThanZeroExtensions_EnsuresGreaterThanZero_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       var value = -1.5M;
@@ -110,7 +110,7 @@ public class GreaterThanZeroExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanExtensions_EnsuresGreaterThan_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
+   public void GreaterThanZeroExtensions_EnsuresGreaterThanZero_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var value = (Single)0;
@@ -123,7 +123,7 @@ public class GreaterThanZeroExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanExtensions_EnsuresGreaterThan_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void GreaterThanZeroExtensions_EnsuresGreaterThanZero_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var value = (Half)(-1);
@@ -144,7 +144,7 @@ public class GreaterThanZeroExtensionsTests
 
    [Theory]
    [ClassData(typeof(NumberTypesTestData))]
-   public void GreaterThanZeroExtensions_RequiresGreaterThan_ShouldNotThrow_WhenValueIsGreaterThanZero<T>(
+   public void GreaterThanZeroExtensions_RequiresGreaterThanZero_ShouldNotThrow_WhenValueIsGreaterThanZero<T>(
       IComparableTestData<T> data) where T : INumber<T>
    {
       // Arrange.
@@ -157,7 +157,7 @@ public class GreaterThanZeroExtensionsTests
 
    [Theory]
    [ClassData(typeof(NumberTypesTestData))]
-   public void GreaterThanZeroExtensions_RequiresGreaterThan_ShouldThrow_WhenValueIsZero<T>(
+   public void GreaterThanZeroExtensions_RequiresGreaterThanZero_ShouldThrow_WhenValueIsZero<T>(
       IComparableTestData<T> data) where T : INumber<T>
    {
       // Arrange.
@@ -170,7 +170,7 @@ public class GreaterThanZeroExtensionsTests
 
    [Theory]
    [ClassData(typeof(SignedNumberTypesTestData))]
-   public void GreaterThanZeroExtensions_RequiresGreaterThan_ShouldThrow_WhenValueIsLessThanZero<T>(
+   public void GreaterThanZeroExtensions_RequiresGreaterThanZero_ShouldThrow_WhenValueIsLessThanZero<T>(
       IComparableTestData<T> data) where T : INumber<T>
    {
       // Arrange.
@@ -183,7 +183,7 @@ public class GreaterThanZeroExtensionsTests
 
    [Theory]
    [ClassData(typeof(NumberTypesTestData))]
-   public void GreaterThanZeroExtensions_RequiresGreaterThan_ShouldReturnOriginalValue_WhenValueIsGreaterThanZero<T>(
+   public void GreaterThanZeroExtensions_RequiresGreaterThanZero_ShouldReturnOriginalValue_WhenValueIsGreaterThanZero<T>(
       IComparableTestData<T> data) where T : INumber<T>
    {
       // Arrange.
@@ -197,7 +197,7 @@ public class GreaterThanZeroExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanExtensions_RequiresGreaterThan_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
+   public void GreaterThanZeroExtensions_RequiresGreaterThanZero_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed()
    {
       // Arrange.
       var value = 0;
@@ -214,7 +214,7 @@ public class GreaterThanZeroExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanExtensions_RequiresGreaterThan_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
+   public void GreaterThanZeroExtensions_RequiresGreaterThanZero_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
    {
       // Arrange.
       var value = -1.5;
@@ -230,7 +230,7 @@ public class GreaterThanZeroExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanExtensions_RequiresGreaterThan_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
+   public void GreaterThanZeroExtensions_RequiresGreaterThanZero_ShouldThrowArgumentOutOfRangeExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       var value = -1.5M;
@@ -247,7 +247,7 @@ public class GreaterThanZeroExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanExtensions_RequiresGreaterThan_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
+   public void GreaterThanZeroExtensions_RequiresGreaterThanZero_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var value = (Single)0;
@@ -260,7 +260,7 @@ public class GreaterThanZeroExtensionsTests
    }
 
    [Fact]
-   public void GreaterThanExtensions_RequiresGreaterThan_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
+   public void GreaterThanZeroExtensions_RequiresGreaterThanZero_ShouldThrowCustomExceptionWithExpectedMessage_WhenCustomMessageTemplateAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var value = (Half)(-1);
