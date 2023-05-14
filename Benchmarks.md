@@ -396,7 +396,7 @@ parameter was omitted.
 
 ### GreaterThanZero Benchmarks
 
-| Method     --------     | Value Type  | Message Template | Exception Factory |      Mean |     Error |    StdDev | Allocated |
+| Method                  | Value Type  | Message Template | Exception Factory |      Mean |     Error |    StdDev | Allocated |
 |:----------------------- |:------------|:----------------:|:-----------------:|----------:|----------:|----------:|----------:|
 | RequiresGreaterThanZero | Double      |                  |                   | 0.6312 ns | 0.0198 ns | 0.0185 ns |         - |
 | RequiresGreaterThanZero | Double      | X                |                   | 0.9438 ns | 0.0115 ns | 0.0102 ns |         - |
