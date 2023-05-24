@@ -129,6 +129,9 @@
   <data name="GreaterThanOrEqualTemplate" xml:space="preserve">
     <value>{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than or equal to {LowerBound}</value>
   </data>
+  <data name="GreaterThanOrEqualToZeroTemplate" xml:space="preserve">
+    <value>{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than or equal to zero</value>
+  </data>
   <data name="GreaterThanTemplate" xml:space="preserve">
     <value>{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than {LowerBound}</value>
   </data>
