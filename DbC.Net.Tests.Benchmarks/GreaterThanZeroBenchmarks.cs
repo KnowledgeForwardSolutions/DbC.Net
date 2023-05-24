@@ -3,8 +3,8 @@
 [MemoryDiagnoser]
 public class GreaterThanZeroBenchmarks
 {
+   private const Int32 _intValue = 42;
    private const Double _doubleValue = Double.Pi;
-
    private const Decimal _decimalValue = Decimal.MaxValue;
 
    private const String _messageTemplate = "Requires{RequirementName} failed: {Value} must be greater than zero";
@@ -13,7 +13,31 @@ public class GreaterThanZeroBenchmarks
    [Benchmark]
    public void ThrowAway()
    {
-      var result = _doubleValue.RequiresGreaterThanZero();
+      var result = _intValue.RequiresGreaterThanZero();
+   }
+
+   [Benchmark]
+   public void RequiresGreaterThanZero_Int32_P000()
+   {
+      var result = _intValue.RequiresGreaterThanZero();
+   }
+
+   [Benchmark]
+   public void RequiresGreaterThanZero_Int32_P100()
+   {
+      var result = _intValue.RequiresGreaterThanZero(_messageTemplate);
+   }
+
+   [Benchmark]
+   public void RequiresGreaterThanZero_Int32_P010()
+   {
+      var result = _intValue.RequiresGreaterThanZero(exceptionFactory: _exceptionFactory);
+   }
+
+   [Benchmark]
+   public void RequiresGreaterThanZero_Int32_P110()
+   {
+      var result = _intValue.RequiresGreaterThanZero(_messageTemplate, _exceptionFactory);
    }
 
    [Benchmark]

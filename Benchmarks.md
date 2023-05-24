@@ -398,6 +398,10 @@ parameter was omitted.
 
 | Method                  | Value Type  | Message Template | Exception Factory |      Mean |     Error |    StdDev | Allocated |
 |:----------------------- |:------------|:----------------:|:-----------------:|----------:|----------:|----------:|----------:|
+| RequiresGreaterThanZero | Int32       |                  |                   | 0.2333 ns | 0.0194 ns | 0.0181 ns |         - |
+| RequiresGreaterThanZero | Int32       | X                |                   | 0.4801 ns | 0.0157 ns | 0.0140 ns |         - |
+| RequiresGreaterThanZero | Int32       |                  | X                 | 2.1925 ns | 0.0659 ns | 0.0617 ns |         - |
+| RequiresGreaterThanZero | Int32       | X                | X                 | 1.7096 ns | 0.0329 ns | 0.0308 ns |         - |
 | RequiresGreaterThanZero | Double      |                  |                   | 0.6312 ns | 0.0198 ns | 0.0185 ns |         - |
 | RequiresGreaterThanZero | Double      | X                |                   | 0.9438 ns | 0.0115 ns | 0.0102 ns |         - |
 | RequiresGreaterThanZero | Double      |                  | X                 | 2.0147 ns | 0.0189 ns | 0.0177 ns |         - |
@@ -407,3 +411,19 @@ parameter was omitted.
 | RequiresGreaterThanZero | Decimal     |                  | X                 | 3.9250 ns | 0.0179 ns | 0.0158 ns |         - |
 | RequiresGreaterThanZero | Decimal     | X                | X                 | 3.9672 ns | 0.0404 ns | 0.0359 ns |         - |
 
+### GreaterThanOrEqualToZero Benchmarks
+
+| Method                           | Value Type  | Message Template | Exception Factory |      Mean |     Error |    StdDev | Allocated |
+|:-------------------------------- |:------------|:----------------:|:-----------------:|----------:|----------:|----------:|----------:|
+| RequiresGreaterThanOrEqualToZero | Int32       |                  |                   | 0.2676 ns | 0.0204 ns | 0.0191 ns |         - |
+| RequiresGreaterThanOrEqualToZero | Int32       | X                |                   | 0.5805 ns | 0.0294 ns | 0.0275 ns |         - |
+| RequiresGreaterThanOrEqualToZero | Int32       |                  | X                 | 2.3188 ns | 0.0755 ns | 0.0706 ns |         - |
+| RequiresGreaterThanOrEqualToZero | Int32       | X                | X                 | 1.8308 ns | 0.0334 ns | 0.0312 ns |         - |
+| RequiresGreaterThanOrEqualToZero | Double      |                  |                   | 0.6458 ns | 0.0175 ns | 0.0156 ns |         - |
+| RequiresGreaterThanOrEqualToZero | Double      | X                |                   | 0.6677 ns | 0.0153 ns | 0.0143 ns |         - |
+| RequiresGreaterThanOrEqualToZero | Double      |                  | X                 | 1.9825 ns | 0.0244 ns | 0.0216 ns |         - |
+| RequiresGreaterThanOrEqualToZero | Double      | X                | X                 | 2.0095 ns | 0.0128 ns | 0.0107 ns |         - |
+| RequiresGreaterThanOrEqualToZero | Decimal     |                  |                   | 2.3769 ns | 0.0642 ns | 0.0600 ns |         - |
+| RequiresGreaterThanOrEqualToZero | Decimal     | X                |                   | 2.2519 ns | 0.0247 ns | 0.0219 ns |         - |
+| RequiresGreaterThanOrEqualToZero | Decimal     |                  | X                 | 4.1155 ns | 0.0505 ns | 0.0472 ns |         - |
+| RequiresGreaterThanOrEqualToZero | Decimal     | X                | X                 | 3.9699 ns | 0.0422 ns | 0.0374 ns |         - |
