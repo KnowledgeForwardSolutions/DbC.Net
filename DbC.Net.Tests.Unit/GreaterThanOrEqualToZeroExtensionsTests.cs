@@ -14,7 +14,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
    [Theory]
    [ClassData(typeof(SignedNumberTypesTestData))]
    public void GreaterThanOrEqualToZeroExtensions_EnsuresGreaterThanOrEqualToZero_ShouldNotThrow_WhenValueIsGreaterThanOrEqualToZero<T>(
-      IComparableTestData<T> data) where T : INumber<T>
+      IComparableTestData<T> data) where T : ISignedNumber<T>, IComparable<T>
    {
       // Arrange.
       var value = data.MaxValue;
@@ -27,7 +27,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
    [Theory]
    [ClassData(typeof(SignedNumberTypesTestData))]
    public void GreaterThanOrEqualToZeroExtensions_EnsuresGreaterThanOrEqualToZero_ShouldNotThrow_WhenValueIsZero<T>(
-      IComparableTestData<T> data) where T : INumber<T>
+      IComparableTestData<T> data) where T : ISignedNumber<T>, IComparable<T>
    {
       // Arrange.
       var value = T.Zero;
@@ -40,7 +40,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
    [Theory]
    [ClassData(typeof(SignedNumberTypesTestData))]
    public void GreaterThanOrEqualToZeroExtensions_EnsuresGreaterThanOrEqualToZero_ShouldThrow_WhenValueIsLessThanZero<T>(
-      IComparableTestData<T> data) where T : INumber<T>
+      IComparableTestData<T> data) where T : ISignedNumber<T>, IComparable<T>
    {
       // Arrange.
       var value = data.MinValue;
@@ -53,7 +53,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
    [Theory]
    [ClassData(typeof(SignedNumberTypesTestData))]
    public void GreaterThanOrEqualToZeroExtensions_EnsuresGreaterThanOrEqualToZero_ShouldReturnOriginalValue_WhenValueIsGreaterThanOrEqualToZero<T>(
-      IComparableTestData<T> data) where T : INumber<T>
+      IComparableTestData<T> data) where T : ISignedNumber<T>, IComparable<T>
    {
       // Arrange.
       var value = data.MaxValue;
@@ -68,7 +68,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
    [Theory]
    [ClassData(typeof(SignedNumberTypesTestData))]
    public void GreaterThanOrEqualToZeroExtensions_EnsuresGreaterThanOrEqualToZero_ShouldReturnOriginalValue_WhenValueIsZero<T>(
-      IComparableTestData<T> data) where T : INumber<T>
+      IComparableTestData<T> data) where T : ISignedNumber<T>, IComparable<T>
    {
       // Arrange.
       var value = T.Zero;
@@ -160,7 +160,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
    [Theory]
    [ClassData(typeof(SignedNumberTypesTestData))]
    public void GreaterThanOrEqualToZeroExtensions_RequiresGreaterThanOrEqualToZero_ShouldNotThrow_WhenValueIsGreaterThanOrEqualToZero<T>(
-      IComparableTestData<T> data) where T : INumber<T>
+      IComparableTestData<T> data) where T : ISignedNumber<T>, IComparable<T>
    {
       // Arrange.
       var value = data.MaxValue;
@@ -173,7 +173,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
    [Theory]
    [ClassData(typeof(SignedNumberTypesTestData))]
    public void GreaterThanOrEqualToZeroExtensions_RequiresGreaterThanOrEqualToZero_ShouldNotThrow_WhenValueIsZero<T>(
-      IComparableTestData<T> data) where T : INumber<T>
+      IComparableTestData<T> data) where T : ISignedNumber<T>, IComparable<T>
    {
       // Arrange.
       var value = T.Zero;
@@ -186,7 +186,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
    [Theory]
    [ClassData(typeof(SignedNumberTypesTestData))]
    public void GreaterThanOrEqualToZeroExtensions_RequiresGreaterThanOrEqualToZero_ShouldThrow_WhenValueIsLessThanZero<T>(
-      IComparableTestData<T> data) where T : INumber<T>
+      IComparableTestData<T> data) where T : ISignedNumber<T>, IComparable<T>
    {
       // Arrange.
       var value = data.MinValue;
@@ -199,7 +199,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
    [Theory]
    [ClassData(typeof(SignedNumberTypesTestData))]
    public void GreaterThanOrEqualToZeroExtensions_RequiresGreaterThanOrEqualToZero_ShouldReturnOriginalValue_WhenValueIsGreaterThanOrEqualToZero<T>(
-      IComparableTestData<T> data) where T : INumber<T>
+      IComparableTestData<T> data) where T : ISignedNumber<T>, IComparable<T>
    {
       // Arrange.
       var value = data.MaxValue;
@@ -214,7 +214,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
    [Theory]
    [ClassData(typeof(SignedNumberTypesTestData))]
    public void GreaterThanOrEqualToZeroExtensions_RequiresGreaterThanOrEqualToZero_ShouldReturnOriginalValue_WhenValueIsZero<T>(
-      IComparableTestData<T> data) where T : INumber<T>
+      IComparableTestData<T> data) where T : ISignedNumber<T>, IComparable<T>
    {
       // Arrange.
       var value = T.Zero;

@@ -1,6 +1,8 @@
 ### LessThanZero
 
-LessThanZero requires that the numeric value being checked be less than zero.
+LessThanZero requires that the numeric value being checked be less than zero. 
+LessThanZero is only implemented for signed numeric types because unsigned 
+numeric types would always fail the requirement.
 
 **Method signatures:**
 ```C#

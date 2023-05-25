@@ -97,7 +97,7 @@ public static class GreaterThanZeroExtensions
       IExceptionFactory? exceptionFactory,
       String valueExpression) where T : INumber<T>
    {
-      if (value!.CompareTo(T.Zero) <= 0)
+      if (value.CompareTo(T.Zero) <= 0)
       {
          messageTemplate ??= MessageTemplates.GreaterThanZeroTemplate;
          exceptionFactory ??= StandardExceptionFactories.ResolveArgumentOutOfRangeFactory(requirementType);

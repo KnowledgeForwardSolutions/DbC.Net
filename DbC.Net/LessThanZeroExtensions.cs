@@ -1,23 +1,23 @@
 ﻿namespace DbC.Net;
 
 /// <summary>
-///   Extension methods that implement GreaterThanOrEqualToZero requirement for
-///   signed numeric types.
+///   Extension methods that implement LessThanZero requirement for signed 
+///   numeric types.
 /// </summary>
-public static class GreaterThanOrEqualToZeroExtensions
+public static class LessThanZeroExtensions
 {
-   private const String _requirementName = RequirementNames.GreaterThanOrEqualToZero;
+   private const String _requirementName = RequirementNames.LessThanZero;
 
    /// <summary>
-   ///   Value GreaterThanOrEqualToZero postcondition. Confirm that <paramref name="value"/>
-   ///   is greater than or equal to zero and throw an exception if it is not.
+   ///   Value LessThanZero postcondition. Confirm that <paramref name="value"/>
+   ///   is less than zero and throw an exception if it is not.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than or equal to zero".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be less than zero".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
@@ -33,13 +33,13 @@ public static class GreaterThanOrEqualToZeroExtensions
    ///   The tested <paramref name="value"/> is returned unaltered to support 
    ///   chaining requirements.
    /// </returns>
-   public static T EnsuresGreaterThanOrEqualToZero<T>(
+   public static T EnsuresLessThanZero<T>(
       this T value,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
       [CallerArgumentExpression(nameof(value))] String valueExpression = null!) where T : ISignedNumber<T>, IComparable<T>
    {
-      CheckGreaterThanOrEqualToZero(
+      CheckLessThanZero(
          value,
          RequirementType.Postcondition,
          messageTemplate,
@@ -50,15 +50,15 @@ public static class GreaterThanOrEqualToZeroExtensions
    }
 
    /// <summary>
-   ///   Value GreaterThanOrEqualToZero precondition. Confirm that <paramref name="value"/>
-   ///   is greater than or equal to zero and throw an exception if it is not.
+   ///   Value LessThanZero precondition. Confirm that <paramref name="value"/>
+   ///   is less than zero and throw an exception if it is not.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than or equal to zero".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} must be less than zero".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
@@ -74,13 +74,13 @@ public static class GreaterThanOrEqualToZeroExtensions
    ///   The tested <paramref name="value"/> is returned unaltered to support 
    ///   chaining requirements.
    /// </returns>
-   public static T RequiresGreaterThanOrEqualToZero<T>(
+   public static T RequiresLessThanZero<T>(
       this T value,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
       [CallerArgumentExpression(nameof(value))] String valueExpression = null!) where T : ISignedNumber<T>, IComparable<T>
    {
-      CheckGreaterThanOrEqualToZero(
+      CheckLessThanZero(
          value,
          RequirementType.Precondition,
          messageTemplate,
@@ -90,16 +90,16 @@ public static class GreaterThanOrEqualToZeroExtensions
       return value;
    }
 
-   private static void CheckGreaterThanOrEqualToZero<T>(
+   private static void CheckLessThanZero<T>(
       T value,
       RequirementType requirementType,
       String? messageTemplate,
       IExceptionFactory? exceptionFactory,
-      String valueExpression) where T : ISignedNumber<T>, IComparable<T>
+      String valueExpression) where T : ISignedNumber<T>, IComparable<T> 
    {
-      if (value.CompareTo(T.Zero) < 0)
+      if (value.CompareTo(T.Zero) >= 0)
       {
-         messageTemplate ??= MessageTemplates.GreaterThanOrEqualToZeroTemplate;
+         messageTemplate ??= MessageTemplates.LessThanZeroTemplate;
          exceptionFactory ??= StandardExceptionFactories.ResolveArgumentOutOfRangeFactory(requirementType);
          var data = ExceptionDataBuilder.Create()
             .WithRequirement(requirementType, _requirementName)
