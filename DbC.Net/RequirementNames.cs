@@ -14,6 +14,7 @@ public static class RequirementNames
    public const String GreaterThanZero = nameof(GreaterThanZero);
    public const String LessThan = nameof(LessThan);
    public const String LessThanOrEqual = nameof(LessThanOrEqual);
+   public const String LessThanZero = nameof(LessThanZero);
    public const String NotDefault = nameof(NotDefault);
    public const String NotEqual = nameof(NotEqual);
    public const String NotNull = nameof(NotNull);

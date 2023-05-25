@@ -142,6 +142,15 @@ namespace DbC.Net {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} must be less than zero.
+        /// </summary>
+        internal static string LessThanZeroTemplate {
+            get {
+                return ResourceManager.GetString("LessThanZeroTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} may not be default({ValueDatatype}).
         /// </summary>
         internal static string NotDefaultTemplate {

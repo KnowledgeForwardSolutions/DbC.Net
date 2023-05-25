@@ -49,6 +49,7 @@
     - [GreaterThanOrEqualToZero](/Documentation/GreaterThanOrEqualToZero.md)
     - [LessThan](/Documentation/LessThan.md)
     - [LessThanOrEqual](/Documentation/LessThanOrEqual.md)
+    - [LessThanZero](/Documentation/LessThanZero.md)
     - [Between](/Documentation/Between.md)
 
 - **[Release History/Release Notes](#release-historyrelease-notes)**
