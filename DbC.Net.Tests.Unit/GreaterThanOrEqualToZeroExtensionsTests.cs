@@ -12,7 +12,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
    // ==========================================================================
 
    [Theory]
-   [ClassData(typeof(SignedNumberTypesTestData))]
+   [ClassData(typeof(NumberTypesTestData))]
    public void GreaterThanOrEqualToZeroExtensions_EnsuresGreaterThanOrEqualToZero_ShouldNotThrow_WhenValueIsGreaterThanOrEqualToZero<T>(
       IComparableTestData<T> data) where T : INumber<T>
    {
@@ -25,7 +25,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
    }
 
    [Theory]
-   [ClassData(typeof(SignedNumberTypesTestData))]
+   [ClassData(typeof(NumberTypesTestData))]
    public void GreaterThanOrEqualToZeroExtensions_EnsuresGreaterThanOrEqualToZero_ShouldNotThrow_WhenValueIsZero<T>(
       IComparableTestData<T> data) where T : INumber<T>
    {
@@ -51,7 +51,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
    }
 
    [Theory]
-   [ClassData(typeof(SignedNumberTypesTestData))]
+   [ClassData(typeof(NumberTypesTestData))]
    public void GreaterThanOrEqualToZeroExtensions_EnsuresGreaterThanOrEqualToZero_ShouldReturnOriginalValue_WhenValueIsGreaterThanOrEqualToZero<T>(
       IComparableTestData<T> data) where T : INumber<T>
    {
@@ -66,7 +66,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
    }
 
    [Theory]
-   [ClassData(typeof(SignedNumberTypesTestData))]
+   [ClassData(typeof(NumberTypesTestData))]
    public void GreaterThanOrEqualToZeroExtensions_EnsuresGreaterThanOrEqualToZero_ShouldReturnOriginalValue_WhenValueIsZero<T>(
       IComparableTestData<T> data) where T : INumber<T>
    {
@@ -158,7 +158,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
    // ==========================================================================
 
    [Theory]
-   [ClassData(typeof(SignedNumberTypesTestData))]
+   [ClassData(typeof(NumberTypesTestData))]
    public void GreaterThanOrEqualToZeroExtensions_RequiresGreaterThanOrEqualToZero_ShouldNotThrow_WhenValueIsGreaterThanOrEqualToZero<T>(
       IComparableTestData<T> data) where T : INumber<T>
    {
@@ -171,7 +171,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
    }
 
    [Theory]
-   [ClassData(typeof(SignedNumberTypesTestData))]
+   [ClassData(typeof(NumberTypesTestData))]
    public void GreaterThanOrEqualToZeroExtensions_RequiresGreaterThanOrEqualToZero_ShouldNotThrow_WhenValueIsZero<T>(
       IComparableTestData<T> data) where T : INumber<T>
    {
@@ -197,7 +197,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
    }
 
    [Theory]
-   [ClassData(typeof(SignedNumberTypesTestData))]
+   [ClassData(typeof(NumberTypesTestData))]
    public void GreaterThanOrEqualToZeroExtensions_RequiresGreaterThanOrEqualToZero_ShouldReturnOriginalValue_WhenValueIsGreaterThanOrEqualToZero<T>(
       IComparableTestData<T> data) where T : INumber<T>
    {
@@ -212,7 +212,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
    }
 
    [Theory]
-   [ClassData(typeof(SignedNumberTypesTestData))]
+   [ClassData(typeof(NumberTypesTestData))]
    public void GreaterThanOrEqualToZeroExtensions_RequiresGreaterThanOrEqualToZero_ShouldReturnOriginalValue_WhenValueIsZero<T>(
       IComparableTestData<T> data) where T : INumber<T>
    {

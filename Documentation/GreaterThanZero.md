@@ -1,6 +1,6 @@
 ### GreaterThanZero
 
-GreaterThanZero requires that the numeric value being checked be greater than 
+GreaterThanZero requires that the INumber<T> value being checked be greater than 
 zero.
 
 **Method signatures:**

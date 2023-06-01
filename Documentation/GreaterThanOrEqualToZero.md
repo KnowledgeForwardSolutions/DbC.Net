@@ -1,14 +1,15 @@
 ### GreaterThanOrEqualToZero
 
-GreaterThanOrEqualToZero requires that the signed numeric value being checked be 
-greater than or equal to zero. GreaterThanOrEqualToZero is only implemented for
-signed numeric types because unsigned numeric types would always pass the requirement.
+GreaterThanOrEqualToZero requires that the INumber<T> value being checked be 
+greater than or equal to zero.
+
+NOTE: Unsigned numeric types will always pass GreaterThanOrEqualToZero.
 
 **Method signatures:**
 ```C#
-T RequiresGreaterThanOrEqualToZero<T>(this T value, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null]) where T : ISignedNumber<T>
+T RequiresGreaterThanOrEqualToZero<T>(this T value, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null]) where T : INumber<T>
 
-T EnsuresGreaterThanOrEqualToZero<T>(this T value, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null]) where T : ISignedNumber<T>
+T EnsuresGreaterThanOrEqualToZero<T>(this T value, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null]) where T : INumber<T>
 ```
 
 The default message template for GreaterThanOrEqualToZero is "{RequirementType} {RequirementName} failed: {ValueExpression} must be greater than or equal to zero".

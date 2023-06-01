@@ -25,6 +25,8 @@ Intel Core i7-8700K CPU 3.70GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical 
   - [LessThanOrEqual Benchmarks](#lessthanorequal-benchmarks)
   - [Between Benchmarks](#between-benchmarks)
   - [GreaterThanZero Benchmarks](#greaterthanzero-benchmarks)
+  - [GreaterThanOrEqualToZero Benchmarks](#greaterthanorequaltozero-benchmarks)
+  - [LessThanZero Benchmarks](#lessthanzero-benchmarks)
 
 ### NotNull Benchmarks
 
@@ -427,3 +429,21 @@ parameter was omitted.
 | RequiresGreaterThanOrEqualToZero | Decimal     | X                |                   | 2.2519 ns | 0.0247 ns | 0.0219 ns |         - |
 | RequiresGreaterThanOrEqualToZero | Decimal     |                  | X                 | 4.1155 ns | 0.0505 ns | 0.0472 ns |         - |
 | RequiresGreaterThanOrEqualToZero | Decimal     | X                | X                 | 3.9699 ns | 0.0422 ns | 0.0374 ns |         - |
+
+### LessThanZero Benchmarks
+
+| Method           | Value Type  | Message Template | Exception Factory |      Mean |     Error |    StdDev | Allocated |
+|:---------------- |:------------|:----------------:|:-----------------:|----------:|----------:|----------:|----------:|
+| RequiresThanZero | Int32       |                  |                   | 0.2510 ns | 0.0234 ns | 0.0208 ns |         - |
+| RequiresThanZero | Int32       | X                |                   | 0.4442 ns | 0.0105 ns | 0.0082 ns |         - |
+| RequiresThanZero | Int32       |                  | X                 | 2.1038 ns | 0.0333 ns | 0.0311 ns |         - |
+| RequiresThanZero | Int32       | X                | X                 | 1.6793 ns | 0.0328 ns | 0.0291 ns |         - |
+| RequiresThanZero | Double      |                  |                   | 0.9623 ns | 0.0478 ns | 0.0491 ns |         - |
+| RequiresThanZero | Double      | X                |                   | 0.6556 ns | 0.0275 ns | 0.0258 ns |         - |
+| RequiresThanZero | Double      |                  | X                 | 1.8240 ns | 0.0408 ns | 0.0382 ns |         - |
+| RequiresThanZero | Double      | X                | X                 | 2.2645 ns | 0.0341 ns | 0.0319 ns |         - |
+| RequiresThanZero | Decimal     |                  |                   | 2.3017 ns | 0.0361 ns | 0.0320 ns |         - |
+| RequiresThanZero | Decimal     | X                |                   | 2.2129 ns | 0.0400 ns | 0.0374 ns |         - |
+| RequiresThanZero | Decimal     |                  | X                 | 4.3049 ns | 0.0358 ns | 0.0335 ns |         - |
+| RequiresThanZero | Decimal     | X                | X                 | 4.1347 ns | 0.0837 ns | 0.0783 ns |         - |
+
