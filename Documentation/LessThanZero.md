@@ -24,7 +24,7 @@ RequirementName, Value, and ValueExpression.
 var customMessageTemplate = "{ValueExpression} must be less than zero";
 var customExceptionFactory = new CustomExceptionFactory();
 
-var value = Double.Pi;
+var value = Double.MinValue;
 
 // Precondition with default message template and default exception factory.
 value.RequiresLessThanZero();
@@ -40,14 +40,14 @@ value.RequiresLessThanZero(customMessageTemplate, customExceptionFactory);
 
 
 // Postcondition with default message template and default exception factory.
-value.EnsuresLessThanZero();
+value.RequiresLessThanZero();
 
 // Postcondition with custom message template and default exception factory.
-value.EnsuresLessThanZero(customMessageTemplate);
+value.RequiresLessThanZero(customMessageTemplate);
 
 // Postcondition with default message template and custom exception factory.
-value.EnsuresLessThanZero(exceptionFactory: customExceptionFactory);
+value.RequiresLessThanZero(exceptionFactory: customExceptionFactory);
 
 // Postcondition with custom message template and custom exception factory.
-value.EnsuresLessThanZero(customMessageTemplate, customExceptionFactory);
+value.RequiresLessThanZero(customMessageTemplate, customExceptionFactory);
 ```
