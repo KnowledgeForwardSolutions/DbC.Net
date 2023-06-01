@@ -2,7 +2,7 @@
 
 /// <summary>
 ///   Extension methods that implement GreaterThanOrEqualToZero requirement for
-///   signed numeric types.
+///   numeric types.
 /// </summary>
 public static class GreaterThanOrEqualToZeroExtensions
 {
@@ -12,6 +12,10 @@ public static class GreaterThanOrEqualToZeroExtensions
    ///   Value GreaterThanOrEqualToZero postcondition. Confirm that <paramref name="value"/>
    ///   is greater than or equal to zero and throw an exception if it is not.
    /// </summary>
+   /// <remarks>
+   ///   GreaterThanOrEqualToZero requirements will always pass for unsigned 
+   ///   numeric types.
+   /// </remarks>
    /// <param name="value">
    ///   The value to check.
    /// </param>
@@ -37,7 +41,7 @@ public static class GreaterThanOrEqualToZeroExtensions
       this T value,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
-      [CallerArgumentExpression(nameof(value))] String valueExpression = null!) where T : ISignedNumber<T>, IComparable<T>
+      [CallerArgumentExpression(nameof(value))] String valueExpression = null!) where T : INumber<T>
    {
       CheckGreaterThanOrEqualToZero(
          value,
@@ -53,6 +57,10 @@ public static class GreaterThanOrEqualToZeroExtensions
    ///   Value GreaterThanOrEqualToZero precondition. Confirm that <paramref name="value"/>
    ///   is greater than or equal to zero and throw an exception if it is not.
    /// </summary>
+   /// <remarks>
+   ///   GreaterThanOrEqualToZero requirements will always pass for unsigned 
+   ///   numeric types.
+   /// </remarks>
    /// <param name="value">
    ///   The value to check.
    /// </param>
@@ -78,7 +86,7 @@ public static class GreaterThanOrEqualToZeroExtensions
       this T value,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
-      [CallerArgumentExpression(nameof(value))] String valueExpression = null!) where T : ISignedNumber<T>, IComparable<T>
+      [CallerArgumentExpression(nameof(value))] String valueExpression = null!) where T : INumber<T>
    {
       CheckGreaterThanOrEqualToZero(
          value,
@@ -95,7 +103,7 @@ public static class GreaterThanOrEqualToZeroExtensions
       RequirementType requirementType,
       String? messageTemplate,
       IExceptionFactory? exceptionFactory,
-      String valueExpression) where T : ISignedNumber<T>, IComparable<T>
+      String valueExpression) where T : INumber<T>
    {
       if (value.CompareTo(T.Zero) < 0)
       {

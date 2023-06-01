@@ -1,8 +1,8 @@
 ﻿namespace DbC.Net;
 
 /// <summary>
-///   Extension methods that implement LessThanZero requirement for signed 
-///   numeric types.
+///   Extension methods that implement LessThanZero requirement for numeric 
+///   types.
 /// </summary>
 public static class LessThanZeroExtensions
 {
@@ -12,6 +12,9 @@ public static class LessThanZeroExtensions
    ///   Value LessThanZero postcondition. Confirm that <paramref name="value"/>
    ///   is less than zero and throw an exception if it is not.
    /// </summary>
+   /// <remarks>
+   ///   LessThanZero requirements will always fail for unsigned numeric types.
+   /// </remarks>
    /// <param name="value">
    ///   The value to check.
    /// </param>
@@ -37,7 +40,7 @@ public static class LessThanZeroExtensions
       this T value,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
-      [CallerArgumentExpression(nameof(value))] String valueExpression = null!) where T : ISignedNumber<T>, IComparable<T>
+      [CallerArgumentExpression(nameof(value))] String valueExpression = null!) where T : INumber<T>
    {
       CheckLessThanZero(
          value,
@@ -53,6 +56,9 @@ public static class LessThanZeroExtensions
    ///   Value LessThanZero precondition. Confirm that <paramref name="value"/>
    ///   is less than zero and throw an exception if it is not.
    /// </summary>
+   /// <remarks>
+   ///   LessThanZero requirements will always fail for unsigned numeric types.
+   /// </remarks>
    /// <param name="value">
    ///   The value to check.
    /// </param>
@@ -78,7 +84,7 @@ public static class LessThanZeroExtensions
       this T value,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
-      [CallerArgumentExpression(nameof(value))] String valueExpression = null!) where T : ISignedNumber<T>, IComparable<T>
+      [CallerArgumentExpression(nameof(value))] String valueExpression = null!) where T : INumber<T>
    {
       CheckLessThanZero(
          value,
@@ -95,7 +101,7 @@ public static class LessThanZeroExtensions
       RequirementType requirementType,
       String? messageTemplate,
       IExceptionFactory? exceptionFactory,
-      String valueExpression) where T : ISignedNumber<T>, IComparable<T> 
+      String valueExpression) where T : INumber<T>
    {
       if (value.CompareTo(T.Zero) >= 0)
       {

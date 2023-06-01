@@ -14,7 +14,7 @@ public class LessThanZeroExtensionsTests
    [Theory]
    [ClassData(typeof(SignedNumberTypesTestData))]
    public void LessThanZeroExtensions_EnsuresLessThanZero_ShouldNotThrow_WhenValueIsLessThanZero<T>(
-      IComparableTestData<T> data) where T : ISignedNumber<T>, IComparable<T>
+      IComparableTestData<T> data) where T : INumber<T>
    {
       // Arrange.
       var value = data.MinValue;
@@ -25,9 +25,9 @@ public class LessThanZeroExtensionsTests
    }
 
    [Theory]
-   [ClassData(typeof(SignedNumberTypesTestData))]
+   [ClassData(typeof(NumberTypesTestData))]
    public void LessThanZeroExtensions_EnsuresLessThanZero_ShouldThrow_WhenValueIsZero<T>(
-      IComparableTestData<T> data) where T : ISignedNumber<T>, IComparable<T>
+      IComparableTestData<T> data) where T : INumber<T>
    {
       // Arrange.
       var value = T.Zero;
@@ -38,9 +38,9 @@ public class LessThanZeroExtensionsTests
    }
 
    [Theory]
-   [ClassData(typeof(SignedNumberTypesTestData))]
+   [ClassData(typeof(NumberTypesTestData))]
    public void LessThanZeroExtensions_EnsuresLessThanZero_ShouldThrow_WhenValueIsGreaterThanZero<T>(
-      IComparableTestData<T> data) where T : ISignedNumber<T>, IComparable<T>
+      IComparableTestData<T> data) where T : INumber<T>
    {
       // Arrange.
       var value = data.MaxValue;
@@ -53,7 +53,7 @@ public class LessThanZeroExtensionsTests
    [Theory]
    [ClassData(typeof(SignedNumberTypesTestData))]
    public void LessThanZeroExtensions_EnsuresLessThanZero_ShouldReturnOriginalValue_WhenValueIsLessThanZero<T>(
-      IComparableTestData<T> data) where T : ISignedNumber<T>, IComparable<T>
+      IComparableTestData<T> data) where T : INumber<T>
    {
       // Arrange.
       var value = data.MinValue;
@@ -145,7 +145,7 @@ public class LessThanZeroExtensionsTests
    [Theory]
    [ClassData(typeof(SignedNumberTypesTestData))]
    public void LessThanZeroExtensions_RequiresLessThanZero_ShouldNotThrow_WhenValueIsLessThanZero<T>(
-      IComparableTestData<T> data) where T : ISignedNumber<T>, IComparable<T>
+      IComparableTestData<T> data) where T : INumber<T>
    {
       // Arrange.
       var value = data.MinValue;
@@ -156,9 +156,9 @@ public class LessThanZeroExtensionsTests
    }
 
    [Theory]
-   [ClassData(typeof(SignedNumberTypesTestData))]
+   [ClassData(typeof(NumberTypesTestData))]
    public void LessThanZeroExtensions_RequiresLessThanZero_ShouldThrow_WhenValueIsZero<T>(
-      IComparableTestData<T> data) where T : ISignedNumber<T>, IComparable<T>
+      IComparableTestData<T> data) where T : INumber<T>
    {
       // Arrange.
       var value = T.Zero;
@@ -169,9 +169,9 @@ public class LessThanZeroExtensionsTests
    }
 
    [Theory]
-   [ClassData(typeof(SignedNumberTypesTestData))]
+   [ClassData(typeof(NumberTypesTestData))]
    public void LessThanZeroExtensions_RequiresLessThanZero_ShouldThrow_WhenValueIsGreaterThanZero<T>(
-      IComparableTestData<T> data) where T : ISignedNumber<T>, IComparable<T>
+      IComparableTestData<T> data) where T : INumber<T>
    {
       // Arrange.
       var value = data.MaxValue;
@@ -184,7 +184,7 @@ public class LessThanZeroExtensionsTests
    [Theory]
    [ClassData(typeof(SignedNumberTypesTestData))]
    public void LessThanZeroExtensions_RequiresLessThanZero_ShouldReturnOriginalValue_WhenValueIsLessThanZero<T>(
-      IComparableTestData<T> data) where T : ISignedNumber<T>, IComparable<T>
+      IComparableTestData<T> data) where T : INumber<T>
    {
       // Arrange.
       var value = data.MinValue;
