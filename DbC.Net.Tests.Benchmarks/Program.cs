@@ -8,5 +8,6 @@
 //BenchmarkRunner.Run<LessThanBenchmarks>();
 //BenchmarkRunner.Run<LessThanOrEqualBenchmarks>();
 //BenchmarkRunner.Run<BetweenBenchmarks>();
-BenchmarkRunner.Run<GreaterThanZeroBenchmarks>();
-BenchmarkRunner.Run<GreaterThanOrEqualToZeroBenchmarks>();
+//BenchmarkRunner.Run<GreaterThanZeroBenchmarks>();
+//BenchmarkRunner.Run<GreaterThanOrEqualToZeroBenchmarks>();
+BenchmarkRunner.Run<LessThanZeroBenchmarks>();
