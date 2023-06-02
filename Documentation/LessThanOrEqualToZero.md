@@ -3,8 +3,6 @@
 LessThanOrEqualToZero requires that the INumber<T> value being checked be less 
 than or equal to zero.
 
-NOTE: Unsigned numeric types will always fail LessThanOrEqualToZero.
-
 **Method signatures:**
 ```C#
 T RequiresLessThanOrEqualToZero<T>(this T value, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null]) where T : INumber<T>
