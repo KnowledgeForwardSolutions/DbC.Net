@@ -53,6 +53,10 @@
     - [LessThanZero](/Documentation/LessThanZero.md)
     - [Between](/Documentation/Between.md)
 
+  - String Requirements
+
+    - [MaxLength](/Documentation/MaxLength.md)
+
 - **[Release History/Release Notes](#release-historyrelease-notes)**
 
 	- Not currently released
