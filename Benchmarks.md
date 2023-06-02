@@ -27,6 +27,7 @@ Intel Core i7-8700K CPU 3.70GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical 
   - [GreaterThanZero Benchmarks](#greaterthanzero-benchmarks)
   - [GreaterThanOrEqualToZero Benchmarks](#greaterthanorequaltozero-benchmarks)
   - [LessThanZero Benchmarks](#lessthanzero-benchmarks)
+  - [LessThanOrEqualToZero Benchmarks](#lessthanorequaltozero-benchmarks)
 
 ### NotNull Benchmarks
 
@@ -447,3 +448,19 @@ parameter was omitted.
 | RequiresThanZero | Decimal     |                  | X                 | 4.3049 ns | 0.0358 ns | 0.0335 ns |         - |
 | RequiresThanZero | Decimal     | X                | X                 | 4.1347 ns | 0.0837 ns | 0.0783 ns |         - |
 
+### LessThanOrEqualToZero Benchmarks
+
+| Method                        | Value Type  | Message Template | Exception Factory |      Mean |     Error |    StdDev | Allocated |
+|:----------------------------- |:------------|:----------------:|:-----------------:|----------:|----------:|----------:|----------:|
+| RequiresLessThanOrEqualToZero | Int32       |                  |                   | 0.2472 ns | 0.0207 ns | 0.0194 ns |         - |
+| RequiresLessThanOrEqualToZero | Int32       | X                |                   | 0.4837 ns | 0.0373 ns | 0.0349 ns |         - |
+| RequiresLessThanOrEqualToZero | Int32       |                  | X                 | 2.2319 ns | 0.0515 ns | 0.0430 ns |         - |
+| RequiresLessThanOrEqualToZero | Int32       | X                | X                 | 1.7007 ns | 0.0369 ns | 0.0328 ns |         - |
+| RequiresLessThanOrEqualToZero | Double      |                  |                   | 0.9152 ns | 0.0125 ns | 0.0117 ns |         - |
+| RequiresLessThanOrEqualToZero | Double      | X                |                   | 0.6585 ns | 0.0186 ns | 0.0174 ns |         - |
+| RequiresLessThanOrEqualToZero | Double      |                  | X                 | 1.8286 ns | 0.0418 ns | 0.0371 ns |         - |
+| RequiresLessThanOrEqualToZero | Double      | X                | X                 | 2.3557 ns | 0.0764 ns | 0.1070 ns |         - |
+| RequiresLessThanOrEqualToZero | Decimal     |                  |                   | 2.5296 ns | 0.0844 ns | 0.2407 ns |         - |
+| RequiresLessThanOrEqualToZero | Decimal     | X                |                   | 2.5169 ns | 0.0819 ns | 0.1434 ns |         - |
+| RequiresLessThanOrEqualToZero | Decimal     |                  | X                 | 4.6693 ns | 0.1231 ns | 0.2569 ns |         - |
+| RequiresLessThanOrEqualToZero | Decimal     | X                | X                 | 4.3924 ns | 0.1172 ns | 0.2852 ns |         - |
