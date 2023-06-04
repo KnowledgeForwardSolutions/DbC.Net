@@ -4,28 +4,40 @@ public class MaxLengthExtensionsTests
 {
    private const Int32 _dataCount = 6;
 
+   public static TheoryData<String> TenCharacterStrings => new()
+   {
+      { "abcdefghij" },
+      { 
+         StringData.LowerCaseAWithDiaeresis + StringData.LowerCaseAWithOverring +
+         StringData.LowerCaseDiphthongAE + StringData.LowerCaseDotlessI +
+         StringData.LowerCaseEszett + StringData.LowerCaseOWithDiaeresis +
+         StringData.UpperCaseSlashedO + StringData.UpperCaseOWithDiaeresis +
+         StringData.UpperCaseDottedI + StringData.UpperCaseAWithOverring
+      }
+   };
+
    #region EnsuresMaxLength Tests
    // ==========================================================================
    // ==========================================================================
 
-   [Fact]
-   public void MaxLengthExtensions_EnsuresMaxLength_ShouldNotThrow_WhenNonNullNonEmptyValueHasLengthLessThanMaxLength()
+   [Theory]
+   [MemberData(nameof(TenCharacterStrings))]
+   public void MaxLengthExtensions_EnsuresMaxLength_ShouldNotThrow_WhenNonNullNonEmptyValueHasLengthLessThanMaxLength(String value)
    {
       // Arrange.
-      var value = "abc";
-      var maxLength = 10;
+      var maxLength = 11;
       var act = () => _ = value.EnsuresMaxLength(maxLength);
 
       // Act/assert.
       act.Should().NotThrow();
    }
 
-   [Fact]
-   public void MaxLengthExtensions_EnsuresMaxLength_ShouldNotThrow_WhenNonNullNonEmptyValueHasLengthLessEqualToMaxLength()
+   [Theory]
+   [MemberData(nameof(TenCharacterStrings))]
+   public void MaxLengthExtensions_EnsuresMaxLength_ShouldNotThrow_WhenNonNullNonEmptyValueHasLengthEqualToMaxLength(String value)
    {
       // Arrange.
-      var value = "qwerty";
-      var maxLength = 6;
+      var maxLength = 10;
       var act = () => _ = value.EnsuresMaxLength(maxLength);
 
       // Act/assert.
@@ -69,24 +81,24 @@ public class MaxLengthExtensionsTests
       act.Should().NotThrow();
    }
 
-   [Fact]
-   public void MaxLengthExtensions_EnsuresMaxLength_ShouldThrow_WhenValueHasLengthGreaterThanMaxLength()
+   [Theory]
+   [MemberData(nameof(TenCharacterStrings))]
+   public void MaxLengthExtensions_EnsuresMaxLength_ShouldThrow_WhenValueHasLengthGreaterThanMaxLength(String value)
    {
       // Arrange.
-      var value = "abcdefghijklmnopqrstuvwxyz";
-      var maxLength = 10;
+      var maxLength = 9;
       var act = () => _ = value.EnsuresMaxLength(maxLength);
 
       // Act/assert.
       act.Should().Throw<PostconditionFailedException>();
    }
 
-   [Fact]
-   public void MaxLengthExtensions_EnsuresMaxLength_ShouldReturnOriginalValue_WhenNonNullNonEmptyValueHasLengthLessThanMaxLength()
+   [Theory]
+   [MemberData(nameof(TenCharacterStrings))]
+   public void MaxLengthExtensions_EnsuresMaxLength_ShouldReturnOriginalValue_WhenNonNullNonEmptyValueHasLengthLessThanMaxLength(String value)
    {
       // Arrange.
-      var value = "abc";
-      var maxLength = 10;
+      var maxLength = 11;
 
       // Act.
       var result = value.EnsuresMaxLength(maxLength);
@@ -95,12 +107,12 @@ public class MaxLengthExtensionsTests
       result.Should().Be(value);
    }
 
-   [Fact]
-   public void MaxLengthExtensions_EnsuresMaxLength_ShouldReturnOriginalValue_WhenNonNullNonEmptyValueHasLengthLessEqualToMaxLength()
+   [Theory]
+   [MemberData(nameof(TenCharacterStrings))]
+   public void MaxLengthExtensions_EnsuresMaxLength_ShouldReturnOriginalValue_WhenNonNullNonEmptyValueHasLengthEqualToMaxLength(String value)
    {
       // Arrange.
-      var value = "qwerty";
-      var maxLength = 6;
+      var maxLength = 10;
 
       // Act.
       var result = value.EnsuresMaxLength(maxLength);
@@ -252,24 +264,24 @@ public class MaxLengthExtensionsTests
    // ==========================================================================
    // ==========================================================================
 
-   [Fact]
-   public void MaxLengthExtensions_RequiresMaxLength_ShouldNotThrow_WhenNonNullNonEmptyValueHasLengthLessThanMaxLength()
+   [Theory]
+   [MemberData(nameof(TenCharacterStrings))]
+   public void MaxLengthExtensions_RequiresMaxLength_ShouldNotThrow_WhenNonNullNonEmptyValueHasLengthLessThanMaxLength(String value)
    {
       // Arrange.
-      var value = "abc";
-      var maxLength = 10;
+      var maxLength = 11;
       var act = () => _ = value.RequiresMaxLength(maxLength);
 
       // Act/assert.
       act.Should().NotThrow();
    }
 
-   [Fact]
-   public void MaxLengthExtensions_RequiresMaxLength_ShouldNotThrow_WhenNonNullNonEmptyValueHasLengthLessEqualToMaxLength()
+   [Theory]
+   [MemberData(nameof(TenCharacterStrings))]
+   public void MaxLengthExtensions_RequiresMaxLength_ShouldNotThrow_WhenNonNullNonEmptyValueHasLengthEqualToMaxLength(String value)
    {
       // Arrange.
-      var value = "qwerty";
-      var maxLength = 6;
+      var maxLength = 10;
       var act = () => _ = value.RequiresMaxLength(maxLength);
 
       // Act/assert.
@@ -313,24 +325,24 @@ public class MaxLengthExtensionsTests
       act.Should().NotThrow();
    }
 
-   [Fact]
-   public void MaxLengthExtensions_RequiresMaxLength_ShouldThrow_WhenValueHasLengthGreaterThanMaxLength()
+   [Theory]
+   [MemberData(nameof(TenCharacterStrings))]
+   public void MaxLengthExtensions_RequiresMaxLength_ShouldThrow_WhenValueHasLengthGreaterThanMaxLength(String value)
    {
       // Arrange.
-      var value = "abcdefghijklmnopqrstuvwxyz";
-      var maxLength = 10;
+      var maxLength = 9;
       var act = () => _ = value.RequiresMaxLength(maxLength);
 
       // Act/assert.
       act.Should().Throw<ArgumentException>();
    }
 
-   [Fact]
-   public void MaxLengthExtensions_RequiresMaxLength_ShouldReturnOriginalValue_WhenNonNullNonEmptyValueHasLengthLessThanMaxLength()
+   [Theory]
+   [MemberData(nameof(TenCharacterStrings))]
+   public void MaxLengthExtensions_RequiresMaxLength_ShouldReturnOriginalValue_WhenNonNullNonEmptyValueHasLengthLessThanMaxLength(String value)
    {
       // Arrange.
-      var value = "abc";
-      var maxLength = 10;
+      var maxLength = 11;
 
       // Act.
       var result = value.RequiresMaxLength(maxLength);
@@ -339,12 +351,12 @@ public class MaxLengthExtensionsTests
       result.Should().Be(value);
    }
 
-   [Fact]
-   public void MaxLengthExtensions_RequiresMaxLength_ShouldReturnOriginalValue_WhenNonNullNonEmptyValueHasLengthLessEqualToMaxLength()
+   [Theory]
+   [MemberData(nameof(TenCharacterStrings))]
+   public void MaxLengthExtensions_RequiresMaxLength_ShouldReturnOriginalValue_WhenNonNullNonEmptyValueHasLengthEqualToMaxLength(String value)
    {
       // Arrange.
-      var value = "qwerty";
-      var maxLength = 6;
+      var maxLength = 10;
 
       // Act.
       var result = value.RequiresMaxLength(maxLength);
