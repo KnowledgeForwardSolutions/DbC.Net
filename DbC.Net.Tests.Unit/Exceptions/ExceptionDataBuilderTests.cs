@@ -295,6 +295,73 @@ public class ExceptionDataBuilderTests
 
    #endregion
 
+   #region WithMaxLength Method Tests
+   // ==========================================================================
+   // ==========================================================================
+
+   [Fact]
+   public void ExceptionDataBuilder_WithMaxLength_ShouldAddMaxLengthAndMaxLengthExpressionItems()
+   {
+      // Arrange.
+      var maxLength = 100;
+      var maxLengthExpression = nameof(maxLength);
+      var expectedCount = 2;
+
+      var sut = ExceptionDataBuilder.Create();
+
+      // Act.
+      sut.WithMaxLength(maxLength, maxLengthExpression);
+
+      // Assert.
+      var data = sut.Build();
+      data.Should().HaveCount(expectedCount);
+      data[DataNames.MaxLength].Should().Be(maxLength);
+      data[DataNames.MaxLengthExpression].Should().Be(maxLengthExpression);
+   }
+
+   [Fact]
+   public void ExceptionDataBuilder_WithMaxLength_ShouldReturnReferenceToSelf()
+   {
+      // Arrange.
+      var sut = ExceptionDataBuilder.Create();
+
+      // Act.
+      var result = sut.WithMaxLength(99, "maxLength");
+
+      // Assert.
+      result.Should().Be(sut);
+   }
+
+   [Fact]
+   public void ExceptionDataBuilder_WithMaxLength_ShouldThrowArgumentException_WhenMaxLengthExpressionIsEmpty()
+   {
+      // Arrange.
+      var maxLength = 100;
+      var maxLengthExpression = String.Empty;
+      var sut = ExceptionDataBuilder.Create();
+      var act = () => _ = sut.WithMaxLength(maxLength, maxLengthExpression);
+
+      // Act/assert.
+      act.Should().Throw<ArgumentException>()
+         .WithParameterName(nameof(maxLengthExpression));
+   }
+
+   [Fact]
+   public void ExceptionDataBuilder_WithMaxLength_ShouldThrowArgumentNullException_WhenMaxLengthExpressionIsNull()
+   {
+      // Arrange.
+      var maxLength = 100;
+      String maxLengthExpression = null!;
+      var sut = ExceptionDataBuilder.Create();
+      var act = () => _ = sut.WithMaxLength(maxLength, maxLengthExpression);
+
+      // Act/assert.
+      act.Should().Throw<ArgumentNullException>()
+         .WithParameterName(nameof(maxLengthExpression));
+   }
+
+   #endregion
+
    #region WithRequirement Method Tests
    // ==========================================================================
    // ==========================================================================
