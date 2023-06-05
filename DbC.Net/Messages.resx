@@ -144,6 +144,9 @@
   <data name="MaskCharacterIsNull" xml:space="preserve">
     <value>Mask character may not be null ('\0')</value>
   </data>
+  <data name="MaxLengthIsNegative" xml:space="preserve">
+    <value>MaxLength may not be negative</value>
+  </data>
   <data name="MessageTemplateIsEmpty" xml:space="preserve">
     <value>Message template may not be null, String.Empty or all whitespace characters</value>
   </data>

@@ -129,6 +129,35 @@ public class ExceptionDataBuilder
    }
 
    /// <summary>
+   ///   Add max length information to the exception data dictionary.
+   /// </summary>
+   /// <param name="maxLength">
+   ///   The max length value.
+   /// </param>
+   /// <param name="maxLengthExpression">
+   ///   The max length parameter expression in the calling method.
+   /// </param>
+   /// <returns>
+   ///   A reference to this <see cref="ExceptionDataBuilder"/> object to 
+   ///   support method chaining.
+   /// </returns>
+   /// <exception cref="ArgumentException">
+   ///   <paramref name="maxLengthExpression"/> is <see cref="String.Empty"/>.
+   /// </exception>
+   /// <exception cref="ArgumentNullException">
+   ///   <paramref name="maxLengthExpression"/> is <see langword="null"/>.
+   /// </exception>
+   public ExceptionDataBuilder WithMaxLength(Int32 maxLength, String maxLengthExpression)
+   {
+      ArgumentException.ThrowIfNullOrEmpty(maxLengthExpression, nameof(maxLengthExpression));
+
+      _data[DataNames.MaxLength] = maxLength;
+      _data[DataNames.MaxLengthExpression] = maxLengthExpression;
+
+      return this;
+   }
+
+   /// <summary>
    ///   Add requirement information to the exception data dictionary.
    /// </summary>
    /// <param name="requirementType">

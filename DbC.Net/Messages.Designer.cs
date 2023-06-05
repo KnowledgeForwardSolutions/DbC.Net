@@ -142,6 +142,15 @@ namespace DbC.Net {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MaxLength may not be negative.
+        /// </summary>
+        internal static string MaxLengthIsNegative {
+            get {
+                return ResourceManager.GetString("MaxLengthIsNegative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Message template may not be null, String.Empty or all whitespace characters.
         /// </summary>
         internal static string MessageTemplateIsEmpty {

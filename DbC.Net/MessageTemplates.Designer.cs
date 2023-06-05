@@ -160,6 +160,15 @@ namespace DbC.Net {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} must have a maximum length of {MaxLength}.
+        /// </summary>
+        internal static string MaxLengthTemplate {
+            get {
+                return ResourceManager.GetString("MaxLengthTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} may not be default({ValueDatatype}).
         /// </summary>
         internal static string NotDefaultTemplate {

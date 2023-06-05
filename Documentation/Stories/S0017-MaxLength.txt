@@ -4,7 +4,6 @@ Requirements:
 
   RequiresMaxLength (precondition), default ArgumentException
   EnsuresMaxLength (postcondition), default PostconditionFailedException
-  Support supplying IComparer<T> object to perform the comparison
 
 DEFINITION OF DONE:
 

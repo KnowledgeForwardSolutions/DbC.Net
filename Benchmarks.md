@@ -29,6 +29,8 @@ Intel Core i7-8700K CPU 3.70GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical 
   - [LessThanZero Benchmarks](#lessthanzero-benchmarks)
   - [LessThanOrEqualToZero Benchmarks](#lessthanorequaltozero-benchmarks)
 
+  - [MaxLength Benchmarks](#maxlength-benchmarks)
+
 ### NotNull Benchmarks
 
 X indicates that the optional parameter was supplied; blank indicates that the 
@@ -464,3 +466,24 @@ parameter was omitted.
 | RequiresLessThanOrEqualToZero | Decimal     | X                |                   | 2.5169 ns | 0.0819 ns | 0.1434 ns |         - |
 | RequiresLessThanOrEqualToZero | Decimal     |                  | X                 | 4.6693 ns | 0.1231 ns | 0.2569 ns |         - |
 | RequiresLessThanOrEqualToZero | Decimal     | X                | X                 | 4.3924 ns | 0.1172 ns | 0.2852 ns |         - |
+
+### MaxLength Benchmarks
+
+| Method            | String content              | Message Template | Exception Factory |      Mean |     Error |    StdDev | Allocated |
+|:----------------- |:----------------------------|:----------------:|:-----------------:|----------:|----------:|----------:|----------:|
+| RequiresMaxLength | Non-empty string            |                  |                   | 0.0070 ns | 0.0112 ns | 0.0105 ns |         - |
+| RequiresMaxLength | Non-empty string            | X                |                   | 0.0280 ns | 0.0280 ns | 0.0262 ns |         - |
+| RequiresMaxLength | Non-empty string            |                  | X                 | 2.6625 ns | 0.0476 ns | 0.0445 ns |         - |
+| RequiresMaxLength | Non-empty string            | X                | X                 | 2.5481 ns | 0.0178 ns | 0.0158 ns |         - |
+| RequiresMaxLength | String w/Unicode characters |                  |                   | 0.0095 ns | 0.0108 ns | 0.0101 ns |         - |
+| RequiresMaxLength | String w/Unicode characters | X                |                   | 0.0078 ns | 0.0077 ns | 0.0064 ns |         - |
+| RequiresMaxLength | String w/Unicode characters |                  | X                 | 2.8855 ns | 0.0447 ns | 0.0396 ns |         - |
+| RequiresMaxLength | String w/Unicode characters | X                | X                 | 2.6974 ns | 0.0271 ns | 0.0240 ns |         - |
+| RequiresMaxLength | Null String                 |                  |                   | 0.0017 ns | 0.0040 ns | 0.0035 ns |         - |
+| RequiresMaxLength | Null String                 | X                |                   | 0.0065 ns | 0.0116 ns | 0.0103 ns |         - |
+| RequiresMaxLength | Null String                 |                  | X                 | 2.5399 ns | 0.0218 ns | 0.0182 ns |         - |
+| RequiresMaxLength | Null String                 | X                | X                 | 2.4789 ns | 0.0114 ns | 0.0101 ns |         - |
+| RequiresMaxLength | Empty String                |                  |                   | 0.0032 ns | 0.0044 ns | 0.0041 ns |         - |
+| RequiresMaxLength | Empty String                | X                |                   | 0.0115 ns | 0.0162 ns | 0.0152 ns |         - |
+| RequiresMaxLength | Empty String                |                  | X                 | 2.8678 ns | 0.0251 ns | 0.0223 ns |         - |
+| RequiresMaxLength | Empty String                | X                | X                 | 2.6799 ns | 0.0155 ns | 0.0129 ns |         - |

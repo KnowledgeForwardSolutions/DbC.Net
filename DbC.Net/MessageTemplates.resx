@@ -150,6 +150,9 @@
   <data name="LessThanZeroTemplate" xml:space="preserve">
     <value>{RequirementType} {RequirementName} failed: {ValueExpression} must be less than zero</value>
   </data>
+  <data name="MaxLengthTemplate" xml:space="preserve">
+    <value>{RequirementType} {RequirementName} failed: {ValueExpression} must have a maximum length of {MaxLength}</value>
+  </data>
   <data name="NotDefaultTemplate" xml:space="preserve">
     <value>{RequirementType} {RequirementName} failed: {ValueExpression} may not be default({ValueDatatype})</value>
   </data>
