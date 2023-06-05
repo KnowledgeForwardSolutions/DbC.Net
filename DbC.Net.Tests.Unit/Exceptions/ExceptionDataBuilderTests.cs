@@ -362,6 +362,73 @@ public class ExceptionDataBuilderTests
 
    #endregion
 
+   #region WithMinLength Method Tests
+   // ==========================================================================
+   // ==========================================================================
+
+   [Fact]
+   public void ExceptionDataBuilder_WithMinLength_ShouldAddMinLengthAndMinLengthExpressionItems()
+   {
+      // Arrange.
+      var minLength = 100;
+      var minLengthExpression = nameof(minLength);
+      var expectedCount = 2;
+
+      var sut = ExceptionDataBuilder.Create();
+
+      // Act.
+      sut.WithMinLength(minLength, minLengthExpression);
+
+      // Assert.
+      var data = sut.Build();
+      data.Should().HaveCount(expectedCount);
+      data[DataNames.MinLength].Should().Be(minLength);
+      data[DataNames.MinLengthExpression].Should().Be(minLengthExpression);
+   }
+
+   [Fact]
+   public void ExceptionDataBuilder_WithMinLength_ShouldReturnReferenceToSelf()
+   {
+      // Arrange.
+      var sut = ExceptionDataBuilder.Create();
+
+      // Act.
+      var result = sut.WithMinLength(99, "minLength");
+
+      // Assert.
+      result.Should().Be(sut);
+   }
+
+   [Fact]
+   public void ExceptionDataBuilder_WithMinLength_ShouldThrowArgumentException_WhenMinLengthExpressionIsEmpty()
+   {
+      // Arrange.
+      var minLength = 100;
+      var minLengthExpression = String.Empty;
+      var sut = ExceptionDataBuilder.Create();
+      var act = () => _ = sut.WithMinLength(minLength, minLengthExpression);
+
+      // Act/assert.
+      act.Should().Throw<ArgumentException>()
+         .WithParameterName(nameof(minLengthExpression));
+   }
+
+   [Fact]
+   public void ExceptionDataBuilder_WithMinLength_ShouldThrowArgumentNullException_WhenMinLengthExpressionIsNull()
+   {
+      // Arrange.
+      var minLength = 100;
+      String minLengthExpression = null!;
+      var sut = ExceptionDataBuilder.Create();
+      var act = () => _ = sut.WithMinLength(minLength, minLengthExpression);
+
+      // Act/assert.
+      act.Should().Throw<ArgumentNullException>()
+         .WithParameterName(nameof(minLengthExpression));
+   }
+
+   #endregion
+
    #region WithRequirement Method Tests
    // ==========================================================================
    // ==========================================================================
