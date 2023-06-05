@@ -56,6 +56,7 @@
   - String Requirements
 
     - [MaxLength](/Documentation/MaxLength.md)
+    - [MinLength](/Documentation/MinLength.md)
 
 - **[Release History/Release Notes](#release-historyrelease-notes)**
 
