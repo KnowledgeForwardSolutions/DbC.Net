@@ -160,6 +160,15 @@ namespace DbC.Net {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MinLength may not be negative.
+        /// </summary>
+        internal static string MinLengthIsNegative {
+            get {
+                return ResourceManager.GetString("MinLengthIsNegative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pad character may not be null (&apos;\0&apos;).
         /// </summary>
         internal static string PadCharacterIsNull {
