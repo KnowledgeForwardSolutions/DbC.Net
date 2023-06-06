@@ -24,10 +24,10 @@ RequirementName, Value, ValueExpression, MinLength and MinLengthExpression.
 
 **Examples:**
 ```C#
-var customMessageTemplate = "{ValueExpression} must be at least 10 characters in length";
+var customMessageTemplate = "{ValueExpression} may not be less than 10 characters in length";
 var customExceptionFactory = new CustomExceptionFactory();
 
-var value = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz";
+var value = "ABC";
 var minLength = 10;
 
 // Precondition with default message template and default exception factory.
