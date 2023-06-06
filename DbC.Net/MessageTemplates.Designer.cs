@@ -196,6 +196,15 @@ namespace DbC.Net {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} may not be null or String.Empty.
+        /// </summary>
+        internal static string NotNullOrEmptyTemplate {
+            get {
+                return ResourceManager.GetString("NotNullOrEmptyTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} may not be null.
         /// </summary>
         internal static string NotNullTemplate {
