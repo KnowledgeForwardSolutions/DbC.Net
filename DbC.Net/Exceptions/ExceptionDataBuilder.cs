@@ -158,6 +158,35 @@ public class ExceptionDataBuilder
    }
 
    /// <summary>
+   ///   Add min length information to the exception data dictionary.
+   /// </summary>
+   /// <param name="minLength">
+   ///   The min length value.
+   /// </param>
+   /// <param name="minLengthExpression">
+   ///   The min length parameter expression in the calling method.
+   /// </param>
+   /// <returns>
+   ///   A reference to this <see cref="ExceptionDataBuilder"/> object to 
+   ///   support method chaining.
+   /// </returns>
+   /// <exception cref="ArgumentException">
+   ///   <paramref name="minLengthExpression"/> is <see cref="String.Empty"/>.
+   /// </exception>
+   /// <exception cref="ArgumentNullException">
+   ///   <paramref name="minLengthExpression"/> is <see langword="null"/>.
+   /// </exception>
+   public ExceptionDataBuilder WithMinLength(Int32 minLength, String minLengthExpression)
+   {
+      ArgumentException.ThrowIfNullOrEmpty(minLengthExpression, nameof(minLengthExpression));
+
+      _data[DataNames.MinLength] = minLength;
+      _data[DataNames.MinLengthExpression] = minLengthExpression;
+
+      return this;
+   }
+
+   /// <summary>
    ///   Add requirement information to the exception data dictionary.
    /// </summary>
    /// <param name="requirementType">

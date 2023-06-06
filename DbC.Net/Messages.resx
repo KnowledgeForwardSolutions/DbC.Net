@@ -150,6 +150,9 @@
   <data name="MessageTemplateIsEmpty" xml:space="preserve">
     <value>Message template may not be null, String.Empty or all whitespace characters</value>
   </data>
+  <data name="MinLengthIsNegative" xml:space="preserve">
+    <value>MinLength may not be negative</value>
+  </data>
   <data name="PadCharacterIsNull" xml:space="preserve">
     <value>Pad character may not be null ('\0')</value>
   </data>
