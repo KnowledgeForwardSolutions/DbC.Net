@@ -523,3 +523,15 @@ parameter was omitted.
 | RequiredNotNullOrEmpty | X                |                        | X                       | 0.0405 ns | 0.0264 ns | 0.0528 ns |         - |
 | RequiredNotNullOrEmpty | X                | X                      | X                       | 0.0393 ns | 0.0289 ns | 0.0333 ns |         - |
 
+### RequiredNotNullOrWhiteSpace Benchmarks
+
+| Method                      | Message Template | Null Exception Factory | Empty Exception Factory |     Mean |     Error |    StdDev | Allocated |
+|:--------------------------- |:----------------:|:----------------------:|:-----------------------:|---------:|----------:|----------:|----------:|
+| RequiredNotNullOrWhiteSpace |                  |                        |                         | 2.167 ns | 0.0175 ns | 0.0163 ns |         - |
+| RequiredNotNullOrWhiteSpace | X                |                        |                         | 2.447 ns | 0.0215 ns | 0.0191 ns |         - |
+| RequiredNotNullOrWhiteSpace |                  | X                      |                         | 1.915 ns | 0.0123 ns | 0.0096 ns |         - |
+| RequiredNotNullOrWhiteSpace |                  |                        | X                       | 2.935 ns | 0.0268 ns | 0.0251 ns |         - |
+| RequiredNotNullOrWhiteSpace |                  | X                      | X                       | 2.756 ns | 0.0198 ns | 0.0154 ns |         - |
+| RequiredNotNullOrWhiteSpace | X                | X                      |                         | 2.215 ns | 0.0188 ns | 0.0166 ns |         - |
+| RequiredNotNullOrWhiteSpace | X                |                        | X                       | 2.298 ns | 0.0470 ns | 0.0393 ns |         - |
+| RequiredNotNullOrWhiteSpace | X                | X                      | X                       | 2.225 ns | 0.0223 ns | 0.0198 ns |         - |
