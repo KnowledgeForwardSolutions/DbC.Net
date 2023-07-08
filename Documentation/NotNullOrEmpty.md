@@ -19,7 +19,7 @@ StandardExceptionFactories.PostconditionFailedExceptionFactory as the default fo
 both null and empty values.
 
 The data dictionary for exceptions thrown will contain entries for RequirementType,
-RequirementName and ValueExpression.
+RequirementName, Value and ValueExpression.
 
 **Examples:**
 ```C#

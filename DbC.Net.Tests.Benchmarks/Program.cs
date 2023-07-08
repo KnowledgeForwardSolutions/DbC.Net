@@ -14,4 +14,5 @@
 //BenchmarkRunner.Run<LessThanOrEqualToZeroBenchmarks>();
 //BenchmarkRunner.Run<MaxLengthBenchmarks>();
 //BenchmarkRunner.Run<MinLengthBenchmarks>();
-BenchmarkRunner.Run<NotNullOrEmptyBenchmarks>();
+//BenchmarkRunner.Run<NotNullOrEmptyBenchmarks>();
+BenchmarkRunner.Run<NotNullOrWhiteSpaceBenchmarks>();
