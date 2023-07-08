@@ -38,6 +38,12 @@ public class NotNullOrEmptyBenchmarks
    }
 
    [Benchmark]
+   public void RequiresNotNullOrEmpty_String_P011()
+   {
+      var result = _value.RequiresNotNullOrEmpty(nullExceptionFactory: _exceptionFactory, emptyExceptionFactory: _exceptionFactory);
+   }
+
+   [Benchmark]
    public void RequiresNotNullOrEmpty_String_P110()
    {
       var result = _value.RequiresNotNullOrEmpty(_messageTemplate, _exceptionFactory);
