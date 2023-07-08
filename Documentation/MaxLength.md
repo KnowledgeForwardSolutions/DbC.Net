@@ -44,15 +44,15 @@ value.RequiresMaxLength(maxLength, customMessageTemplate, customExceptionFactory
 
 
 // Postcondition with default message template and default exception factory.
-value.RequiresMaxLength(maxLength);
+value.EnsuresMaxLength(maxLength);
 
 // Postcondition with custom message template and default exception factory.
-value.RequiresMaxLength(maxLength, customMessageTemplate);
+value.EnsuresMaxLength(maxLength, customMessageTemplate);
 
 // Postcondition with default message template and custom exception factory.
-value.RequiresMaxLength(maxLength, exceptionFactory: customExceptionFactory);
+value.EnsuresMaxLength(maxLength, exceptionFactory: customExceptionFactory);
 
 // Postcondition with custom message template and custom exception factory.
-value.RequiresMaxLength(maxLength, customMessageTemplate, customExceptionFactory);
+value.EnsuresMaxLength(maxLength, customMessageTemplate, customExceptionFactory);
 ```
 
