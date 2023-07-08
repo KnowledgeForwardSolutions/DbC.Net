@@ -10,7 +10,7 @@ String RequiresNotNullOrWhiteSpace(this String value, [String? messageTemplate =
 String EnsuresNotNullOrWhiteSpace(this String value, [String? messageTemplate = null], [IExceptionFactory? nullExceptionFactory = null], [IExceptionFactory? emptyExceptionFactory = null], [String? valueExpression = null])
 ```
 
-The default message template for NotNullOrWhiteSpace is "{RequirementType} {RequirementName} failed: {ValueExpression} may not be null String.Empty or all whitespace characters".
+The default message template for NotNullOrWhiteSpace is "{RequirementType} {RequirementName} failed: {ValueExpression} may not be null, String.Empty or all whitespace characters".
 Requires/EnsuresNotNullOrWhiteSpace use two exception factories, one for exceptions
 thrown when the value being checked is null and one for exceptions thrown when
 the value being checked is empty or all whitespace characters. The default exception 

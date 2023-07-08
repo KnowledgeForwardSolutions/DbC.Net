@@ -19,6 +19,7 @@ public static class RequirementNames
    public const String MaxLength = nameof(MaxLength);
    public const String MinLength = nameof(MinLength);
    public const String NotDefault = nameof(NotDefault);
+   public const String NotEmptyOrWhiteSpace = nameof(NotEmptyOrWhiteSpace);
    public const String NotEqual = nameof(NotEqual);
    public const String NotNull = nameof(NotNull);
    public const String NotNullOrEmpty = nameof(NotNullOrEmpty);

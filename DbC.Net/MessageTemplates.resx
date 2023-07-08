@@ -159,6 +159,9 @@
   <data name="NotDefaultTemplate" xml:space="preserve">
     <value>{RequirementType} {RequirementName} failed: {ValueExpression} may not be default({ValueDatatype})</value>
   </data>
+  <data name="NotEmptyOrWhiteSpaceTemplate" xml:space="preserve">
+    <value>{RequirementType} {RequirementName} failed: {ValueExpression} may not be String.Empty or all whitespace characters</value>
+  </data>
   <data name="NotEqualTemplate" xml:space="preserve">
     <value>{RequirementType} {RequirementName} failed: {ValueExpression} must not be equal to {Target}</value>
   </data>
