@@ -39,6 +39,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		Documentation\NotDefault.md = Documentation\NotDefault.md
 		Documentation\NotEqual.md = Documentation\NotEqual.md
 		Documentation\NotNull.md = Documentation\NotNull.md
+		Documentation\NotNullOrEmpty.md = Documentation\NotNullOrEmpty.md
 	EndProjectSection
 EndProject
 Global
