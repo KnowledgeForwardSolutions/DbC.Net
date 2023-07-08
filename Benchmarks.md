@@ -510,3 +510,14 @@ parameter was omitted.
 | RequiresMinLength | Empty String                |                  | X                 | 2.6954 ns | 0.0259 ns | 0.0230 ns |         - |
 | RequiresMinLength | Empty String                | X                | X                 | 2.6405 ns | 0.0316 ns | 0.0264 ns |         - |
 
+### RequiredNotNullOrEmpty Benchmarks
+
+| Method                 | Message Template | Null Exception Factory | Empty Exception Factory |      Mean |     Error |    StdDev | Allocated |
+|:---------------------- |:----------------:|:----------------------:|:-----------------------:|----------:|----------:|----------:|----------:|
+| RequiredNotNullOrEmpty |                  |                        |                         | 0.0032 ns | 0.0038 ns | 0.0035 ns |         - |
+| RequiredNotNullOrEmpty | X                |                        |                         | 0.0051 ns | 0.0056 ns | 0.0050 ns |         - |
+| RequiredNotNullOrEmpty |                  | X                      |                         | 0.0015 ns | 0.0033 ns | 0.0029 ns |         - |
+| RequiredNotNullOrEmpty |                  |                        | X                       | 0.0072 ns | 0.0118 ns | 0.0105 ns |         - |
+| RequiredNotNullOrEmpty | X                | X                      |                         | 0.0042 ns | 0.0095 ns | 0.0084 ns |         - |
+| RequiredNotNullOrEmpty | X                |                        | X                       | 0.0423 ns | 0.0282 ns | 0.0508 ns |         - |
+| RequiredNotNullOrEmpty | X                | X                      | X                       | 0.0631 ns | 0.0292 ns | 0.0658 ns |         - |
