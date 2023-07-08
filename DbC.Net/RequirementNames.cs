@@ -22,4 +22,5 @@ public static class RequirementNames
    public const String NotEqual = nameof(NotEqual);
    public const String NotNull = nameof(NotNull);
    public const String NotNullOrEmpty = nameof(NotNullOrEmpty);
+   public const String NotNullOrWhiteSpace = nameof(NotNullOrWhiteSpace);
 }

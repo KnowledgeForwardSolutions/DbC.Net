@@ -165,6 +165,9 @@
   <data name="NotNullOrEmptyTemplate" xml:space="preserve">
     <value>{RequirementType} {RequirementName} failed: {ValueExpression} may not be null or String.Empty</value>
   </data>
+  <data name="NotNullOrWhiteSpaceTemplate" xml:space="preserve">
+    <value>{RequirementType} {RequirementName} failed: {ValueExpression} may not be null, String.Empty or all whitespace characters</value>
+  </data>
   <data name="NotNullTemplate" xml:space="preserve">
     <value>{RequirementType} {RequirementName} failed: {ValueExpression} may not be null</value>
   </data>
