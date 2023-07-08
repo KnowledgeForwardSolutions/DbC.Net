@@ -25,7 +25,7 @@ RequirementName, Value and ValueExpression.
 
 **Examples:**
 ```C#
-var customMessageTemplate = "{ValueExpression} must have a non-null/non-empty value";
+var customMessageTemplate = "{ValueExpression} must have a non-null/non-empty/non-whitespace value";
 var customExceptionFactory = new CustomExceptionFactory();
 
 var value = String.Empty;
