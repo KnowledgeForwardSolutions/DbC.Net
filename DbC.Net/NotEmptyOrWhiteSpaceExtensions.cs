@@ -1,28 +1,28 @@
 ﻿namespace DbC.Net;
 
 /// <summary>
-///   Extension methods that implement NotDefault requirement.
+///   Extension methods that implement String NotEmptyOrWhiteSpace requirement.
 /// </summary>
-public static class NotDefaultExtensions
+public static class NotEmptyOrWhiteSpaceExtensions
 {
-   private const String _requirementName = RequirementNames.NotDefault;
+   private const String _requirementName = RequirementNames.NotEmptyOrWhiteSpace;
 
    /// <summary>
-   ///   NotDefault postcondition. Confirm that <paramref name="value"/> is not 
-   ///   the default for type {T} and throw an exception if it is default for 
-   ///   type {T}.
+   ///   NotEmptyOrWhiteSpace postcondition. Confirm that the <see cref="String"/>
+   ///   <paramref name="value"/> is not  <see cref="String.Empty"/> or all 
+   ///   whitespace characters and throw an exception if it is empty or whitespace.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} may not be default({ValueDatatype})".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} may not be empty or all whitespace characters".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
-   ///   exception that is thrown if the <paramref name="value"/> is not default
-   ///   for type {T}. Defaults to 
+   ///   exception that is thrown if the <paramref name="value"/> is 
+   ///   <see cref="String.Empty"/> or all whitespace characters. Defaults to 
    ///   <see cref="StandardExceptionFactories.PostconditionFailedExceptionFactory"/>.
    /// </param>
    /// <param name="valueExpression">
@@ -33,14 +33,14 @@ public static class NotDefaultExtensions
    ///   The tested <paramref name="value"/> is returned unaltered to support 
    ///   chaining requirements.
    /// </returns>
-   public static T EnsuresNotDefault<T>(
-      this T value,
+   public static String EnsuresNotEmptyOrWhiteSpace(
+      this String value,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
       [CallerArgumentExpression("value")] String valueExpression = null!)
    {
-      CheckNotDefault(
-         value!,
+      CheckNotEmptyOrWhiteSpace(
+         value,
          RequirementType.Postcondition,
          messageTemplate,
          exceptionFactory,
@@ -50,21 +50,21 @@ public static class NotDefaultExtensions
    }
 
    /// <summary>
-   ///   NotDefault precondition. Confirm that <paramref name="value"/> is not 
-   ///   the default for type {T} and throw an exception if it is default for 
-   ///   type {T}.
+   ///   NotEmptyOrWhiteSpace precondition. Confirm that the <see cref="String"/>
+   ///   <paramref name="value"/> is not  <see cref="String.Empty"/> or all 
+   ///   whitespace characters and throw an exception if it is empty or whitespace.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} may not be default({ValueDatatype})".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} may not be empty or all whitespace characters".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
-   ///   exception that is thrown if the <paramref name="value"/> is not default
-   ///   for type {T}. Defaults to 
+   ///   exception that is thrown if the <paramref name="value"/> is 
+   ///   <see cref="String.Empty"/> or all whitespace characters. Defaults to 
    ///   <see cref="StandardExceptionFactories.ArgumentExceptionFactory"/>.
    /// </param>
    /// <param name="valueExpression">
@@ -75,14 +75,14 @@ public static class NotDefaultExtensions
    ///   The tested <paramref name="value"/> is returned unaltered to support 
    ///   chaining requirements.
    /// </returns>
-   public static T RequiresNotDefault<T>(
-      this T value,
+   public static String RequiresNotEmptyOrWhiteSpace(
+      this String value,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
       [CallerArgumentExpression("value")] String valueExpression = null!)
    {
-      CheckNotDefault(
-         value!,
+      CheckNotEmptyOrWhiteSpace(
+         value,
          RequirementType.Precondition,
          messageTemplate,
          exceptionFactory,
@@ -91,21 +91,20 @@ public static class NotDefaultExtensions
       return value;
    }
 
-   private static void CheckNotDefault<T>(
-      T value,
+   private static void CheckNotEmptyOrWhiteSpace(
+      String? value,
       RequirementType requirementType,
       String? messageTemplate,
       IExceptionFactory? exceptionFactory,
       String valueExpression)
    {
-      if (EqualityComparer<T>.Default.Equals(value, default))
+      if (value is not null && String.IsNullOrWhiteSpace(value))
       {
-         messageTemplate ??= MessageTemplates.NotDefaultTemplate;
-         exceptionFactory ??= StandardExceptionFactories.ResolveArgumentExceptionFactory(requirementType);
+         messageTemplate ??= MessageTemplates.NotEmptyOrWhiteSpaceTemplate;
+         exceptionFactory ??= StandardExceptionFactories.ResolveArgumentNullExceptionFactory(requirementType);
          var data = ExceptionDataBuilder.Create()
             .WithRequirement(requirementType, _requirementName)
-            .WithItem(DataNames.ValueExpression, valueExpression)
-            .WithItem(DataNames.ValueDatatype, typeof(T).Name)
+            .WithValue(value!, valueExpression)
             .Build();
 
          throw exceptionFactory.CreateException(data, messageTemplate);

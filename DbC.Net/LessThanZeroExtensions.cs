@@ -24,8 +24,8 @@ public static class LessThanZeroExtensions
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
-   ///   exception that is thrown if the <paramref name="value"/> is 
-   ///   <see langword="null"/>. Defaults to 
+   ///   exception that is thrown if the <paramref name="value"/> is not less 
+   ///   than zero. Defaults to 
    ///   <see cref="StandardExceptionFactories.PostconditionFailedExceptionFactory"/>.
    /// </param>
    /// <param name="valueExpression">
@@ -68,8 +68,8 @@ public static class LessThanZeroExtensions
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
-   ///   exception that is thrown if the <paramref name="value"/> is 
-   ///   <see langword="null"/>. Defaults to 
+   ///   exception that is thrown if the <paramref name="value"/> is less than 
+   ///   zero. Defaults to 
    ///   <see cref="StandardExceptionFactories.ArgumentOutOfRangeExceptionFactory"/>.
    /// </param>
    /// <param name="valueExpression">

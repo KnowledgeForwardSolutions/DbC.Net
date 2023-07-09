@@ -18,7 +18,7 @@ public static class ApproximatelyEqualExtensions
    ///   The value to check.
    /// </param>
    /// <param name="target">
-   ///   The target that <paramref name="value"/> should be close to..
+   ///   The target that <paramref name="value"/> should be close to.
    /// </param>
    /// <param name="epsilon">
    ///   The allowed error margin. 
@@ -34,8 +34,8 @@ public static class ApproximatelyEqualExtensions
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
-   ///   exception that is thrown if the <paramref name="value"/> is 
-   ///   <see langword="null"/>. Defaults to 
+   ///   exception that is thrown if the <paramref name="value"/> not within 
+   ///   +/- <paramref name="epsilon"/>. Defaults to 
    ///   <see cref="StandardExceptionFactories.PostconditionFailedExceptionFactory"/>.
    /// </param>
    /// <param name="valueExpression">
@@ -92,7 +92,7 @@ public static class ApproximatelyEqualExtensions
    ///   The value to check.
    /// </param>
    /// <param name="target">
-   ///   The target that <paramref name="value"/> should be close to..
+   ///   The target that <paramref name="value"/> should be close to.
    /// </param>
    /// <param name="epsilon">
    ///   The allowed error margin. 
@@ -108,8 +108,8 @@ public static class ApproximatelyEqualExtensions
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
-   ///   exception that is thrown if the <paramref name="value"/> is 
-   ///   <see langword="null"/>. Defaults to 
+   ///   exception that is thrown if the <paramref name="value"/> not within 
+   ///   +/- <paramref name="epsilon"/>. Defaults to 
    ///   <see cref="StandardExceptionFactories.ArgumentExceptionFactory"/>.
    /// </param>
    /// <param name="valueExpression">

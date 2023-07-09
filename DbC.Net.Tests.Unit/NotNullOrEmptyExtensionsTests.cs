@@ -100,7 +100,7 @@ public  class NotNullOrEmptyExtensionsTests
    }
 
    [Fact]
-   public void MaxLengthExtensions_EnsuresMaxLength_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueIsNullAndAllDefaultsAreUsed()
+   public void NotNullOrEmptyExtensions_EnsuresNotNullOrEmpty_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueIsNullAndAllDefaultsAreUsed()
    {
       // Arrange.
       String value = null!;
@@ -113,7 +113,7 @@ public  class NotNullOrEmptyExtensionsTests
    }
 
    [Fact]
-   public void MaxLengthExtensions_EnsuresMaxLength_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueIsEmptyAndAllDefaultsAreUsed()
+   public void NotNullOrEmptyExtensions_EnsuresNotNullOrEmpty_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueIsEmptyAndAllDefaultsAreUsed()
    {
       // Arrange.
       var value = String.Empty;
@@ -126,7 +126,7 @@ public  class NotNullOrEmptyExtensionsTests
    }
 
    [Fact]
-   public void MaxLengthExtensions_EnsuresMaxLength_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueIsNullAndCustomMessageTemplateIsUsed()
+   public void NotNullOrEmptyExtensions_EnsuresNotNullOrEmpty_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueIsNullAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       String value = null!;
@@ -140,7 +140,7 @@ public  class NotNullOrEmptyExtensionsTests
    }
 
    [Fact]
-   public void MaxLengthExtensions_EnsuresMaxLength_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueIsEmptyAndAllCustomMessageTemplateIsUsed()
+   public void NotNullOrEmptyExtensions_EnsuresNotNullOrEmpty_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueIsEmptyAndAllCustomMessageTemplateIsUsed()
    {
       // Arrange.
       var value = String.Empty;
@@ -154,7 +154,7 @@ public  class NotNullOrEmptyExtensionsTests
    }
 
    [Fact]
-   public void MaxLengthExtensions_EnsuresMaxLength_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsNullAndCustomNullExceptionFactoryIsUsed()
+   public void NotNullOrEmptyExtensions_EnsuresNotNullOrEmpty_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsNullAndCustomNullExceptionFactoryIsUsed()
    {
       // Arrange.
       String value = null!;
@@ -167,7 +167,7 @@ public  class NotNullOrEmptyExtensionsTests
    }
 
    [Fact]
-   public void MaxLengthExtensions_EnsuresMaxLength_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsEmptyAndCustomEmptyExceptionFactoryIsUsed()
+   public void NotNullOrEmptyExtensions_EnsuresNotNullOrEmpty_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsEmptyAndCustomEmptyExceptionFactoryIsUsed()
    {
       // Arrange.
       var value = String.Empty;
@@ -180,7 +180,7 @@ public  class NotNullOrEmptyExtensionsTests
    }
 
    [Fact]
-   public void MaxLengthExtensions_EnsuresMaxLength_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsNullAndCustomMessageTemplateAndCustomNullExceptionFactoryIsUsed()
+   public void NotNullOrEmptyExtensions_EnsuresNotNullOrEmpty_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsNullAndCustomMessageTemplateAndCustomNullExceptionFactoryIsUsed()
    {
       // Arrange.
       String value = null!;
@@ -194,7 +194,7 @@ public  class NotNullOrEmptyExtensionsTests
    }
 
    [Fact]
-   public void MaxLengthExtensions_EnsuresMaxLength_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsEmptyAndCustomMessageTemplateAndCustomEmptyExceptionFactoryIsUsed()
+   public void NotNullOrEmptyExtensions_EnsuresNotNullOrEmpty_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsEmptyAndCustomMessageTemplateAndCustomEmptyExceptionFactoryIsUsed()
    {
       // Arrange.
       var value = String.Empty;
@@ -305,7 +305,7 @@ public  class NotNullOrEmptyExtensionsTests
    }
 
    [Fact]
-   public void MaxLengthExtensions_RequiresMaxLength_ShouldThrowArgumentNullExceptionWithExpectedMessage_WhenValueIsNullAndAllDefaultsAreUsed()
+   public void NotNullOrEmptyExtensions_RequiresNotNullOrEmpty_ShouldThrowArgumentNullExceptionWithExpectedMessage_WhenValueIsNullAndAllDefaultsAreUsed()
    {
       // Arrange.
       String value = null!;
@@ -320,7 +320,7 @@ public  class NotNullOrEmptyExtensionsTests
    }
 
    [Fact]
-   public void MaxLengthExtensions_RequiresMaxLength_ShouldThrowArgumentExceptionWithExpectedMessage_WhenValueIsEmptyAndAllDefaultsAreUsed()
+   public void NotNullOrEmptyExtensions_RequiresNotNullOrEmpty_ShouldThrowArgumentExceptionWithExpectedMessage_WhenValueIsEmptyAndAllDefaultsAreUsed()
    {
       // Arrange.
       var value = String.Empty;
@@ -335,7 +335,7 @@ public  class NotNullOrEmptyExtensionsTests
    }
 
    [Fact]
-   public void MaxLengthExtensions_RequiresMaxLength_ShouldThrowArgumentNullExceptionWithExpectedMessage_WhenValueIsNullAndCustomMessageTemplateIsUsed()
+   public void NotNullOrEmptyExtensions_RequiresNotNullOrEmpty_ShouldThrowArgumentNullExceptionWithExpectedMessage_WhenValueIsNullAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       String value = null!;
@@ -351,7 +351,7 @@ public  class NotNullOrEmptyExtensionsTests
    }
 
    [Fact]
-   public void MaxLengthExtensions_RequiresMaxLength_ShouldThrowArgumentExceptionWithExpectedMessage_WhenValueIsEmptyAndAllCustomMessageTemplateIsUsed()
+   public void NotNullOrEmptyExtensions_RequiresNotNullOrEmpty_ShouldThrowArgumentExceptionWithExpectedMessage_WhenValueIsEmptyAndAllCustomMessageTemplateIsUsed()
    {
       // Arrange.
       var value = String.Empty;
@@ -367,7 +367,7 @@ public  class NotNullOrEmptyExtensionsTests
    }
 
    [Fact]
-   public void MaxLengthExtensions_RequiresMaxLength_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsNullAndCustomNullExceptionFactoryIsUsed()
+   public void NotNullOrEmptyExtensions_RequiresNotNullOrEmpty_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsNullAndCustomNullExceptionFactoryIsUsed()
    {
       // Arrange.
       String value = null!;
@@ -380,7 +380,7 @@ public  class NotNullOrEmptyExtensionsTests
    }
 
    [Fact]
-   public void MaxLengthExtensions_RequiresMaxLength_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsEmptyAndCustomEmptyExceptionFactoryIsUsed()
+   public void NotNullOrEmptyExtensions_RequiresNotNullOrEmpty_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsEmptyAndCustomEmptyExceptionFactoryIsUsed()
    {
       // Arrange.
       var value = String.Empty;
@@ -393,7 +393,7 @@ public  class NotNullOrEmptyExtensionsTests
    }
 
    [Fact]
-   public void MaxLengthExtensions_RequiresMaxLength_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsNullAndCustomMessageTemplateAndCustomNullExceptionFactoryIsUsed()
+   public void NotNullOrEmptyExtensions_RequiresNotNullOrEmpty_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsNullAndCustomMessageTemplateAndCustomNullExceptionFactoryIsUsed()
    {
       // Arrange.
       String value = null!;
@@ -407,7 +407,7 @@ public  class NotNullOrEmptyExtensionsTests
    }
 
    [Fact]
-   public void MaxLengthExtensions_RequiresMaxLength_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsEmptyAndCustomMessageTemplateAndCustomEmptyExceptionFactoryIsUsed()
+   public void NotNullOrEmptyExtensions_RequiresNotNullOrEmpty_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsEmptyAndCustomMessageTemplateAndCustomEmptyExceptionFactoryIsUsed()
    {
       // Arrange.
       var value = String.Empty;
