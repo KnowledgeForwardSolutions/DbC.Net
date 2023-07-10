@@ -27,8 +27,8 @@ public static class GreaterThanOrEqualToExtensions
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
-   ///   exception that is thrown if the <paramref name="value"/> is 
-   ///   <see langword="null"/>. Defaults to 
+   ///   exception that is thrown if the <paramref name="value"/> is not greater
+   ///   than or equal to <paramref name="lowerBound"/>. Defaults to 
    ///   <see cref="StandardExceptionFactories.PostconditionFailedExceptionFactory"/>.
    /// </param>
    /// <param name="valueExpression">
@@ -85,8 +85,8 @@ public static class GreaterThanOrEqualToExtensions
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
-   ///   exception that is thrown if the <paramref name="value"/> is 
-   ///   <see langword="null"/>. Defaults to 
+   ///   exception that is thrown if the <paramref name="value"/> is not greater
+   ///   than or equal to <paramref name="lowerBound"/>. Defaults to
    ///   <see cref="StandardExceptionFactories.PostconditionFailedExceptionFactory"/>.
    /// </param>
    /// <param name="valueExpression">

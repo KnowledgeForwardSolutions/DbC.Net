@@ -77,7 +77,7 @@ public class NotNullOrWhiteSpaceExtensionsTests
    }
 
    [Fact]
-   public void MaxLengthExtensions_EnsuresMaxLength_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueIsNullAndAllDefaultsAreUsed()
+   public void NotNullOrWhiteSpaceExtensions_EnsuresNotNullOrWhiteSpace_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueIsNullAndAllDefaultsAreUsed()
    {
       // Arrange.
       String value = null!;
@@ -92,7 +92,7 @@ public class NotNullOrWhiteSpaceExtensionsTests
    [Theory]
    [InlineData("")]
    [InlineData("\t")]
-   public void MaxLengthExtensions_EnsuresMaxLength_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueIsEmptyOrWhiteSpaceAndAllDefaultsAreUsed(String value)
+   public void NotNullOrWhiteSpaceExtensions_EnsuresNotNullOrWhiteSpace_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueIsEmptyOrWhiteSpaceAndAllDefaultsAreUsed(String value)
    {
       // Arrange.
       var act = () => _ = value.EnsuresNotNullOrWhiteSpace();
@@ -104,7 +104,7 @@ public class NotNullOrWhiteSpaceExtensionsTests
    }
 
    [Fact]
-   public void MaxLengthExtensions_EnsuresMaxLength_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueIsNullAndCustomMessageTemplateIsUsed()
+   public void NotNullOrWhiteSpaceExtensions_EnsuresNotNullOrWhiteSpace_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueIsNullAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       String value = null!;
@@ -120,7 +120,7 @@ public class NotNullOrWhiteSpaceExtensionsTests
    [Theory]
    [InlineData("")]
    [InlineData("\t")]
-   public void MaxLengthExtensions_EnsuresMaxLength_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueIsEmptyOrWhiteSpaceAndAllCustomMessageTemplateIsUsed(String value)
+   public void NotNullOrWhiteSpaceExtensions_EnsuresNotNullOrWhiteSpace_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueIsEmptyOrWhiteSpaceAndAllCustomMessageTemplateIsUsed(String value)
    {
       // Arrange.
       var messageTemplate = "Requirement {RequirementName} failed";
@@ -133,7 +133,7 @@ public class NotNullOrWhiteSpaceExtensionsTests
    }
 
    [Fact]
-   public void MaxLengthExtensions_EnsuresMaxLength_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsNullAndCustomNullExceptionFactoryIsUsed()
+   public void NotNullOrWhiteSpaceExtensions_EnsuresNotNullOrWhiteSpace_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsNullAndCustomNullExceptionFactoryIsUsed()
    {
       // Arrange.
       String value = null!;
@@ -148,7 +148,7 @@ public class NotNullOrWhiteSpaceExtensionsTests
    [Theory]
    [InlineData("")]
    [InlineData("\t")]
-   public void MaxLengthExtensions_EnsuresMaxLength_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsEmptyOrWhiteSpaceAndCustomEmptyExceptionFactoryIsUsed(String value)
+   public void NotNullOrWhiteSpaceExtensions_EnsuresNotNullOrWhiteSpace_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsEmptyOrWhiteSpaceAndCustomEmptyExceptionFactoryIsUsed(String value)
    {
       // Arrange.
       var act = () => _ = value.EnsuresNotNullOrWhiteSpace(emptyExceptionFactory: TestExceptionFactories.CustomExceptionFactory);
@@ -160,7 +160,7 @@ public class NotNullOrWhiteSpaceExtensionsTests
    }
 
    [Fact]
-   public void MaxLengthExtensions_EnsuresMaxLength_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsNullAndCustomMessageTemplateAndCustomNullExceptionFactoryIsUsed()
+   public void NotNullOrWhiteSpaceExtensions_EnsuresNotNullOrWhiteSpace_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsNullAndCustomMessageTemplateAndCustomNullExceptionFactoryIsUsed()
    {
       // Arrange.
       String value = null!;
@@ -176,7 +176,7 @@ public class NotNullOrWhiteSpaceExtensionsTests
    [Theory]
    [InlineData("")]
    [InlineData("\t")]
-   public void MaxLengthExtensions_EnsuresMaxLength_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsEmptyOrWhiteSpaceAndCustomMessageTemplateAndCustomEmptyExceptionFactoryIsUsed(String value)
+   public void NotNullOrWhiteSpaceExtensions_EnsuresNotNullOrWhiteSpace_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsEmptyOrWhiteSpaceAndCustomMessageTemplateAndCustomEmptyExceptionFactoryIsUsed(String value)
    {
       // Arrange.
       var messageTemplate = "Requirement {RequirementName} failed";
@@ -246,7 +246,7 @@ public class NotNullOrWhiteSpaceExtensionsTests
    }
 
    [Fact]
-   public void MaxLengthExtensions_RequiresMaxLength_ShouldThrowArgumentNullExceptionWithExpectedMessage_WhenValueIsNullAndAllDefaultsAreUsed()
+   public void NotNullOrWhiteSpaceExtensions_RequiresNotNullOrWhiteSpace_ShouldThrowArgumentNullExceptionWithExpectedMessage_WhenValueIsNullAndAllDefaultsAreUsed()
    {
       // Arrange.
       String value = null!;
@@ -263,7 +263,7 @@ public class NotNullOrWhiteSpaceExtensionsTests
    [Theory]
    [InlineData("")]
    [InlineData("\t")]
-   public void MaxLengthExtensions_RequiresMaxLength_ShouldThrowArgumentExceptionWithExpectedMessage_WhenValueIsEmptyOrWhiteSpaceAndAllDefaultsAreUsed(String value)
+   public void NotNullOrWhiteSpaceExtensions_RequiresNotNullOrWhiteSpace_ShouldThrowArgumentExceptionWithExpectedMessage_WhenValueIsEmptyOrWhiteSpaceAndAllDefaultsAreUsed(String value)
    {
       // Arrange.
       var act = () => _ = value.RequiresNotNullOrWhiteSpace();
@@ -277,7 +277,7 @@ public class NotNullOrWhiteSpaceExtensionsTests
    }
 
    [Fact]
-   public void MaxLengthExtensions_RequiresMaxLength_ShouldThrowArgumentNullExceptionWithExpectedMessage_WhenValueIsNullAndCustomMessageTemplateIsUsed()
+   public void NotNullOrWhiteSpaceExtensions_RequiresNotNullOrWhiteSpace_ShouldThrowArgumentNullExceptionWithExpectedMessage_WhenValueIsNullAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       String value = null!;
@@ -295,7 +295,7 @@ public class NotNullOrWhiteSpaceExtensionsTests
    [Theory]
    [InlineData("")]
    [InlineData("\t")]
-   public void MaxLengthExtensions_RequiresMaxLength_ShouldThrowArgumentExceptionWithExpectedMessage_WhenValueIsEmptyOrWhiteSpaceAndAllCustomMessageTemplateIsUsed(String value)
+   public void NotNullOrWhiteSpaceExtensions_RequiresNotNullOrWhiteSpace_ShouldThrowArgumentExceptionWithExpectedMessage_WhenValueIsEmptyOrWhiteSpaceAndAllCustomMessageTemplateIsUsed(String value)
    {
       // Arrange.
       var messageTemplate = "Requirement {RequirementName} failed";
@@ -310,7 +310,7 @@ public class NotNullOrWhiteSpaceExtensionsTests
    }
 
    [Fact]
-   public void MaxLengthExtensions_RequiresMaxLength_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsNullAndCustomNullExceptionFactoryIsUsed()
+   public void NotNullOrWhiteSpaceExtensions_RequiresNotNullOrWhiteSpace_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsNullAndCustomNullExceptionFactoryIsUsed()
    {
       // Arrange.
       String value = null!;
@@ -325,7 +325,7 @@ public class NotNullOrWhiteSpaceExtensionsTests
    [Theory]
    [InlineData("")]
    [InlineData("\t")]
-   public void MaxLengthExtensions_RequiresMaxLength_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsEmptyOrWhiteSpaceAndCustomEmptyExceptionFactoryIsUsed(String value)
+   public void NotNullOrWhiteSpaceExtensions_RequiresNotNullOrWhiteSpace_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsEmptyOrWhiteSpaceAndCustomEmptyExceptionFactoryIsUsed(String value)
    {
       // Arrange.
       var act = () => _ = value.RequiresNotNullOrWhiteSpace(emptyExceptionFactory: TestExceptionFactories.CustomExceptionFactory);
@@ -337,7 +337,7 @@ public class NotNullOrWhiteSpaceExtensionsTests
    }
 
    [Fact]
-   public void MaxLengthExtensions_RequiresMaxLength_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsNullAndCustomMessageTemplateAndCustomNullExceptionFactoryIsUsed()
+   public void NotNullOrWhiteSpaceExtensions_RequiresNotNullOrWhiteSpace_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsNullAndCustomMessageTemplateAndCustomNullExceptionFactoryIsUsed()
    {
       // Arrange.
       String value = null!;
@@ -353,7 +353,7 @@ public class NotNullOrWhiteSpaceExtensionsTests
    [Theory]
    [InlineData("")]
    [InlineData("\t")]
-   public void MaxLengthExtensions_RequiresMaxLength_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsEmptyOrWhiteSpaceAndCustomMessageTemplateAndCustomEmptyExceptionFactoryIsUsed(String value)
+   public void NotNullOrWhiteSpaceExtensions_RequiresNotNullOrWhiteSpace_ShouldThrowCustomExceptionWithExpectedMessage_WhenValueIsEmptyOrWhiteSpaceAndCustomMessageTemplateAndCustomEmptyExceptionFactoryIsUsed(String value)
    {
       // Arrange.
       var messageTemplate = "Requirement {RequirementName} failed";
