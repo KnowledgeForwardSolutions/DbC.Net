@@ -510,28 +510,37 @@ parameter was omitted.
 | RequiresMinLength | Empty String                |                  | X                 | 2.6954 ns | 0.0259 ns | 0.0230 ns |         - |
 | RequiresMinLength | Empty String                | X                | X                 | 2.6405 ns | 0.0316 ns | 0.0264 ns |         - |
 
-### RequiredNotNullOrEmpty Benchmarks
+### NotNullOrEmpty Benchmarks
 
 | Method                 | Message Template | Null Exception Factory | Empty Exception Factory |      Mean |     Error |    StdDev | Allocated |
 |:---------------------- |:----------------:|:----------------------:|:-----------------------:|----------:|----------:|----------:|----------:|
-| RequiredNotNullOrEmpty |                  |                        |                         | 0.0016 ns | 0.0038 ns | 0.0034 ns |         - |
-| RequiredNotNullOrEmpty | X                |                        |                         | 0.0074 ns | 0.0098 ns | 0.0082 ns |         - |
-| RequiredNotNullOrEmpty |                  | X                      |                         | 0.0051 ns | 0.0066 ns | 0.0062 ns |         - |
-| RequiredNotNullOrEmpty |                  |                        | X                       | 0.0067 ns | 0.0090 ns | 0.0084 ns |         - |
-| RequiredNotNullOrEmpty |                  | X                      | X                       | 0.0060 ns | 0.0077 ns | 0.0068 ns |         - |
-| RequiredNotNullOrEmpty | X                | X                      |                         | 0.0485 ns | 0.0287 ns | 0.0572 ns |         - |
-| RequiredNotNullOrEmpty | X                |                        | X                       | 0.0405 ns | 0.0264 ns | 0.0528 ns |         - |
-| RequiredNotNullOrEmpty | X                | X                      | X                       | 0.0393 ns | 0.0289 ns | 0.0333 ns |         - |
+| RequiresNotNullOrEmpty |                  |                        |                         | 0.0016 ns | 0.0038 ns | 0.0034 ns |         - |
+| RequiresNotNullOrEmpty | X                |                        |                         | 0.0074 ns | 0.0098 ns | 0.0082 ns |         - |
+| RequiresNotNullOrEmpty |                  | X                      |                         | 0.0051 ns | 0.0066 ns | 0.0062 ns |         - |
+| RequiresNotNullOrEmpty |                  |                        | X                       | 0.0067 ns | 0.0090 ns | 0.0084 ns |         - |
+| RequiresNotNullOrEmpty |                  | X                      | X                       | 0.0060 ns | 0.0077 ns | 0.0068 ns |         - |
+| RequiresNotNullOrEmpty | X                | X                      |                         | 0.0485 ns | 0.0287 ns | 0.0572 ns |         - |
+| RequiresNotNullOrEmpty | X                |                        | X                       | 0.0405 ns | 0.0264 ns | 0.0528 ns |         - |
+| RequiresNotNullOrEmpty | X                | X                      | X                       | 0.0393 ns | 0.0289 ns | 0.0333 ns |         - |
 
-### RequiredNotNullOrWhiteSpace Benchmarks
+### NotNullOrWhiteSpace Benchmarks
 
 | Method                      | Message Template | Null Exception Factory | Empty Exception Factory |     Mean |     Error |    StdDev | Allocated |
 |:--------------------------- |:----------------:|:----------------------:|:-----------------------:|---------:|----------:|----------:|----------:|
-| RequiredNotNullOrWhiteSpace |                  |                        |                         | 2.167 ns | 0.0175 ns | 0.0163 ns |         - |
-| RequiredNotNullOrWhiteSpace | X                |                        |                         | 2.447 ns | 0.0215 ns | 0.0191 ns |         - |
-| RequiredNotNullOrWhiteSpace |                  | X                      |                         | 1.915 ns | 0.0123 ns | 0.0096 ns |         - |
-| RequiredNotNullOrWhiteSpace |                  |                        | X                       | 2.935 ns | 0.0268 ns | 0.0251 ns |         - |
-| RequiredNotNullOrWhiteSpace |                  | X                      | X                       | 2.756 ns | 0.0198 ns | 0.0154 ns |         - |
-| RequiredNotNullOrWhiteSpace | X                | X                      |                         | 2.215 ns | 0.0188 ns | 0.0166 ns |         - |
-| RequiredNotNullOrWhiteSpace | X                |                        | X                       | 2.298 ns | 0.0470 ns | 0.0393 ns |         - |
-| RequiredNotNullOrWhiteSpace | X                | X                      | X                       | 2.225 ns | 0.0223 ns | 0.0198 ns |         - |
+| RequiresNotNullOrWhiteSpace |                  |                        |                         | 2.167 ns | 0.0175 ns | 0.0163 ns |         - |
+| RequiresNotNullOrWhiteSpace | X                |                        |                         | 2.447 ns | 0.0215 ns | 0.0191 ns |         - |
+| RequiresNotNullOrWhiteSpace |                  | X                      |                         | 1.915 ns | 0.0123 ns | 0.0096 ns |         - |
+| RequiresNotNullOrWhiteSpace |                  |                        | X                       | 2.935 ns | 0.0268 ns | 0.0251 ns |         - |
+| RequiresNotNullOrWhiteSpace |                  | X                      | X                       | 2.756 ns | 0.0198 ns | 0.0154 ns |         - |
+| RequiresNotNullOrWhiteSpace | X                | X                      |                         | 2.215 ns | 0.0188 ns | 0.0166 ns |         - |
+| RequiresNotNullOrWhiteSpace | X                |                        | X                       | 2.298 ns | 0.0470 ns | 0.0393 ns |         - |
+| RequiresNotNullOrWhiteSpace | X                | X                      | X                       | 2.225 ns | 0.0223 ns | 0.0198 ns |         - |
+
+### NotEmptyOrWhiteSpace Benchmarks
+
+| Method            | Message Template | Exception Factory |     Mean |     Error |    StdDev | Allocated |
+|:----------------- |:----------------:|:-----------------:|---------:|----------:|----------:|----------:|
+| RequiresMinLength |                  |                   | 1.907 ns | 0.0316 ns | 0.0295 ns |         - |
+| RequiresMinLength | X                |                   | 2.461 ns | 0.0270 ns | 0.0253 ns |         - |
+| RequiresMinLength |                  | X                 | 2.981 ns | 0.0201 ns | 0.0179 ns |         - |
+| RequiresMinLength | X                | X                 | 2.533 ns | 0.0230 ns | 0.0204 ns |         - |
