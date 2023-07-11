@@ -101,7 +101,7 @@ public static class NotEmptyOrWhiteSpaceExtensions
       if (value is not null && String.IsNullOrWhiteSpace(value))
       {
          messageTemplate ??= MessageTemplates.NotEmptyOrWhiteSpaceTemplate;
-         exceptionFactory ??= StandardExceptionFactories.ResolveArgumentNullExceptionFactory(requirementType);
+         exceptionFactory ??= StandardExceptionFactories.ResolveArgumentExceptionFactory(requirementType);
          var data = ExceptionDataBuilder.Create()
             .WithRequirement(requirementType, _requirementName)
             .WithValue(value!, valueExpression)

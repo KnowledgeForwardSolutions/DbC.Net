@@ -5,6 +5,7 @@
 /// </summary>
 public static class RequirementNames
 {
+   public const String AlphaNumericOnly = nameof(AlphaNumericOnly);
    public const String ApproximatelyEqual = nameof(ApproximatelyEqual);
    public const String Between = nameof(Between);
    public const String Equal = nameof(Equal);

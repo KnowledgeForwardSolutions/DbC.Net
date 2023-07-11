@@ -1,0 +1,17 @@
+As a developer who uses DbC.Net, I want to be able to require/ensure that a string value contains a value that can be parsed to type T where T implements the IParsable<TSelf> interface.
+
+If the string value can be parsed into type T, then the resulting value is returned via an output parameter.
+
+Requirements:
+
+  RequiresParsable<T> (precondition), default ArgumentException 
+  EnsuresParsable<T> (postcondition), default PostconditionFailedException
+
+DEFINITION OF DONE:
+
+1. Implement RequiresParsable<T>
+2. Implement EnsuresParsable<T>
+3. Unit tests for Requires/Ensures Parsable<T>
+4. Performance tests
+5. Readme updates
+6. Examples

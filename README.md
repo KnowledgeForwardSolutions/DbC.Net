@@ -59,6 +59,7 @@
     - [MinLength](/Documentation/MinLength.md)
     - [NotNullOrEmpty](/Documentation/NotNullOrEmpty.md)
     - [NotNullOrWhiteSpace](/Documentation/NotNullOrWhiteSpace.md)
+    - [AlphaNumericOnly](/Documentation/AlphaNumericOnly.md)
 
 - **[Release History/Release Notes](#release-historyrelease-notes)**
 

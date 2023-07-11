@@ -61,6 +61,15 @@ namespace DbC.Net {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} may only contain alphanumeric characters.
+        /// </summary>
+        internal static string AlphaNumericOnlyTemplate {
+            get {
+                return ResourceManager.GetString("AlphaNumericOnlyTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} must be within +/- {Epsilon} of {Target}.
         /// </summary>
         internal static string ApproximatelyEqualTemplate {
