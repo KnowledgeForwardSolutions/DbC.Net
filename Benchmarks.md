@@ -31,6 +31,10 @@ Intel Core i7-8700K CPU 3.70GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical 
 
   - [MaxLength Benchmarks](#maxlength-benchmarks)
   - [MinLength Benchmarks](#minlength-benchmarks)
+  - [NotNullOrEmpty Benchmarks](#notnullorempty-benchmarks)
+  - [NotNullOrWhiteSpace Benchmarks](#notnullorwhitespace-benchmarks)
+  - [NotEmptyOrWhiteSpace Benchmarks](#notemptyorwhitespace-benchmarks)
+  - [AlphaNumericOnly Benchmarks](#alphanumericonly-benchmarks)
 
 ### NotNull Benchmarks
 
@@ -544,3 +548,20 @@ parameter was omitted.
 | RequiresMinLength | X                |                   | 2.461 ns | 0.0270 ns | 0.0253 ns |         - |
 | RequiresMinLength |                  | X                 | 2.981 ns | 0.0201 ns | 0.0179 ns |         - |
 | RequiresMinLength | X                | X                 | 2.533 ns | 0.0230 ns | 0.0204 ns |         - |
+
+### AlphaNumericOnly Benchmarks
+
+| Method                   | String content      | Message Template | Exception Factory |       Mean |     Error |    StdDev | Allocated |
+|:------------------------ |:--------------------|:----------------:|:-----------------:|-----------:|----------:|----------:|----------:|
+| RequiresAlphaNumericOnly | Null String         |                  |                   |   1.440 ns | 0.0125 ns | 0.0098 ns |         - |
+| RequiresAlphaNumericOnly | Null String         | X                |                   |   1.247 ns | 0.0245 ns | 0.0229 ns |         - |
+| RequiresAlphaNumericOnly | Null String         |                  | X                 |   1.870 ns | 0.0055 ns | 0.0046 ns |         - |
+| RequiresAlphaNumericOnly | Null String         | X                | X                 |   1.444 ns | 0.0095 ns | 0.0089 ns |         - |
+| RequiresAlphaNumericOnly | String (Length 10)  |                  |                   |  14.056 ns | 0.0816 ns | 0.0724 ns |         - |
+| RequiresAlphaNumericOnly | String (Length 10)  | X                |                   |  14.423 ns | 0.2091 ns | 0.1746 ns |         - |
+| RequiresAlphaNumericOnly | String (Length 10)  |                  | X                 |  14.459 ns | 0.0728 ns | 0.0569 ns |         - |
+| RequiresAlphaNumericOnly | String (Length 10)  | X                | X                 |  14.703 ns | 0.1031 ns | 0.0914 ns |         - |
+| RequiresAlphaNumericOnly | String (Length 100) |                  |                   | 139.280 ns | 0.9190 ns | 0.8147 ns |         - |
+| RequiresAlphaNumericOnly | String (Length 100) | X                |                   | 140.831 ns | 1.7650 ns | 1.6510 ns |         - |
+| RequiresAlphaNumericOnly | String (Length 100) |                  | X                 | 138.831 ns | 0.8712 ns | 0.8149 ns |         - |
+| RequiresAlphaNumericOnly | String (Length 100) | X                | X                 | 140.733 ns | 0.7224 ns | 0.6757 ns |         - |
