@@ -14,7 +14,7 @@ String EnsuresNotEmptyOrWhiteSpace(this String value, [String? messageTemplate =
 ```
 
 The default message template for NotEmptyOrWhiteSpace is "{RequirementType} {RequirementName} failed: {ValueExpression} may not be String.Empty or all whitespace characters".
-The default exception factory for RequiresNotEmptyOrWhiteSpace is StandardExceptionFactories.ArgumentNullExceptionFactory 
+The default exception factory for RequiresNotEmptyOrWhiteSpace is StandardExceptionFactories.ArgumentExceptionFactory 
 and StandardExceptionFactories.PostconditionFailedExceptionFactory for 
 EnsuresNotEmptyOrWhiteSpace.
 
