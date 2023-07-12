@@ -2,7 +2,7 @@
 
 AlphaNumericOnly requires that the string value being checked contain only 
 alphanumeric characters (as defined by the Char.IsLetterOrDigit method). A null
-or empty string will fail the requirement.
+or empty string will pass the requirement.
 
 **Method signatures:**
 ```C#
@@ -24,7 +24,7 @@ RequirementName, Value and ValueExpression.
 var customMessageTemplate = "{ValueExpression} must contain only letters or digits";
 var customExceptionFactory = new CustomExceptionFactory();
 
-var value = "This is a test!";
+var value = "abc123";
 
 // Precondition with default message template and default exception factory.
 value.RequiresAlphaNumericOnly();

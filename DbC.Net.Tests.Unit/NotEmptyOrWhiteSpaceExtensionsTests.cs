@@ -67,7 +67,7 @@ public class NotEmptyOrWhiteSpaceExtensionsTests
    [Theory]
    [InlineData("")]
    [InlineData("\t")]
-   public void NotEmptyOrWhiteSpaceExtensions_EnsuresNotEmptyOrWhiteSpace_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueIsEmptyOrWhiteSpaceAndAllCustomMessageTemplateIsUsed(String value)
+   public void NotEmptyOrWhiteSpaceExtensions_EnsuresNotEmptyOrWhiteSpace_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenValueIsEmptyOrWhiteSpaceAndCustomMessageTemplateIsUsed(String value)
    {
       // Arrange.
       var messageTemplate = "Requirement {RequirementName} failed";
@@ -129,13 +129,13 @@ public class NotEmptyOrWhiteSpaceExtensionsTests
    [Theory]
    [InlineData("")]
    [InlineData("\t")]
-   public void NotEmptyOrWhiteSpaceExtensions_RequiresNotEmptyOrWhiteSpace_ShouldThrowArgumentException_WhenValueIsEmptyOrWhiteSpace(String value)
+   public void NotEmptyOrWhiteSpaceExtensions_RequiresNotEmptyOrWhiteSpace_ShouldThrow_WhenValueIsEmptyOrWhiteSpace(String value)
    {
       // Arrange.
       var act = () => _ = value.RequiresNotEmptyOrWhiteSpace();
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    [Theory]
@@ -147,7 +147,7 @@ public class NotEmptyOrWhiteSpaceExtensionsTests
       var act = () => _ = value.RequiresNotEmptyOrWhiteSpace();
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
@@ -167,7 +167,7 @@ public class NotEmptyOrWhiteSpaceExtensionsTests
       var expectedMessage = $"Precondition NotEmptyOrWhiteSpace failed: value may not be String.Empty or all whitespace characters";
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
          .WithMessage(expectedMessage + "*");
    }
@@ -175,7 +175,7 @@ public class NotEmptyOrWhiteSpaceExtensionsTests
    [Theory]
    [InlineData("")]
    [InlineData("\t")]
-   public void NotEmptyOrWhiteSpaceExtensions_RequiresNotEmptyOrWhiteSpace_ShouldThrowArgumentExceptionWithExpectedMessage_WhenValueIsEmptyOrWhiteSpaceAndAllCustomMessageTemplateIsUsed(String value)
+   public void NotEmptyOrWhiteSpaceExtensions_RequiresNotEmptyOrWhiteSpace_ShouldThrowArgumentExceptionWithExpectedMessage_WhenValueIsEmptyOrWhiteSpaceAndCustomMessageTemplateIsUsed(String value)
    {
       // Arrange.
       var messageTemplate = "Requirement {RequirementName} failed";
@@ -184,7 +184,7 @@ public class NotEmptyOrWhiteSpaceExtensionsTests
       var expectedMessage = $"Requirement NotEmptyOrWhiteSpace failed";
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
          .WithMessage(expectedMessage + "*");
    }
