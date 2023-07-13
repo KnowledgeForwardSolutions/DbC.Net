@@ -55,11 +55,13 @@
 
   - String Requirements
 
+    - [AlphaNumericOnly](/Documentation/AlphaNumericOnly.md)
+    - [Contains](/Documentation/Contains.md)
     - [MaxLength](/Documentation/MaxLength.md)
     - [MinLength](/Documentation/MinLength.md)
+    - [NotEmptyOrWhiteSpace](/Documentation/NotEmptyOrWhiteSpace.md)
     - [NotNullOrEmpty](/Documentation/NotNullOrEmpty.md)
     - [NotNullOrWhiteSpace](/Documentation/NotNullOrWhiteSpace.md)
-    - [AlphaNumericOnly](/Documentation/AlphaNumericOnly.md)
 
 - **[Release History/Release Notes](#release-historyrelease-notes)**
 

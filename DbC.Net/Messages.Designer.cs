@@ -196,6 +196,15 @@ namespace DbC.Net {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Target substring is null.
+        /// </summary>
+        internal static string TargetSubstringIsNull {
+            get {
+                return ResourceManager.GetString("TargetSubstringIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Transform keys collection may not be null.
         /// </summary>
         internal static string TransformKeysCollectonIsNull {
