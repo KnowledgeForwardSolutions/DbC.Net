@@ -324,7 +324,7 @@ public class EqualsExtensionsTests
    // ==========================================================================
    // ==========================================================================
 
-   [UseCulture("en-US")]
+   [UseCulture(CultureData.EnglishUS)]
    [Theory]
    [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.CurrentCulture)]
    [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.CurrentCultureIgnoreCase)]
@@ -346,7 +346,7 @@ public class EqualsExtensionsTests
 
    // Note: tr-TR culture considers "i" and upper case dotted "I" as equal when
    // case is ignored. Same for "I" and lowercase dot-less "i".
-   [UseCulture("tr-TR")]
+   [UseCulture(CultureData.TurkishTurkey)]
    [Theory]
    [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.CurrentCulture)]
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.CurrentCultureIgnoreCase)]
@@ -368,7 +368,7 @@ public class EqualsExtensionsTests
    }
 
    // Note: th-TH culture considers "a" and "a-" as equal.
-   [UseCulture("th-TH")]
+   [UseCulture(CultureData.ThaiThailand)]
    [Theory]
    [InlineData(StringData.LowerCaseA, StringData.LowerCaseADash, StringComparison.CurrentCulture)]
    [InlineData(StringData.LowerCaseA, StringData.LowerCaseADash, StringComparison.CurrentCultureIgnoreCase)]
@@ -388,7 +388,7 @@ public class EqualsExtensionsTests
       result.Should().Be(value);
    }
 
-   [UseCulture("en-US")]
+   [UseCulture(CultureData.EnglishUS)]
    [Theory]
    [InlineData(StringComparison.CurrentCulture)]
    [InlineData(StringComparison.CurrentCultureIgnoreCase)]
@@ -409,7 +409,7 @@ public class EqualsExtensionsTests
       result.Should().Be(value);
    }
 
-   [UseCulture("tr-TR")]
+   [UseCulture(CultureData.TurkishTurkey)]
    [Theory]
    [InlineData(StringComparison.CurrentCulture)]
    [InlineData(StringComparison.CurrentCultureIgnoreCase)]
@@ -430,7 +430,7 @@ public class EqualsExtensionsTests
       result.Should().Be(value);
    }
 
-   [UseCulture("en-US")]
+   [UseCulture(CultureData.EnglishUS)]
    [Theory]
    [InlineData(StringData.LowerCaseA, StringData.LowerCaseADash, StringComparison.CurrentCulture)]
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.CurrentCultureIgnoreCase)]
@@ -450,7 +450,7 @@ public class EqualsExtensionsTests
       act.Should().Throw<PostconditionFailedException>();
    }
 
-   [UseCulture("tr-TR")]
+   [UseCulture(CultureData.TurkishTurkey)]
    [Theory]
    [InlineData(StringData.LowerCaseA, StringData.LowerCaseADash, StringComparison.CurrentCulture)]
    [InlineData(StringData.LowerCaseA, StringData.LowerCaseADash, StringComparison.CurrentCultureIgnoreCase)]
@@ -470,7 +470,7 @@ public class EqualsExtensionsTests
       act.Should().Throw<PostconditionFailedException>();
    }
 
-   [UseCulture("th-TH")]
+   [UseCulture(CultureData.ThaiThailand)]
    [Theory]
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.CurrentCulture)]
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.CurrentCultureIgnoreCase)]
@@ -490,7 +490,7 @@ public class EqualsExtensionsTests
       act.Should().Throw<PostconditionFailedException>();
    }
 
-   [UseCulture("en-US")]
+   [UseCulture(CultureData.EnglishUS)]
    [Theory]
    [InlineData(StringComparison.CurrentCulture)]
    [InlineData(StringComparison.CurrentCultureIgnoreCase)]
@@ -509,7 +509,7 @@ public class EqualsExtensionsTests
       act.Should().Throw<PostconditionFailedException>();
    }
 
-   [UseCulture("th-TH")]
+   [UseCulture(CultureData.ThaiThailand)]
    [Theory]
    [InlineData(StringComparison.CurrentCulture)]
    [InlineData(StringComparison.CurrentCultureIgnoreCase)]
@@ -968,7 +968,7 @@ public class EqualsExtensionsTests
    // ==========================================================================
    // ==========================================================================
 
-   [UseCulture("en-US")]
+   [UseCulture(CultureData.EnglishUS)]
    [Theory]
    [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.CurrentCulture)]
    [InlineData(StringData.LowerCaseAE, StringData.UpperCaseAE, StringComparison.CurrentCultureIgnoreCase)]
@@ -990,7 +990,7 @@ public class EqualsExtensionsTests
 
    // Note: tr-TR culture considers "i" and upper case dotted "I" as equal when
    // case is ignored. Same for "I" and lowercase dot-less "i".
-   [UseCulture("tr-TR")]
+   [UseCulture(CultureData.TurkishTurkey)]
    [Theory]
    [InlineData(StringData.LowerCaseAE, StringData.LowerCaseAE, StringComparison.CurrentCulture)]
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.CurrentCultureIgnoreCase)]
@@ -1012,7 +1012,7 @@ public class EqualsExtensionsTests
    }
 
    // Note: th-TH culture considers "a" and "a-" as equal.
-   [UseCulture("th-TH")]
+   [UseCulture(CultureData.ThaiThailand)]
    [Theory]
    [InlineData(StringData.LowerCaseA, StringData.LowerCaseADash, StringComparison.CurrentCulture)]
    [InlineData(StringData.LowerCaseA, StringData.LowerCaseADash, StringComparison.CurrentCultureIgnoreCase)]
@@ -1032,7 +1032,7 @@ public class EqualsExtensionsTests
       result.Should().Be(value);
    }
 
-   [UseCulture("en-US")]
+   [UseCulture(CultureData.EnglishUS)]
    [Theory]
    [InlineData(StringComparison.CurrentCulture)]
    [InlineData(StringComparison.CurrentCultureIgnoreCase)]
@@ -1053,7 +1053,7 @@ public class EqualsExtensionsTests
       result.Should().Be(value);
    }
 
-   [UseCulture("tr-TR")]
+   [UseCulture(CultureData.TurkishTurkey)]
    [Theory]
    [InlineData(StringComparison.CurrentCulture)]
    [InlineData(StringComparison.CurrentCultureIgnoreCase)]
@@ -1074,7 +1074,7 @@ public class EqualsExtensionsTests
       result.Should().Be(value);
    }
 
-   [UseCulture("en-US")]
+   [UseCulture(CultureData.EnglishUS)]
    [Theory]
    [InlineData(StringData.LowerCaseA, StringData.LowerCaseADash, StringComparison.CurrentCulture)]
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.CurrentCultureIgnoreCase)]
@@ -1094,7 +1094,7 @@ public class EqualsExtensionsTests
       act.Should().Throw<ArgumentException>();
    }
 
-   [UseCulture("tr-TR")]
+   [UseCulture(CultureData.TurkishTurkey)]
    [Theory]
    [InlineData(StringData.LowerCaseA, StringData.LowerCaseADash, StringComparison.CurrentCulture)]
    [InlineData(StringData.LowerCaseA, StringData.LowerCaseADash, StringComparison.CurrentCultureIgnoreCase)]
@@ -1114,7 +1114,7 @@ public class EqualsExtensionsTests
       act.Should().Throw<ArgumentException>();
    }
 
-   [UseCulture("th-TH")]
+   [UseCulture(CultureData.ThaiThailand)]
    [Theory]
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.CurrentCulture)]
    [InlineData(StringData.LowerCaseI, StringData.UpperCaseDottedI, StringComparison.CurrentCultureIgnoreCase)]
@@ -1134,7 +1134,7 @@ public class EqualsExtensionsTests
       act.Should().Throw<ArgumentException>();
    }
 
-   [UseCulture("en-US")]
+   [UseCulture(CultureData.EnglishUS)]
    [Theory]
    [InlineData(StringComparison.CurrentCulture)]
    [InlineData(StringComparison.CurrentCultureIgnoreCase)]
@@ -1153,7 +1153,7 @@ public class EqualsExtensionsTests
       act.Should().Throw<ArgumentException>();
    }
 
-   [UseCulture("th-TH")]
+   [UseCulture(CultureData.ThaiThailand)]
    [Theory]
    [InlineData(StringComparison.CurrentCulture)]
    [InlineData(StringComparison.CurrentCultureIgnoreCase)]
