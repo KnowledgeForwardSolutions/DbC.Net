@@ -1,4 +1,6 @@
-﻿namespace DbC.Net.Tests.Unit;
+﻿// Ignore Spelling: Latn sv
+
+namespace DbC.Net.Tests.Unit;
 
 #pragma warning disable IDE0060 // Remove unused parameter
 #pragma warning disable xUnit1026 // Theory methods should use all of their parameters

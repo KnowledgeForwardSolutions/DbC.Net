@@ -1,4 +1,6 @@
-﻿namespace DbC.Net.Tests.Unit.TestData;
+﻿// Ignore Spelling: Overring Eszett Dotless
+
+namespace DbC.Net.Tests.Unit.TestData;
 
 public class StringData : ComparableValue<String>
 {
