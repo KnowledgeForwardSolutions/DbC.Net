@@ -47,7 +47,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
       var act = () => _ = value.EnsuresGreaterThanOrEqualToZero();
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Theory]
@@ -88,7 +88,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
       var act = () => _ = value.EnsuresGreaterThanOrEqualToZero();
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
@@ -106,7 +106,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
       var expectedMessage = $"Postcondition GreaterThanOrEqualToZero failed: {nameof(value)} must be greater than or equal to zero";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .WithMessage(expectedMessage);
    }
 
@@ -120,7 +120,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
       var expectedMessage = $"Requirement GreaterThanOrEqualToZero failed";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .WithMessage(expectedMessage);
    }
 
@@ -133,7 +133,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
       var expectedMessage = $"Postcondition GreaterThanOrEqualToZero failed: {nameof(value)} must be greater than or equal to zero";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage);
    }
 
@@ -147,7 +147,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
       var expectedMessage = $"Requirement GreaterThanOrEqualToZero failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage);
    }
 
@@ -193,7 +193,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
       var act = () => _ = value.RequiresGreaterThanOrEqualToZero();
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [Theory]
@@ -234,7 +234,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
       var act = () => _ = value.RequiresGreaterThanOrEqualToZero();
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
@@ -253,7 +253,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
       var expectedMessage = $"Precondition GreaterThanOrEqualToZero failed: {nameof(value)} must be greater than or equal to zero";
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>()
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>()
          .WithParameterName(expectedParameterName)
          .WithMessage(expectedMessage + "*")
          .And.ActualValue.Should().Be(value);
@@ -270,7 +270,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
       var expectedMessage = $"Requirement GreaterThanOrEqualToZero failed";
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>()
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>()
          .WithParameterName(expectedParameterName)
          .WithMessage(expectedMessage + "*")
          .And.ActualValue.Should().Be(value);
@@ -285,7 +285,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
       var expectedMessage = $"Precondition GreaterThanOrEqualToZero failed: {nameof(value)} must be greater than or equal to zero";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage);
    }
 
@@ -299,7 +299,7 @@ public class GreaterThanOrEqualToZeroExtensionsTests
       var expectedMessage = $"Requirement GreaterThanOrEqualToZero failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage);
    }
 

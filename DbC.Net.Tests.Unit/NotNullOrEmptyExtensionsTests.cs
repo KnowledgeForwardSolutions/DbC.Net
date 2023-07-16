@@ -38,7 +38,7 @@ public  class NotNullOrEmptyExtensionsTests
       var act = () => _ = value.EnsuresNotNullOrEmpty();
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Fact]
@@ -49,7 +49,7 @@ public  class NotNullOrEmptyExtensionsTests
       var act = () => _ = value.EnsuresNotNullOrEmpty();
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Fact]
@@ -73,7 +73,7 @@ public  class NotNullOrEmptyExtensionsTests
       var act = () => _ = value.EnsuresNotNullOrEmpty();
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
@@ -90,7 +90,7 @@ public  class NotNullOrEmptyExtensionsTests
       var act = () => _ = value.EnsuresNotNullOrEmpty();
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
@@ -108,7 +108,7 @@ public  class NotNullOrEmptyExtensionsTests
       var expectedMessage = $"Postcondition NotNullOrEmpty failed: value may not be null or String.Empty";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .WithMessage(expectedMessage + "*");
    }
 
@@ -121,7 +121,7 @@ public  class NotNullOrEmptyExtensionsTests
       var expectedMessage = $"Postcondition NotNullOrEmpty failed: value may not be null or String.Empty";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .WithMessage(expectedMessage + "*");
    }
 
@@ -135,7 +135,7 @@ public  class NotNullOrEmptyExtensionsTests
       var expectedMessage = $"Requirement NotNullOrEmpty failed";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .WithMessage(expectedMessage + "*");
    }
 
@@ -149,7 +149,7 @@ public  class NotNullOrEmptyExtensionsTests
       var expectedMessage = $"Requirement NotNullOrEmpty failed";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .WithMessage(expectedMessage + "*");
    }
 
@@ -162,7 +162,7 @@ public  class NotNullOrEmptyExtensionsTests
       var expectedMessage = $"Postcondition NotNullOrEmpty failed: value may not be null or String.Empty";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage + "*");
    }
 
@@ -175,7 +175,7 @@ public  class NotNullOrEmptyExtensionsTests
       var expectedMessage = $"Postcondition NotNullOrEmpty failed: value may not be null or String.Empty";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage + "*");
    }
 
@@ -189,7 +189,7 @@ public  class NotNullOrEmptyExtensionsTests
       var expectedMessage = $"Requirement NotNullOrEmpty failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage + "*");
    }
 
@@ -203,7 +203,7 @@ public  class NotNullOrEmptyExtensionsTests
       var expectedMessage = $"Requirement NotNullOrEmpty failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage + "*");
    }
 
@@ -243,7 +243,7 @@ public  class NotNullOrEmptyExtensionsTests
       var act = () => _ = value.RequiresNotNullOrEmpty();
 
       // Act/assert.
-      act.Should().Throw<ArgumentNullException>();
+      act.Should().ThrowExactly<ArgumentNullException>();
    }
 
    [Fact]
@@ -254,7 +254,7 @@ public  class NotNullOrEmptyExtensionsTests
       var act = () => _ = value.RequiresNotNullOrEmpty();
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    [Fact]
@@ -278,7 +278,7 @@ public  class NotNullOrEmptyExtensionsTests
       var act = () => _ = value.RequiresNotNullOrEmpty();
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentNullException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentNullException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
@@ -295,7 +295,7 @@ public  class NotNullOrEmptyExtensionsTests
       var act = () => _ = value.RequiresNotNullOrEmpty();
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
@@ -314,7 +314,7 @@ public  class NotNullOrEmptyExtensionsTests
       var expectedMessage = $"Precondition NotNullOrEmpty failed: value may not be null or String.Empty";
 
       // Act/assert.
-      act.Should().Throw<ArgumentNullException>()
+      act.Should().ThrowExactly<ArgumentNullException>()
          .WithParameterName(expectedParameterName)
          .WithMessage(expectedMessage + "*");
    }
@@ -329,7 +329,7 @@ public  class NotNullOrEmptyExtensionsTests
       var expectedMessage = $"Precondition NotNullOrEmpty failed: value may not be null or String.Empty";
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
          .WithMessage(expectedMessage + "*");
    }
@@ -345,7 +345,7 @@ public  class NotNullOrEmptyExtensionsTests
       var expectedMessage = $"Requirement NotNullOrEmpty failed";
 
       // Act/assert.
-      act.Should().Throw<ArgumentNullException>()
+      act.Should().ThrowExactly<ArgumentNullException>()
          .WithParameterName(expectedParameterName)
          .WithMessage(expectedMessage + "*");
    }
@@ -361,7 +361,7 @@ public  class NotNullOrEmptyExtensionsTests
       var expectedMessage = $"Requirement NotNullOrEmpty failed";
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
          .WithMessage(expectedMessage + "*");
    }
@@ -375,7 +375,7 @@ public  class NotNullOrEmptyExtensionsTests
       var expectedMessage = $"Precondition NotNullOrEmpty failed: value may not be null or String.Empty";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage + "*");
    }
 
@@ -388,7 +388,7 @@ public  class NotNullOrEmptyExtensionsTests
       var expectedMessage = $"Precondition NotNullOrEmpty failed: value may not be null or String.Empty";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage + "*");
    }
 
@@ -402,7 +402,7 @@ public  class NotNullOrEmptyExtensionsTests
       var expectedMessage = $"Requirement NotNullOrEmpty failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage + "*");
    }
 
@@ -416,7 +416,7 @@ public  class NotNullOrEmptyExtensionsTests
       var expectedMessage = $"Requirement NotNullOrEmpty failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage + "*");
    }
 

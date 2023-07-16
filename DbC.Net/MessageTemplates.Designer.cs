@@ -88,6 +88,15 @@ namespace DbC.Net {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} must contain the substring &quot;{Target}&quot;.
+        /// </summary>
+        internal static string ContainsTemplate {
+            get {
+                return ResourceManager.GetString("ContainsTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} must be equal to {Target}.
         /// </summary>
         internal static string EqualTemplate {

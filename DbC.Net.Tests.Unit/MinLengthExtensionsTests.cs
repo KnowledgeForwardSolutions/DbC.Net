@@ -66,7 +66,7 @@ public class MinLengthExtensionsTests
       var act = () => _ = value.EnsuresMinLength(minLength);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Fact]
@@ -78,7 +78,7 @@ public class MinLengthExtensionsTests
       var act = () => _ = value.EnsuresMinLength(maxLength);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Fact]
@@ -90,7 +90,7 @@ public class MinLengthExtensionsTests
       var act = () => _ = value.EnsuresMinLength(maxLength);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Theory]
@@ -146,7 +146,7 @@ public class MinLengthExtensionsTests
       var act = () => _ = value.EnsuresMinLength(minLength);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>()
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>()
          .WithParameterName(nameof(minLength))
          .WithMessage(expectedMessage + "*")
          .And.ActualValue.Should().Be(minLength);
@@ -161,7 +161,7 @@ public class MinLengthExtensionsTests
       var act = () => _ = value.EnsuresMinLength(minLength);
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
@@ -182,7 +182,7 @@ public class MinLengthExtensionsTests
       var expectedMessage = $"Postcondition MinLength failed: {nameof(value)} must have a minimum length of {minLength}";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .WithMessage(expectedMessage);
    }
 
@@ -197,7 +197,7 @@ public class MinLengthExtensionsTests
       var expectedMessage = $"Requirement MinLength failed";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .WithMessage(expectedMessage);
    }
 
@@ -211,7 +211,7 @@ public class MinLengthExtensionsTests
       var expectedMessage = $"Postcondition MinLength failed: {nameof(value)} must have a minimum length of {minLength}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage);
    }
 
@@ -226,7 +226,7 @@ public class MinLengthExtensionsTests
       var expectedMessage = $"Requirement MinLength failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage);
    }
 
@@ -282,7 +282,7 @@ public class MinLengthExtensionsTests
       var act = () => _ = value.RequiresMinLength(minLength);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    [Fact]
@@ -294,7 +294,7 @@ public class MinLengthExtensionsTests
       var act = () => _ = value.RequiresMinLength(maxLength);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    [Fact]
@@ -306,7 +306,7 @@ public class MinLengthExtensionsTests
       var act = () => _ = value.RequiresMinLength(maxLength);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    [Theory]
@@ -362,7 +362,7 @@ public class MinLengthExtensionsTests
       var act = () => _ = value.RequiresMinLength(minLength);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>()
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>()
          .WithParameterName(nameof(minLength))
          .WithMessage(expectedMessage + "*")
          .And.ActualValue.Should().Be(minLength);
@@ -377,7 +377,7 @@ public class MinLengthExtensionsTests
       var act = () => _ = value.RequiresMinLength(minLength);
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
@@ -399,7 +399,7 @@ public class MinLengthExtensionsTests
       var expectedMessage = $"Precondition MinLength failed: {nameof(value)} must have a minimum length of {minLength}";
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
          .WithMessage(expectedMessage + "*");
    }
@@ -416,7 +416,7 @@ public class MinLengthExtensionsTests
       var expectedMessage = $"Requirement MinLength failed";
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
          .WithMessage(expectedMessage + "*");
    }
@@ -431,7 +431,7 @@ public class MinLengthExtensionsTests
       var expectedMessage = $"Precondition MinLength failed: {nameof(value)} must have a minimum length of {minLength}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage);
    }
 
@@ -446,7 +446,7 @@ public class MinLengthExtensionsTests
       var expectedMessage = $"Requirement MinLength failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage);
    }
 

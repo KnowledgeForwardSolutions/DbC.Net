@@ -42,7 +42,7 @@ public class FixedLengthDecoratorTests
       var act = () => _ = new FixedLengthDecorator(baseTransform, _length, _padCharacter);
 
       // Act/assert.
-      act.Should().Throw<ArgumentNullException>()
+      act.Should().ThrowExactly<ArgumentNullException>()
          .WithParameterName(nameof(baseTransform))
          .And.Message.Should().StartWith(Messages.BaseTransformIsNull);
    }
@@ -55,7 +55,7 @@ public class FixedLengthDecoratorTests
       var act = () => _ = new FixedLengthDecorator(_baseTransform, length, _padCharacter);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>()
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>()
          .WithParameterName(nameof(length))
          .And.Message.Should().StartWith(Messages.LengthIsLessThanOne);
    }
@@ -68,7 +68,7 @@ public class FixedLengthDecoratorTests
       var act = () => _ = new FixedLengthDecorator(_baseTransform, _length, padCharacter);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>()
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>()
          .WithParameterName(nameof(padCharacter))
          .And.Message.Should().StartWith(Messages.PadCharacterIsNull);
    }

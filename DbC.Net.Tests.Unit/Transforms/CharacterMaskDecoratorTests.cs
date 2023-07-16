@@ -39,7 +39,7 @@ public class CharacterMaskDecoratorTests
       var act = () => _ = new CharacterMaskDecorator(baseTransform, _maskCharacter);
 
       // Act/assert.
-      act.Should().Throw<ArgumentNullException>()
+      act.Should().ThrowExactly<ArgumentNullException>()
          .WithParameterName(nameof(baseTransform))
          .And.Message.Should().StartWith(Messages.BaseTransformIsNull);
    }
@@ -52,7 +52,7 @@ public class CharacterMaskDecoratorTests
       var act = () => _ = new CharacterMaskDecorator(_baseTransform, maskCharacter);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>()
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>()
          .WithParameterName(nameof(maskCharacter))
          .And.Message.Should().StartWith(Messages.MaskCharacterIsNull);
    }

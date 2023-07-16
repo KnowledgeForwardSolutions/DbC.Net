@@ -29,7 +29,7 @@ public class NotEmptyOrWhiteSpaceExtensionsTests
       var act = () => _ = value.EnsuresNotEmptyOrWhiteSpace();
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Theory]
@@ -41,7 +41,7 @@ public class NotEmptyOrWhiteSpaceExtensionsTests
       var act = () => _ = value.EnsuresNotEmptyOrWhiteSpace();
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
@@ -60,7 +60,7 @@ public class NotEmptyOrWhiteSpaceExtensionsTests
       var expectedMessage = $"Postcondition NotEmptyOrWhiteSpace failed: value may not be String.Empty or all whitespace characters";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .WithMessage(expectedMessage + "*");
    }
 
@@ -75,7 +75,7 @@ public class NotEmptyOrWhiteSpaceExtensionsTests
       var expectedMessage = $"Requirement NotEmptyOrWhiteSpace failed";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .WithMessage(expectedMessage + "*");
    }
 
@@ -89,7 +89,7 @@ public class NotEmptyOrWhiteSpaceExtensionsTests
       var expectedMessage = $"Postcondition NotEmptyOrWhiteSpace failed: value may not be String.Empty or all whitespace characters";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage + "*");
    }
 
@@ -104,7 +104,7 @@ public class NotEmptyOrWhiteSpaceExtensionsTests
       var expectedMessage = $"Requirement NotEmptyOrWhiteSpace failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage + "*");
    }
 
@@ -199,7 +199,7 @@ public class NotEmptyOrWhiteSpaceExtensionsTests
       var expectedMessage = $"Precondition NotEmptyOrWhiteSpace failed: value may not be String.Empty or all whitespace characters";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage + "*");
    }
 
@@ -214,7 +214,7 @@ public class NotEmptyOrWhiteSpaceExtensionsTests
       var expectedMessage = $"Requirement NotEmptyOrWhiteSpace failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage + "*");
    }
 

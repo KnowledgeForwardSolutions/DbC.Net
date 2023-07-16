@@ -51,7 +51,7 @@ public class InvalidOperationExceptionFactoryTests
         var act = () => _ = new InvalidOperationExceptionFactory(keys, _transform);
 
         // Act/assert.
-        act.Should().Throw<ArgumentNullException>()
+        act.Should().ThrowExactly<ArgumentNullException>()
            .WithParameterName(nameof(keys))
            .And.Message.Should().StartWith(Messages.TransformKeysCollectonIsNull);
     }
@@ -64,7 +64,7 @@ public class InvalidOperationExceptionFactoryTests
         var act = () => _ = new InvalidOperationExceptionFactory(_keys, transform);
 
         // Act/assert.
-        act.Should().Throw<ArgumentNullException>()
+        act.Should().ThrowExactly<ArgumentNullException>()
            .WithParameterName(nameof(transform))
            .And.Message.Should().StartWith(Messages.ValueTransformIsNull);
     }
@@ -87,7 +87,7 @@ public class InvalidOperationExceptionFactoryTests
         var act = () => _ = new InvalidOperationExceptionFactory(transforms);
 
         // Act/assert.
-        act.Should().Throw<ArgumentNullException>()
+        act.Should().ThrowExactly<ArgumentNullException>()
            .WithParameterName(nameof(transforms))
            .And.Message.Should().StartWith(Messages.TransformsDictionaryIsNull);
     }
@@ -192,7 +192,7 @@ public class InvalidOperationExceptionFactoryTests
         var act = () => _ = sut.CreateException(data, _messageTemplate);
 
         // Act/assert.
-        act.Should().Throw<ArgumentNullException>()
+        act.Should().ThrowExactly<ArgumentNullException>()
            .WithParameterName(nameof(data))
            .And.Message.Should().StartWith(Messages.DataDictionaryIsNull);
     }
@@ -207,7 +207,7 @@ public class InvalidOperationExceptionFactoryTests
         var act = () => _ = sut.CreateException(_data, messageTemplate);
 
         // Act/assert.
-        act.Should().Throw<ArgumentException>()
+        act.Should().ThrowExactly<ArgumentException>()
            .WithParameterName(nameof(messageTemplate))
            .And.Message.Should().StartWith(Messages.MessageTemplateIsEmpty);
     }
@@ -221,7 +221,7 @@ public class InvalidOperationExceptionFactoryTests
         var act = () => _ = sut.CreateException(_data, messageTemplate);
 
         // Act/assert.
-        act.Should().Throw<ArgumentNullException>()
+        act.Should().ThrowExactly<ArgumentNullException>()
            .WithParameterName(nameof(messageTemplate))
            .And.Message.Should().StartWith(Messages.MessageTemplateIsEmpty);
     }

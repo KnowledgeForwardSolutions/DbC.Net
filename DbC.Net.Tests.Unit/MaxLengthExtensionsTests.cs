@@ -90,7 +90,7 @@ public class MaxLengthExtensionsTests
       var act = () => _ = value.EnsuresMaxLength(maxLength);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Theory]
@@ -174,7 +174,7 @@ public class MaxLengthExtensionsTests
       var act = () => _ = value.EnsuresMaxLength(maxLength);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>()
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>()
          .WithParameterName(nameof(maxLength))
          .WithMessage(expectedMessage + "*")
          .And.ActualValue.Should().Be(maxLength);
@@ -189,7 +189,7 @@ public class MaxLengthExtensionsTests
       var act = () => _ = value.EnsuresMaxLength(maxLength);
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
@@ -210,7 +210,7 @@ public class MaxLengthExtensionsTests
       var expectedMessage = $"Postcondition MaxLength failed: {nameof(value)} must have a maximum length of {maxLength}";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .WithMessage(expectedMessage);
    }
 
@@ -225,7 +225,7 @@ public class MaxLengthExtensionsTests
       var expectedMessage = $"Requirement MaxLength failed";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .WithMessage(expectedMessage);
    }
 
@@ -239,7 +239,7 @@ public class MaxLengthExtensionsTests
       var expectedMessage = $"Postcondition MaxLength failed: {nameof(value)} must have a maximum length of {maxLength}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage);
    }
 
@@ -254,7 +254,7 @@ public class MaxLengthExtensionsTests
       var expectedMessage = $"Requirement MaxLength failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage);
    }
 
@@ -334,7 +334,7 @@ public class MaxLengthExtensionsTests
       var act = () => _ = value.RequiresMaxLength(maxLength);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    [Theory]
@@ -418,7 +418,7 @@ public class MaxLengthExtensionsTests
       var act = () => _ = value.RequiresMaxLength(maxLength);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>()
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>()
          .WithParameterName(nameof(maxLength))
          .WithMessage(expectedMessage + "*")
          .And.ActualValue.Should().Be(maxLength);
@@ -433,7 +433,7 @@ public class MaxLengthExtensionsTests
       var act = () => _ = value.RequiresMaxLength(maxLength);
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
@@ -455,7 +455,7 @@ public class MaxLengthExtensionsTests
       var expectedMessage = $"Precondition MaxLength failed: {nameof(value)} must have a maximum length of {maxLength}";
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
          .WithMessage(expectedMessage + "*");
    }
@@ -472,7 +472,7 @@ public class MaxLengthExtensionsTests
       var expectedMessage = $"Requirement MaxLength failed";
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
          .WithMessage(expectedMessage + "*");
    }
@@ -487,7 +487,7 @@ public class MaxLengthExtensionsTests
       var expectedMessage = $"Precondition MaxLength failed: {nameof(value)} must have a maximum length of {maxLength}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage);
    }
 
@@ -502,7 +502,7 @@ public class MaxLengthExtensionsTests
       var expectedMessage = $"Requirement MaxLength failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage);
    }
 

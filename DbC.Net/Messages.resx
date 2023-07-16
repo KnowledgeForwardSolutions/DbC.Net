@@ -162,6 +162,9 @@
   <data name="SensitiveValuesListIsNull" xml:space="preserve">
     <value>List of sensitive value names may not be null</value>
   </data>
+  <data name="TargetSubstringIsNull" xml:space="preserve">
+    <value>Target substring is null</value>
+  </data>
   <data name="TransformKeysCollectonIsNull" xml:space="preserve">
     <value>Transform keys collection may not be null</value>
   </data>

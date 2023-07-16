@@ -114,7 +114,7 @@ public class AlphaNumericOnlyExtensionsTests
       var expectedMessage = $"Postcondition AlphaNumericOnly failed: value may only contain alphanumeric characters";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage + "*");
    }
 
@@ -128,7 +128,7 @@ public class AlphaNumericOnlyExtensionsTests
       var expectedMessage = $"Requirement AlphaNumericOnly failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage + "*");
    }
 
@@ -248,7 +248,7 @@ public class AlphaNumericOnlyExtensionsTests
       var expectedMessage = $"Precondition AlphaNumericOnly failed: value may only contain alphanumeric characters";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage + "*");
    }
 
@@ -262,7 +262,7 @@ public class AlphaNumericOnlyExtensionsTests
       var expectedMessage = $"Requirement AlphaNumericOnly failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage + "*");
    }
 

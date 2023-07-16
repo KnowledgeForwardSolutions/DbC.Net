@@ -126,6 +126,9 @@
   <data name="BetweenTemplate" xml:space="preserve">
     <value>{RequirementType} {RequirementName} failed: {ValueExpression} must be between {LowerBound} and {UpperBound} (inclusive)</value>
   </data>
+  <data name="ContainsTemplate" xml:space="preserve">
+    <value>{RequirementType} {RequirementName} failed: {ValueExpression} must contain the substring "{Target}"</value>
+  </data>
   <data name="EqualTemplate" xml:space="preserve">
     <value>{RequirementType} {RequirementName} failed: {ValueExpression} must be equal to {Target}</value>
   </data>

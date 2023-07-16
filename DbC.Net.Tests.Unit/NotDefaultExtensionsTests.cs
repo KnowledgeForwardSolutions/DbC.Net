@@ -42,7 +42,7 @@ public class NotDefaultExtensionsTests
       var act = () => _ = value.EnsuresNotDefault();
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Fact]
@@ -53,7 +53,7 @@ public class NotDefaultExtensionsTests
       var act = () => _ = value.EnsuresNotDefault();
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Fact]
@@ -64,7 +64,7 @@ public class NotDefaultExtensionsTests
       var act = () => _ = value.EnsuresNotDefault();
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Fact]
@@ -75,7 +75,7 @@ public class NotDefaultExtensionsTests
       var act = () => _ = value.EnsuresNotDefault();
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
@@ -92,7 +92,7 @@ public class NotDefaultExtensionsTests
       var act = () => _ = value.EnsuresNotDefault();
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
@@ -109,7 +109,7 @@ public class NotDefaultExtensionsTests
       var act = () => _ = value.EnsuresNotDefault();
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
@@ -127,7 +127,7 @@ public class NotDefaultExtensionsTests
       var expectedMessage = "Postcondition NotDefault failed: value may not be default(String)";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -141,7 +141,7 @@ public class NotDefaultExtensionsTests
       var expectedMessage = "Requirement NotDefault failed";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -154,7 +154,7 @@ public class NotDefaultExtensionsTests
       var expectedMessage = "Postcondition NotDefault failed: value may not be default(Single)";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -168,7 +168,7 @@ public class NotDefaultExtensionsTests
       var expectedMessage = "Requirement NotDefault failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -212,7 +212,7 @@ public class NotDefaultExtensionsTests
       var act = () => _ = value.RequiresNotDefault();
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    [Fact]
@@ -223,7 +223,7 @@ public class NotDefaultExtensionsTests
       var act = () => _ = value.RequiresNotDefault();
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    [Fact]
@@ -234,7 +234,7 @@ public class NotDefaultExtensionsTests
       var act = () => _ = value.RequiresNotDefault();
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    [Fact]
@@ -245,7 +245,7 @@ public class NotDefaultExtensionsTests
       var act = () => _ = value.RequiresNotDefault();
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
@@ -262,7 +262,7 @@ public class NotDefaultExtensionsTests
       var act = () => _ = value.RequiresNotDefault();
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
@@ -279,7 +279,7 @@ public class NotDefaultExtensionsTests
       var act = () => _ = value.RequiresNotDefault();
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
@@ -298,7 +298,7 @@ public class NotDefaultExtensionsTests
       var expectedMessage = "Precondition NotDefault failed: value may not be default(String)";
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
          .And.Message.Should().StartWith(expectedMessage);
    }
@@ -314,7 +314,7 @@ public class NotDefaultExtensionsTests
       var expectedMessage = "Requirement NotDefault failed";
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
          .And.Message.Should().StartWith(expectedMessage);
    }
@@ -328,7 +328,7 @@ public class NotDefaultExtensionsTests
       var expectedMessage = "Precondition NotDefault failed: value may not be default(Single)";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -342,7 +342,7 @@ public class NotDefaultExtensionsTests
       var expectedMessage = "Requirement NotDefault failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 

@@ -87,7 +87,7 @@ public class GreaterThanOrEqualExtensionsTests
       var act = () => _ = value.EnsuresGreaterThanOrEqual(lowerBound);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Theory]
@@ -101,7 +101,7 @@ public class GreaterThanOrEqualExtensionsTests
       var act = () => _ = value.EnsuresGreaterThanOrEqual(lowerBound);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Fact]
@@ -114,7 +114,7 @@ public class GreaterThanOrEqualExtensionsTests
       var act = () => _ = value.EnsuresGreaterThanOrEqual(lowerBound);
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
@@ -136,7 +136,7 @@ public class GreaterThanOrEqualExtensionsTests
       var expectedMessage = $"Postcondition GreaterThanOrEqual failed: {nameof(value)} must be greater than or equal to {lowerBound}";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -152,7 +152,7 @@ public class GreaterThanOrEqualExtensionsTests
       var expectedMessage = $"Requirement GreaterThanOrEqual failed";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -167,7 +167,7 @@ public class GreaterThanOrEqualExtensionsTests
       var expectedMessage = $"Postcondition GreaterThanOrEqual failed: {nameof(value)} must be greater than or equal to {lowerBound}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -182,7 +182,7 @@ public class GreaterThanOrEqualExtensionsTests
       var expectedMessage = $"Requirement GreaterThanOrEqual failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -272,7 +272,7 @@ public class GreaterThanOrEqualExtensionsTests
       var act = () => _ = value.EnsuresGreaterThanOrEqual(lowerBound, comparer);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Theory]
@@ -287,7 +287,7 @@ public class GreaterThanOrEqualExtensionsTests
       var act = () => _ = value.EnsuresGreaterThanOrEqual(lowerBound, comparer);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Fact]
@@ -301,7 +301,7 @@ public class GreaterThanOrEqualExtensionsTests
       var act = () => _ = value.EnsuresGreaterThanOrEqual(lowerBound, comparer);
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
@@ -324,7 +324,7 @@ public class GreaterThanOrEqualExtensionsTests
       var expectedMessage = $"Postcondition GreaterThanOrEqual failed: {nameof(value)} must be greater than or equal to {lowerBound}";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -341,7 +341,7 @@ public class GreaterThanOrEqualExtensionsTests
       var expectedMessage = $"Requirement GreaterThanOrEqual failed";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -357,7 +357,7 @@ public class GreaterThanOrEqualExtensionsTests
       var expectedMessage = $"Postcondition GreaterThanOrEqual failed: {nameof(value)} must be greater than or equal to {lowerBound}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -373,7 +373,7 @@ public class GreaterThanOrEqualExtensionsTests
       var expectedMessage = $"Requirement GreaterThanOrEqual failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -388,7 +388,7 @@ public class GreaterThanOrEqualExtensionsTests
       var act = () => _ = value.EnsuresGreaterThanOrEqual(lowerBound, comparer);
 
       // Act/assert.
-      act.Should().Throw<ArgumentNullException>()
+      act.Should().ThrowExactly<ArgumentNullException>()
          .WithParameterName(nameof(comparer))
          .And.Message.Should().StartWith(Messages.ComparerIsNull);
    }
@@ -540,7 +540,7 @@ public class GreaterThanOrEqualExtensionsTests
       var act = () => _ = value.EnsuresGreaterThanOrEqual(lowerBound, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [UseCulture(CultureData.EnglishUS)]
@@ -560,7 +560,7 @@ public class GreaterThanOrEqualExtensionsTests
       var act = () => _ = value.EnsuresGreaterThanOrEqual(lowerBound, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [UseCulture(CultureData.SwedishSweden)]
@@ -580,7 +580,7 @@ public class GreaterThanOrEqualExtensionsTests
       var act = () => _ = value.EnsuresGreaterThanOrEqual(lowerBound, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Fact]
@@ -593,7 +593,7 @@ public class GreaterThanOrEqualExtensionsTests
       var act = () => _ = value.EnsuresGreaterThanOrEqual(lowerBound, comparisonType);
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_stringDataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
@@ -616,7 +616,7 @@ public class GreaterThanOrEqualExtensionsTests
       var expectedMessage = $"Postcondition GreaterThanOrEqual failed: {nameof(value)} must be greater than or equal to {lowerBound}";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -632,7 +632,7 @@ public class GreaterThanOrEqualExtensionsTests
       var expectedMessage = $"Requirement GreaterThanOrEqual failed";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -647,7 +647,7 @@ public class GreaterThanOrEqualExtensionsTests
       var expectedMessage = $"Postcondition GreaterThanOrEqual failed: {nameof(value)} must be greater than or equal to {lowerBound}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -664,7 +664,7 @@ public class GreaterThanOrEqualExtensionsTests
       var expectedMessage = $"Requirement GreaterThanOrEqual failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -749,7 +749,7 @@ public class GreaterThanOrEqualExtensionsTests
       var act = () => _ = value.RequiresGreaterThanOrEqual(lowerBound);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [Theory]
@@ -763,7 +763,7 @@ public class GreaterThanOrEqualExtensionsTests
       var act = () => _ = value.RequiresGreaterThanOrEqual(lowerBound);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [Fact]
@@ -776,7 +776,7 @@ public class GreaterThanOrEqualExtensionsTests
       var act = () => _ = value.RequiresGreaterThanOrEqual(lowerBound);
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
@@ -799,7 +799,7 @@ public class GreaterThanOrEqualExtensionsTests
       var expectedMessage = $"Precondition GreaterThanOrEqual failed: {nameof(value)} must be greater than or equal to {lowerBound}";
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which;
       ex.ParamName.Should().Be(expectedParameterName);
       ex.Message.Should().StartWith(expectedMessage);
       ex.ActualValue.Should().Be(value);
@@ -818,7 +818,7 @@ public class GreaterThanOrEqualExtensionsTests
       var expectedMessage = $"Requirement GreaterThanOrEqual failed";
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which;
       ex.ParamName.Should().Be(expectedParameterName);
       ex.Message.Should().StartWith(expectedMessage);
       ex.ActualValue.Should().Be(value);
@@ -835,7 +835,7 @@ public class GreaterThanOrEqualExtensionsTests
       var expectedMessage = $"Precondition GreaterThanOrEqual failed: {nameof(value)} must be greater than or equal to {lowerBound}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -850,7 +850,7 @@ public class GreaterThanOrEqualExtensionsTests
       var expectedMessage = $"Requirement GreaterThanOrEqual failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -940,7 +940,7 @@ public class GreaterThanOrEqualExtensionsTests
       var act = () => _ = value.RequiresGreaterThanOrEqual(lowerBound, comparer);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [Theory]
@@ -955,7 +955,7 @@ public class GreaterThanOrEqualExtensionsTests
       var act = () => _ = value.RequiresGreaterThanOrEqual(lowerBound, comparer);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [Fact]
@@ -969,7 +969,7 @@ public class GreaterThanOrEqualExtensionsTests
       var act = () => _ = value.RequiresGreaterThanOrEqual(lowerBound, comparer);
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
@@ -993,7 +993,7 @@ public class GreaterThanOrEqualExtensionsTests
       var expectedMessage = $"Precondition GreaterThanOrEqual failed: {nameof(value)} must be greater than or equal to {lowerBound}";
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which;
       ex.ParamName.Should().Be(expectedParameterName);
       ex.Message.Should().StartWith(expectedMessage);
       ex.ActualValue.Should().Be(value);
@@ -1013,7 +1013,7 @@ public class GreaterThanOrEqualExtensionsTests
       var expectedMessage = $"Requirement GreaterThanOrEqual failed";
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which;
       ex.ParamName.Should().Be(expectedParameterName);
       ex.Message.Should().StartWith(expectedMessage);
       ex.ActualValue.Should().Be(value);
@@ -1031,7 +1031,7 @@ public class GreaterThanOrEqualExtensionsTests
       var expectedMessage = $"Precondition GreaterThanOrEqual failed: {nameof(value)} must be greater than or equal to {lowerBound}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -1047,7 +1047,7 @@ public class GreaterThanOrEqualExtensionsTests
       var expectedMessage = $"Requirement GreaterThanOrEqual failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -1062,7 +1062,7 @@ public class GreaterThanOrEqualExtensionsTests
       var act = () => _ = value.RequiresGreaterThanOrEqual(lowerBound, comparer);
 
       // Act/assert.
-      act.Should().Throw<ArgumentNullException>()
+      act.Should().ThrowExactly<ArgumentNullException>()
          .WithParameterName(nameof(comparer))
          .And.Message.Should().StartWith(Messages.ComparerIsNull);
    }
@@ -1214,7 +1214,7 @@ public class GreaterThanOrEqualExtensionsTests
       var act = () => _ = value.RequiresGreaterThanOrEqual(lowerBound, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [UseCulture(CultureData.EnglishUS)]
@@ -1234,7 +1234,7 @@ public class GreaterThanOrEqualExtensionsTests
       var act = () => _ = value.RequiresGreaterThanOrEqual(lowerBound, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [UseCulture(CultureData.SwedishSweden)]
@@ -1254,7 +1254,7 @@ public class GreaterThanOrEqualExtensionsTests
       var act = () => _ = value.RequiresGreaterThanOrEqual(lowerBound, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [Fact]
@@ -1267,7 +1267,7 @@ public class GreaterThanOrEqualExtensionsTests
       var act = () => _ = value.RequiresGreaterThanOrEqual(lowerBound, comparisonType);
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which;
 
       ex.Data.Count.Should().Be(_stringDataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
@@ -1291,7 +1291,7 @@ public class GreaterThanOrEqualExtensionsTests
       var expectedMessage = $"Precondition GreaterThanOrEqual failed: {nameof(value)} must be greater than or equal to {lowerBound}";
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which;
       ex.ParamName.Should().Be(expectedParameterName);
       ex.Message.Should().StartWith(expectedMessage);
       ex.ActualValue.Should().Be(value);
@@ -1310,7 +1310,7 @@ public class GreaterThanOrEqualExtensionsTests
       var expectedMessage = $"Requirement GreaterThanOrEqual failed";
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which;
       ex.ParamName.Should().Be(expectedParameterName);
       ex.Message.Should().StartWith(expectedMessage);
       ex.ActualValue.Should().Be(value);
@@ -1327,7 +1327,7 @@ public class GreaterThanOrEqualExtensionsTests
       var expectedMessage = $"Precondition GreaterThanOrEqual failed: {nameof(value)} must be greater than or equal to {lowerBound}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -1344,7 +1344,7 @@ public class GreaterThanOrEqualExtensionsTests
       var expectedMessage = $"Requirement GreaterThanOrEqual failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 

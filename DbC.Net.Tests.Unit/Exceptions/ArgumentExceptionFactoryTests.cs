@@ -52,7 +52,7 @@ public class ArgumentExceptionFactoryTests
         var act = () => _ = new ArgumentExceptionFactory(keys, _transform);
 
         // Act/assert.
-        act.Should().Throw<ArgumentNullException>()
+        act.Should().ThrowExactly<ArgumentNullException>()
            .WithParameterName(nameof(keys))
            .And.Message.Should().StartWith(Messages.TransformKeysCollectonIsNull);
     }
@@ -65,7 +65,7 @@ public class ArgumentExceptionFactoryTests
         var act = () => _ = new ArgumentExceptionFactory(_keys, transform);
 
         // Act/assert.
-        act.Should().Throw<ArgumentNullException>()
+        act.Should().ThrowExactly<ArgumentNullException>()
            .WithParameterName(nameof(transform))
            .And.Message.Should().StartWith(Messages.ValueTransformIsNull);
     }
@@ -88,7 +88,7 @@ public class ArgumentExceptionFactoryTests
         var act = () => _ = new ArgumentExceptionFactory(transforms);
 
         // Act/assert.
-        act.Should().Throw<ArgumentNullException>()
+        act.Should().ThrowExactly<ArgumentNullException>()
            .WithParameterName(nameof(transforms))
            .And.Message.Should().StartWith(Messages.TransformsDictionaryIsNull);
     }
@@ -210,7 +210,7 @@ public class ArgumentExceptionFactoryTests
         var act = () => _ = sut.CreateException(data, _messageTemplate);
 
         // Act/assert.
-        act.Should().Throw<ArgumentNullException>()
+        act.Should().ThrowExactly<ArgumentNullException>()
            .WithParameterName(nameof(data))
            .And.Message.Should().StartWith(Messages.DataDictionaryIsNull);
     }
@@ -225,7 +225,7 @@ public class ArgumentExceptionFactoryTests
         var act = () => _ = sut.CreateException(_data, messageTemplate);
 
         // Act/assert.
-        act.Should().Throw<ArgumentException>()
+        act.Should().ThrowExactly<ArgumentException>()
            .WithParameterName(nameof(messageTemplate))
            .And.Message.Should().StartWith(Messages.MessageTemplateIsEmpty);
     }
@@ -239,7 +239,7 @@ public class ArgumentExceptionFactoryTests
         var act = () => _ = sut.CreateException(_data, messageTemplate);
 
         // Act/assert.
-        act.Should().Throw<ArgumentNullException>()
+        act.Should().ThrowExactly<ArgumentNullException>()
            .WithParameterName(nameof(messageTemplate))
            .And.Message.Should().StartWith(Messages.MessageTemplateIsEmpty);
     }
