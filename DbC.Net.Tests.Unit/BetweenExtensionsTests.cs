@@ -160,7 +160,7 @@ public class BetweenExtensionsTests
       var act = () => _ = value.EnsuresBetween(lowerBound, upperBound);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Theory]
@@ -175,7 +175,7 @@ public class BetweenExtensionsTests
       var act = () => _ = value.EnsuresBetween(lowerBound, upperBound);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Theory]
@@ -190,7 +190,7 @@ public class BetweenExtensionsTests
       var act = () => _ = value.EnsuresBetween(lowerBound, upperBound);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Fact]
@@ -204,7 +204,7 @@ public class BetweenExtensionsTests
       var act = () => _ = value.EnsuresBetween(lowerBound, upperBound);
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
@@ -229,7 +229,7 @@ public class BetweenExtensionsTests
       var expectedMessage = $"Postcondition Between failed: {nameof(value)} must be between {lowerBound} and {upperBound} (inclusive)";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .WithMessage(expectedMessage);
    }
 
@@ -246,7 +246,7 @@ public class BetweenExtensionsTests
       var expectedMessage = $"Requirement Between failed";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .WithMessage(expectedMessage);
    }
 
@@ -262,7 +262,7 @@ public class BetweenExtensionsTests
       var expectedMessage = $"Postcondition Between failed: {nameof(value)} must be between {lowerBound} and {upperBound} (inclusive)";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage);
    }
 
@@ -278,7 +278,7 @@ public class BetweenExtensionsTests
       var expectedMessage = $"Requirement Between failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage);
    }
 
@@ -355,7 +355,7 @@ public class BetweenExtensionsTests
       var expectedMessage = Messages.BetweenBoundsNotNormalized;
 
       // Act/assert.
-      act.Should().Throw<InvalidOperationException>()
+      act.Should().ThrowExactly<InvalidOperationException>()
          .WithMessage(expectedMessage);
    }
 
@@ -372,7 +372,7 @@ public class BetweenExtensionsTests
       var expectedMessage = Messages.BetweenBoundsNotNormalized;
 
       // Act/assert.
-      act.Should().Throw<InvalidOperationException>()
+      act.Should().ThrowExactly<InvalidOperationException>()
          .WithMessage(expectedMessage);
    }
 
@@ -532,7 +532,7 @@ public class BetweenExtensionsTests
       var act = () => _ = value.EnsuresBetween(lowerBound, upperBound, comparer);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Theory]
@@ -547,7 +547,7 @@ public class BetweenExtensionsTests
       var act = () => _ = value.EnsuresBetween(lowerBound, upperBound, comparer);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Theory]
@@ -562,7 +562,7 @@ public class BetweenExtensionsTests
       var act = () => _ = value.EnsuresBetween(lowerBound, upperBound, comparer);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Fact]
@@ -576,7 +576,7 @@ public class BetweenExtensionsTests
       var act = () => _ = value.EnsuresBetween(lowerBound, upperBound, comparer);
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
@@ -601,7 +601,7 @@ public class BetweenExtensionsTests
       var expectedMessage = $"Postcondition Between failed: {nameof(value)} must be between {lowerBound} and {upperBound} (inclusive)";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .WithMessage(expectedMessage);
    }
 
@@ -618,7 +618,7 @@ public class BetweenExtensionsTests
       var expectedMessage = $"Requirement Between failed";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .WithMessage(expectedMessage);
    }
 
@@ -634,7 +634,7 @@ public class BetweenExtensionsTests
       var expectedMessage = $"Postcondition Between failed: {nameof(value)} must be between {lowerBound} and {upperBound} (inclusive)";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage);
    }
 
@@ -651,7 +651,7 @@ public class BetweenExtensionsTests
       var expectedMessage = $"Requirement Between failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage);
    }
 
@@ -730,7 +730,7 @@ public class BetweenExtensionsTests
       var expectedMessage = Messages.BetweenBoundsNotNormalized;
 
       // Act/assert.
-      act.Should().Throw<InvalidOperationException>()
+      act.Should().ThrowExactly<InvalidOperationException>()
          .WithMessage(expectedMessage);
    }
 
@@ -747,7 +747,7 @@ public class BetweenExtensionsTests
       var expectedMessage = Messages.BetweenBoundsNotNormalized;
 
       // Act/assert.
-      act.Should().Throw<InvalidOperationException>()
+      act.Should().ThrowExactly<InvalidOperationException>()
          .WithMessage(expectedMessage);
    }
 
@@ -1050,7 +1050,7 @@ public class BetweenExtensionsTests
       var act = () => _ = value.EnsuresBetween(lowerBound, upperBound, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    // Azerbaijani Latin alphabet sorts H, X, I(dotless), I(dotted), J, ...
@@ -1072,7 +1072,7 @@ public class BetweenExtensionsTests
       var act = () => _ = value.EnsuresBetween(lowerBound, upperBound, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [UseCulture(CultureData.EnglishUS)]
@@ -1093,7 +1093,7 @@ public class BetweenExtensionsTests
       var act = () => _ = value.EnsuresBetween(lowerBound, upperBound, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    // da-DK culture (Danish/Denmark) sorts Z, AE(diphthong), O(slashed), A(overring)
@@ -1115,7 +1115,7 @@ public class BetweenExtensionsTests
       var act = () => _ = value.EnsuresBetween(lowerBound, upperBound, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
    [Theory]
    [InlineData(null, StringData.UpperCaseA, StringData.UpperCaseZ, StringComparison.CurrentCulture)]
@@ -1134,7 +1134,7 @@ public class BetweenExtensionsTests
       var act = () => _ = value.EnsuresBetween(lowerBound, upperBound, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Fact]
@@ -1148,7 +1148,7 @@ public class BetweenExtensionsTests
       var act = () => _ = value.EnsuresBetween(lowerBound, upperBound, comparisonType);
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_stringDataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
@@ -1174,7 +1174,7 @@ public class BetweenExtensionsTests
       var expectedMessage = $"Postcondition Between failed: {nameof(value)} must be between {lowerBound} and {upperBound} (inclusive)";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .WithMessage(expectedMessage);
    }
 
@@ -1191,7 +1191,7 @@ public class BetweenExtensionsTests
       var expectedMessage = $"Requirement Between failed";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .WithMessage(expectedMessage);
    }
 
@@ -1207,7 +1207,7 @@ public class BetweenExtensionsTests
       var expectedMessage = $"Postcondition Between failed: {nameof(value)} must be between {lowerBound} and {upperBound} (inclusive)";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage);
    }
 
@@ -1224,7 +1224,7 @@ public class BetweenExtensionsTests
       var expectedMessage = $"Requirement Between failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage);
    }
 
@@ -1332,7 +1332,7 @@ public class BetweenExtensionsTests
       var expectedMessage = Messages.BetweenBoundsNotNormalized;
 
       // Act/assert.
-      act.Should().Throw<InvalidOperationException>()
+      act.Should().ThrowExactly<InvalidOperationException>()
          .WithMessage(expectedMessage);
    }
 
@@ -1354,7 +1354,7 @@ public class BetweenExtensionsTests
       var expectedMessage = Messages.BetweenBoundsNotNormalized;
 
       // Act/assert.
-      act.Should().Throw<InvalidOperationException>()
+      act.Should().ThrowExactly<InvalidOperationException>()
          .WithMessage(expectedMessage);
    }
 
@@ -1512,7 +1512,7 @@ public class BetweenExtensionsTests
       var act = () => _ = value.RequiresBetween(lowerBound, upperBound);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [Theory]
@@ -1527,7 +1527,7 @@ public class BetweenExtensionsTests
       var act = () => _ = value.RequiresBetween(lowerBound, upperBound);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [Theory]
@@ -1542,7 +1542,7 @@ public class BetweenExtensionsTests
       var act = () => _ = value.RequiresBetween(lowerBound, upperBound);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [Fact]
@@ -1556,7 +1556,7 @@ public class BetweenExtensionsTests
       var act = () => _ = value.RequiresBetween(lowerBound, upperBound);
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
@@ -1582,7 +1582,7 @@ public class BetweenExtensionsTests
       var expectedMessage = $"Precondition Between failed: {nameof(value)} must be between {lowerBound} and {upperBound} (inclusive)";
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>()
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>()
          .WithParameterName(expectedParameterName)
          .WithMessage(expectedMessage + "*")
          .And.ActualValue.Should().Be(value);
@@ -1602,7 +1602,7 @@ public class BetweenExtensionsTests
       var expectedMessage = $"Requirement Between failed";
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>()
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>()
          .WithParameterName(expectedParameterName)
          .WithMessage(expectedMessage + "*")
          .And.ActualValue.Should().Be(value);
@@ -1620,7 +1620,7 @@ public class BetweenExtensionsTests
       var expectedMessage = $"Precondition Between failed: {nameof(value)} must be between {lowerBound} and {upperBound} (inclusive)";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage);
    }
 
@@ -1636,7 +1636,7 @@ public class BetweenExtensionsTests
       var expectedMessage = $"Requirement Between failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage);
    }
 
@@ -1713,7 +1713,7 @@ public class BetweenExtensionsTests
       var expectedMessage = Messages.BetweenBoundsNotNormalized;
 
       // Act/assert.
-      act.Should().Throw<InvalidOperationException>()
+      act.Should().ThrowExactly<InvalidOperationException>()
          .WithMessage(expectedMessage);
    }
 
@@ -1730,7 +1730,7 @@ public class BetweenExtensionsTests
       var expectedMessage = Messages.BetweenBoundsNotNormalized;
 
       // Act/assert.
-      act.Should().Throw<InvalidOperationException>()
+      act.Should().ThrowExactly<InvalidOperationException>()
          .WithMessage(expectedMessage);
    }
 
@@ -1890,7 +1890,7 @@ public class BetweenExtensionsTests
       var act = () => _ = value.RequiresBetween(lowerBound, upperBound, comparer);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [Theory]
@@ -1905,7 +1905,7 @@ public class BetweenExtensionsTests
       var act = () => _ = value.RequiresBetween(lowerBound, upperBound, comparer);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [Theory]
@@ -1920,7 +1920,7 @@ public class BetweenExtensionsTests
       var act = () => _ = value.RequiresBetween(lowerBound, upperBound, comparer);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [Fact]
@@ -1934,7 +1934,7 @@ public class BetweenExtensionsTests
       var act = () => _ = value.RequiresBetween(lowerBound, upperBound, comparer);
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
@@ -1960,7 +1960,7 @@ public class BetweenExtensionsTests
       var expectedMessage = $"Precondition Between failed: {nameof(value)} must be between {lowerBound} and {upperBound} (inclusive)";
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>()
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>()
          .WithParameterName(expectedParameterName)
          .WithMessage(expectedMessage + "*")
          .And.ActualValue.Should().Be(value);
@@ -1980,7 +1980,7 @@ public class BetweenExtensionsTests
       var expectedMessage = $"Requirement Between failed";
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>()
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>()
          .WithParameterName(expectedParameterName)
          .WithMessage(expectedMessage + "*")
          .And.ActualValue.Should().Be(value);
@@ -1998,7 +1998,7 @@ public class BetweenExtensionsTests
       var expectedMessage = $"Precondition Between failed: {nameof(value)} must be between {lowerBound} and {upperBound} (inclusive)";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage);
    }
 
@@ -2015,7 +2015,7 @@ public class BetweenExtensionsTests
       var expectedMessage = $"Requirement Between failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage);
    }
 
@@ -2094,7 +2094,7 @@ public class BetweenExtensionsTests
       var expectedMessage = Messages.BetweenBoundsNotNormalized;
 
       // Act/assert.
-      act.Should().Throw<InvalidOperationException>()
+      act.Should().ThrowExactly<InvalidOperationException>()
          .WithMessage(expectedMessage);
    }
 
@@ -2111,7 +2111,7 @@ public class BetweenExtensionsTests
       var expectedMessage = Messages.BetweenBoundsNotNormalized;
 
       // Act/assert.
-      act.Should().Throw<InvalidOperationException>()
+      act.Should().ThrowExactly<InvalidOperationException>()
          .WithMessage(expectedMessage);
    }
 
@@ -2414,7 +2414,7 @@ public class BetweenExtensionsTests
       var act = () => _ = value.RequiresBetween(lowerBound, upperBound, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    // Azerbaijani Latin alphabet sorts H, X, I(dotless), I(dotted), J, ...
@@ -2436,7 +2436,7 @@ public class BetweenExtensionsTests
       var act = () => _ = value.RequiresBetween(lowerBound, upperBound, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [UseCulture(CultureData.EnglishUS)]
@@ -2457,7 +2457,7 @@ public class BetweenExtensionsTests
       var act = () => _ = value.RequiresBetween(lowerBound, upperBound, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    // da-DK culture (Danish/Denmark) sorts Z, AE(diphthong), O(slashed), A(overring)
@@ -2479,7 +2479,7 @@ public class BetweenExtensionsTests
       var act = () => _ = value.RequiresBetween(lowerBound, upperBound, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
    [Theory]
    [InlineData(null, StringData.UpperCaseA, StringData.UpperCaseZ, StringComparison.CurrentCulture)]
@@ -2498,7 +2498,7 @@ public class BetweenExtensionsTests
       var act = () => _ = value.RequiresBetween(lowerBound, upperBound, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [Fact]
@@ -2512,7 +2512,7 @@ public class BetweenExtensionsTests
       var act = () => _ = value.RequiresBetween(lowerBound, upperBound, comparisonType);
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which;
 
       ex.Data.Count.Should().Be(_stringDataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
@@ -2539,7 +2539,7 @@ public class BetweenExtensionsTests
       var expectedMessage = $"Precondition Between failed: {nameof(value)} must be between {lowerBound} and {upperBound} (inclusive)";
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>()
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>()
          .WithParameterName(expectedParameterName)
          .WithMessage(expectedMessage + "*")
          .And.ActualValue.Should().Be(value);
@@ -2559,7 +2559,7 @@ public class BetweenExtensionsTests
       var expectedMessage = $"Requirement Between failed";
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>()
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>()
          .WithParameterName(expectedParameterName)
          .WithMessage(expectedMessage + "*")
          .And.ActualValue.Should().Be(value);
@@ -2577,7 +2577,7 @@ public class BetweenExtensionsTests
       var expectedMessage = $"Precondition Between failed: {nameof(value)} must be between {lowerBound} and {upperBound} (inclusive)";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage);
    }
 
@@ -2594,7 +2594,7 @@ public class BetweenExtensionsTests
       var expectedMessage = $"Requirement Between failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage);
    }
 
@@ -2702,7 +2702,7 @@ public class BetweenExtensionsTests
       var expectedMessage = Messages.BetweenBoundsNotNormalized;
 
       // Act/assert.
-      act.Should().Throw<InvalidOperationException>()
+      act.Should().ThrowExactly<InvalidOperationException>()
          .WithMessage(expectedMessage);
    }
 
@@ -2724,7 +2724,7 @@ public class BetweenExtensionsTests
       var expectedMessage = Messages.BetweenBoundsNotNormalized;
 
       // Act/assert.
-      act.Should().Throw<InvalidOperationException>()
+      act.Should().ThrowExactly<InvalidOperationException>()
          .WithMessage(expectedMessage);
    }
 

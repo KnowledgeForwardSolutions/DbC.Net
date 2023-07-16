@@ -34,7 +34,7 @@ public class LessThanZeroExtensionsTests
       var act = () => _ = value.EnsuresLessThanZero();
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Theory]
@@ -47,7 +47,7 @@ public class LessThanZeroExtensionsTests
       var act = () => _ = value.EnsuresLessThanZero();
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Theory]
@@ -73,7 +73,7 @@ public class LessThanZeroExtensionsTests
       var act = () => _ = value.EnsuresLessThanZero();
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
@@ -91,7 +91,7 @@ public class LessThanZeroExtensionsTests
       var expectedMessage = $"Postcondition LessThanZero failed: {nameof(value)} must be less than zero";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .WithMessage(expectedMessage);
    }
 
@@ -105,7 +105,7 @@ public class LessThanZeroExtensionsTests
       var expectedMessage = $"Requirement LessThanZero failed";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .WithMessage(expectedMessage);
    }
 
@@ -118,7 +118,7 @@ public class LessThanZeroExtensionsTests
       var expectedMessage = $"Postcondition LessThanZero failed: {nameof(value)} must be less than zero";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage);
    }
 
@@ -132,7 +132,7 @@ public class LessThanZeroExtensionsTests
       var expectedMessage = $"Requirement LessThanZero failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage);
    }
 
@@ -165,7 +165,7 @@ public class LessThanZeroExtensionsTests
       var act = () => _ = value.RequiresLessThanZero();
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [Theory]
@@ -178,7 +178,7 @@ public class LessThanZeroExtensionsTests
       var act = () => _ = value.RequiresLessThanZero();
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [Theory]
@@ -204,7 +204,7 @@ public class LessThanZeroExtensionsTests
       var act = () => _ = value.RequiresLessThanZero();
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
@@ -223,7 +223,7 @@ public class LessThanZeroExtensionsTests
       var expectedMessage = $"Precondition LessThanZero failed: {nameof(value)} must be less than zero";
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>()
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>()
          .WithParameterName(expectedParameterName)
          .WithMessage(expectedMessage + "*")
          .And.ActualValue.Should().Be(value);
@@ -240,7 +240,7 @@ public class LessThanZeroExtensionsTests
       var expectedMessage = $"Requirement LessThanZero failed";
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>()
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>()
          .WithParameterName(expectedParameterName)
          .WithMessage(expectedMessage + "*")
          .And.ActualValue.Should().Be(value);
@@ -255,7 +255,7 @@ public class LessThanZeroExtensionsTests
       var expectedMessage = $"Precondition LessThanZero failed: {nameof(value)} must be less than zero";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage);
    }
 
@@ -269,7 +269,7 @@ public class LessThanZeroExtensionsTests
       var expectedMessage = $"Requirement LessThanZero failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .WithMessage(expectedMessage);
    }
 

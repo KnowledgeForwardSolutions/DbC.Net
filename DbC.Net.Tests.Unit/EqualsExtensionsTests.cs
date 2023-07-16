@@ -51,7 +51,7 @@ public class EqualsExtensionsTests
       var act = () => _ = value.EnsuresEqual(target);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Theory]
@@ -64,7 +64,7 @@ public class EqualsExtensionsTests
       var act = () => _ = value.EnsuresEqual(target);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Theory]
@@ -77,7 +77,7 @@ public class EqualsExtensionsTests
       var act = () => _ = value.EnsuresEqual(target);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Fact]
@@ -90,7 +90,7 @@ public class EqualsExtensionsTests
       var act = () => _ = value.EnsuresEqual(target);
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
@@ -112,7 +112,7 @@ public class EqualsExtensionsTests
       var expectedMessage = $"Postcondition Equal failed: {nameof(value)} must be equal to {target}";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -128,7 +128,7 @@ public class EqualsExtensionsTests
       var expectedMessage = $"Requirement Equal failed";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -143,7 +143,7 @@ public class EqualsExtensionsTests
       var expectedMessage = $"Postcondition Equal failed: {nameof(value)} must be equal to {target}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -158,7 +158,7 @@ public class EqualsExtensionsTests
       var expectedMessage = $"Requirement Equal failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -211,7 +211,7 @@ public class EqualsExtensionsTests
       var act = () => _ = value.EnsuresEqual(target, comparer);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Fact]
@@ -225,7 +225,7 @@ public class EqualsExtensionsTests
       var act = () => _ = value.EnsuresEqual(target, comparer);
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
@@ -248,7 +248,7 @@ public class EqualsExtensionsTests
       var expectedMessage = $"Postcondition Equal failed: {nameof(value)} must be equal to {target}";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -265,7 +265,7 @@ public class EqualsExtensionsTests
       var expectedMessage = $"Requirement Equal failed";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -281,7 +281,7 @@ public class EqualsExtensionsTests
       var expectedMessage = $"Postcondition Equal failed: {nameof(value)} must be equal to {target}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -298,7 +298,7 @@ public class EqualsExtensionsTests
       var expectedMessage = $"Requirement Equal failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -313,7 +313,7 @@ public class EqualsExtensionsTests
       var act = () => _ = value.EnsuresEqual(target, comparer);
 
       // Act/assert.
-      act.Should().Throw<ArgumentNullException>()
+      act.Should().ThrowExactly<ArgumentNullException>()
          .WithParameterName(nameof(comparer))
          .And.Message.Should().StartWith(Messages.ComparerIsNull);
    }
@@ -447,7 +447,7 @@ public class EqualsExtensionsTests
       var act = () => _ = value.EnsuresEqual(target, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [UseCulture(CultureData.TurkishTurkey)]
@@ -467,7 +467,7 @@ public class EqualsExtensionsTests
       var act = () => _ = value.EnsuresEqual(target, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [UseCulture(CultureData.ThaiThailand)]
@@ -487,7 +487,7 @@ public class EqualsExtensionsTests
       var act = () => _ = value.EnsuresEqual(target, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [UseCulture(CultureData.EnglishUS)]
@@ -506,7 +506,7 @@ public class EqualsExtensionsTests
       var act = () => _ = value.EnsuresEqual(target, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [UseCulture(CultureData.ThaiThailand)]
@@ -525,7 +525,7 @@ public class EqualsExtensionsTests
       var act = () => _ = value.EnsuresEqual(target, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Fact]
@@ -538,7 +538,7 @@ public class EqualsExtensionsTests
       var act = () => _ = value.EnsuresEqual(target, comparisonType);
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_stringDataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
@@ -561,7 +561,7 @@ public class EqualsExtensionsTests
       var expectedMessage = $"Postcondition Equal failed: {nameof(value)} must be equal to {target}";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -577,7 +577,7 @@ public class EqualsExtensionsTests
       var expectedMessage = $"Requirement Equal failed";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -592,7 +592,7 @@ public class EqualsExtensionsTests
       var expectedMessage = $"Postcondition Equal failed: {nameof(value)} must be equal to {target}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -609,7 +609,7 @@ public class EqualsExtensionsTests
       var expectedMessage = $"Requirement Equal failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -659,7 +659,7 @@ public class EqualsExtensionsTests
       var act = () => _= value.RequiresEqual(target);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    [Theory]
@@ -672,7 +672,7 @@ public class EqualsExtensionsTests
       var act = () => _ = value.RequiresEqual(target);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    [Theory]
@@ -685,7 +685,7 @@ public class EqualsExtensionsTests
       var act = () => _ = value.RequiresEqual(target);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    [Fact]
@@ -698,7 +698,7 @@ public class EqualsExtensionsTests
       var act = () => _ = value.RequiresEqual(target);
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
@@ -721,7 +721,7 @@ public class EqualsExtensionsTests
       var expectedMessage = $"Precondition Equal failed: {nameof(value)} must be equal to {target}";
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
          .And.Message.Should().StartWith(expectedMessage);
    }
@@ -739,7 +739,7 @@ public class EqualsExtensionsTests
       var expectedMessage = $"Requirement Equal failed";
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
          .And.Message.Should().StartWith(expectedMessage);
    }
@@ -755,7 +755,7 @@ public class EqualsExtensionsTests
       var expectedMessage = $"Precondition Equal failed: {nameof(value)} must be equal to {target}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -770,7 +770,7 @@ public class EqualsExtensionsTests
       var expectedMessage = $"Requirement Equal failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -823,7 +823,7 @@ public class EqualsExtensionsTests
       var act = () => _ = value.RequiresEqual(target, comparer);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    [Theory]
@@ -837,7 +837,7 @@ public class EqualsExtensionsTests
       var act = () => _ = value.RequiresEqual(target, comparer);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    [Theory]
@@ -851,7 +851,7 @@ public class EqualsExtensionsTests
       var act = () => _ = value.RequiresEqual(target, comparer);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    [Fact]
@@ -865,7 +865,7 @@ public class EqualsExtensionsTests
       var act = () => _ = value.RequiresEqual(target, comparer);
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
@@ -889,7 +889,7 @@ public class EqualsExtensionsTests
       var expectedMessage = $"Precondition Equal failed: {nameof(value)} must be equal to {target}";
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
          .And.Message.Should().StartWith(expectedMessage);
    }
@@ -908,7 +908,7 @@ public class EqualsExtensionsTests
       var expectedMessage = $"Requirement Equal failed";
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
          .And.Message.Should().StartWith(expectedMessage);
    }
@@ -925,7 +925,7 @@ public class EqualsExtensionsTests
       var expectedMessage = $"Precondition Equal failed: {nameof(value)} must be equal to {target}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -942,7 +942,7 @@ public class EqualsExtensionsTests
       var expectedMessage = $"Requirement Equal failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -957,7 +957,7 @@ public class EqualsExtensionsTests
       var act = () => _ = value.RequiresEqual(target, comparer);
 
       // Act/assert.
-      act.Should().Throw<ArgumentNullException>()
+      act.Should().ThrowExactly<ArgumentNullException>()
          .WithParameterName(nameof(comparer))
          .And.Message.Should().StartWith(Messages.ComparerIsNull);
    }
@@ -1091,7 +1091,7 @@ public class EqualsExtensionsTests
       var act = () => _ = value.RequiresEqual(target, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    [UseCulture(CultureData.TurkishTurkey)]
@@ -1111,7 +1111,7 @@ public class EqualsExtensionsTests
       var act = () => _ = value.RequiresEqual(target, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    [UseCulture(CultureData.ThaiThailand)]
@@ -1131,7 +1131,7 @@ public class EqualsExtensionsTests
       var act = () => _ = value.RequiresEqual(target, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    [UseCulture(CultureData.EnglishUS)]
@@ -1150,7 +1150,7 @@ public class EqualsExtensionsTests
       var act = () => _ = value.RequiresEqual(target, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    [UseCulture(CultureData.ThaiThailand)]
@@ -1169,7 +1169,7 @@ public class EqualsExtensionsTests
       var act = () => _ = value.RequiresEqual(target, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    [Fact]
@@ -1182,7 +1182,7 @@ public class EqualsExtensionsTests
       var act = () => _ = value.RequiresEqual(target, comparisonType);
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentException>().Which;
 
       ex.Data.Count.Should().Be(_stringDataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
@@ -1206,7 +1206,7 @@ public class EqualsExtensionsTests
       var expectedMessage = $"Precondition Equal failed: {nameof(value)} must be equal to {target}";
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
          .And.Message.Should().StartWith(expectedMessage);
    }
@@ -1224,7 +1224,7 @@ public class EqualsExtensionsTests
       var expectedMessage = $"Requirement Equal failed";
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
          .And.Message.Should().StartWith(expectedMessage);
    }
@@ -1240,7 +1240,7 @@ public class EqualsExtensionsTests
       var expectedMessage = $"Precondition Equal failed: {nameof(value)} must be equal to {target}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -1257,7 +1257,7 @@ public class EqualsExtensionsTests
       var expectedMessage = $"Requirement Equal failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 

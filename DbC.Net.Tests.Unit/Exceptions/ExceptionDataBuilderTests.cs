@@ -52,7 +52,7 @@ public class ExceptionDataBuilderTests
       var act = () => sut.Build();
 
       // Act/assert.
-      act.Should().Throw<InvalidOperationException>()
+      act.Should().ThrowExactly<InvalidOperationException>()
          .WithMessage(Messages.ExceptionDataAlreadyBuilt);
    }
 
@@ -122,7 +122,7 @@ public class ExceptionDataBuilderTests
       var act = () => _ = sut.WithEpsilon(epsilon, epsilonExpression);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(nameof(epsilonExpression));
    }
 
@@ -136,7 +136,7 @@ public class ExceptionDataBuilderTests
       var act = () => _ = sut.WithEpsilon(epsilon, epsilonExpression);
 
       // Act/assert.
-      act.Should().Throw<ArgumentNullException>()
+      act.Should().ThrowExactly<ArgumentNullException>()
          .WithParameterName(nameof(epsilonExpression));
    }
 
@@ -188,7 +188,7 @@ public class ExceptionDataBuilderTests
       var act = () => _ = sut.WithItem(name, value);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(nameof(name));
    }
 
@@ -202,7 +202,7 @@ public class ExceptionDataBuilderTests
       var act = () => _ = sut.WithItem(name, value);
 
       // Act/assert.
-      act.Should().Throw<ArgumentNullException>()
+      act.Should().ThrowExactly<ArgumentNullException>()
          .WithParameterName(nameof(name));
    }
 
@@ -275,7 +275,7 @@ public class ExceptionDataBuilderTests
       var act = () => _ = sut.WithLowerBound(lowerBound, lowerBoundExpression);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(nameof(lowerBoundExpression));
    }
 
@@ -289,7 +289,7 @@ public class ExceptionDataBuilderTests
       var act = () => _ = sut.WithLowerBound(lowerBound, lowerBoundExpression);
 
       // Act/assert.
-      act.Should().Throw<ArgumentNullException>()
+      act.Should().ThrowExactly<ArgumentNullException>()
          .WithParameterName(nameof(lowerBoundExpression));
    }
 
@@ -342,7 +342,7 @@ public class ExceptionDataBuilderTests
       var act = () => _ = sut.WithMaxLength(maxLength, maxLengthExpression);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(nameof(maxLengthExpression));
    }
 
@@ -356,7 +356,7 @@ public class ExceptionDataBuilderTests
       var act = () => _ = sut.WithMaxLength(maxLength, maxLengthExpression);
 
       // Act/assert.
-      act.Should().Throw<ArgumentNullException>()
+      act.Should().ThrowExactly<ArgumentNullException>()
          .WithParameterName(nameof(maxLengthExpression));
    }
 
@@ -409,7 +409,7 @@ public class ExceptionDataBuilderTests
       var act = () => _ = sut.WithMinLength(minLength, minLengthExpression);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(nameof(minLengthExpression));
    }
 
@@ -423,7 +423,7 @@ public class ExceptionDataBuilderTests
       var act = () => _ = sut.WithMinLength(minLength, minLengthExpression);
 
       // Act/assert.
-      act.Should().Throw<ArgumentNullException>()
+      act.Should().ThrowExactly<ArgumentNullException>()
          .WithParameterName(nameof(minLengthExpression));
    }
 
@@ -476,7 +476,7 @@ public class ExceptionDataBuilderTests
       var act = () => _ = sut.WithRequirement(requirementType, requirementName);
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which;
       ex.ParamName.Should().Be(nameof(requirementType));
       ex.ActualValue.Should().Be(requirementType);
       ex.Message.Should().StartWith(Messages.RequirementTypeIsNotDefined);
@@ -492,7 +492,7 @@ public class ExceptionDataBuilderTests
       var act = () => _ = sut.WithRequirement(requirementType, requirementName);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(nameof(requirementName));
    }
 
@@ -506,7 +506,7 @@ public class ExceptionDataBuilderTests
       var act = () => _ = sut.WithRequirement(requirementType, requirementName);
 
       // Act/assert.
-      act.Should().Throw<ArgumentNullException>()
+      act.Should().ThrowExactly<ArgumentNullException>()
          .WithParameterName(nameof(requirementName));
    }
 
@@ -579,7 +579,7 @@ public class ExceptionDataBuilderTests
       var act = () => _ = sut.WithTarget(target, targetExpression);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(nameof(targetExpression));
    }
 
@@ -593,7 +593,7 @@ public class ExceptionDataBuilderTests
       var act = () => _ = sut.WithTarget(target, targetExpression);
 
       // Act/assert.
-      act.Should().Throw<ArgumentNullException>()
+      act.Should().ThrowExactly<ArgumentNullException>()
          .WithParameterName(nameof(targetExpression));
    }
 
@@ -666,7 +666,7 @@ public class ExceptionDataBuilderTests
       var act = () => _ = sut.WithUpperBound(upperBound, upperBoundExpression);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(nameof(upperBoundExpression));
    }
 
@@ -680,7 +680,7 @@ public class ExceptionDataBuilderTests
       var act = () => _ = sut.WithUpperBound(upperBound, upperBoundExpression);
 
       // Act/assert.
-      act.Should().Throw<ArgumentNullException>()
+      act.Should().ThrowExactly<ArgumentNullException>()
          .WithParameterName(nameof(upperBoundExpression));
    }
 
@@ -753,7 +753,7 @@ public class ExceptionDataBuilderTests
       var act = () => _ = sut.WithValue(value, valueExpression);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(nameof(valueExpression));
    }
 
@@ -767,7 +767,7 @@ public class ExceptionDataBuilderTests
       var act = () => _ = sut.WithValue(value, valueExpression);
 
       // Act/assert.
-      act.Should().Throw<ArgumentNullException>()
+      act.Should().ThrowExactly<ArgumentNullException>()
          .WithParameterName(nameof(valueExpression));
    }
 

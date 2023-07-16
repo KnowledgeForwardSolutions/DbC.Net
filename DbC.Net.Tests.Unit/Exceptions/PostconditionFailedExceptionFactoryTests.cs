@@ -50,7 +50,7 @@ public class PostconditionFailedExceptionFactoryTests
         var act = () => _ = new PostconditionFailedExceptionFactory(keys, _transform);
 
         // Act/assert.
-        act.Should().Throw<ArgumentNullException>()
+        act.Should().ThrowExactly<ArgumentNullException>()
            .WithParameterName(nameof(keys))
            .And.Message.Should().StartWith(Messages.TransformKeysCollectonIsNull);
     }
@@ -63,7 +63,7 @@ public class PostconditionFailedExceptionFactoryTests
         var act = () => _ = new PostconditionFailedExceptionFactory(_keys, transform);
 
         // Act/assert.
-        act.Should().Throw<ArgumentNullException>()
+        act.Should().ThrowExactly<ArgumentNullException>()
            .WithParameterName(nameof(transform))
            .And.Message.Should().StartWith(Messages.ValueTransformIsNull);
     }
@@ -86,7 +86,7 @@ public class PostconditionFailedExceptionFactoryTests
         var act = () => _ = new PostconditionFailedExceptionFactory(transforms);
 
         // Act/assert.
-        act.Should().Throw<ArgumentNullException>()
+        act.Should().ThrowExactly<ArgumentNullException>()
            .WithParameterName(nameof(transforms))
            .And.Message.Should().StartWith(Messages.TransformsDictionaryIsNull);
     }
@@ -189,7 +189,7 @@ public class PostconditionFailedExceptionFactoryTests
         var act = () => _ = sut.CreateException(data, _messageTemplate);
 
         // Act/assert.
-        act.Should().Throw<ArgumentNullException>()
+        act.Should().ThrowExactly<ArgumentNullException>()
            .WithParameterName(nameof(data))
            .And.Message.Should().StartWith(Messages.DataDictionaryIsNull);
     }
@@ -204,7 +204,7 @@ public class PostconditionFailedExceptionFactoryTests
         var act = () => _ = sut.CreateException(_data, messageTemplate);
 
         // Act/assert.
-        act.Should().Throw<ArgumentException>()
+        act.Should().ThrowExactly<ArgumentException>()
            .WithParameterName(nameof(messageTemplate))
            .And.Message.Should().StartWith(Messages.MessageTemplateIsEmpty);
     }
@@ -218,7 +218,7 @@ public class PostconditionFailedExceptionFactoryTests
         var act = () => _ = sut.CreateException(_data, messageTemplate);
 
         // Act/assert.
-        act.Should().Throw<ArgumentNullException>()
+        act.Should().ThrowExactly<ArgumentNullException>()
            .WithParameterName(nameof(messageTemplate))
            .And.Message.Should().StartWith(Messages.MessageTemplateIsEmpty);
     }

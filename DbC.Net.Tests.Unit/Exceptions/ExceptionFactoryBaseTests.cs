@@ -65,7 +65,7 @@ public class ExceptionFactoryTests
         var act = () => _ = new ExampleExceptionFactory(keys, _transform);
 
         // Act/assert.
-        act.Should().Throw<ArgumentNullException>()
+        act.Should().ThrowExactly<ArgumentNullException>()
            .WithParameterName(nameof(keys))
            .And.Message.Should().StartWith(Messages.TransformKeysCollectonIsNull);
     }
@@ -78,7 +78,7 @@ public class ExceptionFactoryTests
         var act = () => _ = new ExampleExceptionFactory(_keys, transform);
 
         // Act/assert.
-        act.Should().Throw<ArgumentNullException>()
+        act.Should().ThrowExactly<ArgumentNullException>()
            .WithParameterName(nameof(transform))
            .And.Message.Should().StartWith(Messages.ValueTransformIsNull);
     }
@@ -101,7 +101,7 @@ public class ExceptionFactoryTests
         var act = () => _ = new ExampleExceptionFactory(transforms);
 
         // Act/assert.
-        act.Should().Throw<ArgumentNullException>()
+        act.Should().ThrowExactly<ArgumentNullException>()
            .WithParameterName(nameof(transforms))
            .And.Message.Should().StartWith(Messages.TransformsDictionaryIsNull);
     }
@@ -347,7 +347,7 @@ public class ExceptionFactoryTests
         var act = () => _ = sut.CreateMessage(messageTemplate, _data);
 
         // Act/assert.
-        act.Should().Throw<ArgumentException>()
+        act.Should().ThrowExactly<ArgumentException>()
            .WithParameterName(nameof(messageTemplate))
            .And.Message.Should().StartWith(Messages.MessageTemplateIsEmpty);
     }
@@ -361,7 +361,7 @@ public class ExceptionFactoryTests
         var act = () => _ = sut.CreateMessage(messageTemplate, _data);
 
         // Act/assert.
-        act.Should().Throw<ArgumentNullException>()
+        act.Should().ThrowExactly<ArgumentNullException>()
            .WithParameterName(nameof(messageTemplate))
            .And.Message.Should().StartWith(Messages.MessageTemplateIsEmpty);
     }
@@ -377,7 +377,7 @@ public class ExceptionFactoryTests
         var act = () => _ = sut.CreateMessage(messageTemplate, data);
 
         // Act/assert.
-        act.Should().Throw<ArgumentNullException>()
+        act.Should().ThrowExactly<ArgumentNullException>()
            .WithParameterName(nameof(data))
            .And.Message.Should().StartWith(Messages.DataDictionaryIsNull);
     }
@@ -397,7 +397,7 @@ public class ExceptionFactoryTests
         var act = () => ExceptionFactoryBase.ValidateDataDictionary(data);
 
         // Act/assert.
-        act.Should().Throw<ArgumentNullException>()
+        act.Should().ThrowExactly<ArgumentNullException>()
            .WithParameterName(nameof(data))
            .And.Message.Should().StartWith(Messages.DataDictionaryIsNull);
     }
@@ -506,7 +506,7 @@ public class ExceptionFactoryTests
         var act = () => ExceptionFactoryBase.ValidateMessageTemplate(messageTemplate);
 
         // Act/assert.
-        act.Should().Throw<ArgumentNullException>()
+        act.Should().ThrowExactly<ArgumentNullException>()
            .WithParameterName(nameof(messageTemplate))
            .And.Message.Should().StartWith(Messages.MessageTemplateIsEmpty);
     }
@@ -520,7 +520,7 @@ public class ExceptionFactoryTests
         var act = () => ExceptionFactoryBase.ValidateMessageTemplate(messageTemplate);
 
         // Act/assert.
-        act.Should().Throw<ArgumentException>()
+        act.Should().ThrowExactly<ArgumentException>()
            .WithParameterName(nameof(messageTemplate))
            .And.Message.Should().StartWith(Messages.MessageTemplateIsEmpty);
     }

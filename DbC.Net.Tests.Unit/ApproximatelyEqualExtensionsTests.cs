@@ -57,7 +57,7 @@ public class ApproximatelyEqualExtensionsTests
       var act = () => _ = value.EnsuresApproximatelyEqual(target, epsilon, comparer);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Theory]
@@ -73,7 +73,7 @@ public class ApproximatelyEqualExtensionsTests
       var act = () => _ = value.EnsuresApproximatelyEqual(target, epsilon, comparer);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Fact]
@@ -88,7 +88,7 @@ public class ApproximatelyEqualExtensionsTests
       var act = () => _ = value.EnsuresApproximatelyEqual(target, epsilon, comparer);
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
@@ -114,7 +114,7 @@ public class ApproximatelyEqualExtensionsTests
       var expectedMessage = $"Postcondition ApproximatelyEqual failed: {nameof(value)} must be within +/- {epsilon} of {target}";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -132,7 +132,7 @@ public class ApproximatelyEqualExtensionsTests
       var expectedMessage = $"Requirement ApproximatelyEqual failed";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -149,7 +149,7 @@ public class ApproximatelyEqualExtensionsTests
       var expectedMessage = $"Postcondition ApproximatelyEqual failed: {nameof(value)} must be within +/- {epsilon} of {target}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -167,7 +167,7 @@ public class ApproximatelyEqualExtensionsTests
       var expectedMessage = $"Requirement ApproximatelyEqual failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -226,7 +226,7 @@ public class ApproximatelyEqualExtensionsTests
       var act = () => _ =  value.RequiresApproximatelyEqual(target, epsilon, comparer);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    [Theory]
@@ -242,7 +242,7 @@ public class ApproximatelyEqualExtensionsTests
       var act = () => _ = value.RequiresApproximatelyEqual(target, epsilon, comparer);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    [Fact]
@@ -257,7 +257,7 @@ public class ApproximatelyEqualExtensionsTests
       var act = () => _ = value.RequiresApproximatelyEqual(target, epsilon, comparer);
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
@@ -284,7 +284,7 @@ public class ApproximatelyEqualExtensionsTests
       var expectedMessage = $"Precondition ApproximatelyEqual failed: {nameof(value)} must be within +/- {epsilon} of {target}";
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
          .And.Message.Should().StartWith(expectedMessage);
    }
@@ -304,7 +304,7 @@ public class ApproximatelyEqualExtensionsTests
       var expectedMessage = $"Requirement ApproximatelyEqual failed";
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
          .And.Message.Should().StartWith(expectedMessage);
    }
@@ -322,7 +322,7 @@ public class ApproximatelyEqualExtensionsTests
       var expectedMessage = $"Precondition ApproximatelyEqual failed: {nameof(value)} must be within +/- {epsilon} of {target}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -340,7 +340,7 @@ public class ApproximatelyEqualExtensionsTests
       var expectedMessage = $"Requirement ApproximatelyEqual failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 

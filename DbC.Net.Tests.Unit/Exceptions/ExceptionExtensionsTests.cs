@@ -65,7 +65,7 @@ public class ExceptionExtensionsTests
         var act = () => _ = ex.PopulateExceptionData(_data);
 
         // Act/assert.
-        act.Should().Throw<ArgumentNullException>()
+        act.Should().ThrowExactly<ArgumentNullException>()
            .WithParameterName(nameof(ex))
            .And.Message.Should().StartWith(Messages.ExceptionIsNull);
     }
@@ -79,7 +79,7 @@ public class ExceptionExtensionsTests
         var act = () => _ = ex.PopulateExceptionData(data);
 
         // Act/assert.
-        act.Should().Throw<ArgumentNullException>()
+        act.Should().ThrowExactly<ArgumentNullException>()
            .WithParameterName(nameof(data))
            .And.Message.Should().StartWith(Messages.DataDictionaryIsNull);
     }

@@ -55,7 +55,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.EnsuresLessThan(upperBound);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Theory]
@@ -69,7 +69,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.EnsuresLessThan(upperBound);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Theory]
@@ -83,7 +83,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.EnsuresLessThan(upperBound);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Theory]
@@ -97,7 +97,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.EnsuresLessThan(upperBound);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Fact]
@@ -110,7 +110,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.EnsuresLessThan(upperBound);
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
@@ -132,7 +132,7 @@ public class LessThanExtensionsTests
       var expectedMessage = $"Postcondition LessThan failed: {nameof(value)} must be less than {upperBound}";
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
       ex.Message.Should().StartWith(expectedMessage);
    }
 
@@ -148,7 +148,7 @@ public class LessThanExtensionsTests
       var expectedMessage = $"Requirement LessThan failed";
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
       ex.Message.Should().StartWith(expectedMessage);
    }
 
@@ -163,7 +163,7 @@ public class LessThanExtensionsTests
       var expectedMessage = $"Postcondition LessThan failed: {nameof(value)} must be less than {upperBound}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -178,7 +178,7 @@ public class LessThanExtensionsTests
       var expectedMessage = $"Requirement LessThan failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -234,7 +234,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.EnsuresLessThan(upperBound, comparer);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Theory]
@@ -249,7 +249,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.EnsuresLessThan(upperBound, comparer);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Theory]
@@ -264,7 +264,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.EnsuresLessThan(upperBound, comparer);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Theory]
@@ -279,7 +279,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.EnsuresLessThan(upperBound, comparer);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Fact]
@@ -293,7 +293,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.EnsuresLessThan(upperBound, comparer);
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
@@ -316,7 +316,7 @@ public class LessThanExtensionsTests
       var expectedMessage = $"Postcondition LessThan failed: {nameof(value)} must be less than {upperBound}";
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
       ex.Message.Should().StartWith(expectedMessage);
    }
 
@@ -333,7 +333,7 @@ public class LessThanExtensionsTests
       var expectedMessage = $"Requirement LessThan failed";
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
       ex.Message.Should().StartWith(expectedMessage);
    }
 
@@ -349,7 +349,7 @@ public class LessThanExtensionsTests
       var expectedMessage = $"Postcondition LessThan failed: {nameof(value)} must be less than {upperBound}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -365,7 +365,7 @@ public class LessThanExtensionsTests
       var expectedMessage = $"Requirement LessThan failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -380,7 +380,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.EnsuresLessThan(upperBound, comparer);
 
       // Act/assert.
-      act.Should().Throw<ArgumentNullException>()
+      act.Should().ThrowExactly<ArgumentNullException>()
          .WithParameterName(nameof(comparer))
          .And.Message.Should().StartWith(Messages.ComparerIsNull);
    }
@@ -468,7 +468,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.EnsuresLessThan(upperBound, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [UseCulture(CultureData.TurkishTurkey)]
@@ -488,7 +488,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.EnsuresLessThan(upperBound, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [UseCulture(CultureData.EnglishUS)]
@@ -508,7 +508,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.EnsuresLessThan(upperBound, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [UseCulture(CultureData.SwedishSweden)]
@@ -528,7 +528,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.EnsuresLessThan(upperBound, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [UseCulture(CultureData.EnglishUS)]
@@ -548,7 +548,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.EnsuresLessThan(upperBound, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [UseCulture(CultureData.DanishDenmark)]
@@ -568,7 +568,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.EnsuresLessThan(upperBound, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Fact]
@@ -581,7 +581,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.EnsuresLessThan(upperBound, comparisonType);
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_stringDataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
@@ -604,7 +604,7 @@ public class LessThanExtensionsTests
       var expectedMessage = $"Postcondition LessThan failed: {nameof(value)} must be less than {upperBound}";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -620,7 +620,7 @@ public class LessThanExtensionsTests
       var expectedMessage = $"Requirement LessThan failed";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -635,7 +635,7 @@ public class LessThanExtensionsTests
       var expectedMessage = $"Postcondition LessThan failed: {nameof(value)} must be less than {upperBound}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -652,7 +652,7 @@ public class LessThanExtensionsTests
       var expectedMessage = $"Requirement LessThan failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -705,7 +705,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.RequiresLessThan(upperBound);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [Theory]
@@ -719,7 +719,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.RequiresLessThan(upperBound);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [Theory]
@@ -733,7 +733,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.RequiresLessThan(upperBound);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [Theory]
@@ -747,7 +747,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.RequiresLessThan(upperBound);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [Fact]
@@ -760,7 +760,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.RequiresLessThan(upperBound);
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
@@ -783,7 +783,7 @@ public class LessThanExtensionsTests
       var expectedMessage = $"Precondition LessThan failed: {nameof(value)} must be less than {upperBound}";
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which;
       ex.ParamName.Should().Be(expectedParameterName);
       ex.Message.Should().StartWith(expectedMessage);
       ex.ActualValue.Should().Be(value);
@@ -802,7 +802,7 @@ public class LessThanExtensionsTests
       var expectedMessage = $"Requirement LessThan failed";
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which;
       ex.ParamName.Should().Be(expectedParameterName);
       ex.Message.Should().StartWith(expectedMessage);
       ex.ActualValue.Should().Be(value);
@@ -819,7 +819,7 @@ public class LessThanExtensionsTests
       var expectedMessage = $"Precondition LessThan failed: {nameof(value)} must be less than {upperBound}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -834,7 +834,7 @@ public class LessThanExtensionsTests
       var expectedMessage = $"Requirement LessThan failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -890,7 +890,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.RequiresLessThan(upperBound, comparer);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [Theory]
@@ -905,7 +905,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.RequiresLessThan(upperBound, comparer);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [Theory]
@@ -920,7 +920,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.RequiresLessThan(upperBound, comparer);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [Theory]
@@ -935,7 +935,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.RequiresLessThan(upperBound, comparer);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [Fact]
@@ -949,7 +949,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.RequiresLessThan(upperBound, comparer);
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
@@ -973,7 +973,7 @@ public class LessThanExtensionsTests
       var expectedMessage = $"Precondition LessThan failed: {nameof(value)} must be less than {upperBound}";
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which;
       ex.ParamName.Should().Be(expectedParameterName);
       ex.Message.Should().StartWith(expectedMessage);
       ex.ActualValue.Should().Be(value);
@@ -993,7 +993,7 @@ public class LessThanExtensionsTests
       var expectedMessage = $"Requirement LessThan failed";
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which;
       ex.ParamName.Should().Be(expectedParameterName);
       ex.Message.Should().StartWith(expectedMessage);
       ex.ActualValue.Should().Be(value);
@@ -1011,7 +1011,7 @@ public class LessThanExtensionsTests
       var expectedMessage = $"Precondition LessThan failed: {nameof(value)} must be less than {upperBound}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -1027,7 +1027,7 @@ public class LessThanExtensionsTests
       var expectedMessage = $"Requirement LessThan failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -1042,7 +1042,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.RequiresLessThan(upperBound, comparer);
 
       // Act/assert.
-      act.Should().Throw<ArgumentNullException>()
+      act.Should().ThrowExactly<ArgumentNullException>()
          .WithParameterName(nameof(comparer))
          .And.Message.Should().StartWith(Messages.ComparerIsNull);
    }
@@ -1130,7 +1130,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.RequiresLessThan(upperBound, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [UseCulture(CultureData.TurkishTurkey)]
@@ -1150,7 +1150,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.RequiresLessThan(upperBound, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [UseCulture(CultureData.EnglishUS)]
@@ -1170,7 +1170,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.RequiresLessThan(upperBound, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [UseCulture(CultureData.SwedishSweden)]
@@ -1190,7 +1190,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.RequiresLessThan(upperBound, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [UseCulture(CultureData.EnglishUS)]
@@ -1210,7 +1210,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.RequiresLessThan(upperBound, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [UseCulture(CultureData.DanishDenmark)]
@@ -1230,7 +1230,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.RequiresLessThan(upperBound, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<ArgumentOutOfRangeException>();
+      act.Should().ThrowExactly<ArgumentOutOfRangeException>();
    }
 
    [Fact]
@@ -1243,7 +1243,7 @@ public class LessThanExtensionsTests
       var act = () => _ = value.RequiresLessThan(upperBound, comparisonType);
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which;
 
       ex.Data.Count.Should().Be(_stringDataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
@@ -1267,7 +1267,7 @@ public class LessThanExtensionsTests
       var expectedMessage = $"Precondition LessThan failed: {nameof(value)} must be less than {upperBound}";
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which;
       ex.ParamName.Should().Be(expectedParameterName);
       ex.Message.Should().StartWith(expectedMessage);
       ex.ActualValue.Should().Be(value);
@@ -1286,7 +1286,7 @@ public class LessThanExtensionsTests
       var expectedMessage = $"Requirement LessThan failed";
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentOutOfRangeException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentOutOfRangeException>().Which;
       ex.ParamName.Should().Be(expectedParameterName);
       ex.Message.Should().StartWith(expectedMessage);
       ex.ActualValue.Should().Be(value);
@@ -1303,7 +1303,7 @@ public class LessThanExtensionsTests
       var expectedMessage = $"Precondition LessThan failed: {nameof(value)} must be less than {upperBound}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -1320,7 +1320,7 @@ public class LessThanExtensionsTests
       var expectedMessage = $"Requirement LessThan failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 

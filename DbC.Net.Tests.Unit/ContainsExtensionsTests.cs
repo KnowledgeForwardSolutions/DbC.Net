@@ -416,7 +416,7 @@ public class ContainsExtensionsTests
       var act = () => _ = value.EnsuresContains(target);
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
@@ -445,7 +445,7 @@ public class ContainsExtensionsTests
       var act = () => _ = value.EnsuresContains(target, comparisonType);
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
@@ -991,7 +991,7 @@ public class ContainsExtensionsTests
       var act = () => _ = value.RequiresContains(target);
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
@@ -1020,7 +1020,7 @@ public class ContainsExtensionsTests
       var act = () => _ = value.RequiresContains(target, comparisonType);
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);

@@ -66,7 +66,7 @@ public class NotEqualExtensionsTests
       var act = () => _ = value.EnsuresNotEqual(target);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Theory]
@@ -79,7 +79,7 @@ public class NotEqualExtensionsTests
       var act = () => _ = value.EnsuresNotEqual(target);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Fact]
@@ -92,7 +92,7 @@ public class NotEqualExtensionsTests
       var act = () => _ = value.EnsuresNotEqual(target);
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
@@ -114,7 +114,7 @@ public class NotEqualExtensionsTests
       var expectedMessage = $"Postcondition NotEqual failed: {nameof(value)} must not be equal to {target}";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -130,7 +130,7 @@ public class NotEqualExtensionsTests
       var expectedMessage = $"Requirement NotEqual failed";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -145,7 +145,7 @@ public class NotEqualExtensionsTests
       var expectedMessage = $"Postcondition NotEqual failed: {nameof(value)} must not be equal to {target}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -161,7 +161,7 @@ public class NotEqualExtensionsTests
       var expectedMessage = $"Requirement NotEqual failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -230,7 +230,7 @@ public class NotEqualExtensionsTests
       var act = () => _ = value.EnsuresNotEqual(target, comparer);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Fact]
@@ -244,7 +244,7 @@ public class NotEqualExtensionsTests
       var act = () => _ = value.EnsuresNotEqual(target, comparer);
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
@@ -267,7 +267,7 @@ public class NotEqualExtensionsTests
       var expectedMessage = $"Postcondition NotEqual failed: {nameof(value)} must not be equal to {target}";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -284,7 +284,7 @@ public class NotEqualExtensionsTests
       var expectedMessage = $"Requirement NotEqual failed";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -300,7 +300,7 @@ public class NotEqualExtensionsTests
       var expectedMessage = $"Postcondition NotEqual failed: {nameof(value)} must not be equal to {target}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -317,7 +317,7 @@ public class NotEqualExtensionsTests
       var expectedMessage = $"Requirement NotEqual failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -332,7 +332,7 @@ public class NotEqualExtensionsTests
       var act = () => _ = value.EnsuresNotEqual(target, comparer);
 
       // Act/assert.
-      act.Should().Throw<ArgumentNullException>()
+      act.Should().ThrowExactly<ArgumentNullException>()
          .WithParameterName(nameof(comparer))
          .And.Message.Should().StartWith(Messages.ComparerIsNull);
    }
@@ -420,7 +420,7 @@ public class NotEqualExtensionsTests
       var act = () => _ = value.EnsuresNotEqual(target, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    // Note: tr-TR culture considers "i" and upper case dotted "I" as equal when
@@ -443,7 +443,7 @@ public class NotEqualExtensionsTests
       var act = () => _ = value.EnsuresNotEqual(target, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    // Note: th-TH culture considers "a" and "a-" as equal.
@@ -464,7 +464,7 @@ public class NotEqualExtensionsTests
       var act = () => _ = value.EnsuresNotEqual(target, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [UseCulture(CultureData.EnglishUS)]
@@ -483,7 +483,7 @@ public class NotEqualExtensionsTests
       var act = () => _ = value.EnsuresNotEqual(target, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [UseCulture(CultureData.TurkishTurkey)]
@@ -502,7 +502,7 @@ public class NotEqualExtensionsTests
       var act = () => _ = value.EnsuresNotEqual(target, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>();
+      act.Should().ThrowExactly<PostconditionFailedException>();
    }
 
    [Fact]
@@ -515,7 +515,7 @@ public class NotEqualExtensionsTests
       var act = () => _ = value.EnsuresNotEqual(target, comparisonType);
 
       // Act/assert.
-      var ex = act.Should().Throw<PostconditionFailedException>().Which;
+      var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_stringDataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
@@ -538,7 +538,7 @@ public class NotEqualExtensionsTests
       var expectedMessage = $"Postcondition NotEqual failed: {nameof(value)} must not be equal to {target}";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -554,7 +554,7 @@ public class NotEqualExtensionsTests
       var expectedMessage = $"Requirement NotEqual failed";
 
       // Act/assert.
-      act.Should().Throw<PostconditionFailedException>()
+      act.Should().ThrowExactly<PostconditionFailedException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -569,7 +569,7 @@ public class NotEqualExtensionsTests
       var expectedMessage = $"Postcondition NotEqual failed: {nameof(value)} must not be equal to {target}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -586,7 +586,7 @@ public class NotEqualExtensionsTests
       var expectedMessage = $"Requirement NotEqual failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -651,7 +651,7 @@ public class NotEqualExtensionsTests
       var act = () => _ = value.RequiresNotEqual(target);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    [Theory]
@@ -664,7 +664,7 @@ public class NotEqualExtensionsTests
       var act = () => _ = value.RequiresNotEqual(target);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    [Fact]
@@ -677,7 +677,7 @@ public class NotEqualExtensionsTests
       var act = () => _ = value.RequiresNotEqual(target);
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
@@ -700,7 +700,7 @@ public class NotEqualExtensionsTests
       var expectedMessage = $"Precondition NotEqual failed: {nameof(value)} must not be equal to {target}";
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
          .And.Message.Should().StartWith(expectedMessage);
    }
@@ -718,7 +718,7 @@ public class NotEqualExtensionsTests
       var expectedMessage = $"Requirement NotEqual failed";
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
          .And.Message.Should().StartWith(expectedMessage);
    }
@@ -734,7 +734,7 @@ public class NotEqualExtensionsTests
       var expectedMessage = $"Precondition NotEqual failed: {nameof(value)} must not be equal to {target}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -750,7 +750,7 @@ public class NotEqualExtensionsTests
       var expectedMessage = $"Requirement NotEqual failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -819,7 +819,7 @@ public class NotEqualExtensionsTests
       var act = () => _ = value.RequiresNotEqual(target, comparer);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    [Fact]
@@ -833,7 +833,7 @@ public class NotEqualExtensionsTests
       var act = () => _ = value.RequiresNotEqual(target, comparer);
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
@@ -857,7 +857,7 @@ public class NotEqualExtensionsTests
       var expectedMessage = $"Precondition NotEqual failed: {nameof(value)} must not be equal to {target}";
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
          .And.Message.Should().StartWith(expectedMessage);
    }
@@ -876,7 +876,7 @@ public class NotEqualExtensionsTests
       var expectedMessage = $"Requirement NotEqual failed";
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
          .And.Message.Should().StartWith(expectedMessage);
    }
@@ -893,7 +893,7 @@ public class NotEqualExtensionsTests
       var expectedMessage = $"Precondition NotEqual failed: {nameof(value)} must not be equal to {target}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -910,7 +910,7 @@ public class NotEqualExtensionsTests
       var expectedMessage = $"Requirement NotEqual failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -925,7 +925,7 @@ public class NotEqualExtensionsTests
       var act = () => _ = value.RequiresNotEqual(target, comparer);
 
       // Act/assert.
-      act.Should().Throw<ArgumentNullException>()
+      act.Should().ThrowExactly<ArgumentNullException>()
          .WithParameterName(nameof(comparer))
          .And.Message.Should().StartWith(Messages.ComparerIsNull);
    }
@@ -1013,7 +1013,7 @@ public class NotEqualExtensionsTests
       var act = () => _ = value.RequiresNotEqual(target, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    // Note: tr-TR culture considers "i" and upper case dotted "I" as equal when
@@ -1036,7 +1036,7 @@ public class NotEqualExtensionsTests
       var act = () => _ = value.RequiresNotEqual(target, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    // Note: th-TH culture considers "a" and "a-" as equal.
@@ -1057,7 +1057,7 @@ public class NotEqualExtensionsTests
       var act = () => _ = value.RequiresNotEqual(target, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    [UseCulture(CultureData.EnglishUS)]
@@ -1076,7 +1076,7 @@ public class NotEqualExtensionsTests
       var act = () => _ = value.RequiresNotEqual(target, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    [UseCulture(CultureData.TurkishTurkey)]
@@ -1095,7 +1095,7 @@ public class NotEqualExtensionsTests
       var act = () => _ = value.RequiresNotEqual(target, comparisonType);
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>();
+      act.Should().ThrowExactly<ArgumentException>();
    }
 
    [Fact]
@@ -1108,7 +1108,7 @@ public class NotEqualExtensionsTests
       var act = () => _ = value.RequiresNotEqual(target, comparisonType);
 
       // Act/assert.
-      var ex = act.Should().Throw<ArgumentException>().Which;
+      var ex = act.Should().ThrowExactly<ArgumentException>().Which;
 
       ex.Data.Count.Should().Be(_stringDataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
@@ -1132,7 +1132,7 @@ public class NotEqualExtensionsTests
       var expectedMessage = $"Precondition NotEqual failed: {nameof(value)} must not be equal to {target}";
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
          .And.Message.Should().StartWith(expectedMessage);
    }
@@ -1150,7 +1150,7 @@ public class NotEqualExtensionsTests
       var expectedMessage = $"Requirement NotEqual failed";
 
       // Act/assert.
-      act.Should().Throw<ArgumentException>()
+      act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
          .And.Message.Should().StartWith(expectedMessage);
    }
@@ -1166,7 +1166,7 @@ public class NotEqualExtensionsTests
       var expectedMessage = $"Precondition NotEqual failed: {nameof(value)} must not be equal to {target}";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 
@@ -1183,7 +1183,7 @@ public class NotEqualExtensionsTests
       var expectedMessage = $"Requirement NotEqual failed";
 
       // Act/assert.
-      act.Should().Throw<CustomException>()
+      act.Should().ThrowExactly<CustomException>()
          .And.Message.Should().StartWith(expectedMessage);
    }
 

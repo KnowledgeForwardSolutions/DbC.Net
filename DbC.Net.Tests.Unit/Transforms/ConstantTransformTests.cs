@@ -27,7 +27,7 @@ public class ConstantTransformTests
       var act = () => _ = new ConstantTransform(constantValue);
 
       // Act/assert.
-      act.Should().Throw<ArgumentNullException>()
+      act.Should().ThrowExactly<ArgumentNullException>()
          .WithParameterName(nameof(constantValue))
          .And.Message.Should().StartWith(Messages.ConstantValueIsNull);
    }
