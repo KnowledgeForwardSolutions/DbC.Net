@@ -97,7 +97,7 @@ namespace DbC.Net {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} may only contain numeric characters.
+        ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} may only contain radix-10 digit characters.
         /// </summary>
         internal static string DigitsOnlyTemplate {
             get {

@@ -130,7 +130,7 @@
     <value>{RequirementType} {RequirementName} failed: {ValueExpression} must contain the substring "{Target}"</value>
   </data>
   <data name="DigitsOnlyTemplate" xml:space="preserve">
-    <value>{RequirementType} {RequirementName} failed: {ValueExpression} may only contain numeric characters</value>
+    <value>{RequirementType} {RequirementName} failed: {ValueExpression} may only contain radix-10 digit characters</value>
   </data>
   <data name="EqualTemplate" xml:space="preserve">
     <value>{RequirementType} {RequirementName} failed: {ValueExpression} must be equal to {Target}</value>
