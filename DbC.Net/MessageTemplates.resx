@@ -129,6 +129,9 @@
   <data name="ContainsTemplate" xml:space="preserve">
     <value>{RequirementType} {RequirementName} failed: {ValueExpression} must contain the substring "{Target}"</value>
   </data>
+  <data name="DigitsOnlyTemplate" xml:space="preserve">
+    <value>{RequirementType} {RequirementName} failed: {ValueExpression} may only contain numeric characters</value>
+  </data>
   <data name="EqualTemplate" xml:space="preserve">
     <value>{RequirementType} {RequirementName} failed: {ValueExpression} must be equal to {Target}</value>
   </data>

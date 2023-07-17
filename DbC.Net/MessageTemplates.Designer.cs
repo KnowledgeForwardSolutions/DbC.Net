@@ -97,6 +97,15 @@ namespace DbC.Net {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} may only contain numeric characters.
+        /// </summary>
+        internal static string DigitsOnlyTemplate {
+            get {
+                return ResourceManager.GetString("DigitsOnlyTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} must be equal to {Target}.
         /// </summary>
         internal static string EqualTemplate {

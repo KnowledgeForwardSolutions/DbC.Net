@@ -57,6 +57,7 @@
 
     - [AlphaNumericOnly](/Documentation/AlphaNumericOnly.md)
     - [Contains](/Documentation/Contains.md)
+    - [DigitsOnly](/Documentation/DigitsOnly.md)
     - [MaxLength](/Documentation/MaxLength.md)
     - [MinLength](/Documentation/MinLength.md)
     - [NotEmptyOrWhiteSpace](/Documentation/NotEmptyOrWhiteSpace.md)
