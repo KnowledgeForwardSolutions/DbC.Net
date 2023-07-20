@@ -4,7 +4,7 @@ Requirements:
 
   RequiresEndsWith (precondition), default ArgumentException 
   EnsuresEndsWith (postcondition), default PostconditionFailedException
-  Support supplying IComparer<T> object to perform the comparison
+  Support supplying StringComparison value to perform the comparison
 
 DEFINITION OF DONE:
 
