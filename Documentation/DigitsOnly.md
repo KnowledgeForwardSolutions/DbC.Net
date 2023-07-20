@@ -20,7 +20,7 @@ RequirementName, Value and ValueExpression.
 
 **Examples:**
 ```C#
-var customMessageTemplate = "{ValueExpression} must contain only letters or digits";
+var customMessageTemplate = "{ValueExpression} must contain only digits";
 var customExceptionFactory = new CustomExceptionFactory();
 
 var value = "123";

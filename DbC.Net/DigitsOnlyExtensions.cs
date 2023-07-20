@@ -1,29 +1,29 @@
 ﻿namespace DbC.Net;
 
 /// <summary>
-///   Extension methods that implement String AlphaNumericOnly requirement.
+///   Extension methods that implement String DigitsOnly requirement.
 /// </summary>
-public static class AlphaNumericOnlyExtensions
+public static class DigitsOnlyExtensions
 {
-   private const String _requirementName = RequirementNames.AlphaNumericOnly;
+   private const String _requirementName = RequirementNames.DigitsOnly;
 
    /// <summary>
-   ///   AlphaNumericOnly postcondition. Confirm that the <see cref="String"/>
-   ///   <paramref name="value"/> contains only alphanumeric characters. A value
-   ///   that is <see langword="null"/> or <see cref="String.Empty"/> will pass
-   ///   the requirement.
+   ///   DigitsOnly postcondition. Confirm that the <see cref="String"/>
+   ///   <paramref name="value"/> contains only radix-10 digit characters 
+   ///   ('0' - '9'). A value that is <see langword="null"/> or 
+   ///   <see cref="String.Empty"/> will pass the requirement.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} may only contain alphanumeric characters".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} may only contain radix-10 digit characters".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
    ///   exception that is thrown if the <paramref name="value"/> contains a
-   ///   non-letter or non-digit character. Defaults to 
+   ///   radix-10 digit character ('0' - '9'). Defaults to 
    ///   <see cref="StandardExceptionFactories.PostconditionFailedExceptionFactory"/>.
    /// </param>
    /// <param name="valueExpression">
@@ -34,13 +34,13 @@ public static class AlphaNumericOnlyExtensions
    ///   The tested <paramref name="value"/> is returned unaltered to support 
    ///   chaining requirements.
    /// </returns>
-   public static String EnsuresAlphaNumericOnly(
+   public static String EnsuresDigitsOnly(
       this String value,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
       [CallerArgumentExpression("value")] String valueExpression = null!)
    {
-      CheckAlphaNumericOnly(
+      CheckDigitsOnly(
          value,
          RequirementType.Postcondition,
          messageTemplate,
@@ -51,22 +51,22 @@ public static class AlphaNumericOnlyExtensions
    }
 
    /// <summary>
-   ///   AlphaNumericOnly precondition. Confirm that the <see cref="String"/>
-   ///   <paramref name="value"/> contains only alphanumeric characters. A value
-   ///   that is <see langword="null"/> or <see cref="String.Empty"/> will pass
-   ///   the requirement.
+   ///   DigitsOnly precondition. Confirm that the <see cref="String"/>
+   ///   <paramref name="value"/> contains only radix-10 digit characters 
+   ///   ('0' - '9'). A value that is <see langword="null"/> or 
+   ///   <see cref="String.Empty"/> will pass the requirement.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} may only contain alphanumeric characters".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {ValueExpression} may only contain radix-10 digit characters".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
    ///   exception that is thrown if the <paramref name="value"/> contains a
-   ///   non-letter or non-digit character. Defaults to 
+   ///   radix-10 digit character ('0' - '9'). Defaults to 
    ///   <see cref="StandardExceptionFactories.ArgumentExceptionFactory"/>.
    /// </param>
    /// <param name="valueExpression">
@@ -77,13 +77,13 @@ public static class AlphaNumericOnlyExtensions
    ///   The tested <paramref name="value"/> is returned unaltered to support 
    ///   chaining requirements.
    /// </returns>
-   public static String RequiresAlphaNumericOnly(
+   public static String RequiresDigitsOnly(
       this String value,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
       [CallerArgumentExpression("value")] String valueExpression = null!)
    {
-      CheckAlphaNumericOnly(
+      CheckDigitsOnly(
          value,
          RequirementType.Precondition,
          messageTemplate,
@@ -93,16 +93,16 @@ public static class AlphaNumericOnlyExtensions
       return value;
    }
 
-   private static void CheckAlphaNumericOnly(
+   private static void CheckDigitsOnly(
       String? value,
       RequirementType requirementType,
       String? messageTemplate,
       IExceptionFactory? exceptionFactory,
       String valueExpression)
    {
-      if (!value!.IsAlphaNumericOnly())
+      if (!value!.IsDigitsOnly())
       {
-         messageTemplate ??= MessageTemplates.AlphaNumericOnlyTemplate;
+         messageTemplate ??= MessageTemplates.DigitsOnlyTemplate;
          exceptionFactory ??= StandardExceptionFactories.ResolveArgumentExceptionFactory(requirementType);
          var data = ExceptionDataBuilder.Create()
             .WithRequirement(requirementType, _requirementName)
