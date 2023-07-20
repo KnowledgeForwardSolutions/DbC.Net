@@ -97,4 +97,7 @@ public class StringData : ComparableValue<String>
    public const String LowerCaseZ = "z";
 
    public const String Caret = "^";
+
+   public const String FractionOneTenth = "\u2152";
+   public const String RomanNumeral12 = "\u216B";
 }

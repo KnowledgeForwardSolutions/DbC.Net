@@ -1,8 +1,7 @@
 ### DigitsOnly
 
-DigitsOnly requires that the string value being checked contain only 
-alphanumeric characters (as defined by the Char.IsLetterOrDigit method). A null
-or empty string will pass the requirement.
+DigitsOnly requires that the string value being checked contain only radix-10 
+digit characters ('0' - '9'). A null or empty string will pass the requirement.
 
 **Method signatures:**
 ```C#
@@ -11,7 +10,7 @@ String RequiresDigitsOnly(this String value, [String? messageTemplate = null], [
 String EnsuresDigitsOnly(this String value, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null])
 ```
 
-The default message template for DigitsOnly is "{RequirementType} {RequirementName} failed: {ValueExpression} may only contain alphanumeric characters".
+The default message template for DigitsOnly is "{RequirementType} {RequirementName} failed: {ValueExpression} may only contain radix-10 digit characters".
 The default exception factory for RequiresDigitsOnly is StandardExceptionFactories.ArgumentExceptionFactory 
 and StandardExceptionFactories.PostconditionFailedExceptionFactory for 
 EnsuresDigitsOnly.
@@ -21,10 +20,10 @@ RequirementName, Value and ValueExpression.
 
 **Examples:**
 ```C#
-var customMessageTemplate = "{ValueExpression} must contain only letters or digits";
+var customMessageTemplate = "{ValueExpression} must contain only digits";
 var customExceptionFactory = new CustomExceptionFactory();
 
-var value = "abc123";
+var value = "123";
 
 // Precondition with default message template and default exception factory.
 value.RequiresDigitsOnly();

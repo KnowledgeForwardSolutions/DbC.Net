@@ -18,4 +18,5 @@
 //BenchmarkRunner.Run<NotNullOrWhiteSpaceBenchmarks>();
 //BenchmarkRunner.Run<NotEmptyOrWhiteSpaceBenchmarks>();
 //BenchmarkRunner.Run<AlphaNumericOnlyBenchmarks>();
-BenchmarkRunner.Run<ContainsBenchmarks>();
+//BenchmarkRunner.Run<ContainsBenchmarks>();
+BenchmarkRunner.Run<DigitsOnlyBenchmarks>();
