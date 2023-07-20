@@ -36,6 +36,7 @@ Intel Core i7-8700K CPU 3.70GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical 
   - [NotEmptyOrWhiteSpace Benchmarks](#notemptyorwhitespace-benchmarks)
   - [AlphaNumericOnly Benchmarks](#alphanumericonly-benchmarks)
   - [Contains Benchmarks](#contains-benchmarks)
+  - [DigitsOnly Benchmarks](#digitsonly-benchmarks)
 
 ### NotNull Benchmarks
 
@@ -590,3 +591,21 @@ parameter was omitted.
 | RequiresContains | CurrentCulture    | X                |                   | 84.54 ns | 1.730 ns | 3.415 ns |         - |
 | RequiresContains | CurrentCulture    |                  | X                 | 84.51 ns | 1.713 ns | 3.688 ns |         - |
 | RequiresContains | CurrentCulture    | X                | X                 | 80.13 ns | 0.814 ns | 0.800 ns |         - |
+
+### DigitsOnly Benchmarks
+
+| Method             | String content      | Message Template | Exception Factory |       Mean |     Error |    StdDev | Allocated |
+|:------------------ |:--------------------|:----------------:|:-----------------:|-----------:|----------:|----------:|----------:|
+| RequiresDigitsOnly | Null String         |                  |                   |   1.560 ns | 0.0135 ns | 0.0106 ns |         - |
+| RequiresDigitsOnly | Null String         | X                |                   |   1.255 ns | 0.0132 ns | 0.0117 ns |         - |
+| RequiresDigitsOnly | Null String         |                  | X                 |   1.998 ns | 0.0235 ns | 0.0220 ns |         - |
+| RequiresDigitsOnly | Null String         | X                | X                 |   1.468 ns | 0.0109 ns | 0.0091 ns |         - |
+| RequiresDigitsOnly | String (Length 10)  |                  |                   |  11.271 ns | 0.1270 ns | 0.1126 ns |         - |
+| RequiresDigitsOnly | String (Length 10)  | X                |                   |   9.468 ns | 0.1312 ns | 0.1163 ns |         - |
+| RequiresDigitsOnly | String (Length 10)  |                  | X                 |   9.878 ns | 0.1682 ns | 0.1573 ns |         - |
+| RequiresDigitsOnly | String (Length 10)  | X                | X                 |  11.435 ns | 0.1038 ns | 0.0971 ns |         - |
+| RequiresDigitsOnly | String (Length 100) |                  |                   | 100.438 ns | 0.8152 ns | 0.7625 ns |         - |
+| RequiresDigitsOnly | String (Length 100) | X                |                   |  99.628 ns | 1.8414 ns | 2.1205 ns |         - |
+| RequiresDigitsOnly | String (Length 100) |                  | X                 | 101.454 ns | 1.9839 ns | 2.4364 ns |         - |
+| RequiresDigitsOnly | String (Length 100) | X                | X                 | 100.172 ns | 0.5863 ns | 0.5197 ns |         - |
+
