@@ -19,9 +19,9 @@ public static class ContainsExtensions
    ///   The target substring that <paramref name="value"/> should contain.
    /// </param>
    /// <param name="comparisonType">
-   ///   <see cref="StringComparison"/> enumeration value that specified how the
-   ///   <paramref name="value"/> and <paramref name="target"/> strings are 
-   ///   compared.
+   ///   Optional.  <see cref="StringComparison"/> enumeration value that 
+   ///   specifies how the <paramref name="value"/> and <paramref name="target"/> 
+   ///   strings are compared. Defaults to <see cref="StringComparison.Ordinal"/>.
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
@@ -82,9 +82,9 @@ public static class ContainsExtensions
    ///   The target substring that <paramref name="value"/> should contain.
    /// </param>
    /// <param name="comparisonType">
-   ///   <see cref="StringComparison"/> enumeration value that specified how the
-   ///   <paramref name="value"/> and <paramref name="target"/> strings are 
-   ///   compared.
+   ///   Optional.  <see cref="StringComparison"/> enumeration value that 
+   ///   specifies how the <paramref name="value"/> and <paramref name="target"/> 
+   ///   strings are compared. Defaults to <see cref="StringComparison.Ordinal"/>.
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.

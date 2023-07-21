@@ -177,7 +177,7 @@ public static class BetweenExtensions
    ///   The upper bound that <paramref name="value"/> should not exceed.
    /// </param>
    /// <param name="comparisonType">
-   ///   <see cref="StringComparison"/> enumeration value that specified how the
+   ///   <see cref="StringComparison"/> enumeration value that specifies how the
    ///   <paramref name="value"/> and the <paramref name="lowerBound"/> and
    ///   <paramref name="upperBound"/> strings are compared.
    /// </param>
@@ -403,7 +403,7 @@ public static class BetweenExtensions
    ///   The upper bound that <paramref name="value"/> should not exceed.
    /// </param>
    /// <param name="comparisonType">
-   ///   <see cref="StringComparison"/> enumeration value that specified how the
+   ///   <see cref="StringComparison"/> enumeration value that specifies how the
    ///   <paramref name="value"/> and the <paramref name="lowerBound"/> and
    ///   <paramref name="upperBound"/> strings are compared.
    /// </param>

@@ -134,7 +134,7 @@ public static class EqualExtensions
    ///   The target that <paramref name="value"/> should equal.
    /// </param>
    /// <param name="comparisonType">
-   ///   <see cref="StringComparison"/> enumeration value that specified how the
+   ///   <see cref="StringComparison"/> enumeration value that specifies how the
    ///   <paramref name="value"/> and <paramref name="target"/> strings are 
    ///   compared.
    /// </param>
@@ -307,7 +307,7 @@ public static class EqualExtensions
    ///   The target that <paramref name="value"/> should equal.
    /// </param>
    /// <param name="comparisonType">
-   ///   <see cref="StringComparison"/> enumeration value that specified how the
+   ///   <see cref="StringComparison"/> enumeration value that specifies how the
    ///   <paramref name="value"/> and <paramref name="target"/> strings are 
    ///   compared.
    /// </param>

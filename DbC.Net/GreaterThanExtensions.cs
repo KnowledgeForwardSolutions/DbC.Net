@@ -136,7 +136,7 @@ public static class GreaterThanExtensions
    ///   The lower bound that <paramref name="value"/> should be greater than.
    /// </param>
    /// <param name="comparisonType">
-   ///   <see cref="StringComparison"/> enumeration value that specified how the
+   ///   <see cref="StringComparison"/> enumeration value that specifies how the
    ///   <paramref name="value"/> and <paramref name="lowerBound"/> strings are 
    ///   compared.
    /// </param>
@@ -311,7 +311,7 @@ public static class GreaterThanExtensions
    ///   The lower bound that <paramref name="value"/> should be greater than.
    /// </param>
    /// <param name="comparisonType">
-   ///   <see cref="StringComparison"/> enumeration value that specified how the
+   ///   <see cref="StringComparison"/> enumeration value that specifies how the
    ///   <paramref name="value"/> and <paramref name="lowerBound"/> strings are 
    ///   compared.
    /// </param>
