@@ -106,6 +106,15 @@ namespace DbC.Net {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} must end with the substring &quot;{Target}&quot;.
+        /// </summary>
+        internal static string EndsWithTemplate {
+            get {
+                return ResourceManager.GetString("EndsWithTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} must be equal to {Target}.
         /// </summary>
         internal static string EqualTemplate {

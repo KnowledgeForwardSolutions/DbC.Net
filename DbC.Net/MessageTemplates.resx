@@ -132,6 +132,9 @@
   <data name="DigitsOnlyTemplate" xml:space="preserve">
     <value>{RequirementType} {RequirementName} failed: {ValueExpression} may only contain radix-10 digit characters</value>
   </data>
+  <data name="EndsWithTemplate" xml:space="preserve">
+    <value>{RequirementType} {RequirementName} failed: {ValueExpression} must end with the substring "{Target}"</value>
+  </data>
   <data name="EqualTemplate" xml:space="preserve">
     <value>{RequirementType} {RequirementName} failed: {ValueExpression} must be equal to {Target}</value>
   </data>
