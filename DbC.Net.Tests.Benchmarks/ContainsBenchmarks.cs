@@ -110,5 +110,4 @@ public class ContainsBenchmarks
    {
       var result = _value.RequiresContains(_target, StringComparison.CurrentCulture, _messageTemplate, _exceptionFactory);
    }
-
 }

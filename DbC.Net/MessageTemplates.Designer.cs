@@ -257,5 +257,14 @@ namespace DbC.Net {
                 return ResourceManager.GetString("NotNullTemplate", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} must start with the substring &quot;{Target}&quot;.
+        /// </summary>
+        internal static string StartsWithTemplate {
+            get {
+                return ResourceManager.GetString("StartsWithTemplate", resourceCulture);
+            }
+        }
     }
 }

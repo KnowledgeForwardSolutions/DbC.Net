@@ -183,4 +183,7 @@
   <data name="NotNullTemplate" xml:space="preserve">
     <value>{RequirementType} {RequirementName} failed: {ValueExpression} may not be null</value>
   </data>
+  <data name="StartsWithTemplate" xml:space="preserve">
+    <value>{RequirementType} {RequirementName} failed: {ValueExpression} must start with the substring "{Target}"</value>
+  </data>
 </root>

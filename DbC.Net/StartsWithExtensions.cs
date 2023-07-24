@@ -1,22 +1,22 @@
 ﻿namespace DbC.Net;
 
 /// <summary>
-///   Extension methods that implement String Contains requirement.
+///   Extension methods that implement String StartsWith requirement.
 /// </summary>
-public static class ContainsExtensions
+public static class StartsWithExtensions
 {
-   private const String _requirementName = RequirementNames.Contains;
+   private const String _requirementName = RequirementNames.StartsWith;
 
    /// <summary>
-   ///   String Contains postcondition. Confirm that the <see cref="String"/>
-   ///   <paramref name="value"/> contains the  <paramref name="target"/> 
+   ///   String StartsWith postcondition. Confirm that the <see cref="String"/>
+   ///   <paramref name="value"/> starts with the  <paramref name="target"/> 
    ///   substring and throw an exception if it does not.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
    /// </param>
    /// <param name="target">
-   ///   The target substring that <paramref name="value"/> should contain.
+   ///   The target substring that <paramref name="value"/> should start with.
    /// </param>
    /// <param name="comparisonType">
    ///   Optional.  <see cref="StringComparison"/> enumeration value that 
@@ -25,7 +25,7 @@ public static class ContainsExtensions
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {Value} must contain the substring "{Target}"".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {Value} must start with the substring "{Target}"".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
@@ -48,7 +48,7 @@ public static class ContainsExtensions
    /// <exception cref="ArgumentNullException">
    ///   <paramref name="target"/> is <see langword="null"/>.
    /// </exception>
-   public static String EnsuresContains(
+   public static String EnsuresStartsWith(
       this String value,
       String target,
       StringComparison comparisonType = StringComparison.Ordinal,
@@ -57,7 +57,7 @@ public static class ContainsExtensions
       [CallerArgumentExpression("value")] String valueExpression = null!,
       [CallerArgumentExpression("target")] String targetExpression = null!)
    {
-      CheckContains(
+      CheckStartsWith(
          value,
          target ?? throw new ArgumentNullException(nameof(target), Messages.TargetSubstringIsNull),
          comparisonType,
@@ -71,15 +71,15 @@ public static class ContainsExtensions
    }
 
    /// <summary>
-   ///   String Contains precondition. Confirm that the <see cref="String"/>
-   ///   <paramref name="value"/> contains the  <paramref name="target"/> 
+   ///   String StartsWith precondition. Confirm that the <see cref="String"/>
+   ///   <paramref name="value"/> starts with the  <paramref name="target"/> 
    ///   substring and throw an exception if it does not.
    /// </summary>
    /// <param name="value">
    ///   The value to check.
    /// </param>
    /// <param name="target">
-   ///   The target substring that <paramref name="value"/> should contain.
+   ///   The target substring that <paramref name="value"/> should start with.
    /// </param>
    /// <param name="comparisonType">
    ///   Optional.  <see cref="StringComparison"/> enumeration value that 
@@ -88,7 +88,7 @@ public static class ContainsExtensions
    /// </param>
    /// <param name="messageTemplate">
    ///   Optional. The message template to use if an exception is thrown.
-   ///   Defaults to "{RequirementType} {RequirementName} failed: {Value} must contain the substring "{Target}"".
+   ///   Defaults to "{RequirementType} {RequirementName} failed: {Value} must start with the substring "{Target}"".
    /// </param>
    /// <param name="exceptionFactory">
    ///   Optional. The <see cref="IExceptionFactory"/> used to create the
@@ -111,7 +111,7 @@ public static class ContainsExtensions
    /// <exception cref="ArgumentNullException">
    ///   <paramref name="target"/> is <see langword="null"/>.
    /// </exception>
-   public static String RequiresContains(
+   public static String RequiresStartsWith(
       this String value,
       String target,
       StringComparison comparisonType = StringComparison.Ordinal,
@@ -120,7 +120,7 @@ public static class ContainsExtensions
       [CallerArgumentExpression("value")] String valueExpression = null!,
       [CallerArgumentExpression("target")] String targetExpression = null!)
    {
-      CheckContains(
+      CheckStartsWith(
          value,
          target ?? throw new ArgumentNullException(nameof(target), Messages.TargetSubstringIsNull),
          comparisonType,
@@ -133,7 +133,7 @@ public static class ContainsExtensions
       return value;
    }
 
-   private static void CheckContains(
+   private static void CheckStartsWith(
       String value,
       String target,
       StringComparison comparisonType,
@@ -143,9 +143,9 @@ public static class ContainsExtensions
       String valueExpression,
       String targetExpression)
    {
-      if (value is null || !value.Contains(target, comparisonType))
+      if (value is null || !value.StartsWith(target, comparisonType))
       {
-         messageTemplate ??= MessageTemplates.ContainsTemplate;
+         messageTemplate ??= MessageTemplates.StartsWithTemplate;
          exceptionFactory ??= StandardExceptionFactories.ResolveArgumentExceptionFactory(requirementType);
          var data = ExceptionDataBuilder.Create()
             .WithRequirement(requirementType, _requirementName)

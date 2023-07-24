@@ -63,6 +63,7 @@
     - [NotEmptyOrWhiteSpace](/Documentation/NotEmptyOrWhiteSpace.md)
     - [NotNullOrEmpty](/Documentation/NotNullOrEmpty.md)
     - [NotNullOrWhiteSpace](/Documentation/NotNullOrWhiteSpace.md)
+    - [StartsWith](/Documentation/StartsWith.md)
 
 - **[Release History/Release Notes](#release-historyrelease-notes)**
 
