@@ -38,6 +38,7 @@ Intel Core i7-8700K CPU 3.70GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical 
   - [Contains Benchmarks](#contains-benchmarks)
   - [DigitsOnly Benchmarks](#digitsonly-benchmarks)
   - [StartsWith Benchmarks](#startswith-benchmarks)
+  - [EndsWith Benchmarks](#endswith-benchmarks)
 
 ### NotNull Benchmarks
 
@@ -633,3 +634,27 @@ parameter was omitted.
 | RequiresStartsWith | CurrentCulture    | X                |                   | 31.266 ns | 0.3283 ns | 0.3071 ns |         - |
 | RequiresStartsWith | CurrentCulture    |                  | X                 | 27.353 ns | 0.1298 ns | 0.1214 ns |         - |
 | RequiresStartsWith | CurrentCulture    | X                | X                 | 27.817 ns | 0.2212 ns | 0.2069 ns |         - |
+
+### EndsWith Benchmarks
+
+X indicates that the optional parameter was supplied; blank indicates that the 
+parameter was omitted.
+
+| Method           | String Comparer   | Message Template | Exception Factory |      Mean |     Error |    StdDev | Allocated |
+|:---------------- |:------------------|:----------------:|:-----------------:|----------:|----------:|----------:|----------:|
+| RequiresEndsWith |                   |                  |                   |  6.773 ns | 0.1661 ns | 0.3882 ns |         - |
+| RequiresEndsWith |                   | X                |                   |  6.544 ns | 0.1582 ns | 0.2599 ns |         - |
+| RequiresEndsWith |                   |                  | X                 |  6.765 ns | 0.0892 ns | 0.0834 ns |         - |
+| RequiresEndsWith |                   | X                | X                 |  6.775 ns | 0.0754 ns | 0.0706 ns |         - |
+| RequiresEndsWith | Ordinal           |                  |                   |  6.506 ns | 0.1086 ns | 0.0963 ns |         - |
+| RequiresEndsWith | Ordinal           | X                |                   |  6.504 ns | 0.1203 ns | 0.1125 ns |         - |
+| RequiresEndsWith | Ordinal           |                  | X                 |  6.525 ns | 0.0549 ns | 0.0458 ns |         - |
+| RequiresEndsWith | Ordinal           | X                | X                 |  6.716 ns | 0.1327 ns | 0.1242 ns |         - |
+| RequiresEndsWith | OrdinalIgnoreCase |                  |                   |  7.396 ns | 0.1004 ns | 0.0890 ns |         - |
+| RequiresEndsWith | OrdinalIgnoreCase | X                |                   |  6.777 ns | 0.1610 ns | 0.1654 ns |         - |
+| RequiresEndsWith | OrdinalIgnoreCase |                  | X                 |  7.833 ns | 0.1835 ns | 0.1627 ns |         - |
+| RequiresEndsWith | OrdinalIgnoreCase | X                | X                 |  6.851 ns | 0.1299 ns | 0.1643 ns |         - |
+| RequiresEndsWith | CurrentCulture    |                  |                   | 27.987 ns | 0.4610 ns | 0.4312 ns |         - |
+| RequiresEndsWith | CurrentCulture    | X                |                   | 29.390 ns | 0.6810 ns | 1.9649 ns |         - |
+| RequiresEndsWith | CurrentCulture    |                  | X                 | 30.487 ns | 0.6379 ns | 1.5283 ns |         - |
+| RequiresEndsWith | CurrentCulture    | X                | X                 | 28.484 ns | 0.6306 ns | 1.8594 ns |         - |
