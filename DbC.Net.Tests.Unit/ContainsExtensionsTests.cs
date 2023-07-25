@@ -468,7 +468,7 @@ public class ContainsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -483,7 +483,7 @@ public class ContainsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -498,7 +498,7 @@ public class ContainsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -514,7 +514,7 @@ public class ContainsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -528,7 +528,7 @@ public class ContainsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -543,7 +543,7 @@ public class ContainsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -558,7 +558,7 @@ public class ContainsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -574,7 +574,7 @@ public class ContainsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    #endregion
@@ -1111,7 +1111,7 @@ public class ContainsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -1126,7 +1126,7 @@ public class ContainsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -1141,7 +1141,7 @@ public class ContainsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -1157,7 +1157,7 @@ public class ContainsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    #endregion

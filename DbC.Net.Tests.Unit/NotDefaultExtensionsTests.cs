@@ -128,7 +128,7 @@ public class NotDefaultExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -142,7 +142,7 @@ public class NotDefaultExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -155,7 +155,7 @@ public class NotDefaultExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -169,7 +169,7 @@ public class NotDefaultExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    #endregion
@@ -300,7 +300,7 @@ public class NotDefaultExtensionsTests
       // Act/assert.
       act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage + "*");
    }
 
    [Fact]
@@ -316,7 +316,7 @@ public class NotDefaultExtensionsTests
       // Act/assert.
       act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage + "*");
    }
 
    [Fact]
@@ -329,7 +329,7 @@ public class NotDefaultExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -343,7 +343,7 @@ public class NotDefaultExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    #endregion

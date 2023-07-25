@@ -69,7 +69,7 @@ public class NotNullExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -83,7 +83,7 @@ public class NotNullExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -96,7 +96,7 @@ public class NotNullExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -110,7 +110,7 @@ public class NotNullExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    #endregion
@@ -182,7 +182,7 @@ public class NotNullExtensionsTests
       // Act/assert.
       act.Should().ThrowExactly<ArgumentNullException>()
          .WithParameterName(expectedParameterName)
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage + "*");
    }
 
    [Fact]
@@ -198,7 +198,7 @@ public class NotNullExtensionsTests
       // Act/assert.
       act.Should().ThrowExactly<ArgumentNullException>()
          .WithParameterName(expectedParameterName)
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage + "*");
    }
 
    [Fact]
@@ -211,7 +211,7 @@ public class NotNullExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -225,7 +225,7 @@ public class NotNullExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    #endregion

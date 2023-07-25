@@ -109,7 +109,7 @@ public  class NotNullOrEmptyExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -122,7 +122,7 @@ public  class NotNullOrEmptyExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -136,7 +136,7 @@ public  class NotNullOrEmptyExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -150,7 +150,7 @@ public  class NotNullOrEmptyExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -163,7 +163,7 @@ public  class NotNullOrEmptyExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -176,7 +176,7 @@ public  class NotNullOrEmptyExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -190,7 +190,7 @@ public  class NotNullOrEmptyExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -204,7 +204,7 @@ public  class NotNullOrEmptyExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    #endregion
@@ -376,7 +376,7 @@ public  class NotNullOrEmptyExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -389,7 +389,7 @@ public  class NotNullOrEmptyExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -403,7 +403,7 @@ public  class NotNullOrEmptyExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -417,7 +417,7 @@ public  class NotNullOrEmptyExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    #endregion

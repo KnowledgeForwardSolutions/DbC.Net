@@ -115,7 +115,7 @@ public class ApproximatelyEqualExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -133,7 +133,7 @@ public class ApproximatelyEqualExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -150,7 +150,7 @@ public class ApproximatelyEqualExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -168,7 +168,7 @@ public class ApproximatelyEqualExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    #endregion
@@ -286,7 +286,7 @@ public class ApproximatelyEqualExtensionsTests
       // Act/assert.
       act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage + "*");
    }
 
    [Fact]
@@ -306,7 +306,7 @@ public class ApproximatelyEqualExtensionsTests
       // Act/assert.
       act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage + "*");
    }
 
    [Fact]
@@ -323,7 +323,7 @@ public class ApproximatelyEqualExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -341,7 +341,7 @@ public class ApproximatelyEqualExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    #endregion
