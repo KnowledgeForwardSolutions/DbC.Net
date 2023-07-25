@@ -113,7 +113,7 @@ public class EqualsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -129,7 +129,7 @@ public class EqualsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -144,7 +144,7 @@ public class EqualsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -159,7 +159,7 @@ public class EqualsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    #endregion
@@ -249,7 +249,7 @@ public class EqualsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -266,7 +266,7 @@ public class EqualsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -282,7 +282,7 @@ public class EqualsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -299,7 +299,7 @@ public class EqualsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -311,11 +311,12 @@ public class EqualsExtensionsTests
       var target = data.MinValue;
       IEqualityComparer<DateTime> comparer = null!;
       var act = () => _ = value.EnsuresEqual(target, comparer);
+      var expectedMessage = Messages.ComparerIsNull;
 
       // Act/assert.
       act.Should().ThrowExactly<ArgumentNullException>()
          .WithParameterName(nameof(comparer))
-         .And.Message.Should().StartWith(Messages.ComparerIsNull);
+         .WithMessage(expectedMessage + "*");
    }
 
    #endregion
@@ -562,7 +563,7 @@ public class EqualsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -578,7 +579,7 @@ public class EqualsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -593,7 +594,7 @@ public class EqualsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    [UseCulture(CultureData.EnglishUS)]
@@ -610,7 +611,7 @@ public class EqualsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    #endregion
@@ -723,7 +724,7 @@ public class EqualsExtensionsTests
       // Act/assert.
       act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage + "*");
    }
 
    [Fact]
@@ -741,7 +742,7 @@ public class EqualsExtensionsTests
       // Act/assert.
       act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage + "*");
    }
 
    [Fact]
@@ -756,7 +757,7 @@ public class EqualsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -771,7 +772,7 @@ public class EqualsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    #endregion
@@ -891,7 +892,7 @@ public class EqualsExtensionsTests
       // Act/assert.
       act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage + "*");
    }
 
    [Fact]
@@ -910,7 +911,7 @@ public class EqualsExtensionsTests
       // Act/assert.
       act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage + "*");
    }
 
    [Fact]
@@ -926,7 +927,7 @@ public class EqualsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -943,7 +944,7 @@ public class EqualsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -955,11 +956,12 @@ public class EqualsExtensionsTests
       var target = data.MinValue;
       IEqualityComparer<DateTime> comparer = null!;
       var act = () => _ = value.RequiresEqual(target, comparer);
+      var expectedMessage = Messages.ComparerIsNull;
 
       // Act/assert.
       act.Should().ThrowExactly<ArgumentNullException>()
          .WithParameterName(nameof(comparer))
-         .And.Message.Should().StartWith(Messages.ComparerIsNull);
+         .WithMessage(expectedMessage + "*");
    }
 
    #endregion
@@ -1208,7 +1210,7 @@ public class EqualsExtensionsTests
       // Act/assert.
       act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage + "*");
    }
 
    [Fact]
@@ -1226,7 +1228,7 @@ public class EqualsExtensionsTests
       // Act/assert.
       act.Should().ThrowExactly<ArgumentException>()
          .WithParameterName(expectedParameterName)
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage + "*");
    }
 
    [Fact]
@@ -1241,7 +1243,7 @@ public class EqualsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    [UseCulture(CultureData.EnglishUS)]
@@ -1258,7 +1260,7 @@ public class EqualsExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .And.Message.Should().StartWith(expectedMessage);
+         .WithMessage(expectedMessage);
    }
 
    #endregion

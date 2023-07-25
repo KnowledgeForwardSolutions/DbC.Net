@@ -61,7 +61,7 @@ public class NotEmptyOrWhiteSpaceExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    [Theory]
@@ -76,7 +76,7 @@ public class NotEmptyOrWhiteSpaceExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    [Theory]
@@ -90,7 +90,7 @@ public class NotEmptyOrWhiteSpaceExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    [Theory]
@@ -105,7 +105,7 @@ public class NotEmptyOrWhiteSpaceExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    #endregion
@@ -200,7 +200,7 @@ public class NotEmptyOrWhiteSpaceExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    [Theory]
@@ -215,7 +215,7 @@ public class NotEmptyOrWhiteSpaceExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    #endregion

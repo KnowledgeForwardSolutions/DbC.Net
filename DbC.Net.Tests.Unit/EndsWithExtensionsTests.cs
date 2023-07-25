@@ -1,70 +1,70 @@
 ﻿namespace DbC.Net.Tests.Unit;
 
-public class StartsWithExtensionsTests
+public class EndsWithExtensionsTests
 {
    private const Int32 _dataCount = 7;
 
-   #region EnsuresStarts Tests
+   #region EnsuresEndsWith Tests
    // ==========================================================================
    // ==========================================================================
 
    [Fact]
-   public void StartsWithExtensions_EnsuresStartsWith_ShouldNotThrow_WhenValueStartsWithTargetAndComparisonIsDefault()
+   public void EndsWithExtensions_EnsuresEndsWith_ShouldNotThrow_WhenValueEndsWithTargetAndComparisonIsDefault()
    {
       // Arrange.
       var value = "QWERTY";
-      var target = "QW";
-      var act = () => _ = value.EnsuresStartsWith(target);
+      var target = "TY";
+      var act = () => _ = value.EnsuresEndsWith(target);
 
       // Act/assert.
       act.Should().NotThrow();
    }
 
    [Fact]
-   public void StartsWithExtensions_EnsuresStartsWith_ShouldNotThrow_WhenValueIsNotEmptyAndTargetIsEmptyAndComparisonIsDefault()
+   public void EndsWithExtensions_EnsuresEndsWith_ShouldNotThrow_WhenValueIsNotEmptyAndTargetIsEmptyAndComparisonIsDefault()
    {
       // Arrange.
       var value = "asdf";
       var target = String.Empty;
-      var act = () => _ = value.EnsuresStartsWith(target);
+      var act = () => _ = value.EnsuresEndsWith(target);
 
       // Act/assert.
       act.Should().NotThrow();
    }
 
    [Fact]
-   public void StartsWithExtensions_EnsuresStartsWith_ShouldNotThrow_WhenValueIsEmptyAndTargetIsEmptyAndComparisonIsDefault()
+   public void EndsWithExtensions_EnsuresEndsWith_ShouldNotThrow_WhenValueIsEmptyAndTargetIsEmptyAndComparisonIsDefault()
    {
       // Arrange.
       var value = String.Empty;
       var target = String.Empty;
-      var act = () => _ = value.EnsuresStartsWith(target);
+      var act = () => _ = value.EnsuresEndsWith(target);
 
       // Act/assert.
       act.Should().NotThrow();
    }
 
    [Fact]
-   public void StartsWithExtensions_EnsuresStartsWith_ShouldNotThrow_WhenValueEqualsTargetAndComparisonIsDefault()
+   public void EndsWithExtensions_EnsuresEndsWith_ShouldNotThrow_WhenValueEqualsTargetAndComparisonIsDefault()
    {
       // Arrange.
       var value = "QWERTY";
       var target = "QWERTY";
-      var act = () => _ = value.EnsuresStartsWith(target);
+      var act = () => _ = value.EnsuresEndsWith(target);
 
       // Act/assert.
       act.Should().NotThrow();
    }
 
    [Fact]
-   public void StartsWithExtensions_EnsuresStartsWith_ShouldReturnOriginalValue_WhenRequirementIsPassedAndComparisonIsDefault()
+   public void EndsWithExtensions_EnsuresEndsWith_ShouldReturnOriginalValue_WhenRequirementIsPassedAndComparisonIsDefault()
    {
       // Arrange.
       var value = "QWERTY";
-      var target = "QW";
+      var target = "TY";
 
       // Act.
-      var result = value.EnsuresStartsWith(target);
+      var result = value.EnsuresEndsWith(target);
 
       // Assert.
       result.Should().Be(value);
@@ -72,19 +72,19 @@ public class StartsWithExtensionsTests
 
    [UseCulture(CultureData.EnglishUS)]
    [Theory]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "JKL", StringComparison.CurrentCulture)]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "jkl", StringComparison.CurrentCultureIgnoreCase)]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "JKL", StringComparison.InvariantCulture)]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "jkl", StringComparison.InvariantCultureIgnoreCase)]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "JKL", StringComparison.Ordinal)]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "jkl", StringComparison.OrdinalIgnoreCase)]
-   public void StartsWithExtensions_EnsuresStartsWith_ShouldNotThrow_WhenValueStartsWithTargetAndCurrentCultureIs_enUS(
+   [InlineData("ABCDEFGHIJKL", "JKL", StringComparison.CurrentCulture)]
+   [InlineData("ABCDEFGHIJKL", "jkl", StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData("ABCDEFGHIJKL", "JKL", StringComparison.InvariantCulture)]
+   [InlineData("ABCDEFGHIJKL", "jkl", StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData("ABCDEFGHIJKL", "JKL", StringComparison.Ordinal)]
+   [InlineData("ABCDEFGHIJKL", "jkl", StringComparison.OrdinalIgnoreCase)]
+   public void EndsWithExtensions_EnsuresEndsWith_ShouldNotThrow_WhenValueEndsWithTargetAndCurrentCultureIs_enUS(
       String value,
       String target,
       StringComparison comparisonType)
    {
       // Arrange.
-      var act = () => _ = value.EnsuresStartsWith(target, comparisonType);
+      var act = () => _ = value.EnsuresEndsWith(target, comparisonType);
 
       // Act/assert.
       act.Should().NotThrow();
@@ -94,19 +94,19 @@ public class StartsWithExtensionsTests
    // case is ignored. Same for "I" and lowercase dot-less "i".
    [UseCulture(CultureData.TurkishTurkey)]
    [Theory]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "JKL", StringComparison.CurrentCulture)]
-   [InlineData("IJKLMNOPQRSTUVWXYZ", StringData.LowerCaseDotlessI, StringComparison.CurrentCultureIgnoreCase)]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "JKL", StringComparison.InvariantCulture)]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "jkl", StringComparison.InvariantCultureIgnoreCase)]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "JKL", StringComparison.Ordinal)]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "jkl", StringComparison.OrdinalIgnoreCase)]
-   public void StartsWithExtensions_EnsuresStartsWith_ShouldNotThrow_WhenValueStartsWithTargetAndCurrentCultureIs_trTR(
+   [InlineData("ABCDEFGHIJKL", "JKL", StringComparison.CurrentCulture)]
+   [InlineData("ABCDEFGHI", StringData.LowerCaseDotlessI, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData("ABCDEFGHIJKL", "JKL", StringComparison.InvariantCulture)]
+   [InlineData("ABCDEFGHIJKL", "jkl", StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData("ABCDEFGHIJKL", "JKL", StringComparison.Ordinal)]
+   [InlineData("ABCDEFGHIJKL", "jkl", StringComparison.OrdinalIgnoreCase)]
+   public void EndsWithExtensions_EnsuresEndsWith_ShouldNotThrow_WhenValueEndsWithTargetAndCurrentCultureIs_trTR(
       String value,
       String target,
       StringComparison comparisonType)
    {
       // Arrange.
-      var act = () => _ = value.EnsuresStartsWith(target, comparisonType);
+      var act = () => _ = value.EnsuresEndsWith(target, comparisonType);
 
       // Act/assert.
       act.Should().NotThrow();
@@ -120,13 +120,13 @@ public class StartsWithExtensionsTests
    [InlineData(StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringComparison.Ordinal)]
    [InlineData(StringComparison.OrdinalIgnoreCase)]
-   public void StartsWithExtensions_EnsuresStartsWith_ShouldNotThrow_WhenValueIsNotEmptyAndTargetIsEmptyAndCurrentCultureIs_enUS(
+   public void EndsWithExtensions_EnsuresEndsWith_ShouldNotThrow_WhenValueIsNotEmptyAndTargetIsEmptyAndCurrentCultureIs_enUS(
       StringComparison comparisonType)
    {
       // Arrange.
       var value = "asdf";
       var target = String.Empty;
-      var act = () => _ = value.EnsuresStartsWith(target, comparisonType);
+      var act = () => _ = value.EnsuresEndsWith(target, comparisonType);
 
       // Act/assert.
       act.Should().NotThrow();
@@ -140,13 +140,13 @@ public class StartsWithExtensionsTests
    [InlineData(StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringComparison.Ordinal)]
    [InlineData(StringComparison.OrdinalIgnoreCase)]
-   public void StartsWithExtensions_EnsuresStartsWith_ShouldNotThrow_WhenValueIsEmptyAndTargetIsEmptyAndCurrentCultureIs_thTH(
+   public void EndsWithExtensions_EnsuresEndsWith_ShouldNotThrow_WhenValueIsEmptyAndTargetIsEmptyAndCurrentCultureIs_thTH(
       StringComparison comparisonType)
    {
       // Arrange.
       var value = String.Empty;
       var target = String.Empty;
-      var act = () => _ = value.EnsuresStartsWith(target, comparisonType);
+      var act = () => _ = value.EnsuresEndsWith(target, comparisonType);
 
       // Act/assert.
       act.Should().NotThrow();
@@ -154,19 +154,19 @@ public class StartsWithExtensionsTests
 
    [UseCulture(CultureData.EnglishUS)]
    [Theory]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "JKL", StringComparison.CurrentCulture)]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "jkl", StringComparison.CurrentCultureIgnoreCase)]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "JKL", StringComparison.InvariantCulture)]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "jkl", StringComparison.InvariantCultureIgnoreCase)]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "JKL", StringComparison.Ordinal)]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "jkl", StringComparison.OrdinalIgnoreCase)]
-   public void StartsWithExtensions_EnsuresStartsWith_ShouldReturnOriginalValue_WhenRequirementIsPassedAndCurrentCultureIs_enUS(
+   [InlineData("ABCDEFGHIJKL", "JKL", StringComparison.CurrentCulture)]
+   [InlineData("ABCDEFGHIJKL", "jkl", StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData("ABCDEFGHIJKL", "JKL", StringComparison.InvariantCulture)]
+   [InlineData("ABCDEFGHIJKL", "jkl", StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData("ABCDEFGHIJKL", "JKL", StringComparison.Ordinal)]
+   [InlineData("ABCDEFGHIJKL", "jkl", StringComparison.OrdinalIgnoreCase)]
+   public void EndsWithExtensions_EnsuresEndsWith_ShouldReturnOriginalValue_WhenRequirementIsPassedAndCurrentCultureIs_enUS(
       String value,
       String target,
       StringComparison comparisonType)
    {
       // Act.
-      var result = value.EnsuresStartsWith(target, comparisonType);
+      var result = value.EnsuresEndsWith(target, comparisonType);
 
       // Assert.
       result.Should().Be(value);
@@ -174,13 +174,13 @@ public class StartsWithExtensionsTests
 
    [UseCulture(CultureData.EnglishUS)]
    [Fact]
-   public void StartsWithExtensions_EnsuresStartsWith_ShouldNotThrow_WhenValueEqualsTargetAndComparisonIsSupplied()
+   public void EndsWithExtensions_EnsuresEndsWith_ShouldNotThrow_WhenValueEqualsTargetAndComparisonIsSupplied()
    {
       // Arrange.
       var value = "QWERTY";
       var target = "QWERTY";
       var comparisonType = StringComparison.CurrentCulture;
-      var act = () => _ = value.EnsuresStartsWith(target, comparisonType);
+      var act = () => _ = value.EnsuresEndsWith(target, comparisonType);
 
       // Act/assert.
       act.Should().NotThrow();
@@ -188,25 +188,25 @@ public class StartsWithExtensionsTests
 
    [UseCulture(CultureData.TurkishTurkey)]
    [Fact]
-   public void StartsWithExtensions_EnsuresStartsWith_ShouldNotThrow_WhenValueStartsWithTargetAndComparisonIsSupplied()
+   public void EndsWithExtensions_EnsuresEndsWith_ShouldNotThrow_WhenValueEndsWithTargetAndComparisonIsSupplied()
    {
       // Arrange.
-      var value = "IBCDEF";
+      var value = "ABCDEFGHI";
       var target = StringData.LowerCaseDotlessI;
       var comparisonType = StringComparison.CurrentCultureIgnoreCase;
-      var act = () => _ = value.EnsuresStartsWith(target, comparisonType);
+      var act = () => _ = value.EnsuresEndsWith(target, comparisonType);
 
       // Act/assert.
       act.Should().NotThrow();
    }
 
    [Fact]
-   public void StartsWithExtensions_EnsuresStartsWith_ShouldThrow_WhenValueIsNotNullAndDoesNotStartWithTargetAndComparisonIsDefault()
+   public void EndsWithExtensions_EnsuresEndsWith_ShouldThrow_WhenValueIsNotNullAndDoesNotEndWithTargetAndComparisonIsDefault()
    {
       // Arrange.
       var value = "This is a test";
       var target = "only";
-      var act = () => _ = value.EnsuresStartsWith(target);
+      var act = () => _ = value.EnsuresEndsWith(target);
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>();
@@ -215,11 +215,11 @@ public class StartsWithExtensionsTests
    [Theory]
    [InlineData("!@#$%")]
    [InlineData("")]
-   public void StartsWithExtensions_EnsuresStartsWith_ShouldThrow_WhenValueNullAndTargetIsNotNullAndComparisonIsDefault(String target)
+   public void EndsWithExtensions_EnsuresEndsWith_ShouldThrow_WhenValueNullAndTargetIsNotNullAndComparisonIsDefault(String target)
    {
       // Arrange.
       String value = null!;
-      var act = () => _ = value.EnsuresStartsWith(target);
+      var act = () => _ = value.EnsuresEndsWith(target);
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>();
@@ -233,13 +233,13 @@ public class StartsWithExtensionsTests
    [InlineData("ABCDEFGHIJKLMNOPQRSTUVWXYZ", "adz", StringComparison.InvariantCultureIgnoreCase)]
    [InlineData("ABCDEFGHIJKLMNOPQRSTUVWXYZ", "jkl", StringComparison.Ordinal)]
    [InlineData("ABCDEFGHIJKLMNOPQRSTUVWXYZ", "adz", StringComparison.OrdinalIgnoreCase)]
-   public void StartsWithExtensions_EnsuresStartsWith_ShouldThrow_WhenValueIsNotNullAndDoesNotStartWithTargetAndCurrentCultureIs_enUS(
+   public void EndsWithExtensions_EnsuresEndsWith_ShouldThrow_WhenValueIsNotNullAndDoesNotEndWithTargetAndCurrentCultureIs_enUS(
       String value,
       String target,
       StringComparison comparisonType)
    {
       // Arrange.
-      var act = () => _ = value.EnsuresStartsWith(target, comparisonType);
+      var act = () => _ = value.EnsuresEndsWith(target, comparisonType);
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>();
@@ -255,13 +255,13 @@ public class StartsWithExtensionsTests
    [InlineData("ABCDEFGHIJKLMNOPQRSTUVWXYZ", "adz", StringComparison.InvariantCultureIgnoreCase)]
    [InlineData("ABCDEFGHIJKLMNOPQRSTUVWXYZ", "jkl", StringComparison.Ordinal)]
    [InlineData("ABCDEFGHIJKLMNOPQRSTUVWXYZ", "adz", StringComparison.OrdinalIgnoreCase)]
-   public void StartsWithExtensions_EnsuresStartsWith_ShouldThrow_WhenValueIsNotNullAndDoesNotStartWithTargetAndCurrentCultureIs_trTR(
+   public void EndsWithExtensions_EnsuresEndsWith_ShouldThrow_WhenValueIsNotNullAndDoesNotEndWithTargetAndCurrentCultureIs_trTR(
       String value,
       String target,
       StringComparison comparisonType)
    {
       // Arrange.
-      var act = () => _ = value.EnsuresStartsWith(target, comparisonType);
+      var act = () => _ = value.EnsuresEndsWith(target, comparisonType);
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>();
@@ -275,13 +275,13 @@ public class StartsWithExtensionsTests
    [InlineData(StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringComparison.Ordinal)]
    [InlineData(StringComparison.OrdinalIgnoreCase)]
-   public void StartsWithExtensions_EnsuresStartsWith_ShouldThrow_WhenValueIsNullAndTargetIsNotNullAndCurrentCultureIs_enUS(
+   public void EndsWithExtensions_EnsuresEndsWith_ShouldThrow_WhenValueIsNullAndTargetIsNotNullAndCurrentCultureIs_enUS(
       StringComparison comparisonType)
    {
       // Arrange.
       String value = null!;
       var target = "QWERTY";
-      var act = () => _ = value.EnsuresStartsWith(target, comparisonType);
+      var act = () => _ = value.EnsuresEndsWith(target, comparisonType);
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>();
@@ -295,13 +295,13 @@ public class StartsWithExtensionsTests
    [InlineData(StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringComparison.Ordinal)]
    [InlineData(StringComparison.OrdinalIgnoreCase)]
-   public void StartsWithExtensions_EnsuresStartsWith_ShouldThrow_WhenValueIsNullAndTargetIsNotNullAndCurrentCultureIs_thTH(
+   public void EndsWithExtensions_EnsuresEndsWith_ShouldThrow_WhenValueIsNullAndTargetIsNotNullAndCurrentCultureIs_thTH(
       StringComparison comparisonType)
    {
       // Arrange.
       String value = null!;
       var target = "QWERTY";
-      var act = () => _ = value.EnsuresStartsWith(target, comparisonType);
+      var act = () => _ = value.EnsuresEndsWith(target, comparisonType);
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>();
@@ -310,11 +310,11 @@ public class StartsWithExtensionsTests
    [Theory]
    [InlineData("not null string")]
    [InlineData(null)]
-   public void StartsWithExtensions_EnsuresStartsWith_ShouldThrowArgumentNullException_WhenTargetIsNullAndComparisonIsDefault(String value)
+   public void EndsWithExtensions_EnsuresEndsWith_ShouldThrowArgumentNullException_WhenTargetIsNullAndComparisonIsDefault(String value)
    {
       // Arrange.
       String target = null!;
-      var act = () => _ = value.EnsuresStartsWith(target);
+      var act = () => _ = value.EnsuresEndsWith(target);
       var expectedMessage = Messages.TargetSubstringIsNull;
 
       // Act/assert.
@@ -324,19 +324,19 @@ public class StartsWithExtensionsTests
    }
 
    [Fact]
-   public void StartsWithExtensions_EnsuresStartsWith_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailedAndComparisonIsDefault()
+   public void EndsWithExtensions_EnsuresEndsWith_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailedAndComparisonIsDefault()
    {
       // Arrange.
       var value = "This is a test";
       var target = "only";
-      var act = () => _ = value.EnsuresStartsWith(target);
+      var act = () => _ = value.EnsuresEndsWith(target);
 
       // Act/assert.
       var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
-      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.StartsWith);
+      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.EndsWith);
       ex.Data[DataNames.Value].Should().Be(value);
       ex.Data[DataNames.ValueExpression].Should().Be(nameof(value));
       ex.Data[DataNames.Target].Should().Be(target);
@@ -352,20 +352,20 @@ public class StartsWithExtensionsTests
    [InlineData(StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringComparison.Ordinal)]
    [InlineData(StringComparison.OrdinalIgnoreCase)]
-   public void StartsWithExtensions_EnsuresStartsWith_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed_thTH(
+   public void EndsWithExtensions_EnsuresEndsWith_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed_thTH(
       StringComparison comparisonType)
    {
       // Arrange.
       var value = "This is a test";
       var target = "only";
-      var act = () => _ = value.EnsuresStartsWith(target, comparisonType);
+      var act = () => _ = value.EnsuresEndsWith(target, comparisonType);
 
       // Act/assert.
       var ex = act.Should().ThrowExactly<PostconditionFailedException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Postcondition);
-      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.StartsWith);
+      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.EndsWith);
       ex.Data[DataNames.Value].Should().Be(value);
       ex.Data[DataNames.ValueExpression].Should().Be(nameof(value));
       ex.Data[DataNames.Target].Should().Be(target);
@@ -374,13 +374,13 @@ public class StartsWithExtensionsTests
    }
 
    [Fact]
-   public void StartsWithExtension_EnsuresStartsWith_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
+   public void EndsWithExtension_EnsuresEndsWith_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
    {
       // Arrange.
       var value = "This is a test";
       var target = "only";
-      var act = () => _ = value.EnsuresStartsWith(target);
-      var expectedMessage = $"Postcondition StartsWith failed: {nameof(value)} must start with the substring \"{target}\"";
+      var act = () => _ = value.EnsuresEndsWith(target);
+      var expectedMessage = $"Postcondition EndsWith failed: {nameof(value)} must end with the substring \"{target}\"";
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>()
@@ -388,14 +388,14 @@ public class StartsWithExtensionsTests
    }
 
    [Fact]
-   public void StartsWithExtension_EnsuresStartsWith_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndComparisonTypeIsSuppliedAndAllOtherDefaultsAreUsed()
+   public void EndsWithExtension_EnsuresEndsWith_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndComparisonTypeIsSuppliedAndAllOtherDefaultsAreUsed()
    {
       // Arrange.
       var value = "This is a test";
       var target = "only";
       var comparisonType = StringComparison.InvariantCulture;
-      var act = () => _ = value.EnsuresStartsWith(target, comparisonType);
-      var expectedMessage = $"Postcondition StartsWith failed: {nameof(value)} must start with the substring \"{target}\"";
+      var act = () => _ = value.EnsuresEndsWith(target, comparisonType);
+      var expectedMessage = $"Postcondition EndsWith failed: {nameof(value)} must end with the substring \"{target}\"";
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>()
@@ -403,14 +403,14 @@ public class StartsWithExtensionsTests
    }
 
    [Fact]
-   public void StartsWithExtension_EnsuresStartsWith_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
+   public void EndsWithExtension_EnsuresEndsWith_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       var value = "This is a test";
       var target = "only";
       var messageTemplate = "Requirement {RequirementName} failed";
-      var act = () => _ = value.EnsuresStartsWith(target, messageTemplate: messageTemplate);
-      var expectedMessage = $"Requirement StartsWith failed";
+      var act = () => _ = value.EnsuresEndsWith(target, messageTemplate: messageTemplate);
+      var expectedMessage = $"Requirement EndsWith failed";
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>()
@@ -418,15 +418,15 @@ public class StartsWithExtensionsTests
    }
 
    [Fact]
-   public void StartsWithExtension_EnsuresStartsWith_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndComparisonTypeAndCustomMessageTemplateAreUsed()
+   public void EndsWithExtension_EnsuresEndsWith_ShouldThrowPostconditionFailedExceptionWithExpectedMessage_WhenRequirementIsFailedAndComparisonTypeAndCustomMessageTemplateAreUsed()
    {
       // Arrange.
       var value = "This is a test";
       var target = "only";
       var comparisonType = StringComparison.OrdinalIgnoreCase;
       var messageTemplate = "Requirement {RequirementName} failed";
-      var act = () => _ = value.EnsuresStartsWith(target, comparisonType, messageTemplate);
-      var expectedMessage = $"Requirement StartsWith failed";
+      var act = () => _ = value.EnsuresEndsWith(target, comparisonType, messageTemplate);
+      var expectedMessage = $"Requirement EndsWith failed";
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>()
@@ -434,13 +434,13 @@ public class StartsWithExtensionsTests
    }
 
    [Fact]
-   public void StartsWithExtension_EnsuresStartsWith_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
+   public void EndsWithExtension_EnsuresEndsWith_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var value = "This is a test";
       var target = "only";
-      var act = () => _ = value.EnsuresStartsWith(target, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
-      var expectedMessage = $"Postcondition StartsWith failed: {nameof(value)} must start with the substring \"{target}\"";
+      var act = () => _ = value.EnsuresEndsWith(target, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Postcondition EndsWith failed: {nameof(value)} must end with the substring \"{target}\"";
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
@@ -448,14 +448,14 @@ public class StartsWithExtensionsTests
    }
 
    [Fact]
-   public void StartsWithExtension_EnsuresStartsWith_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndComparisonTypeAndCustomExceptionFactoryAreUsed()
+   public void EndsWithExtension_EnsuresEndsWith_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndComparisonTypeAndCustomExceptionFactoryAreUsed()
    {
       // Arrange.
       var value = "This is a test";
       var target = "only";
       var comparisonType = StringComparison.Ordinal;
-      var act = () => _ = value.EnsuresStartsWith(target, comparisonType, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
-      var expectedMessage = $"Postcondition StartsWith failed: {nameof(value)} must start with the substring \"{target}\"";
+      var act = () => _ = value.EnsuresEndsWith(target, comparisonType, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Postcondition EndsWith failed: {nameof(value)} must end with the substring \"{target}\"";
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
@@ -463,14 +463,14 @@ public class StartsWithExtensionsTests
    }
 
    [Fact]
-   public void StartsWithExtension_EnsuresStartsWith_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryAreUsed()
+   public void EndsWithExtension_EnsuresEndsWith_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryAreUsed()
    {
       // Arrange.
       var value = "This is a test";
       var target = "only";
       var messageTemplate = "Requirement {RequirementName} failed";
-      var act = () => _ = value.EnsuresStartsWith(target, messageTemplate: messageTemplate, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
-      var expectedMessage = $"Requirement StartsWith failed";
+      var act = () => _ = value.EnsuresEndsWith(target, messageTemplate: messageTemplate, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Requirement EndsWith failed";
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
@@ -478,15 +478,15 @@ public class StartsWithExtensionsTests
    }
 
    [Fact]
-   public void StartsWithExtension_EnsuresStartsWith_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndComparisonTypeAndCustomMessageTemplateAndCustomExceptionFactoryAreUsed()
+   public void EndsWithExtension_EnsuresEndsWith_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndComparisonTypeAndCustomMessageTemplateAndCustomExceptionFactoryAreUsed()
    {
       // Arrange.
       var value = "This is a test";
       var target = "only";
       var comparisonType = StringComparison.Ordinal;
       var messageTemplate = "Requirement {RequirementName} failed";
-      var act = () => _ = value.EnsuresStartsWith(target, comparisonType, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
-      var expectedMessage = $"Requirement StartsWith failed";
+      var act = () => _ = value.EnsuresEndsWith(target, comparisonType, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Requirement EndsWith failed";
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
@@ -495,67 +495,67 @@ public class StartsWithExtensionsTests
 
    #endregion
 
-   #region RequiresStarts Tests
+   #region RequiresEndsWith Tests
    // ==========================================================================
    // ==========================================================================
 
    [Fact]
-   public void StartsWithExtensions_RequiresStartsWith_ShouldNotThrow_WhenValueStartsWithTargetAndComparisonIsDefault()
+   public void EndsWithExtensions_RequiresEndsWith_ShouldNotThrow_WhenValueEndsWithTargetAndComparisonIsDefault()
    {
       // Arrange.
       var value = "QWERTY";
-      var target = "QW";
-      var act = () => _ = value.RequiresStartsWith(target);
+      var target = "TY";
+      var act = () => _ = value.RequiresEndsWith(target);
 
       // Act/assert.
       act.Should().NotThrow();
    }
 
    [Fact]
-   public void StartsWithExtensions_RequiresStartsWith_ShouldNotThrow_WhenValueIsNotEmptyAndTargetIsEmptyAndComparisonIsDefault()
+   public void EndsWithExtensions_RequiresEndsWith_ShouldNotThrow_WhenValueIsNotEmptyAndTargetIsEmptyAndComparisonIsDefault()
    {
       // Arrange.
       var value = "asdf";
       var target = String.Empty;
-      var act = () => _ = value.RequiresStartsWith(target);
+      var act = () => _ = value.RequiresEndsWith(target);
 
       // Act/assert.
       act.Should().NotThrow();
    }
 
    [Fact]
-   public void StartsWithExtensions_RequiresStartsWith_ShouldNotThrow_WhenValueIsEmptyAndTargetIsEmptyAndComparisonIsDefault()
+   public void EndsWithExtensions_RequiresEndsWith_ShouldNotThrow_WhenValueIsEmptyAndTargetIsEmptyAndComparisonIsDefault()
    {
       // Arrange.
       var value = String.Empty;
       var target = String.Empty;
-      var act = () => _ = value.RequiresStartsWith(target);
+      var act = () => _ = value.RequiresEndsWith(target);
 
       // Act/assert.
       act.Should().NotThrow();
    }
 
    [Fact]
-   public void StartsWithExtensions_RequiresStartsWith_ShouldNotThrow_WhenValueEqualsTargetAndComparisonIsDefault()
+   public void EndsWithExtensions_RequiresEndsWith_ShouldNotThrow_WhenValueEqualsTargetAndComparisonIsDefault()
    {
       // Arrange.
       var value = "QWERTY";
       var target = "QWERTY";
-      var act = () => _ = value.RequiresStartsWith(target);
+      var act = () => _ = value.RequiresEndsWith(target);
 
       // Act/assert.
       act.Should().NotThrow();
    }
 
    [Fact]
-   public void StartsWithExtensions_RequiresStartsWith_ShouldReturnOriginalValue_WhenRequirementIsPassedAndComparisonIsDefault()
+   public void EndsWithExtensions_RequiresEndsWith_ShouldReturnOriginalValue_WhenRequirementIsPassedAndComparisonIsDefault()
    {
       // Arrange.
       var value = "QWERTY";
-      var target = "QW";
+      var target = "TY";
 
       // Act.
-      var result = value.RequiresStartsWith(target);
+      var result = value.RequiresEndsWith(target);
 
       // Assert.
       result.Should().Be(value);
@@ -563,19 +563,19 @@ public class StartsWithExtensionsTests
 
    [UseCulture(CultureData.EnglishUS)]
    [Theory]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "JKL", StringComparison.CurrentCulture)]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "jkl", StringComparison.CurrentCultureIgnoreCase)]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "JKL", StringComparison.InvariantCulture)]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "jkl", StringComparison.InvariantCultureIgnoreCase)]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "JKL", StringComparison.Ordinal)]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "jkl", StringComparison.OrdinalIgnoreCase)]
-   public void StartsWithExtensions_RequiresStartsWith_ShouldNotThrow_WhenValueStartsWithTargetAndCurrentCultureIs_enUS(
+   [InlineData("ABCDEFGHIJKL", "JKL", StringComparison.CurrentCulture)]
+   [InlineData("ABCDEFGHIJKL", "jkl", StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData("ABCDEFGHIJKL", "JKL", StringComparison.InvariantCulture)]
+   [InlineData("ABCDEFGHIJKL", "jkl", StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData("ABCDEFGHIJKL", "JKL", StringComparison.Ordinal)]
+   [InlineData("ABCDEFGHIJKL", "jkl", StringComparison.OrdinalIgnoreCase)]
+   public void EndsWithExtensions_RequiresEndsWith_ShouldNotThrow_WhenValueEndsWithTargetAndCurrentCultureIs_enUS(
       String value,
       String target,
       StringComparison comparisonType)
    {
       // Arrange.
-      var act = () => _ = value.RequiresStartsWith(target, comparisonType);
+      var act = () => _ = value.RequiresEndsWith(target, comparisonType);
 
       // Act/assert.
       act.Should().NotThrow();
@@ -585,19 +585,19 @@ public class StartsWithExtensionsTests
    // case is ignored. Same for "I" and lowercase dot-less "i".
    [UseCulture(CultureData.TurkishTurkey)]
    [Theory]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "JKL", StringComparison.CurrentCulture)]
-   [InlineData("IJKLMNOPQRSTUVWXYZ", StringData.LowerCaseDotlessI, StringComparison.CurrentCultureIgnoreCase)]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "JKL", StringComparison.InvariantCulture)]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "jkl", StringComparison.InvariantCultureIgnoreCase)]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "JKL", StringComparison.Ordinal)]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "jkl", StringComparison.OrdinalIgnoreCase)]
-   public void StartsWithExtensions_RequiresStartsWith_ShouldNotThrow_WhenValueStartsWithTargetAndCurrentCultureIs_trTR(
+   [InlineData("ABCDEFGHIJKL", "JKL", StringComparison.CurrentCulture)]
+   [InlineData("ABCDEFGHI", StringData.LowerCaseDotlessI, StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData("ABCDEFGHIJKL", "JKL", StringComparison.InvariantCulture)]
+   [InlineData("ABCDEFGHIJKL", "jkl", StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData("ABCDEFGHIJKL", "JKL", StringComparison.Ordinal)]
+   [InlineData("ABCDEFGHIJKL", "jkl", StringComparison.OrdinalIgnoreCase)]
+   public void EndsWithExtensions_RequiresEndsWith_ShouldNotThrow_WhenValueEndsWithTargetAndCurrentCultureIs_trTR(
       String value,
       String target,
       StringComparison comparisonType)
    {
       // Arrange.
-      var act = () => _ = value.RequiresStartsWith(target, comparisonType);
+      var act = () => _ = value.RequiresEndsWith(target, comparisonType);
 
       // Act/assert.
       act.Should().NotThrow();
@@ -611,13 +611,13 @@ public class StartsWithExtensionsTests
    [InlineData(StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringComparison.Ordinal)]
    [InlineData(StringComparison.OrdinalIgnoreCase)]
-   public void StartsWithExtensions_RequiresStartsWith_ShouldNotThrow_WhenValueIsNotEmptyAndTargetIsEmptyAndCurrentCultureIs_enUS(
+   public void EndsWithExtensions_RequiresEndsWith_ShouldNotThrow_WhenValueIsNotEmptyAndTargetIsEmptyAndCurrentCultureIs_enUS(
       StringComparison comparisonType)
    {
       // Arrange.
       var value = "asdf";
       var target = String.Empty;
-      var act = () => _ = value.RequiresStartsWith(target, comparisonType);
+      var act = () => _ = value.RequiresEndsWith(target, comparisonType);
 
       // Act/assert.
       act.Should().NotThrow();
@@ -631,13 +631,13 @@ public class StartsWithExtensionsTests
    [InlineData(StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringComparison.Ordinal)]
    [InlineData(StringComparison.OrdinalIgnoreCase)]
-   public void StartsWithExtensions_RequiresStartsWith_ShouldNotThrow_WhenValueIsEmptyAndTargetIsEmptyAndCurrentCultureIs_thTH(
+   public void EndsWithExtensions_RequiresEndsWith_ShouldNotThrow_WhenValueIsEmptyAndTargetIsEmptyAndCurrentCultureIs_thTH(
       StringComparison comparisonType)
    {
       // Arrange.
       var value = String.Empty;
       var target = String.Empty;
-      var act = () => _ = value.RequiresStartsWith(target, comparisonType);
+      var act = () => _ = value.RequiresEndsWith(target, comparisonType);
 
       // Act/assert.
       act.Should().NotThrow();
@@ -645,19 +645,19 @@ public class StartsWithExtensionsTests
 
    [UseCulture(CultureData.EnglishUS)]
    [Theory]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "JKL", StringComparison.CurrentCulture)]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "jkl", StringComparison.CurrentCultureIgnoreCase)]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "JKL", StringComparison.InvariantCulture)]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "jkl", StringComparison.InvariantCultureIgnoreCase)]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "JKL", StringComparison.Ordinal)]
-   [InlineData("JKLMNOPQRSTUVWXYZ", "jkl", StringComparison.OrdinalIgnoreCase)]
-   public void StartsWithExtensions_RequiresStartsWith_ShouldReturnOriginalValue_WhenRequirementIsPassedAndCurrentCultureIs_enUS(
+   [InlineData("ABCDEFGHIJKL", "JKL", StringComparison.CurrentCulture)]
+   [InlineData("ABCDEFGHIJKL", "jkl", StringComparison.CurrentCultureIgnoreCase)]
+   [InlineData("ABCDEFGHIJKL", "JKL", StringComparison.InvariantCulture)]
+   [InlineData("ABCDEFGHIJKL", "jkl", StringComparison.InvariantCultureIgnoreCase)]
+   [InlineData("ABCDEFGHIJKL", "JKL", StringComparison.Ordinal)]
+   [InlineData("ABCDEFGHIJKL", "jkl", StringComparison.OrdinalIgnoreCase)]
+   public void EndsWithExtensions_RequiresEndsWith_ShouldReturnOriginalValue_WhenRequirementIsPassedAndCurrentCultureIs_enUS(
       String value,
       String target,
       StringComparison comparisonType)
    {
       // Act.
-      var result = value.RequiresStartsWith(target, comparisonType);
+      var result = value.RequiresEndsWith(target, comparisonType);
 
       // Assert.
       result.Should().Be(value);
@@ -665,13 +665,13 @@ public class StartsWithExtensionsTests
 
    [UseCulture(CultureData.EnglishUS)]
    [Fact]
-   public void StartsWithExtensions_RequiresStartsWith_ShouldNotThrow_WhenValueEqualsTargetAndComparisonIsSupplied()
+   public void EndsWithExtensions_RequiresEndsWith_ShouldNotThrow_WhenValueEqualsTargetAndComparisonIsSupplied()
    {
       // Arrange.
       var value = "QWERTY";
       var target = "QWERTY";
       var comparisonType = StringComparison.CurrentCulture;
-      var act = () => _ = value.RequiresStartsWith(target, comparisonType);
+      var act = () => _ = value.RequiresEndsWith(target, comparisonType);
 
       // Act/assert.
       act.Should().NotThrow();
@@ -679,25 +679,25 @@ public class StartsWithExtensionsTests
 
    [UseCulture(CultureData.TurkishTurkey)]
    [Fact]
-   public void StartsWithExtensions_RequiresStartsWith_ShouldNotThrow_WhenValueStartsWithTargetAndComparisonIsSupplied()
+   public void EndsWithExtensions_RequiresEndsWith_ShouldNotThrow_WhenValueEndsWithTargetAndComparisonIsSupplied()
    {
       // Arrange.
-      var value = "IBCDEF";
+      var value = "ABCDEFGHI";
       var target = StringData.LowerCaseDotlessI;
       var comparisonType = StringComparison.CurrentCultureIgnoreCase;
-      var act = () => _ = value.RequiresStartsWith(target, comparisonType);
+      var act = () => _ = value.RequiresEndsWith(target, comparisonType);
 
       // Act/assert.
       act.Should().NotThrow();
    }
 
    [Fact]
-   public void StartsWithExtensions_RequiresStartsWith_ShouldThrow_WhenValueIsNotNullAndDoesNotStartWithTargetAndComparisonIsDefault()
+   public void EndsWithExtensions_RequiresEndsWith_ShouldThrow_WhenValueIsNotNullAndDoesNotEndWithTargetAndComparisonIsDefault()
    {
       // Arrange.
       var value = "This is a test";
       var target = "only";
-      var act = () => _ = value.RequiresStartsWith(target);
+      var act = () => _ = value.RequiresEndsWith(target);
 
       // Act/assert.
       act.Should().ThrowExactly<ArgumentException>();
@@ -706,11 +706,11 @@ public class StartsWithExtensionsTests
    [Theory]
    [InlineData("!@#$%")]
    [InlineData("")]
-   public void StartsWithExtensions_RequiresStartsWith_ShouldThrow_WhenValueNullAndTargetIsNotNullAndComparisonIsDefault(String target)
+   public void EndsWithExtensions_RequiresEndsWith_ShouldThrow_WhenValueNullAndTargetIsNotNullAndComparisonIsDefault(String target)
    {
       // Arrange.
       String value = null!;
-      var act = () => _ = value.RequiresStartsWith(target);
+      var act = () => _ = value.RequiresEndsWith(target);
 
       // Act/assert.
       act.Should().ThrowExactly<ArgumentException>();
@@ -724,13 +724,13 @@ public class StartsWithExtensionsTests
    [InlineData("ABCDEFGHIJKLMNOPQRSTUVWXYZ", "adz", StringComparison.InvariantCultureIgnoreCase)]
    [InlineData("ABCDEFGHIJKLMNOPQRSTUVWXYZ", "jkl", StringComparison.Ordinal)]
    [InlineData("ABCDEFGHIJKLMNOPQRSTUVWXYZ", "adz", StringComparison.OrdinalIgnoreCase)]
-   public void StartsWithExtensions_RequiresStartsWith_ShouldThrow_WhenValueIsNotNullAndDoesNotStartWithTargetAndCurrentCultureIs_enUS(
+   public void EndsWithExtensions_RequiresEndsWith_ShouldThrow_WhenValueIsNotNullAndDoesNotEndWithTargetAndCurrentCultureIs_enUS(
       String value,
       String target,
       StringComparison comparisonType)
    {
       // Arrange.
-      var act = () => _ = value.RequiresStartsWith(target, comparisonType);
+      var act = () => _ = value.RequiresEndsWith(target, comparisonType);
 
       // Act/assert.
       act.Should().ThrowExactly<ArgumentException>();
@@ -746,13 +746,13 @@ public class StartsWithExtensionsTests
    [InlineData("ABCDEFGHIJKLMNOPQRSTUVWXYZ", "adz", StringComparison.InvariantCultureIgnoreCase)]
    [InlineData("ABCDEFGHIJKLMNOPQRSTUVWXYZ", "jkl", StringComparison.Ordinal)]
    [InlineData("ABCDEFGHIJKLMNOPQRSTUVWXYZ", "adz", StringComparison.OrdinalIgnoreCase)]
-   public void StartsWithExtensions_RequiresStartsWith_ShouldThrow_WhenValueIsNotNullAndDoesNotStartWithTargetAndCurrentCultureIs_trTR(
+   public void EndsWithExtensions_RequiresEndsWith_ShouldThrow_WhenValueIsNotNullAndDoesNotEndWithTargetAndCurrentCultureIs_trTR(
       String value,
       String target,
       StringComparison comparisonType)
    {
       // Arrange.
-      var act = () => _ = value.RequiresStartsWith(target, comparisonType);
+      var act = () => _ = value.RequiresEndsWith(target, comparisonType);
 
       // Act/assert.
       act.Should().ThrowExactly<ArgumentException>();
@@ -766,13 +766,13 @@ public class StartsWithExtensionsTests
    [InlineData(StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringComparison.Ordinal)]
    [InlineData(StringComparison.OrdinalIgnoreCase)]
-   public void StartsWithExtensions_RequiresStartsWith_ShouldThrow_WhenValueIsNullAndTargetIsNotNullAndCurrentCultureIs_enUS(
+   public void EndsWithExtensions_RequiresEndsWith_ShouldThrow_WhenValueIsNullAndTargetIsNotNullAndCurrentCultureIs_enUS(
       StringComparison comparisonType)
    {
       // Arrange.
       String value = null!;
       var target = "QWERTY";
-      var act = () => _ = value.RequiresStartsWith(target, comparisonType);
+      var act = () => _ = value.RequiresEndsWith(target, comparisonType);
 
       // Act/assert.
       act.Should().ThrowExactly<ArgumentException>();
@@ -786,13 +786,13 @@ public class StartsWithExtensionsTests
    [InlineData(StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringComparison.Ordinal)]
    [InlineData(StringComparison.OrdinalIgnoreCase)]
-   public void StartsWithExtensions_RequiresStartsWith_ShouldThrow_WhenValueIsNullAndTargetIsNotNullAndCurrentCultureIs_thTH(
+   public void EndsWithExtensions_RequiresEndsWith_ShouldThrow_WhenValueIsNullAndTargetIsNotNullAndCurrentCultureIs_thTH(
       StringComparison comparisonType)
    {
       // Arrange.
       String value = null!;
       var target = "QWERTY";
-      var act = () => _ = value.RequiresStartsWith(target, comparisonType);
+      var act = () => _ = value.RequiresEndsWith(target, comparisonType);
 
       // Act/assert.
       act.Should().ThrowExactly<ArgumentException>();
@@ -801,11 +801,11 @@ public class StartsWithExtensionsTests
    [Theory]
    [InlineData("not null string")]
    [InlineData(null)]
-   public void StartsWithExtensions_RequiresStartsWith_ShouldThrowArgumentNullException_WhenTargetIsNullAndComparisonIsDefault(String value)
+   public void EndsWithExtensions_RequiresEndsWith_ShouldThrowArgumentNullException_WhenTargetIsNullAndComparisonIsDefault(String value)
    {
       // Arrange.
       String target = null!;
-      var act = () => _ = value.RequiresStartsWith(target);
+      var act = () => _ = value.RequiresEndsWith(target);
       var expectedMessage = Messages.TargetSubstringIsNull;
 
       // Act/assert.
@@ -815,19 +815,19 @@ public class StartsWithExtensionsTests
    }
 
    [Fact]
-   public void StartsWithExtensions_RequiresStartsWith_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailedAndComparisonIsDefault()
+   public void EndsWithExtensions_RequiresEndsWith_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailedAndComparisonIsDefault()
    {
       // Arrange.
       var value = "This is a test";
       var target = "only";
-      var act = () => _ = value.RequiresStartsWith(target);
+      var act = () => _ = value.RequiresEndsWith(target);
 
       // Act/assert.
       var ex = act.Should().ThrowExactly<ArgumentException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
-      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.StartsWith);
+      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.EndsWith);
       ex.Data[DataNames.Value].Should().Be(value);
       ex.Data[DataNames.ValueExpression].Should().Be(nameof(value));
       ex.Data[DataNames.Target].Should().Be(target);
@@ -843,20 +843,20 @@ public class StartsWithExtensionsTests
    [InlineData(StringComparison.InvariantCultureIgnoreCase)]
    [InlineData(StringComparison.Ordinal)]
    [InlineData(StringComparison.OrdinalIgnoreCase)]
-   public void StartsWithExtensions_RequiresStartsWith_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed_thTH(
+   public void EndsWithExtensions_RequiresEndsWith_ShouldThrowWithExpectedDataDictionary_WhenRequirementIsFailed_thTH(
       StringComparison comparisonType)
    {
       // Arrange.
       var value = "This is a test";
       var target = "only";
-      var act = () => _ = value.RequiresStartsWith(target, comparisonType);
+      var act = () => _ = value.RequiresEndsWith(target, comparisonType);
 
       // Act/assert.
       var ex = act.Should().ThrowExactly<ArgumentException>().Which;
 
       ex.Data.Count.Should().Be(_dataCount);
       ex.Data[DataNames.RequirementType].Should().Be(RequirementType.Precondition);
-      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.StartsWith);
+      ex.Data[DataNames.RequirementName].Should().Be(RequirementNames.EndsWith);
       ex.Data[DataNames.Value].Should().Be(value);
       ex.Data[DataNames.ValueExpression].Should().Be(nameof(value));
       ex.Data[DataNames.Target].Should().Be(target);
@@ -865,14 +865,14 @@ public class StartsWithExtensionsTests
    }
 
    [Fact]
-   public void StartsWithExtension_RequiresStartsWith_ShouldThrowArgumentExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
+   public void EndsWithExtension_RequiresEndsWith_ShouldThrowArgumentExceptionWithExpectedMessage_WhenRequirementIsFailedAndAllDefaultsAreUsed()
    {
       // Arrange.
       var value = "This is a test";
       var target = "only";
-      var act = () => _ = value.RequiresStartsWith(target);
+      var act = () => _ = value.RequiresEndsWith(target);
       var expectedParameterName = nameof(value);
-      var expectedMessage = $"Precondition StartsWith failed: {nameof(value)} must start with the substring \"{target}\"";
+      var expectedMessage = $"Precondition EndsWith failed: {nameof(value)} must end with the substring \"{target}\"";
 
       // Act/assert.
       act.Should().ThrowExactly<ArgumentException>()
@@ -881,15 +881,15 @@ public class StartsWithExtensionsTests
    }
 
    [Fact]
-   public void StartsWithExtension_RequiresStartsWith_ShouldThrowArgumentExceptionWithExpectedMessage_WhenRequirementIsFailedAndComparisonTypeIsSuppliedAndAllOtherDefaultsAreUsed()
+   public void EndsWithExtension_RequiresEndsWith_ShouldThrowArgumentExceptionWithExpectedMessage_WhenRequirementIsFailedAndComparisonTypeIsSuppliedAndAllOtherDefaultsAreUsed()
    {
       // Arrange.
       var value = "This is a test";
       var target = "only";
       var comparisonType = StringComparison.InvariantCulture;
-      var act = () => _ = value.RequiresStartsWith(target, comparisonType);
+      var act = () => _ = value.RequiresEndsWith(target, comparisonType);
       var expectedParameterName = nameof(value);
-      var expectedMessage = $"Precondition StartsWith failed: {nameof(value)} must start with the substring \"{target}\"";
+      var expectedMessage = $"Precondition EndsWith failed: {nameof(value)} must end with the substring \"{target}\"";
 
       // Act/assert.
       act.Should().ThrowExactly<ArgumentException>()
@@ -898,15 +898,15 @@ public class StartsWithExtensionsTests
    }
 
    [Fact]
-   public void StartsWithExtension_RequiresStartsWith_ShouldThrowArgumentExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
+   public void EndsWithExtension_RequiresEndsWith_ShouldThrowArgumentExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateIsUsed()
    {
       // Arrange.
       var value = "This is a test";
       var target = "only";
       var messageTemplate = "Requirement {RequirementName} failed";
-      var act = () => _ = value.RequiresStartsWith(target, messageTemplate: messageTemplate);
+      var act = () => _ = value.RequiresEndsWith(target, messageTemplate: messageTemplate);
       var expectedParameterName = nameof(value);
-      var expectedMessage = $"Requirement StartsWith failed";
+      var expectedMessage = $"Requirement EndsWith failed";
 
       // Act/assert.
       act.Should().ThrowExactly<ArgumentException>()
@@ -915,16 +915,16 @@ public class StartsWithExtensionsTests
    }
 
    [Fact]
-   public void StartsWithExtension_RequiresStartsWith_ShouldThrowArgumentExceptionWithExpectedMessage_WhenRequirementIsFailedAndComparisonTypeAndCustomMessageTemplateAreUsed()
+   public void EndsWithExtension_RequiresEndsWith_ShouldThrowArgumentExceptionWithExpectedMessage_WhenRequirementIsFailedAndComparisonTypeAndCustomMessageTemplateAreUsed()
    {
       // Arrange.
       var value = "This is a test";
       var target = "only";
       var comparisonType = StringComparison.OrdinalIgnoreCase;
       var messageTemplate = "Requirement {RequirementName} failed";
-      var act = () => _ = value.RequiresStartsWith(target, comparisonType, messageTemplate);
+      var act = () => _ = value.RequiresEndsWith(target, comparisonType, messageTemplate);
       var expectedParameterName = nameof(value);
-      var expectedMessage = $"Requirement StartsWith failed";
+      var expectedMessage = $"Requirement EndsWith failed";
 
       // Act/assert.
       act.Should().ThrowExactly<ArgumentException>()
@@ -933,13 +933,13 @@ public class StartsWithExtensionsTests
    }
 
    [Fact]
-   public void StartsWithExtension_RequiresStartsWith_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
+   public void EndsWithExtension_RequiresEndsWith_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomExceptionFactoryIsUsed()
    {
       // Arrange.
       var value = "This is a test";
       var target = "only";
-      var act = () => _ = value.RequiresStartsWith(target, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
-      var expectedMessage = $"Precondition StartsWith failed: {nameof(value)} must start with the substring \"{target}\"";
+      var act = () => _ = value.RequiresEndsWith(target, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Precondition EndsWith failed: {nameof(value)} must end with the substring \"{target}\"";
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
@@ -947,14 +947,14 @@ public class StartsWithExtensionsTests
    }
 
    [Fact]
-   public void StartsWithExtension_RequiresStartsWith_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndComparisonTypeAndCustomExceptionFactoryAreUsed()
+   public void EndsWithExtension_RequiresEndsWith_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndComparisonTypeAndCustomExceptionFactoryAreUsed()
    {
       // Arrange.
       var value = "This is a test";
       var target = "only";
       var comparisonType = StringComparison.Ordinal;
-      var act = () => _ = value.RequiresStartsWith(target, comparisonType, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
-      var expectedMessage = $"Precondition StartsWith failed: {nameof(value)} must start with the substring \"{target}\"";
+      var act = () => _ = value.RequiresEndsWith(target, comparisonType, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Precondition EndsWith failed: {nameof(value)} must end with the substring \"{target}\"";
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
@@ -962,14 +962,14 @@ public class StartsWithExtensionsTests
    }
 
    [Fact]
-   public void StartsWithExtension_RequiresStartsWith_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryAreUsed()
+   public void EndsWithExtension_RequiresEndsWith_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndCustomMessageTemplateAndCustomExceptionFactoryAreUsed()
    {
       // Arrange.
       var value = "This is a test";
       var target = "only";
       var messageTemplate = "Requirement {RequirementName} failed";
-      var act = () => _ = value.RequiresStartsWith(target, messageTemplate: messageTemplate, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
-      var expectedMessage = $"Requirement StartsWith failed";
+      var act = () => _ = value.RequiresEndsWith(target, messageTemplate: messageTemplate, exceptionFactory: TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Requirement EndsWith failed";
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
@@ -977,15 +977,15 @@ public class StartsWithExtensionsTests
    }
 
    [Fact]
-   public void StartsWithExtension_RequiresStartsWith_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndComparisonTypeAndCustomMessageTemplateAndCustomExceptionFactoryAreUsed()
+   public void EndsWithExtension_RequiresEndsWith_ShouldThrowCustomExceptionWithExpectedMessage_WhenRequirementIsFailedAndComparisonTypeAndCustomMessageTemplateAndCustomExceptionFactoryAreUsed()
    {
       // Arrange.
       var value = "This is a test";
       var target = "only";
       var comparisonType = StringComparison.Ordinal;
       var messageTemplate = "Requirement {RequirementName} failed";
-      var act = () => _ = value.RequiresStartsWith(target, comparisonType, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
-      var expectedMessage = $"Requirement StartsWith failed";
+      var act = () => _ = value.RequiresEndsWith(target, comparisonType, messageTemplate, TestExceptionFactories.CustomExceptionFactory);
+      var expectedMessage = $"Requirement EndsWith failed";
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()

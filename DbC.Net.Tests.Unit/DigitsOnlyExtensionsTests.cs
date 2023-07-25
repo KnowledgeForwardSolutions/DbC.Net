@@ -83,7 +83,7 @@ public class DigitsOnlyExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -97,7 +97,7 @@ public class DigitsOnlyExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<PostconditionFailedException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -110,7 +110,7 @@ public class DigitsOnlyExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -124,7 +124,7 @@ public class DigitsOnlyExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    #endregion
@@ -239,7 +239,7 @@ public class DigitsOnlyExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    [Fact]
@@ -253,7 +253,7 @@ public class DigitsOnlyExtensionsTests
 
       // Act/assert.
       act.Should().ThrowExactly<CustomException>()
-         .WithMessage(expectedMessage + "*");
+         .WithMessage(expectedMessage);
    }
 
    #endregion
