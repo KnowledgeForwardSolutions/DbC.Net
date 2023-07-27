@@ -6,7 +6,7 @@ RegexMatch has overloads that accept a string regular expression or a pre-built
 
 **Method signatures:**
 ```C#
-String RequiresRegexMatch(this String value, String regex, [RegexOptions regexOptions = RegexOptions.None], [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null])
+String RequiresRegexMatch(this String value, String regexText, [RegexOptions regexOptions = RegexOptions.None], [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null])
 
 String EnsuresRegexMatch(this String value, Regex regex, [String? messageTemplate = null], [IExceptionFactory? exceptionFactory = null], [String? valueExpression = null])
 ```
@@ -17,8 +17,7 @@ and StandardExceptionFactories.PostconditionFailedExceptionFactory for
 EnsuresRegexMatch.
 
 The data dictionary for exceptions thrown will contain entries for RequirementType,
-RequirementName, Value, ValueExpression, Regex, and for the string overload, 
-RegexOptions.
+RequirementName, Value, ValueExpression, Regex, and RegexOptions.
 
 The string overload of Requires/EnsuresRegexMatch will throw an ArgumentNullException 
 if the string regex is null and an ArgumentException if the string regex is 

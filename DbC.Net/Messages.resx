@@ -156,6 +156,15 @@
   <data name="PadCharacterIsNull" xml:space="preserve">
     <value>Pad character may not be null ('\0')</value>
   </data>
+  <data name="RegexInputIsNull" xml:space="preserve">
+    <value>Value to search with a regular expression is null</value>
+  </data>
+  <data name="RegexIsNull" xml:space="preserve">
+    <value>Regex may not be null</value>
+  </data>
+  <data name="RegexTextIsEmpty" xml:space="preserve">
+    <value>Regex text may not be null, String.Empty or all whitespace characters</value>
+  </data>
   <data name="RequirementTypeIsNotDefined" xml:space="preserve">
     <value>The value is not a defined member of the RequirementType enumeration</value>
   </data>

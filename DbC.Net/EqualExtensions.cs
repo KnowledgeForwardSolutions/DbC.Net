@@ -46,10 +46,9 @@ public static class EqualExtensions
       T target,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
-      [CallerArgumentExpression("value")] String valueExpression = null!,
-      [CallerArgumentExpression("target")] String targetExpression = null!) where T : IEquatable<T>
-   {
-      CheckEqual(
+      [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
+      [CallerArgumentExpression(nameof(target))] String targetExpression = null!) where T : IEquatable<T>
+   {      CheckEqual(
          value,
          target,
          RequirementType.Postcondition,
@@ -106,8 +105,8 @@ public static class EqualExtensions
       IEqualityComparer<T> comparer,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
-      [CallerArgumentExpression("value")] String valueExpression = null!,
-      [CallerArgumentExpression("target")] String targetExpression = null!)
+      [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
+      [CallerArgumentExpression(nameof(target))] String targetExpression = null!)
    {
       CheckEqual(
          value,
@@ -166,8 +165,8 @@ public static class EqualExtensions
       StringComparison comparisonType,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
-      [CallerArgumentExpression("value")] String valueExpression = null!,
-      [CallerArgumentExpression("target")] String targetExpression = null!)
+      [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
+      [CallerArgumentExpression(nameof(target))] String targetExpression = null!)
    {
       CheckEqual(
          value,
@@ -219,8 +218,8 @@ public static class EqualExtensions
       T target,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
-      [CallerArgumentExpression("value")] String valueExpression = null!,
-      [CallerArgumentExpression("target")] String targetExpression = null!) where T : IEquatable<T>
+      [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
+      [CallerArgumentExpression(nameof(target))] String targetExpression = null!) where T : IEquatable<T>
    {
       CheckEqual(
          value,
@@ -279,8 +278,8 @@ public static class EqualExtensions
       IEqualityComparer<T> comparer,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
-      [CallerArgumentExpression("value")] String valueExpression = null!,
-      [CallerArgumentExpression("target")] String targetExpression = null!)
+      [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
+      [CallerArgumentExpression(nameof(target))] String targetExpression = null!)
    {
       CheckEqual(
          value,
@@ -339,8 +338,8 @@ public static class EqualExtensions
       StringComparison comparisonType,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
-      [CallerArgumentExpression("value")] String valueExpression = null!,
-      [CallerArgumentExpression("target")] String targetExpression = null!)
+      [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
+      [CallerArgumentExpression(nameof(target))] String targetExpression = null!)
    {
       CheckEqual(
          value,
