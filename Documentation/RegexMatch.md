@@ -28,6 +28,11 @@ if the string regex is null and an ArgumentException if the string regex is
 String.Empty or all whitespace characters. The Regex overload of Requires/EnsuresRegexMatch
 will throw an ArgumentNullException if the regex parameter is null.
 
+**NOTE:**
+
+Benchmarks show that using a compiled or generated regex is far superior than using a
+string regex (up to 2 orders of magnitude faster and no memory allocation).
+
 **Examples:**
 ```C#
 var customMessageTemplate = "\"{Value}\" must match regex \"{Regex}\"";

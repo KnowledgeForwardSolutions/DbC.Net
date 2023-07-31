@@ -39,6 +39,7 @@ Intel Core i7-8700K CPU 3.70GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical 
   - [DigitsOnly Benchmarks](#digitsonly-benchmarks)
   - [StartsWith Benchmarks](#startswith-benchmarks)
   - [EndsWith Benchmarks](#endswith-benchmarks)
+  - [RegexMatch Benchmarks](#regexmatch-benchmarks)
 
 ### NotNull Benchmarks
 
@@ -658,3 +659,29 @@ parameter was omitted.
 | RequiresEndsWith | CurrentCulture    | X                |                   | 29.390 ns | 0.6810 ns | 1.9649 ns |         - |
 | RequiresEndsWith | CurrentCulture    |                  | X                 | 30.487 ns | 0.6379 ns | 1.5283 ns |         - |
 | RequiresEndsWith | CurrentCulture    | X                | X                 | 28.484 ns | 0.6306 ns | 1.8594 ns |         - |
+
+### RegexMatch Benchmarks
+
+X indicates that the optional parameter was supplied; blank indicates that the 
+parameter was omitted. N/A indicates that the parameter is not valid for the
+method overload.
+
+| Method             | Regex Type |Regex Options | Message Template | Exception Factory |        Mean |      Error |     StdDev |   Gen0 |   Gen1 | Allocated |
+|:------------------ |:-----------|--------------|:----------------:|:-----------------:|------------:|-----------:|-----------:|-------:|-------:|----------:|
+| RequiresRegexMatch | String     |              |                  |                   | 6,812.31 ns |  59.309 ns |  52.576 ns | 1.4343 | 0.0229 |    9008 B |
+| RequiresRegexMatch | String     |              | X                |                   | 6,782.47 ns |  82.161 ns |  72.834 ns | 1.4343 | 0.0229 |    9008 B |
+| RequiresRegexMatch | String     |              |                  | X                 | 6,817.03 ns | 121.758 ns | 113.892 ns | 1.4343 | 0.0229 |    9008 B |
+| RequiresRegexMatch | String     |              | X                | X                 | 6,696.40 ns |  92.054 ns |  81.603 ns | 1.4343 | 0.0229 |    9008 B |
+| RequiresRegexMatch | String     |X             |                  |                   | 7,316.03 ns | 138.998 ns | 136.514 ns | 1.4343 | 0.0305 |    9008 B |
+| RequiresRegexMatch | String     |X             | X                |                   | 7,233.04 ns |  52.741 ns |  46.754 ns | 1.4343 | 0.0229 |    9008 B |
+| RequiresRegexMatch | String     |X             |                  | X                 | 7,210.10 ns |  60.070 ns |  50.161 ns | 1.4343 | 0.0305 |    9008 B |
+| RequiresRegexMatch | String     |X             | X                | X                 | 7,132.12 ns |  73.347 ns |  65.020 ns | 1.4343 | 0.0305 |    9008 B |
+| RequiresRegexMatch | Compiled   |N/A           |                  |                   |    69.29 ns |   0.687 ns |   0.574 ns |      - |      - |         - |
+| RequiresRegexMatch | Compiled   |N/A           | X                |                   |    70.83 ns |   0.621 ns |   0.581 ns |      - |      - |         - |
+| RequiresRegexMatch | Compiled   |N/A           |                  | X                 |    68.76 ns |   0.456 ns |   0.404 ns |      - |      - |         - |
+| RequiresRegexMatch | Compiled   |N/A           | X                | X                 |    68.55 ns |   0.410 ns |   0.343 ns |      - |      - |         - |
+| RequiresRegexMatch | Generated  |N/A           |                  |                   |    62.25 ns |   0.871 ns |   0.814 ns |      - |      - |         - |
+| RequiresRegexMatch | Generated  |N/A           | X                |                   |    62.55 ns |   0.480 ns |   0.425 ns |      - |      - |         - |
+| RequiresRegexMatch | Generated  |N/A           |                  | X                 |    62.68 ns |   0.908 ns |   0.849 ns |      - |      - |         - |
+| RequiresRegexMatch | Generated  |N/A           | X                | X                 |    62.09 ns |   0.720 ns |   0.638 ns |      - |      - |         - |
+
