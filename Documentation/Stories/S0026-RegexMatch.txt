@@ -6,6 +6,8 @@ Requirements:
   EnsuresRegexMatch (postcondition), default PostconditionFailedException
   Overloads for string regex and Regex object.
   Test wtih source generated regex (had issues with this previously)
+  
+  UPDATE: Remove string regex overload because of performance reasons
 
 DEFINITION OF DONE:
 

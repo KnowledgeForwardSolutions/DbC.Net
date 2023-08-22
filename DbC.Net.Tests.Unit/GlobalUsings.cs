@@ -1,5 +1,6 @@
 global using System.Collections;
 global using System.Numerics;
+global using System.Text.RegularExpressions;
 
 global using DbC.Net.Exceptions;
 global using DbC.Net.FloatingPoint;

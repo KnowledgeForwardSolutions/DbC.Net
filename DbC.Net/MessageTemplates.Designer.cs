@@ -268,6 +268,15 @@ namespace DbC.Net {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} must match the regular expression: {Regex}.
+        /// </summary>
+        internal static string RegexMatchTemplate {
+            get {
+                return ResourceManager.GetString("RegexMatchTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} must start with the substring &quot;{Target}&quot;.
         /// </summary>
         internal static string StartsWithTemplate {

@@ -178,6 +178,33 @@ namespace DbC.Net {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Value to search with a regular expression is null.
+        /// </summary>
+        internal static string RegexInputIsNull {
+            get {
+                return ResourceManager.GetString("RegexInputIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Regex may not be null.
+        /// </summary>
+        internal static string RegexIsNull {
+            get {
+                return ResourceManager.GetString("RegexIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Regex text may not be null, String.Empty or all whitespace characters.
+        /// </summary>
+        internal static string RegexTextIsEmpty {
+            get {
+                return ResourceManager.GetString("RegexTextIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The value is not a defined member of the RequirementType enumeration.
         /// </summary>
         internal static string RequirementTypeIsNotDefined {

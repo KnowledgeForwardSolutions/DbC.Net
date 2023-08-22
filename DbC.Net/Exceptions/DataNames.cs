@@ -29,7 +29,8 @@ public static class DataNames
     public const string MinLength = nameof(MinLength);
     public const string MinLengthExpression = nameof(MinLengthExpression);
 
-    public const string Regex = nameof(Regex);
+   public const string Regex = nameof(Regex);
+   public const string RegexOptions = nameof(RegexOptions);
 
-    public const string StringComparison = nameof(StringComparison);
+   public const string StringComparison = nameof(StringComparison);
 }

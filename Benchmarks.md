@@ -39,6 +39,7 @@ Intel Core i7-8700K CPU 3.70GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical 
   - [DigitsOnly Benchmarks](#digitsonly-benchmarks)
   - [StartsWith Benchmarks](#startswith-benchmarks)
   - [EndsWith Benchmarks](#endswith-benchmarks)
+  - [RegexMatch Benchmarks](#regexmatch-benchmarks)
 
 ### NotNull Benchmarks
 
@@ -658,3 +659,20 @@ parameter was omitted.
 | RequiresEndsWith | CurrentCulture    | X                |                   | 29.390 ns | 0.6810 ns | 1.9649 ns |         - |
 | RequiresEndsWith | CurrentCulture    |                  | X                 | 30.487 ns | 0.6379 ns | 1.5283 ns |         - |
 | RequiresEndsWith | CurrentCulture    | X                | X                 | 28.484 ns | 0.6306 ns | 1.8594 ns |         - |
+
+### RegexMatch Benchmarks
+
+X indicates that the optional parameter was supplied; blank indicates that the 
+parameter was omitted. N/A indicates that the parameter is not valid for the
+method overload.
+
+| Method             | Regex Type | Message Template | Exception Factory |     Mean |    Error |   StdDev | Allocated |
+|:------------------ |:-----------|:----------------:|:-----------------:|---------:|---------:|---------:|----------:|
+| RequiresRegexMatch | Compiled   |                  |                   | 73.26 ns | 1.436 ns | 1.410 ns |         - |
+| RequiresRegexMatch | Compiled   | X                |                   | 71.65 ns | 1.418 ns | 1.576 ns |         - |
+| RequiresRegexMatch | Compiled   |                  | X                 | 70.88 ns | 1.360 ns | 1.455 ns |         - |
+| RequiresRegexMatch | Compiled   | X                | X                 | 70.72 ns | 1.437 ns | 1.274 ns |         - |
+| RequiresRegexMatch | Generated  |                  |                   | 64.71 ns | 1.253 ns | 1.287 ns |         - |
+| RequiresRegexMatch | Generated  | X                |                   | 63.38 ns | 0.930 ns | 0.777 ns |         - |
+| RequiresRegexMatch | Generated  |                  | X                 | 64.29 ns | 1.306 ns | 1.452 ns |         - |
+| RequiresRegexMatch | Generated  | X                | X                 | 63.14 ns | 1.190 ns | 1.114 ns |         - |

@@ -54,8 +54,8 @@ public static class EndsWithExtensions
       StringComparison comparisonType = StringComparison.Ordinal,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
-      [CallerArgumentExpression("value")] String valueExpression = null!,
-      [CallerArgumentExpression("target")] String targetExpression = null!)
+      [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
+      [CallerArgumentExpression(nameof(target))] String targetExpression = null!)
    {
       CheckEndsWith(
          value,
@@ -117,8 +117,8 @@ public static class EndsWithExtensions
       StringComparison comparisonType = StringComparison.Ordinal,
       String? messageTemplate = null,
       IExceptionFactory? exceptionFactory = null,
-      [CallerArgumentExpression("value")] String valueExpression = null!,
-      [CallerArgumentExpression("target")] String targetExpression = null!)
+      [CallerArgumentExpression(nameof(value))] String valueExpression = null!,
+      [CallerArgumentExpression(nameof(target))] String targetExpression = null!)
    {
       CheckEndsWith(
          value,

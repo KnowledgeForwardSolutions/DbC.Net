@@ -28,5 +28,6 @@ public static class RequirementNames
    public const String NotNull = nameof(NotNull);
    public const String NotNullOrEmpty = nameof(NotNullOrEmpty);
    public const String NotNullOrWhiteSpace = nameof(NotNullOrWhiteSpace);
+   public const String RegexMatch = nameof(RegexMatch);
    public const String StartsWith = nameof(StartsWith);
 }
