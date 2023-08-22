@@ -66,6 +66,7 @@
     - [NotNullOrWhiteSpace](/Documentation/NotNullOrWhiteSpace.md)
     - [RegexMatch](/Documentation/RegexMatch.md)
     - [StartsWith](/Documentation/StartsWith.md)
+    - [ValidCheckDigit](/Documentation/ValidCheckDigit.md)
 
 - **[Release History/Release Notes](#release-historyrelease-notes)**
 

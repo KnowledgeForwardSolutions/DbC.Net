@@ -192,4 +192,7 @@
   <data name="StartsWithTemplate" xml:space="preserve">
     <value>{RequirementType} {RequirementName} failed: {ValueExpression} must start with the substring "{Target}"</value>
   </data>
+  <data name="ValidCheckDigitTemplate" xml:space="preserve">
+    <value>{RequirementType} {RequirementName} failed: {ValueExpression} must contain a valid check digit</value>
+  </data>
 </root>

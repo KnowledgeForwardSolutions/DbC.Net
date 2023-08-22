@@ -284,5 +284,14 @@ namespace DbC.Net {
                 return ResourceManager.GetString("StartsWithTemplate", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {RequirementType} {RequirementName} failed: {ValueExpression} must contain a valid check digit.
+        /// </summary>
+        internal static string ValidCheckDigitTemplate {
+            get {
+                return ResourceManager.GetString("ValidCheckDigitTemplate", resourceCulture);
+            }
+        }
     }
 }

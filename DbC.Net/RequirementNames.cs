@@ -30,4 +30,5 @@ public static class RequirementNames
    public const String NotNullOrWhiteSpace = nameof(NotNullOrWhiteSpace);
    public const String RegexMatch = nameof(RegexMatch);
    public const String StartsWith = nameof(StartsWith);
+   public const String ValidCheckDigit = nameof(ValidCheckDigit);
 }
