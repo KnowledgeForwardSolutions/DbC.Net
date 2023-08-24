@@ -22,4 +22,5 @@
 //BenchmarkRunner.Run<DigitsOnlyBenchmarks>();
 //BenchmarkRunner.Run<StartsWithBenchmarks>();
 //BenchmarkRunner.Run<EndsWithBenchmarks>();
-BenchmarkRunner.Run<RegexMatchBenchmarks>();
+//BenchmarkRunner.Run<RegexMatchBenchmarks>();
+BenchmarkRunner.Run<LuhnAlgorithmBenchmarks>();

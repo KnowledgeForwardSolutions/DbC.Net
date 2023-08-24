@@ -26,4 +26,17 @@ public interface ICheckDigitAlgorithm
    ///   A string containing the calculated check digit(s).
    /// </returns>
    String GetCheckDigit(String value, Boolean includesCheckDigit = true);
+
+   /// <summary>
+   ///   Validate that the check digit calculated for <paramref name="value"/>
+   ///   matches the check digit included in the <paramref name="value"/>.
+   /// </summary>
+   /// <param name="value">
+   ///   The value to validate.
+   /// </param>
+   /// <returns>
+   ///   <see langword="true"/> if <paramref name="value"/> has a valid check 
+   ///   digit; otherwise <see langword="false"/>.
+   /// </returns>
+   Boolean ValidateCheckDigit(String value);
 }

@@ -15,56 +15,44 @@ public class LuhnAlgorithm : ICheckDigitAlgorithm
 {
    private const String _algorithmName = "Luhn";
    private const Char _charZero = '0';
-   private static readonly String[] _digits = new String[]{ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+
+   // Pre-calculated values to use when summing odd position characters.
+   private static readonly Int32[] _oddValues = new Int32[] { 0, 2, 4, 6, 8, 1, 3, 5, 7, 9 };
+
+   // Resulting check digit values. Note only indices 1-10 are used.
+   private static readonly String[] _checkDigits = new String[] { "", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
 
    /// <inheritdoc/>
    public String Name => _algorithmName;
 
    /// <inheritdoc/>
-   /// <exception cref="ArgumentNullException">
-   ///   <paramref name="value"/> is <see langword="null"/>.
-   /// </exception>
+   /// <remarks>
+   ///   A <paramref name="value"/> that is <see langword="null"/> or is empty
+   ///   (excluding a possible included check digit) will return "0".
+   /// </remarks>
    /// <exception cref="ArgumentException">
    ///   <paramref name="value"/> contains a non-digit (0-9) character.
-   ///   - or -
-   ///   <paramref name="value"/> is too short to calculate a valid check digit.
    /// </exception>
    public String GetCheckDigit(String value, Boolean includesCheckDigit = true)
    {
-      _ = value ?? throw new ArgumentNullException(nameof(value), Messages.CheckDigitAlgorithmValueIsNull);
       var sum = 0;
-      var evenCharacter = false;
-      var index = value.Length - (includesCheckDigit ? 2 : 1); // Start at right-most character, excluding possible check digit
+      var oddCharacter = true;
+      var index = (value?.Length ?? 0) - (includesCheckDigit ? 2 : 1); // Start at right-most character, excluding possible check digit
       while (index >= 0)
       {
-         var digit = value[index] - _charZero;
-         if (digit < 0 || digit > 9)
+         var currentDigit = value![index] - _charZero;
+         if (currentDigit < 0 || currentDigit > 9)
          {
             throw new ArgumentException(Messages.LuhnAlgorithmValueContainsNonDigit, nameof(value));
          }
-
-         if (evenCharacter)
-         {
-            sum += digit;
-         }
-         else if (digit <= 4)
-         {
-            sum += digit * 2;
-         }
-         else
-         {
-            sum += digit * 2 - 9;
-         }
+         sum += oddCharacter ? _oddValues[currentDigit] : currentDigit;
          index--;
-         evenCharacter = !evenCharacter;
+         oddCharacter = !oddCharacter;
       }
 
-      if (sum == 0)
-      {
-         throw new ArgumentException(Messages.CheckDigitAlgorithmInvalidValueLength, nameof(value));
-      }
-
-      var checkDigit = 10 - (sum % 10);
-      return _digits[checkDigit];
+      var mod10Value = 10 - (sum % 10);
+      return _checkDigits[mod10Value];
    }
+
+   public Boolean ValidateCheckDigit(String value) => throw new NotImplementedException();
 }

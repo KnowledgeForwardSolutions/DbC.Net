@@ -23,7 +23,12 @@ public class LuhnAlgorithmTests
       // Non-credit card examples
       { "808401234567893" },  // NPI (National Provider Identifier)
       { "490154203237518" },  // IMEI (International Mobile Equipment Identity)
-      { "26" }                // Test of single character payload
+
+      // Edge cases
+      { "26" },               // Single character + check digit
+      { "240" },              // sum Mod 10 result should be zero
+      { "7624810" },          // "
+      { "0000000000000000" }  // "
    };
 
    #region Name Property Tests
@@ -70,35 +75,35 @@ public class LuhnAlgorithmTests
    }
 
    [Fact]
-   public void LuhnAlgorithm_GetCheckDigit_ShouldThrowArgumentException_WhenValueIsNull()
+   public void LuhnAlgorithm_GetCheckDigit_ShouldReturnZero_WhenValueIsNull()
    {
       // Arrange.
       String value = null!;
-      var act = () => _sut.GetCheckDigit(value);
-      var expectedMessage = Messages.CheckDigitAlgorithmValueIsNull;
+      var expectedCheckDigit = "0";
 
-      // Act.assert.
-      act.Should().Throw<ArgumentException>()
-         .WithParameterName(nameof(value))
-         .WithMessage(expectedMessage + "*");
+      // Act.
+      var result = _sut.GetCheckDigit(value, false);
+
+      // Assert.
+      result.Should().Be(expectedCheckDigit);
    }
 
    [Theory]
    [InlineData("", true)]
    [InlineData("1", true)]
    [InlineData("", false)]
-   public void LuhnAlgorithm_GetCheckDigit_ShouldReturn_WhenValueIsTooShort(
+   public void LuhnAlgorithm_GetCheckDigit_ShouldReturnZero_WhenValueIsTooShort(
       String value,
       Boolean includeCheckDigit)
    {
       // Arrange.
-      var act = () => _sut.GetCheckDigit(value, includeCheckDigit);
-      var expectedMessage = Messages.CheckDigitAlgorithmInvalidValueLength;
+      var expectedCheckDigit = "0";
 
-      // Act.assert.
-      act.Should().Throw<ArgumentException>()
-         .WithParameterName(nameof(value))
-         .WithMessage(expectedMessage + "*");
+      // Act.
+      var result = _sut.GetCheckDigit(value, includeCheckDigit);
+
+      // Assert.
+      result.Should().Be(expectedCheckDigit);
    }
 
    [Theory]
