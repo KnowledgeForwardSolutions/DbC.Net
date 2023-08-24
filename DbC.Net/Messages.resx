@@ -123,6 +123,12 @@
   <data name="BetweenBoundsNotNormalized" xml:space="preserve">
     <value>Lower bound may not be greater than upper bound</value>
   </data>
+  <data name="CheckDigitAlgorithmInvalidValueLength" xml:space="preserve">
+    <value>Check digit algorithm value length is invalid</value>
+  </data>
+  <data name="CheckDigitAlgorithmValueIsNull" xml:space="preserve">
+    <value>Check digit algorithm value may not be null</value>
+  </data>
   <data name="ComparerIsNull" xml:space="preserve">
     <value>Comparer may not be null</value>
   </data>
@@ -143,9 +149,6 @@
   </data>
   <data name="LuhnAlgorithmValueContainsNonDigit" xml:space="preserve">
     <value>Luhn algorithm requires a value that contains only digits 0-9</value>
-  </data>
-  <data name="LuhnAlgorithmValueIsEmpty" xml:space="preserve">
-    <value>Luhn algorithm requires a non-empty value</value>
   </data>
   <data name="MaskCharacterIsNull" xml:space="preserve">
     <value>Mask character may not be null ('\0')</value>

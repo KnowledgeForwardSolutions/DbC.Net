@@ -3,7 +3,10 @@
 namespace DbC.Net.CheckDigits;
 
 /// <summary>
-///   Luhn check digit algorithm (i.e. modulus 10 algorithm).
+///   Luhn algorithm, commonly used for check digits for credit cards as well as
+///   NPI (National Provider Identifier) numbers and IMEI (International Mobile 
+///   Equipment Identity) numbers. Assumes that an included check digit is the
+///   right-most character in the input string.
 /// </summary>
 /// <remarks>
 ///   See https://en.wikipedia.org/wiki/Luhn_algorithm
@@ -18,23 +21,29 @@ public class LuhnAlgorithm : ICheckDigitAlgorithm
    public String Name => _algorithmName;
 
    /// <inheritdoc/>
-   public String GetCheckDigit(ReadOnlySpan<Char> value)
+   /// <exception cref="ArgumentNullException">
+   ///   <paramref name="value"/> is <see langword="null"/>.
+   /// </exception>
+   /// <exception cref="ArgumentException">
+   ///   <paramref name="value"/> contains a non-digit (0-9) character.
+   ///   - or -
+   ///   <paramref name="value"/> is too short to calculate a valid check digit.
+   /// </exception>
+   public String GetCheckDigit(String value, Boolean includesCheckDigit = true)
    {
-      if (value.Length == 0)
-      {
-         throw new ArgumentException(Messages.LuhnAlgorithmValueIsEmpty, nameof(value));
-      }
-
+      _ = value ?? throw new ArgumentNullException(nameof(value), Messages.CheckDigitAlgorithmValueIsNull);
       var sum = 0;
-      for (var i = 0; i < value.Length; i++)
+      var evenCharacter = false;
+      var index = value.Length - (includesCheckDigit ? 2 : 1); // Start at right-most character, excluding possible check digit
+      while (index >= 0)
       {
-         var digit = value[^(i + 1)] - _charZero;
+         var digit = value[index] - _charZero;
          if (digit < 0 || digit > 9)
          {
             throw new ArgumentException(Messages.LuhnAlgorithmValueContainsNonDigit, nameof(value));
          }
 
-         if (i % 2 == 1)
+         if (evenCharacter)
          {
             sum += digit;
          }
@@ -46,6 +55,13 @@ public class LuhnAlgorithm : ICheckDigitAlgorithm
          {
             sum += digit * 2 - 9;
          }
+         index--;
+         evenCharacter = !evenCharacter;
+      }
+
+      if (sum == 0)
+      {
+         throw new ArgumentException(Messages.CheckDigitAlgorithmInvalidValueLength, nameof(value));
       }
 
       var checkDigit = 10 - (sum % 10);

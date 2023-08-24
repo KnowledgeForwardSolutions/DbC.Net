@@ -79,6 +79,24 @@ namespace DbC.Net {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check digit algorithm value length is invalid.
+        /// </summary>
+        internal static string CheckDigitAlgorithmInvalidValueLength {
+            get {
+                return ResourceManager.GetString("CheckDigitAlgorithmInvalidValueLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check digit algorithm value may not be null.
+        /// </summary>
+        internal static string CheckDigitAlgorithmValueIsNull {
+            get {
+                return ResourceManager.GetString("CheckDigitAlgorithmValueIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Comparer may not be null.
         /// </summary>
         internal static string ComparerIsNull {
@@ -138,15 +156,6 @@ namespace DbC.Net {
         internal static string LuhnAlgorithmValueContainsNonDigit {
             get {
                 return ResourceManager.GetString("LuhnAlgorithmValueContainsNonDigit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Luhn algorithm requires a non-empty value.
-        /// </summary>
-        internal static string LuhnAlgorithmValueIsEmpty {
-            get {
-                return ResourceManager.GetString("LuhnAlgorithmValueIsEmpty", resourceCulture);
             }
         }
         

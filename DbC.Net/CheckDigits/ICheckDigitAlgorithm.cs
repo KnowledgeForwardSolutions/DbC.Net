@@ -17,8 +17,13 @@ public interface ICheckDigitAlgorithm
    /// <param name="value">
    ///   The value for which the check digit should be calculated.
    /// </param>
+   /// <param name="includesCheckDigit">
+   ///   Optional. <see langword="true"/> if the value includes an existing 
+   ///   check digit that should be ignored while calculating the check digit; 
+   ///   otherwise <see langword="false"/>. Defaults to <see langword="true"/>.
+   /// </param>
    /// <returns>
    ///   A string containing the calculated check digit(s).
    /// </returns>
-   String GetCheckDigit(ReadOnlySpan<Char> value);
+   String GetCheckDigit(String value, Boolean includesCheckDigit = true);
 }

@@ -10,6 +10,22 @@ public class LuhnAlgorithmTests
 {
    private readonly LuhnAlgorithm _sut = new();
 
+   public static TheoryData<String> TestValuesWithTrailingCheckDigits = new()
+   {
+      // Test credit card data from https://kb.blackbaud.com/knowledgebase/articles/Article/64901
+      { "378282246310005" },   // American Express
+      { "6011111111111117" },  // Discover
+      { "5555555555554444" },  // MasterCard
+      { "4111111111111111" },  // Visa
+      { "3056930009020004" },  // Diners Club
+      { "3566111111111113" },  // JCB
+
+      // Non-credit card examples
+      { "808401234567893" },  // NPI (National Provider Identifier)
+      { "490154203237518" },  // IMEI (International Mobile Equipment Identity)
+      { "26" }                // Test of single character payload
+   };
+
    #region Name Property Tests
    // ==========================================================================
    // ==========================================================================
@@ -25,61 +41,83 @@ public class LuhnAlgorithmTests
    // ==========================================================================
 
    [Theory]
-   [InlineData("2", "6")]
-   [InlineData("7992739871", "3")]      // Example from Wikipedia
-   [InlineData("49015420323751", "8")]  // Example IMEI (International Mobile Equipment Identity)
-   [InlineData("80840123456789", "3")]  // Example NPI (National Provider Identifier)
-   public void LuhnAlgorithm_GetCheckDigit_ShouldReturnExpectedResult_WhenValueIsNotEmpty(
-      String value,
-      String expectedCheckDigit)
+   [MemberData(nameof(TestValuesWithTrailingCheckDigits))]
+   public void LuhnAlgorithm_GetCheckDigit_ShouldReturnExpectedResult_WhenNonEmptyValueIncludesCheckDigit(String value)
    {
       // Arrange.
-      var range = value.AsSpan();
+      var expectedCheckDigit = value[^1].ToString();
 
       // Act.
-      var result = _sut.GetCheckDigit(range);
+      var result = _sut.GetCheckDigit(value);
+
+      // Assert.
+      result.Should().Be(expectedCheckDigit);
+   }
+
+   [Theory]
+   [MemberData(nameof(TestValuesWithTrailingCheckDigits))]
+   public void LuhnAlgorithm_GetCheckDigit_ShouldReturnExpectedResult_WhenNonEmptyValueDoesNotIncludeCheckDigit(String value)
+   {
+      // Arrange.
+      var expectedCheckDigit = value[^1].ToString();
+      value = value[..(value.Length - 1)];
+
+      // Act.
+      var result = _sut.GetCheckDigit(value, false);
 
       // Assert.
       result.Should().Be(expectedCheckDigit);
    }
 
    [Fact]
-   public void LuhnAlgorithm_GetCheckDigit_ShouldThrowArgumentException_WhenValueIsEmpty()
+   public void LuhnAlgorithm_GetCheckDigit_ShouldThrowArgumentException_WhenValueIsNull()
    {
       // Arrange.
-      var value = "".AsSpan();
+      String value = null!;
+      var act = () => _sut.GetCheckDigit(value);
+      var expectedMessage = Messages.CheckDigitAlgorithmValueIsNull;
 
-      // Act.
-      ArgumentException exception = null!;
-      try
-      {
-         _ = _sut.GetCheckDigit(value);
-      }
-      catch(ArgumentException ex)
-      {
-         exception = ex;
-      }
-
-      // Assert.
-      exception.Should().NotBeNull();
-      exception.Message.Should().StartWith(Messages.LuhnAlgorithmValueIsEmpty);
-      exception.ParamName.Should().Be(nameof(value));
+      // Act.assert.
+      act.Should().Throw<ArgumentException>()
+         .WithParameterName(nameof(value))
+         .WithMessage(expectedMessage + "*");
    }
 
    [Theory]
-   [InlineData("/")]
-   [InlineData(":")]
-   [InlineData("123A789")]
-   public void LuhnAlgorithm_GetCheckDigit_ShouldThrowArgumentException_WhenValueContainsNonDigitCharacters(String value)
+   [InlineData("", true)]
+   [InlineData("1", true)]
+   [InlineData("", false)]
+   public void LuhnAlgorithm_GetCheckDigit_ShouldReturn_WhenValueIsTooShort(
+      String value,
+      Boolean includeCheckDigit)
    {
       // Arrange.
-      var range = value.AsSpan();
+      var act = () => _sut.GetCheckDigit(value, includeCheckDigit);
+      var expectedMessage = Messages.CheckDigitAlgorithmInvalidValueLength;
+
+      // Act.assert.
+      act.Should().Throw<ArgumentException>()
+         .WithParameterName(nameof(value))
+         .WithMessage(expectedMessage + "*");
+   }
+
+   [Theory]
+   [InlineData("/", false)]
+   [InlineData(":", false)]
+   [InlineData("123A789", false)]
+   [InlineData("4012 8888 8888 1881", true)]
+   public void LuhnAlgorithm_GetCheckDigit_ShouldThrowArgumentException_WhenValueContainsNonDigitCharacters(
+      String value,
+      Boolean includesCheckDigit)
+   {
+      // Arrange.
+      var range = value;
 
       // Act.
       ArgumentException exception = null!;
       try
       {
-         _ = _sut.GetCheckDigit(range);
+         _ = _sut.GetCheckDigit(range, includesCheckDigit);
       }
       catch (ArgumentException ex)
       {
