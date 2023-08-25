@@ -1,9 +1,5 @@
 ﻿// Ignore Spelling: Luhn
 
-using System.Security.Cryptography.X509Certificates;
-
-using Xunit.Sdk;
-
 namespace DbC.Net.Tests.Unit.CheckDigits;
 
 public class LuhnAlgorithmTests
@@ -91,18 +87,8 @@ public class LuhnAlgorithmTests
    [InlineData("11:22")]
    [InlineData("123A789")]
    [InlineData("4012 8888 8888 1881")]
-   public void LuhnAlgorithm_ValidateCheckDigit_ShouldThrowArgumentException_WhenValueContainsNonDigitCharacters(
-      String value)
-   {
-      // Arrange.
-      var act = () => _ = _sut.ValidateCheckDigit(value);
-      var expectedMessage = Messages.LuhnAlgorithmValueContainsNonDigit;
-
-      // Act/assert.
-      act.Should().Throw<ArgumentException>()
-         .WithParameterName(nameof(value))
-         .WithMessage(expectedMessage + "*");
-   }
+   public void LuhnAlgorithm_ValidateCheckDigit_ShouldReturnFalse_WhenValueContainsNonDigitCharacters(String value)
+      => _sut.ValidateCheckDigit(value).Should().BeFalse();
 
    #endregion
 }

@@ -133,15 +133,6 @@ namespace DbC.Net {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Luhn algorithm requires a value that contains only digits 0-9.
-        /// </summary>
-        internal static string LuhnAlgorithmValueContainsNonDigit {
-            get {
-                return ResourceManager.GetString("LuhnAlgorithmValueContainsNonDigit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Mask character may not be null (&apos;\0&apos;).
         /// </summary>
         internal static string MaskCharacterIsNull {

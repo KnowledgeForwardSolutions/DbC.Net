@@ -141,9 +141,6 @@
   <data name="LengthIsLessThanOne" xml:space="preserve">
     <value>Length may not be less than one</value>
   </data>
-  <data name="LuhnAlgorithmValueContainsNonDigit" xml:space="preserve">
-    <value>Luhn algorithm requires a value that contains only digits 0-9</value>
-  </data>
   <data name="MaskCharacterIsNull" xml:space="preserve">
     <value>Mask character may not be null ('\0')</value>
   </data>

@@ -24,9 +24,6 @@ public class LuhnAlgorithm : ICheckDigitAlgorithm
    public String Name => _algorithmName;
 
    /// <inheritdoc/>
-   /// <exception cref="ArgumentException">
-   ///   <paramref name="value"/> contains a non-digit (0-9) character.
-   /// </exception>
    public Boolean ValidateCheckDigit(String value)
    {
       if (String.IsNullOrEmpty(value))
@@ -41,14 +38,13 @@ public class LuhnAlgorithm : ICheckDigitAlgorithm
          var currentDigit = value![index] - '0';
          if (currentDigit < 0 || currentDigit > 9)
          {
-            throw new ArgumentException(Messages.LuhnAlgorithmValueContainsNonDigit, nameof(value));
+            return false;
          }
          sum += oddCharacter ? _oddValues[currentDigit] : currentDigit;
          oddCharacter = !oddCharacter;
       }
-      var checkDigit = (10 - (sum % 10)) % 10;
-      var checkDigitCharacter = (Char)('0' + checkDigit);
+      var checkDigit = '0' + (10 - (sum % 10)) % 10;
 
-      return value[^1] == checkDigitCharacter;
+      return value[^1] == checkDigit;
    }
 }
