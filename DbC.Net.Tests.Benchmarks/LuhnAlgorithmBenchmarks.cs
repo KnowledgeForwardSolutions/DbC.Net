@@ -11,12 +11,12 @@ public class LuhnAlgorithmBenchmarks
    [Benchmark]
    public void ThrowAway()
    {
-      var result = _luhnAlgorithm.GetCheckDigit(_value);
+      var result = _luhnAlgorithm.ValidateCheckDigit(_value);
    }
 
    [Benchmark]
    public void Original()
    {
-      var result = _luhnAlgorithm.GetCheckDigit(_value);
+      var result = _luhnAlgorithm.ValidateCheckDigit(_value);
    }
 }
