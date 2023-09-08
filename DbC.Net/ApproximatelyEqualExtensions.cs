@@ -82,6 +82,7 @@ public static class ApproximatelyEqualExtensions
 
       return value;
    }
+
    /// <summary>
    ///   Value ApproximatelyEqual precondition. Confirm that the 
    ///   <see cref="IFloatingPoint{T}"/> <paramref name="value"/> is within

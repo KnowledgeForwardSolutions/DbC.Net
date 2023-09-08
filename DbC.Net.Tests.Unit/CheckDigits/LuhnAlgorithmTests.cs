@@ -22,7 +22,9 @@ public class LuhnAlgorithmTests
 
       // Edge cases
       { "0" },                // Empty payload and only a check digit; zero is the only value that works for this case
-      { "26" },               // Single character + check digit
+      { "26" },               // Single character + check digit (tests doubling < 10)
+      { "75" },               // Single character + check digit (tests doubling > 10)
+      { "133" },              // Two characters + check digit (tests without doubling)
       { "240" },              // sum Mod 10 result should be zero
       { "7624810" },          // "
       { "0000000000000000" }  // "

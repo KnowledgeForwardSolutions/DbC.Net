@@ -34,8 +34,5 @@ public static class DataNames
 
    public const String StringComparison = nameof(StringComparison);
 
-   // Check digits. Target = expected check digit per the algorithm. Value = check digit found in the value string
    public const String CheckDigitAlgorithm = nameof(CheckDigitAlgorithm);
-   public const String TargetCheckDigit = nameof(TargetCheckDigit);
-   public const String ValueCheckDigit = nameof(ValueCheckDigit);
 }

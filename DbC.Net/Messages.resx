@@ -123,6 +123,9 @@
   <data name="BetweenBoundsNotNormalized" xml:space="preserve">
     <value>Lower bound may not be greater than upper bound</value>
   </data>
+  <data name="CheckDigitAlgorithmIsNull" xml:space="preserve">
+    <value>Check digit algorithm may not be null</value>
+  </data>
   <data name="ComparerIsNull" xml:space="preserve">
     <value>Comparer may not be null</value>
   </data>

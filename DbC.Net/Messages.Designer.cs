@@ -79,6 +79,15 @@ namespace DbC.Net {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check digit algorithm may not be null.
+        /// </summary>
+        internal static string CheckDigitAlgorithmIsNull {
+            get {
+                return ResourceManager.GetString("CheckDigitAlgorithmIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Comparer may not be null.
         /// </summary>
         internal static string ComparerIsNull {

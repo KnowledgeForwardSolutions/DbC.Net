@@ -17,9 +17,6 @@ public class LuhnAlgorithm : ICheckDigitAlgorithm
 {
    private const String _algorithmName = "Luhn";
 
-   // Pre-calculated values to use when summing odd position characters.
-   private static readonly Int32[] _oddValues = new Int32[] { 0, 2, 4, 6, 8, 1, 3, 5, 7, 9 };
-
    /// <inheritdoc/>
    public String Name => _algorithmName;
 
@@ -40,7 +37,9 @@ public class LuhnAlgorithm : ICheckDigitAlgorithm
          {
             return false;
          }
-         sum += oddCharacter ? _oddValues[currentDigit] : currentDigit;
+         sum += oddCharacter
+            ? currentDigit > 4 ? currentDigit * 2 - 9 : currentDigit * 2
+            : currentDigit;
          oddCharacter = !oddCharacter;
       }
       var checkDigit = '0' + (10 - (sum % 10)) % 10;
