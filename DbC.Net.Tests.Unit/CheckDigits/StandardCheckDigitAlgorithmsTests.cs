@@ -4,6 +4,20 @@ namespace DbC.Net.Tests.Unit.CheckDigits;
 
 public class StandardCheckDigitAlgorithmsTests
 {
+   #region LuhnAlgoIsbn10Algorithmrithm Tests
+   // ==========================================================================
+   // ==========================================================================
+
+   [Fact]
+   public void StandardCheckDigitAlgorithms_Isbn10Algorithm_ShouldNotBeNull()
+      => StandardCheckDigitAlgorithms.Isbn10Algorithm.Should().NotBeNull();
+
+   [Fact]
+   public void StandardCheckDigitAlgorithms_Isbn10Algorithm_ShouldBeExpectedType()
+      => StandardCheckDigitAlgorithms.Isbn10Algorithm.Should().BeOfType<Isbn10Algorithm>();
+
+   #endregion
+
    #region LuhnAlgorithm Tests
    // ==========================================================================
    // ==========================================================================

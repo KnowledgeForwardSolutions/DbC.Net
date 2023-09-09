@@ -21,6 +21,14 @@ public class LuhnAlgorithm : ICheckDigitAlgorithm
    public String Name => _algorithmName;
 
    /// <inheritdoc/>
+   /// <remarks>
+   ///   Will return <see langword="false"/> for the following edge conditions:
+   ///   <list type="bullet">
+   ///      <item><paramref name="value"/> is <see langword="null"/></item>
+   ///      <item><paramref name="value"/> is <see cref="String.Empty"/></item>
+   ///      <item><paramref name="value"/> contains a character that is not a digit (0-9)
+   ///   </list>
+   /// </remarks>
    public Boolean ValidateCheckDigit(String value)
    {
       if (String.IsNullOrEmpty(value))
