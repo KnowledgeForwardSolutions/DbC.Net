@@ -42,7 +42,7 @@ public class Mod10BarcodeAlgorithm : ICheckDigitAlgorithm
       var oddCharacter = true;
       for (var index = value.Length - 2; index >= 0; index--)
       {
-         var currentDigit = value[index].GetIntegerDigit();
+         var currentDigit = value[index].ToIntegerDigit();
          if (currentDigit < 0 || currentDigit > 9)
          {
             return false;

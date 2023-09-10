@@ -38,7 +38,7 @@ public class Isbn10Algorithm : ICheckDigitAlgorithm
       var t = 0;
       for(var index = 0; index < 9; index++)
       {
-         var currentDigit = value![index] - '0';
+         var currentDigit = value![index].ToIntegerDigit();
          if (currentDigit < 0 || currentDigit > 9)
          {
             return false;
@@ -49,7 +49,7 @@ public class Isbn10Algorithm : ICheckDigitAlgorithm
       s += t;
 
       var mod = (11 - (s % 11)) % 11;
-      var checkDigit = mod < 10 ? '0' + mod : 'X';
+      var checkDigit = mod < 10 ? mod.ToDigitChar() : CharConstants.UpperCaseX;
 
       return value[^1] == checkDigit;
    }

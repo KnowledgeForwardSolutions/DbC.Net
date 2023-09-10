@@ -29,7 +29,7 @@ public class AbaRoutingNumberAlgorithm : ICheckDigitAlgorithm
 
       for(var index = 0; index < value.Length; index++)
       {
-         var currentDigit = value[index].GetIntegerDigit();
+         var currentDigit = value[index].ToIntegerDigit();
          if (currentDigit < 0 || currentDigit > 9)
          {
             return false;
@@ -40,15 +40,6 @@ public class AbaRoutingNumberAlgorithm : ICheckDigitAlgorithm
             : bucket == 1
                ? sevens += currentDigit
                : ones += currentDigit;
-
-//#pragma warning disable CS8509 // The switch expression does not handle all possible values of its input type (it is not exhaustive).
-//         _ = (index % 3) switch
-//         {
-//            0 => threes += currentDigit,
-//            1 => sevens += currentDigit,
-//            2 => ones += currentDigit,
-//         };
-//#pragma warning restore CS8509 // The switch expression does not handle all possible values of its input type (it is not exhaustive).
       }
       var sum = (threes * 3) + (sevens * 7) + ones;
 

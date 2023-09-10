@@ -40,7 +40,7 @@ public class LuhnAlgorithm : ICheckDigitAlgorithm
       var oddCharacter = true;
       for (var index = value.Length - 2; index >= 0; index--)
       {
-         var currentDigit = value![index] - '0';
+         var currentDigit = value![index].ToIntegerDigit();
          if (currentDigit < 0 || currentDigit > 9)
          {
             return false;
@@ -50,8 +50,8 @@ public class LuhnAlgorithm : ICheckDigitAlgorithm
             : currentDigit;
          oddCharacter = !oddCharacter;
       }
-      var checkDigit = '0' + (10 - (sum % 10)) % 10;
+      var checkDigit = (10 - (sum % 10)) % 10;
 
-      return value[^1] == checkDigit;
+      return value[^1] == checkDigit.ToDigitChar();
    }
 }
