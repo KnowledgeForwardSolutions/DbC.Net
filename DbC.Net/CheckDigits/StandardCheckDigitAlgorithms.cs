@@ -1,4 +1,4 @@
-﻿// Ignore Spelling: Luhn Ean Barcode
+﻿// Ignore Spelling: Luhn Barcode Aba
 
 namespace DbC.Net.CheckDigits;
 
@@ -7,6 +7,9 @@ namespace DbC.Net.CheckDigits;
 /// </summary>
 public static class StandardCheckDigitAlgorithms
 {
+   private static readonly Lazy<ICheckDigitAlgorithm> _abaRoutingNumberAlgorithm =
+      new(() => new AbaRoutingNumberAlgorithm());
+
    private static readonly Lazy<ICheckDigitAlgorithm> _isbn10Algorithm =
       new(() => new Isbn10Algorithm());
 
@@ -17,7 +20,12 @@ public static class StandardCheckDigitAlgorithms
      new(() => new Mod10BarcodeAlgorithm());
 
    /// <summary>
-   ///   ISBN-10 check digit algorithm.
+   ///   ABA (American Bankers Association) routing number check digit algorithm.
+   /// </summary>
+   public static ICheckDigitAlgorithm AbaRoutingNumberAlgorithm => _abaRoutingNumberAlgorithm.Value;
+
+   /// <summary>
+   ///   ISBN-10 (International Standard Book Number) check digit algorithm.
    /// </summary>
    public static ICheckDigitAlgorithm Isbn10Algorithm => _isbn10Algorithm.Value;
 
@@ -27,7 +35,7 @@ public static class StandardCheckDigitAlgorithms
    public static ICheckDigitAlgorithm LuhnAlgorithm => _luhnAlgorithm.Value;
 
    /// <summary>
-   ///   EAN-13 check digit algorithm.
+   ///   Modulus 10 barcode check digit algorithm.
    /// </summary>
    public static ICheckDigitAlgorithm Mod10BarcodeAlgorithm => _mod10BarcodeAlgorithm.Value;
 }

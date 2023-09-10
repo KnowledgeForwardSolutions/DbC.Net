@@ -47,15 +47,9 @@ public class Mod10BarcodeAlgorithm : ICheckDigitAlgorithm
          {
             return false;
          }
-         if (oddCharacter)
-         {
-            oddTotal += currentDigit;
-         }
-         else
-         {
-            evenTotal += currentDigit;
-         }
-
+         _ = oddCharacter
+            ? oddTotal += currentDigit
+            : evenTotal += currentDigit;
          oddCharacter = !oddCharacter;
       }
       var sum = (oddTotal * 3) + evenTotal;

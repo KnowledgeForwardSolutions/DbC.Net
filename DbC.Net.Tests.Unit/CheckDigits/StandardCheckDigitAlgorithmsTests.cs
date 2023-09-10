@@ -1,9 +1,23 @@
-﻿// Ignore Spelling: Luhn Barcode
+﻿// Ignore Spelling: Luhn Barcode Aba
 
 namespace DbC.Net.Tests.Unit.CheckDigits;
 
 public class StandardCheckDigitAlgorithmsTests
 {
+   #region AbaRoutingNumberAlgorithm Tests
+   // ==========================================================================
+   // ==========================================================================
+
+   [Fact]
+   public void StandardCheckDigitAlgorithms_AbaRoutingNumberAlgorithm_ShouldNotBeNull()
+      => StandardCheckDigitAlgorithms.AbaRoutingNumberAlgorithm.Should().NotBeNull();
+
+   [Fact]
+   public void StandardCheckDigitAlgorithms_AbaRoutingNumberAlgorithm_ShouldBeExpectedType()
+      => StandardCheckDigitAlgorithms.AbaRoutingNumberAlgorithm.Should().BeOfType<AbaRoutingNumberAlgorithm>();
+
+   #endregion
+
    #region Isbn10Algorithm Tests
    // ==========================================================================
    // ==========================================================================
