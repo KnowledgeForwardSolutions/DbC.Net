@@ -31,16 +31,7 @@ public class Isbn10AlgorithmTests
 
    [Fact]
    public void Isbn10Algorithm_ValidateCheckDigit_ShouldReturnFalse_WhenValueContainsInvalidCheckDigit()
-   {
-      // Arrange.
-      var value = "0500272938";
-
-      // Act.
-      var result = _sut.ValidateCheckDigit(value);
-
-      // Assert.
-      result.Should().BeFalse();
-   }
+      => _sut.ValidateCheckDigit("0500272938").Should().BeFalse();
 
    [Fact]
    public void Isbn10Algorithm_ValidateCheckDigit_ShouldReturnFalse_WhenValueContainsLowerCaseXCheckDigitInsteadOfUpperCase()
