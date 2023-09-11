@@ -19,6 +19,9 @@ public static class StandardCheckDigitAlgorithms
    private static readonly Lazy<ICheckDigitAlgorithm> _mod10BarcodeAlgorithm =
      new(() => new Mod10BarcodeAlgorithm());
 
+   private static readonly Lazy<ICheckDigitAlgorithm> _vehicleIdentificationNumberAlgorithm =
+     new(() => new VehicleIdentificationNumberAlgorithm());
+
    /// <summary>
    ///   ABA (American Bankers Association) routing number check digit algorithm.
    /// </summary>
@@ -38,4 +41,9 @@ public static class StandardCheckDigitAlgorithms
    ///   Modulus 10 barcode check digit algorithm.
    /// </summary>
    public static ICheckDigitAlgorithm Mod10BarcodeAlgorithm => _mod10BarcodeAlgorithm.Value;
+
+   /// <summary>
+   ///   Vehicle Identification Number (VIN) check digit algorithm.
+   /// </summary>
+   public static ICheckDigitAlgorithm VehicleIdentificationNumberAlgorithm => _vehicleIdentificationNumberAlgorithm.Value;
 }

@@ -59,4 +59,18 @@ public class StandardCheckDigitAlgorithmsTests
       => StandardCheckDigitAlgorithms.Mod10BarcodeAlgorithm.Should().BeOfType<Mod10BarcodeAlgorithm>();
 
    #endregion
+
+   #region VehicleIdentificationNumberAlgorithm Tests
+   // ==========================================================================
+   // ==========================================================================
+
+   [Fact]
+   public void StandardCheckDigitAlgorithms_VehicleIdentificationNumberAlgorithm_ShouldNotBeNull()
+      => StandardCheckDigitAlgorithms.VehicleIdentificationNumberAlgorithm.Should().NotBeNull();
+
+   [Fact]
+   public void StandardCheckDigitAlgorithms_VehicleIdentificationNumberAlgorithm_ShouldBeExpectedType()
+      => StandardCheckDigitAlgorithms.VehicleIdentificationNumberAlgorithm.Should().BeOfType<VehicleIdentificationNumberAlgorithm>();
+
+   #endregion
 }

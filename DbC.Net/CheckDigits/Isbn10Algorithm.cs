@@ -11,6 +11,7 @@
 public class Isbn10Algorithm : ICheckDigitAlgorithm
 {
    private const String _algorithmName = "ISBN-10";
+   private const Int32 _expectedLength = 10;
 
    /// <inheritdoc/>
    public String Name => _algorithmName;
@@ -29,7 +30,7 @@ public class Isbn10Algorithm : ICheckDigitAlgorithm
    /// </remarks>
    public Boolean ValidateCheckDigit(String value)
    {
-      if (String.IsNullOrEmpty(value) || value.Length != 10)
+      if (String.IsNullOrEmpty(value) || value.Length != _expectedLength)
       {
          return false;
       }

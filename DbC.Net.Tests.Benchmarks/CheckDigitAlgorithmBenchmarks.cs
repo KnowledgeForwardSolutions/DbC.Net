@@ -9,6 +9,7 @@ public class CheckDigitAlgorithmBenchmarks
    private static readonly Isbn10Algorithm _isbn10Algorithm = new();
    private static readonly LuhnAlgorithm _luhnAlgorithm = new();
    private static readonly Mod10BarcodeAlgorithm _mod10BarcodeAlgorithm = new();
+   private static readonly VehicleIdentificationNumberAlgorithm _vinAlgorithm = new();
 
    [Benchmark]
    public void ThrowAway()
@@ -38,5 +39,11 @@ public class CheckDigitAlgorithmBenchmarks
    public void Mod10BarcodeAlgorithm()
    {
       _ = _mod10BarcodeAlgorithm.ValidateCheckDigit("4006381333931");
+   }
+
+   [Benchmark]
+   public void VehicleIdentificationNumberAlgorithm()
+   {
+      _ = _vinAlgorithm.ValidateCheckDigit("1FTZX1722XKA76091");
    }
 }

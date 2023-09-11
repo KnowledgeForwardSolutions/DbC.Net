@@ -88,4 +88,27 @@ public static class ExtensionMethods
    ///   method will return a value that is not between 0-9.
    /// </remarks>
    public static Int32 ToIntegerDigit(this Char ch) => ch - CharConstants.DigitZero;
+
+   /// <summary>
+   ///   Convert a character in a Vehicle Identification Number (VIN) to its 
+   ///   integer equivalent for the purposes of calculating the VIN check digit.
+   /// </summary>
+   /// <param name="ch">
+   ///   The <see cref="Char"/> to convert.
+   /// </param>
+   /// <returns>
+   ///   The <paramref name="ch"/>'s integer equivalent or -1 if the character
+   ///   is not valid.
+   /// </returns>
+   public static Int32 TransliterateVinChar(this Char ch)
+      => ch switch
+      {
+         Char d when d >= CharConstants.DigitZero && d <= CharConstants.DigitNine => d.ToIntegerDigit(),
+         Char a_h when a_h >= CharConstants.UpperCaseA && a_h <= CharConstants.UpperCaseH => a_h - CharConstants.UpperCaseA + 1,
+         Char j_n when j_n >= CharConstants.UpperCaseJ && j_n <= CharConstants.UpperCaseN => j_n - CharConstants.UpperCaseJ + 1,
+         Char p when p == CharConstants.UpperCaseP => 7,
+         Char r when r == CharConstants.UpperCaseR => 9,
+         Char s_z when s_z >= CharConstants.UpperCaseS && s_z <= CharConstants.UpperCaseZ => s_z - CharConstants.UpperCaseS + 2,
+         _ => -1
+      };
 }
