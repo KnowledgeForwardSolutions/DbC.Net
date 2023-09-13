@@ -1,4 +1,4 @@
-﻿// Ignore Spelling: Luhn Barcode Aba
+﻿// Ignore Spelling: Luhn Barcode Aba Npi
 
 namespace DbC.Net.CheckDigits;
 
@@ -18,6 +18,9 @@ public static class StandardCheckDigitAlgorithms
 
    private static readonly Lazy<ICheckDigitAlgorithm> _mod10BarcodeAlgorithm =
      new(() => new Mod10BarcodeAlgorithm());
+
+   private static readonly Lazy<ICheckDigitAlgorithm> _npiAlgorithm =
+     new(() => new NpiAlgorithm());
 
    private static readonly Lazy<ICheckDigitAlgorithm> _vehicleIdentificationNumberAlgorithm =
      new(() => new VehicleIdentificationNumberAlgorithm());
@@ -41,6 +44,11 @@ public static class StandardCheckDigitAlgorithms
    ///   Modulus 10 barcode check digit algorithm.
    /// </summary>
    public static ICheckDigitAlgorithm Mod10BarcodeAlgorithm => _mod10BarcodeAlgorithm.Value;
+
+   /// <summary>
+   ///   NPI (National Provider Identifier) check digit algorithm.
+   /// </summary>
+   public static ICheckDigitAlgorithm NpiAlgorithm => _npiAlgorithm.Value;
 
    /// <summary>
    ///   Vehicle Identification Number (VIN) check digit algorithm.

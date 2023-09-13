@@ -1,4 +1,4 @@
-﻿// Ignore Spelling: Luhn Barcode Aba
+﻿// Ignore Spelling: Luhn Barcode Aba Npi
 
 namespace DbC.Net.Tests.Unit.CheckDigits;
 
@@ -57,6 +57,20 @@ public class StandardCheckDigitAlgorithmsTests
    [Fact]
    public void StandardCheckDigitAlgorithms_Mod10BarcodeAlgorithm_ShouldBeExpectedType()
       => StandardCheckDigitAlgorithms.Mod10BarcodeAlgorithm.Should().BeOfType<Mod10BarcodeAlgorithm>();
+
+   #endregion
+
+   #region NpiAlgorithm Tests
+   // ==========================================================================
+   // ==========================================================================
+
+   [Fact]
+   public void StandardCheckDigitAlgorithms_NpiAlgorithm_ShouldNotBeNull()
+      => StandardCheckDigitAlgorithms.NpiAlgorithm.Should().NotBeNull();
+
+   [Fact]
+   public void StandardCheckDigitAlgorithms_NpiAlgorithm_ShouldBeExpectedType()
+      => StandardCheckDigitAlgorithms.NpiAlgorithm.Should().BeOfType<NpiAlgorithm>();
 
    #endregion
 
