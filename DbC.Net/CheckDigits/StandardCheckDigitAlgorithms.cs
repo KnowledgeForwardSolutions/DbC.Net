@@ -1,4 +1,4 @@
-﻿// Ignore Spelling: Luhn Barcode Aba Npi
+﻿// Ignore Spelling: Luhn Barcode Aba Npi Verhoeff
 
 namespace DbC.Net.CheckDigits;
 
@@ -24,6 +24,9 @@ public static class StandardCheckDigitAlgorithms
 
    private static readonly Lazy<ICheckDigitAlgorithm> _vehicleIdentificationNumberAlgorithm =
      new(() => new VehicleIdentificationNumberAlgorithm());
+
+   private static readonly Lazy<ICheckDigitAlgorithm> _verhoeffAlgorithm =
+     new(() => new VerhoeffAlgorithm());
 
    /// <summary>
    ///   ABA (American Bankers Association) routing number check digit algorithm.
@@ -54,4 +57,9 @@ public static class StandardCheckDigitAlgorithms
    ///   Vehicle Identification Number (VIN) check digit algorithm.
    /// </summary>
    public static ICheckDigitAlgorithm VehicleIdentificationNumberAlgorithm => _vehicleIdentificationNumberAlgorithm.Value;
+
+   /// <summary>
+   ///   Verhoeff check digit algorithm.
+   /// </summary>
+   public static ICheckDigitAlgorithm VerhoeffAlgorithm => _verhoeffAlgorithm.Value;
 }

@@ -13,6 +13,9 @@ public class Isbn10Algorithm : ICheckDigitAlgorithm
    private const String _algorithmName = "ISBN-10";
    private const Int32 _expectedLength = 10;
 
+   // Limit access to only via StandardCheckDigitAlgorithms.
+   internal Isbn10Algorithm() { }
+
    /// <inheritdoc/>
    public String Name => _algorithmName;
 
@@ -24,7 +27,7 @@ public class Isbn10Algorithm : ICheckDigitAlgorithm
    ///      <item><paramref name="value"/> is <see cref="String.Empty"/></item>
    ///      <item><paramref name="value"/> is less than 10 characters in length</item>
    ///      <item><paramref name="value"/> is greater than 10 characters in length</item>
-   ///      <item><paramref name="value"/> contains a character that is not a digit (0-9)
+   ///      <item><paramref name="value"/> contains a character that is not a digit (0-9)</item>
    ///      in any position other than an 'X' in the check digit position</item>
    ///   </list>
    /// </remarks>

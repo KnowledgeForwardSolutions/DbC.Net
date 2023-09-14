@@ -28,7 +28,7 @@ public class NpiAlgorithm : ICheckDigitAlgorithm
    ///      <item><paramref name="value"/> is <see cref="String.Empty"/></item>
    ///      <item><paramref name="value"/> is less than 10 characters in length</item>
    ///      <item><paramref name="value"/> is greater than 10 characters in length</item>
-   ///      <item><paramref name="value"/> contains a character that is not a digit (0-9)
+   ///      <item><paramref name="value"/> contains a character that is not a digit (0-9)</item>
    ///   </list>
    /// </remarks>
    public Boolean ValidateCheckDigit(String value)

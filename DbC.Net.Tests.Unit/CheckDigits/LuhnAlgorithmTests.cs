@@ -4,7 +4,7 @@ namespace DbC.Net.Tests.Unit.CheckDigits;
 
 public class LuhnAlgorithmTests
 {
-   private readonly LuhnAlgorithm _sut = new();
+   private readonly ICheckDigitAlgorithm _sut = StandardCheckDigitAlgorithms.LuhnAlgorithm;
 
    public static TheoryData<String> TestValuesWithTrailingCheckDigits = new()
    {

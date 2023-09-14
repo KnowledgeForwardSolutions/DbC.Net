@@ -17,6 +17,9 @@ public class LuhnAlgorithm : ICheckDigitAlgorithm
 {
    private const String _algorithmName = "Luhn";
 
+   // Limit access to only via StandardCheckDigitAlgorithms.
+   internal LuhnAlgorithm() { }
+
    /// <inheritdoc/>
    public String Name => _algorithmName;
 
@@ -26,7 +29,7 @@ public class LuhnAlgorithm : ICheckDigitAlgorithm
    ///   <list type="bullet">
    ///      <item><paramref name="value"/> is <see langword="null"/></item>
    ///      <item><paramref name="value"/> is <see cref="String.Empty"/></item>
-   ///      <item><paramref name="value"/> contains a character that is not a digit (0-9)
+   ///      <item><paramref name="value"/> contains a character that is not a digit (0-9)</item>
    ///   </list>
    /// </remarks>
    public Boolean ValidateCheckDigit(String value)

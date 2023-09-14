@@ -2,7 +2,7 @@
 
 public class VehicleIdentificationNumberAlgorithmTests
 {
-   private readonly VehicleIdentificationNumberAlgorithm _sut = new();
+   private readonly ICheckDigitAlgorithm _sut = StandardCheckDigitAlgorithms.VehicleIdentificationNumberAlgorithm;
 
    #region Name Property Tests
    // ==========================================================================

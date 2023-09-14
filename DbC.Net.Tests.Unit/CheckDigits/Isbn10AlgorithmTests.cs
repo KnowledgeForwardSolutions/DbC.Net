@@ -2,7 +2,7 @@
 
 public class Isbn10AlgorithmTests
 {
-   private readonly Isbn10Algorithm _sut = new();
+   private readonly ICheckDigitAlgorithm _sut = StandardCheckDigitAlgorithms.Isbn10Algorithm;
 
    #region Name Property Tests
    // ==========================================================================

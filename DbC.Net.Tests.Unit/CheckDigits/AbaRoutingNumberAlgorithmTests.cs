@@ -4,7 +4,7 @@ namespace DbC.Net.Tests.Unit.CheckDigits;
 
 public class AbaRoutingNumberAlgorithmTests
 {
-   private readonly AbaRoutingNumberAlgorithm _sut = new();
+   private readonly ICheckDigitAlgorithm _sut = StandardCheckDigitAlgorithms.AbaRoutingNumberAlgorithm;
 
    #region Name Property Tests
    // ==========================================================================

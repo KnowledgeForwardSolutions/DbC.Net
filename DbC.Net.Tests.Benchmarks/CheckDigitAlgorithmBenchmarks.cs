@@ -5,11 +5,11 @@ namespace DbC.Net.Tests.Benchmarks;
 [MemoryDiagnoser]
 public class CheckDigitAlgorithmBenchmarks
 {
-   private static readonly AbaRoutingNumberAlgorithm _abaAlgorithm = new();
-   private static readonly Isbn10Algorithm _isbn10Algorithm = new();
-   private static readonly LuhnAlgorithm _luhnAlgorithm = new();
-   private static readonly Mod10BarcodeAlgorithm _mod10BarcodeAlgorithm = new();
-   private static readonly VehicleIdentificationNumberAlgorithm _vinAlgorithm = new();
+   private static readonly ICheckDigitAlgorithm _abaAlgorithm = StandardCheckDigitAlgorithms.AbaRoutingNumberAlgorithm;
+   private static readonly ICheckDigitAlgorithm _isbn10Algorithm = StandardCheckDigitAlgorithms.Isbn10Algorithm;
+   private static readonly ICheckDigitAlgorithm _luhnAlgorithm = StandardCheckDigitAlgorithms.LuhnAlgorithm;
+   private static readonly ICheckDigitAlgorithm _mod10BarcodeAlgorithm = StandardCheckDigitAlgorithms.Mod10BarcodeAlgorithm;
+   private static readonly ICheckDigitAlgorithm _vinAlgorithm = StandardCheckDigitAlgorithms.VehicleIdentificationNumberAlgorithm;
 
    [Benchmark]
    public void ThrowAway()

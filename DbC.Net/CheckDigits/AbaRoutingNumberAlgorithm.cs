@@ -15,6 +15,9 @@ public class AbaRoutingNumberAlgorithm : ICheckDigitAlgorithm
    private const String _algorithmName = "ABA";
    private const Int32 _expectedLength = 9;
 
+   // Limit access to only via StandardCheckDigitAlgorithms.
+   internal AbaRoutingNumberAlgorithm() { }
+
    /// <inheritdoc/>
    public String Name => _algorithmName;
 
@@ -26,7 +29,7 @@ public class AbaRoutingNumberAlgorithm : ICheckDigitAlgorithm
    ///      <item><paramref name="value"/> is <see cref="String.Empty"/></item>
    ///      <item><paramref name="value"/> is less than 9 characters in length</item>
    ///      <item><paramref name="value"/> is greater than 9 characters in length</item>
-   ///      <item><paramref name="value"/> contains a character that is not a digit (0-9)
+   ///      <item><paramref name="value"/> contains a character that is not a digit (0-9)</item>
    ///   </list>
    /// </remarks>
    public Boolean ValidateCheckDigit(String value)

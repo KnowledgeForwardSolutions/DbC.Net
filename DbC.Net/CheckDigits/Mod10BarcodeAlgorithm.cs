@@ -18,6 +18,9 @@ public class Mod10BarcodeAlgorithm : ICheckDigitAlgorithm
 {
    private const String _algorithmName = "Mod10Barcode";
 
+   // Limit access to only via StandardCheckDigitAlgorithms.
+   internal Mod10BarcodeAlgorithm() { }
+
    /// <inheritdoc/>
    public String Name => _algorithmName;
 
@@ -27,7 +30,7 @@ public class Mod10BarcodeAlgorithm : ICheckDigitAlgorithm
    ///   <list type="bullet">
    ///      <item><paramref name="value"/> is <see langword="null"/></item>
    ///      <item><paramref name="value"/> is <see cref="String.Empty"/></item>
-   ///      <item><paramref name="value"/> contains a character that is not a digit (0-9)
+   ///      <item><paramref name="value"/> contains a character that is not a digit (0-9)</item>
    ///   </list>
    /// </remarks>
    public Boolean ValidateCheckDigit(String value) 

@@ -1,4 +1,4 @@
-﻿// Ignore Spelling: Luhn Barcode Aba Npi
+﻿// Ignore Spelling: Luhn Barcode Aba Npi Verhoeff
 
 namespace DbC.Net.Tests.Unit.CheckDigits;
 
@@ -85,6 +85,20 @@ public class StandardCheckDigitAlgorithmsTests
    [Fact]
    public void StandardCheckDigitAlgorithms_VehicleIdentificationNumberAlgorithm_ShouldBeExpectedType()
       => StandardCheckDigitAlgorithms.VehicleIdentificationNumberAlgorithm.Should().BeOfType<VehicleIdentificationNumberAlgorithm>();
+
+   #endregion
+
+   #region VerhoeffAlgorithm Tests
+   // ==========================================================================
+   // ==========================================================================
+
+   [Fact]
+   public void StandardCheckDigitAlgorithms_VerhoeffAlgorithm_ShouldNotBeNull()
+      => StandardCheckDigitAlgorithms.VerhoeffAlgorithm.Should().NotBeNull();
+
+   [Fact]
+   public void StandardCheckDigitAlgorithms_VerhoeffAlgorithm_ShouldBeExpectedType()
+      => StandardCheckDigitAlgorithms.VerhoeffAlgorithm.Should().BeOfType<VerhoeffAlgorithm>();
 
    #endregion
 }

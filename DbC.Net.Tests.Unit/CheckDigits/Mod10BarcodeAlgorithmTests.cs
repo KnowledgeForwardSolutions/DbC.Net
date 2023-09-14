@@ -4,7 +4,7 @@ namespace DbC.Net.Tests.Unit.CheckDigits;
 
 public class Mod10BarcodeAlgorithmTests
 {
-   private readonly Mod10BarcodeAlgorithm _sut = new();
+   private readonly ICheckDigitAlgorithm _sut = StandardCheckDigitAlgorithms.Mod10BarcodeAlgorithm;
 
    #region Name Property Tests
    // ==========================================================================
