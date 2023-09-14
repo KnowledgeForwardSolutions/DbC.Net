@@ -57,6 +57,13 @@ value.EnsuresValidCheckDigit(checkDigitAlgorithm, exceptionFactory: customExcept
 value.EnsuresValidCheckDigit(checkDigitAlgorithm, customMessageTemplate, customExceptionFactory);
 ```
 
+### ICheckDigitAlgorithm
+
+If you need to use a check digit algorithm not provided by Dbc.Net, or if you
+have a tested/proven implementation that you prefer to use, then you can implement 
+the ICheckDigitAlgorithm interface and pass your own implementation to
+Requires/EnsuresValidCheckDigit.
+
 ### StandardCheckDigitAlgorithms
 
 The DbC.Net.CheckDigits.StandardCheckDigitAlgorithms class has properties 
@@ -89,10 +96,18 @@ lazily created singleton objects. The algorithms available are:
 - VehicleIdentificationNumberAlgorithm - algorithm used by North American (United
   States and Canada) Vehicle Identification Numbers (VIN).
 
-### ICheckDigitAlgorithm
+- VerhoeffAlgorithm - algorithm developed by Jacobus Verhoeff in 1969. The first
+  decimal check algorithm capable of detecting all single-digit and two digit
+  transposition errors.
 
-If you need to use a different check digit algorithm, either because you have a
-tested/proven implementation that you prefer to use or you need an algorithm that
-is not provided by StandardCheckDigitAlgorithms, then you can implement the 
-ICheckDigitAlgorithm interface and pass your own implementation to
-Requires/EnsuresValidCheckDigit.
+### Check Digit Algorithm Benchmarks
+
+| Algorithm                            | Value Tested                |     Mean |    Error |   StdDev | Allocated |
+|:-------------------------------------|:----------------------------|---------:|---------:|---------:|----------:|
+| AbaRoutingNumberAlgorithm            | 9 digit routing number      | 15.54 ns | 0.213 ns | 0.189 ns |         - |
+| Isbn10Algorithm                      | 10 digit ISBN               | 11.45 ns | 0.053 ns | 0.042 ns |         - |
+| LuhnAlgorithm                        | 16 digit credit card number | 21.74 ns | 0.136 ns | 0.121 ns |         - |
+| Mod10BarcodeAlgorithm                | 13 digit EAN                | 13.01 ns | 0.095 ns | 0.084 ns |         - |
+| NpiAlgorithm                         | 10 digit NPI                | 16.44 ns | 0.155 ns | 0.138 ns |         - |
+| VehicleIdentificationNumberAlgorithm | 17 digit VIN                | 45.15 ns | 0.356 ns | 0.297 ns |         - |
+| VerhoeffAlgorithm                    | 13 digit value              | 34.23 ns | 0.220 ns | 0.195 ns |         - |

@@ -1,4 +1,4 @@
-﻿// Ignore Spelling: Luhn Barcode Aba
+﻿// Ignore Spelling: Luhn Barcode Aba Npi Verhoeff
 
 namespace DbC.Net.Tests.Benchmarks;
 
@@ -9,7 +9,9 @@ public class CheckDigitAlgorithmBenchmarks
    private static readonly ICheckDigitAlgorithm _isbn10Algorithm = StandardCheckDigitAlgorithms.Isbn10Algorithm;
    private static readonly ICheckDigitAlgorithm _luhnAlgorithm = StandardCheckDigitAlgorithms.LuhnAlgorithm;
    private static readonly ICheckDigitAlgorithm _mod10BarcodeAlgorithm = StandardCheckDigitAlgorithms.Mod10BarcodeAlgorithm;
+   private static readonly ICheckDigitAlgorithm _npiAlgorithm = StandardCheckDigitAlgorithms.NpiAlgorithm;
    private static readonly ICheckDigitAlgorithm _vinAlgorithm = StandardCheckDigitAlgorithms.VehicleIdentificationNumberAlgorithm;
+   private static readonly ICheckDigitAlgorithm _verhoeffAlgorithm = StandardCheckDigitAlgorithms.VerhoeffAlgorithm;
 
    [Benchmark]
    public void ThrowAway()
@@ -42,8 +44,20 @@ public class CheckDigitAlgorithmBenchmarks
    }
 
    [Benchmark]
+   public void NpiAlgorithm()
+   {
+      _ = _npiAlgorithm.ValidateCheckDigit("1234567893");
+   }
+
+   [Benchmark]
    public void VehicleIdentificationNumberAlgorithm()
    {
       _ = _vinAlgorithm.ValidateCheckDigit("1FTZX1722XKA76091");
+   }
+
+   [Benchmark]
+   public void VerhoeffAlgorithm()
+   {
+      _ = _verhoeffAlgorithm.ValidateCheckDigit("1234567890120");
    }
 }
