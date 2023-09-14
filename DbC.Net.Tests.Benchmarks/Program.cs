@@ -23,4 +23,4 @@
 //BenchmarkRunner.Run<StartsWithBenchmarks>();
 //BenchmarkRunner.Run<EndsWithBenchmarks>();
 //BenchmarkRunner.Run<RegexMatchBenchmarks>();
-BenchmarkRunner.Run<CheckDigitAlgorithmBenchmarks>();
+BenchmarkRunner.Run<ValidCheckDigitBenchmarks>();

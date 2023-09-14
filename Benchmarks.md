@@ -41,6 +41,8 @@ Intel Core i7-8700K CPU 3.70GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical 
   - [EndsWith Benchmarks](#endswith-benchmarks)
   - [RegexMatch Benchmarks](#regexmatch-benchmarks)
 
+  - [ValidCheckDigit Benchmarks](#validcheckdigit-benchmarks)
+
 ### NotNull Benchmarks
 
 X indicates that the optional parameter was supplied; blank indicates that the 
@@ -676,3 +678,37 @@ method overload.
 | RequiresRegexMatch | Generated  | X                |                   | 63.38 ns | 0.930 ns | 0.777 ns |         - |
 | RequiresRegexMatch | Generated  |                  | X                 | 64.29 ns | 1.306 ns | 1.452 ns |         - |
 | RequiresRegexMatch | Generated  | X                | X                 | 63.14 ns | 1.190 ns | 1.114 ns |         - |
+
+### ValidCheckDigit Benchmarks
+
+X indicates that the optional parameter was supplied; blank indicates that the 
+parameter was omitted. N/A indicates that the parameter is not valid for the
+method overload.
+
+| Method       -----      | Algorithm                            | Message Template | Exception Factory |     Mean |    Error |   StdDev | Allocated |
+|:----------------------- |:-------------------------------------|:----------------:|:-----------------:|---------:|---------:|---------:|----------:|
+| RequiresValidCheckDigit | AbaRoutingNumberAlgorithm            |                  |                   | 16.59 ns | 0.072 ns | 0.067 ns |         - |
+| RequiresValidCheckDigit | AbaRoutingNumberAlgorithm            | X                |                   | 16.74 ns | 0.261 ns | 0.231 ns |         - |
+| RequiresValidCheckDigit | AbaRoutingNumberAlgorithm            |                  | X                 | 16.69 ns | 0.099 ns | 0.093 ns |         - |
+| RequiresValidCheckDigit | AbaRoutingNumberAlgorithm            | X                | X                 | 17.19 ns | 0.215 ns | 0.201 ns |         - |
+| RequiresValidCheckDigit | Isbn10Algorithm                      |                  |                   | 13.22 ns | 0.053 ns | 0.050 ns |         - |
+| RequiresValidCheckDigit | Isbn10Algorithm                      | X                |                   | 12.93 ns | 0.057 ns | 0.053 ns |         - |
+| RequiresValidCheckDigit | Isbn10Algorithm                      |                  | X                 | 13.07 ns | 0.058 ns | 0.055 ns |         - |
+| RequiresValidCheckDigit | Isbn10Algorithm                      | X                | X                 | 13.34 ns | 0.053 ns | 0.045 ns |         - |
+| RequiresValidCheckDigit | LuhnAlgorithm                        |                  |                   | 22.60 ns | 0.451 ns | 0.422 ns |         - |
+| RequiresValidCheckDigit | LuhnAlgorithm                        | X                |                   | 22.19 ns | 0.112 ns | 0.094 ns |         - |
+| RequiresValidCheckDigit | LuhnAlgorithm                        |                  | X                 | 22.44 ns | 0.241 ns | 0.214 ns |         - |
+| RequiresValidCheckDigit | LuhnAlgorithm                        | X                | X                 | 21.68 ns | 0.452 ns | 0.633 ns |         - |
+| RequiresValidCheckDigit | Mod10BarcodeAlgorithm                |                  |                   | 14.64 ns | 0.260 ns | 0.217 ns |         - |
+| RequiresValidCheckDigit | Mod10BarcodeAlgorithm                | X                |                   | 13.94 ns | 0.062 ns | 0.052 ns |         - |
+| RequiresValidCheckDigit | Mod10BarcodeAlgorithm                |                  | X                 | 14.39 ns | 0.071 ns | 0.059 ns |         - |
+| RequiresValidCheckDigit | Mod10BarcodeAlgorithm                | X                | X                 | 14.50 ns | 0.126 ns | 0.112 ns |         - |
+| RequiresValidCheckDigit | NpiAlgorithm                         |                  |                   | 18.09 ns | 0.384 ns | 0.500 ns |         - |
+| RequiresValidCheckDigit | NpiAlgorithm                         | X                |                   | 17.91 ns | 0.111 ns | 0.092 ns |         - |
+| RequiresValidCheckDigit | NpiAlgorithm                         |                  | X                 | 18.01 ns | 0.109 ns | 0.091 ns |         - |
+| RequiresValidCheckDigit | NpiAlgorithm                         | X                | X                 | 17.83 ns | 0.077 ns | 0.068 ns |         - |
+| RequiresValidCheckDigit | VehicleIdentificationNumberAlgorithm |                  |                   | 42.22 ns | 0.398 ns | 0.333 ns |         - |
+| RequiresValidCheckDigit | VehicleIdentificationNumberAlgorithm | X                |                   | 41.56 ns | 0.460 ns | 0.408 ns |         - |
+| RequiresValidCheckDigit | VehicleIdentificationNumberAlgorithm |                  | X                 | 41.18 ns | 0.194 ns | 0.172 ns |         - |
+| RequiresValidCheckDigit | VehicleIdentificationNumberAlgorithm | X                | X                 | 41.24 ns | 0.229 ns | 0.215 ns |         - |
+
