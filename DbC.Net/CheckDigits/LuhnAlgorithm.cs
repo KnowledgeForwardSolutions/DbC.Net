@@ -17,6 +17,8 @@ public class LuhnAlgorithm : ICheckDigitAlgorithm
 {
    private const String _algorithmName = "Luhn";
 
+   private static readonly Int32[] _doubledValues = new Int32[] { 0, 2, 4, 6, 8, 1, 3, 5, 7, 9 };
+
    // Limit access to only via StandardCheckDigitAlgorithms.
    internal LuhnAlgorithm() { }
 
@@ -29,18 +31,19 @@ public class LuhnAlgorithm : ICheckDigitAlgorithm
    ///   <list type="bullet">
    ///      <item><paramref name="value"/> is <see langword="null"/></item>
    ///      <item><paramref name="value"/> is <see cref="String.Empty"/></item>
+   ///      <item><paramref name="value"/> has length < 2</item>
    ///      <item><paramref name="value"/> contains a character that is not a digit (0-9)</item>
    ///   </list>
    /// </remarks>
    public Boolean ValidateCheckDigit(String value)
    {
-      if (String.IsNullOrEmpty(value))
+      if (String.IsNullOrEmpty(value) || value.Length < 2)
       {
          return false;
       }
 
       var sum = 0;
-      var oddCharacter = true;
+      var shouldApplyDouble = true;
       for (var index = value.Length - 2; index >= 0; index--)
       {
          var currentDigit = value![index].ToIntegerDigit();
@@ -48,10 +51,8 @@ public class LuhnAlgorithm : ICheckDigitAlgorithm
          {
             return false;
          }
-         sum += oddCharacter
-            ? currentDigit > 4 ? currentDigit * 2 - 9 : currentDigit * 2
-            : currentDigit;
-         oddCharacter = !oddCharacter;
+         sum += shouldApplyDouble ? _doubledValues[currentDigit] : currentDigit;
+         shouldApplyDouble = !shouldApplyDouble;
       }
       var checkDigit = (10 - (sum % 10)) % 10;
 

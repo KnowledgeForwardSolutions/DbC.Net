@@ -1,5 +1,6 @@
 ﻿namespace DbC.Net.Tests.Unit;
 
+#pragma warning disable xUnit1012 // Null should only be used for nullable parameters
 public class StartsWithExtensionsTests
 {
    private const Int32 _dataCount = 7;

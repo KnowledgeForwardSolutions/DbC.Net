@@ -10,7 +10,7 @@ public class HalfRelativeEqualityComparerTests
    [InlineData(60001F, 60000F, 0.00001F, true)]
    [InlineData(1000F, 1001F, 0.00001F, false)]
    [InlineData(1001F, 1000F, 0.00001F, false)]
-   public void HalfRelativeErrorComparer_ApproximatelyEquals_ShouldReturnExpectedResult_ForLargePositveValues(
+   public void HalfRelativeErrorComparer_ApproximatelyEquals_ShouldReturnExpectedResult_ForLargePositiveValues(
       Single x,
       Single y,
       Single tolerance,
@@ -126,23 +126,23 @@ public class HalfRelativeEqualityComparerTests
       Boolean expected)
       => _sut.ApproximatelyEquals(x, y, (Half)tolerance).Should().Be(expected);
 
-   public static TheoryData<Half, Half, Single, Boolean> InfinityTestData => new()
+   public static TheoryData<Half, Half, Half, Boolean> InfinityTestData => new()
    {
-      { Half.PositiveInfinity, Half.PositiveInfinity, 0.00001F, true },
-      { Half.NegativeInfinity, Half.NegativeInfinity, 0.00001F, true },
-      { Half.NegativeInfinity, Half.PositiveInfinity, 0.00001F, false },
-      { Half.PositiveInfinity, Half.MaxValue, 0.00001F, false },
-      { Half.NegativeInfinity, Half.MinValue, 0.00001F, false },
+      { Half.PositiveInfinity, Half.PositiveInfinity, (Half)0.00001F, true },
+      { Half.NegativeInfinity, Half.NegativeInfinity, (Half)0.00001F, true },
+      { Half.NegativeInfinity, Half.PositiveInfinity, (Half)0.00001F, false },
+      { Half.PositiveInfinity, Half.MaxValue, (Half)0.00001F, false },
+      { Half.NegativeInfinity, Half.MinValue, (Half)0.00001F, false },
    };
 
    [Theory]
    [MemberData(nameof(InfinityTestData))]
    public void HalfRelativeErrorComparer_ApproximatelyEquals_ShouldReturnExpectedResult_ForInfinity(
-      Single x,
-      Single y,
-      Single tolerance,
+      Half x,
+      Half y,
+      Half tolerance,
       Boolean expected)
-      => _sut.ApproximatelyEquals((Half)x, (Half)y, (Half)tolerance).Should().Be(expected);
+      => _sut.ApproximatelyEquals(x, y, tolerance).Should().Be(expected);
 
    public static TheoryData<Half, Half, Single, Boolean> NaNTestData => new()
    {
